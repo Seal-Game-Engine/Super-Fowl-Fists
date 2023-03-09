@@ -1,10 +1,8 @@
 #pragma once
 #include "IMessageHandler.h"
-
-#include "Vector3.h"
+namespace SealEngine { struct Vector2; }
 
 namespace SealEngine::InputSystem {
-
 	class Inputs : public IMessageHandler {
 	public:
 		bool TryHandleMessage(const UINT, const WPARAM, const LPARAM) override;
@@ -17,7 +15,7 @@ namespace SealEngine::InputSystem {
 		void mouseButtonUp();
 		void mouseWheel(const WPARAM, const double);
 
-		static Vector3 GetMousePosition();
+		static Vector2 GetMousePosition();
 
 		static float prev_MouseX;
 		static float prev_MouseY;

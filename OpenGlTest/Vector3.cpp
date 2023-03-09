@@ -1,11 +1,14 @@
 #include "Vector3.h"
 #include <cmath>
+#include "Vector2.h"
 using namespace SealEngine;
 
 Vector3::Vector3(const float& x, const float& y, const float& z): _x(x), _y(y), _z(z) {}
 Vector3::Vector3(const Vector3& obj) :_x(obj.x()), _y(obj.y()), _z(obj.z()) {}
 
-//const float& Vector3::x() const { return _x; }
+Vector3::operator Vector2() const { return Vector2(x(), y()); }
+
+const float& Vector3::x() const { return _x; }
 const float& Vector3::y() const { return _y; }
 const float& Vector3::z() const { return _z; }
 

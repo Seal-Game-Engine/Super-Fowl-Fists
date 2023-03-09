@@ -2,11 +2,13 @@
 #include "SealEngine.h"
 using namespace SealEngine;
 
-class Player {
+
+class Enemy {
 public:
-	Player();
+	//Enemy();
 	void Draw();
-	void Init(char* fileName);
+	void PlaceEnemy(Vector3);
+	void Init(char* fileName, int, int);
 	void Actions(int);
 	void Update();
 

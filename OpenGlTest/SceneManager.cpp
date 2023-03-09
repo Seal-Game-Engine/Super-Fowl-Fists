@@ -2,13 +2,15 @@
 
 #include "GLLight.h"
 #include "SealEngine.h"
-#include "Model.h";
+#include "Model.h"
 #include "Player.h"
+#include "Enemy.h"
 using namespace SealEngine::InputSystem;
 
 Inputs* KbMs = new Inputs();
 Model* mdl = new Model();
 Player* player = new Player();
+Enemy* enemy = new Enemy();
 
 int SceneManager::RefreshScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -56,7 +58,7 @@ bool SceneManager::InitGl() {
 
     mdl->Initialize();
     player->Init((char*)"Hector_Run.png");
-
+    enemy->Init((char*)"Googleplex.jpg", 1, 1);
 
     return true;
 }
@@ -72,6 +74,7 @@ void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
 
 bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
     mdl->Update();
+    player->Update();
     player->Update();
     if (uMsg == WM_SIZE) {
         ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh

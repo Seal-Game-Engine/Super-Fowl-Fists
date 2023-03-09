@@ -1,14 +1,16 @@
 #pragma once
+namespace SealEngine { struct Vector2; }
 
 namespace SealEngine {
     struct Vector3 {
     public:
         Vector3(const float&, const float&, const float&);
         Vector3(const Vector3&);
+        operator Vector2() const;
 
-        const float& x() const { return _x; }
-        const float& y() const;
-        const float& z() const;
+        const float& x() const; 
+        const float& y() const; 
+        const float& z() const; 
 
         void Set(const float&, const float&, const float&);
 

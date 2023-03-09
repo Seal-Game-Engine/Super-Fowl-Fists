@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include "Inputs.h"
-
+#include "Vector2.h"
 using namespace SealEngine;
 using namespace SealEngine::InputSystem;
 
@@ -93,7 +93,7 @@ void Inputs::mouseWheel(const WPARAM wParam, const double delta) {
     delta / 100;//x += ?
 }
 
-Vector3 Inputs::GetMousePosition() {
+Vector2 Inputs::GetMousePosition() {
     int x, y;
     if (_uMessage == WM_MOUSEMOVE) {
         x = GET_X_LPARAM(_lParam) - prev_MouseX;
@@ -102,6 +102,6 @@ Vector3 Inputs::GetMousePosition() {
         prev_MouseX = x;
         prev_MouseY = y;
     }
-    return _uMessage == WM_MOUSEMOVE ? Vector3(x, y, 0) : Vector3(prev_MouseX, prev_MouseY, 0);
+    return _uMessage == WM_MOUSEMOVE ? Vector2(x, y) : Vector2(prev_MouseX, prev_MouseY);
     //return Vector3(x / 10, y/10, 0);
 }

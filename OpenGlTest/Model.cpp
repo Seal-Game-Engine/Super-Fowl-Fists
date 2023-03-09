@@ -35,7 +35,7 @@ void Model::Update() {
     if (Inputs::GetKeyDown(VK_RIGHT))
         transform.rotation += Vector3::up() * 90;
 
-        Vector3 mouse = Inputs::GetMousePosition();
+        Vector2 mouse = Inputs::GetMousePosition();
         transform.position = Vector3(mouse.x() / 100, -mouse.y() / 100, transform.position.z());
     
 

@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.h" />
     <ClCompile Include="MonoBehaviour.cpp" />
@@ -176,9 +177,11 @@
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GLLight.h" />
     <ClInclude Include="MonoBehaviour.h" />
     <ClInclude Include="Parallax.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="ApplicationManager.h" />
   </ItemGroup>
