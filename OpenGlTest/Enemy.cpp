@@ -47,3 +47,7 @@ void Enemy::Init(char* fileName, int vframe, int hframe)
 
 	textureLoader->Load(fileName, tex);
 }
+
+void Enemy::Update()
+{
+}

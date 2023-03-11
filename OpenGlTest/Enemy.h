@@ -15,7 +15,7 @@ public:
 	Transform transform;
 	Vector3 pivotOffset = Vector3::zero();
 
-	TextureLoader* textureLoader = new TextureLoader();
+	Texture2D* textureLoader = new Texture2D();
 	GLuint tex;
 	float runSpeed, jumpSpeed;
 	int actionTrigger;

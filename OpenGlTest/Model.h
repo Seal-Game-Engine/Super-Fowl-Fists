@@ -11,5 +11,5 @@ public:
     Transform transform;
 
     GLuint tex;
-    TextureLoader tLoad;
+    Texture2D tLoad;
 };

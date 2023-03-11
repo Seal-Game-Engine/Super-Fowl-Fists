@@ -23,6 +23,7 @@ int SceneManager::RefreshScene() {
     glPushMatrix();
     mdl->DrawModel();
     player->Draw();
+    enemy->Draw();
     //glLoadIdentity();
     glPopMatrix();
 
@@ -75,7 +76,7 @@ void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
 bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
     mdl->Update();
     player->Update();
-    player->Update();
+    enemy->Update();
     if (uMsg == WM_SIZE) {
         ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh
         return true;

@@ -4,7 +4,7 @@
 #include <string>
 
 namespace SealEngine {
-	class TextureLoader {
+	class Texture2D {
 	public:
 		void Load(char*, GLuint&);
 		void Bind(GLuint);

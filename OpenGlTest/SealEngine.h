@@ -8,7 +8,8 @@
 
 #include "Inputs.h"
 
-#include "TextureLoader.h"
+#include "Sprite.h"
+#include "Texture2D.h"
 #include "SceneManager.h"
 #include "ApplicationManager.h"
 

@@ -1,8 +1,8 @@
-#include "TextureLoader.h"
+#include "Texture2D.h"
 #include <SOIL2.h>
 using namespace SealEngine;
 
-void TextureLoader::Load(char* fileName, GLuint& textureId) {
+void Texture2D::Load(char* fileName, GLuint& textureId) {
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
 	
@@ -18,6 +18,6 @@ void TextureLoader::Load(char* fileName, GLuint& textureId) {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
 
-void TextureLoader::Bind(GLuint textureId) {
+void Texture2D::Bind(GLuint textureId) {
 	glBindTexture(GL_TEXTURE_2D, textureId);
 }

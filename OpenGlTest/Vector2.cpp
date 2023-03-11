@@ -1,6 +1,7 @@
 #include "Vector2.h"
 #include <cmath>
 #include "Vector3.h"
+
 using namespace SealEngine;
 
 Vector2::Vector2(const float& x, const float& y) : _x(x), _y(y) {}

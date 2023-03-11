@@ -14,7 +14,7 @@ public:
 
 	float xMax = 1, xMin = 0, yMax = 0, yMin = 1;
 
-	TextureLoader textureLoader;
+	Texture2D textureLoader;
 
 	clock_t startTime;
 };
