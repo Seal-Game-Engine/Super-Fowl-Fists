@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector2.h"
+#include "Texture2D.h"
 //namespace SealEngine { struct Vector2; }
 
 namespace SealEngine {
@@ -16,7 +17,7 @@ namespace SealEngine {
 		//pixelsPerUnit	The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
 		//rect	Location of the Sprite on the original Texture, specified in pixels.
 		//spriteAtlasTextureScale	The Variant scale of texture used by the Sprite.This is useful to check when a Variant SpriteAtlas is being used by Sprites.
-		//texture	Get the reference to the used texture.If packed this will point to the atlas, if not packed will point to the source sprite.
+		Texture2D texture;	//Get the reference to the used texture.If packed this will point to the atlas, if not packed will point to the source sprite.
 		//textureRect	Get the rectangle this sprite uses on its texture.Raises an exception if this sprite is tightly packed in an atlas.
 		Vector2 textureRectOffset;
 		//triangles	Returns a copy of the array containing sprite mesh triangles.

@@ -6,10 +6,16 @@
 namespace SealEngine {
 	class Texture2D {
 	public:
+		Texture2D(int, int);
+
 		void Load(char*, GLuint&);
 		void Bind(GLuint);
 
 		unsigned char* image;
-		int width, height;
+		const int width() const;
+		const int height() const;
+
+	private:
+		int _width, _height;
 	};
 }

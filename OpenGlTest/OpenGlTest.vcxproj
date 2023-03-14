@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GLLight.h" />
     <ClInclude Include="MonoBehaviour.h" />

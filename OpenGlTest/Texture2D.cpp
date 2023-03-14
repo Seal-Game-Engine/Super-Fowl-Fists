@@ -2,6 +2,8 @@
 #include <SOIL2.h>
 using namespace SealEngine;
 
+SealEngine::Texture2D::Texture2D(int width, int height) : _width(width), _height(height) {}
+
 void Texture2D::Load(char* fileName, GLuint& textureId) {
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -18,6 +20,7 @@ void Texture2D::Load(char* fileName, GLuint& textureId) {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
 
+//called on draw
 void Texture2D::Bind(GLuint textureId) {
 	glBindTexture(GL_TEXTURE_2D, textureId);
 }

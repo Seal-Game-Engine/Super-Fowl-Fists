@@ -48,6 +48,18 @@ void Enemy::Init(char* fileName, int vframe, int hframe)
 	textureLoader->Load(fileName, tex);
 }
 
+void Enemy::Actions(int action)
+{
+	int vfrm = 4;
+	float xMin = 0, xMax = 1.0 / 4;
+
+	switch (action) {
+	case 0:
+		xMax += 1.0 / vfrm;
+		xMin += 1.0 / vfrm;
+	}
+}
+
 void Enemy::Update()
 {
 }
