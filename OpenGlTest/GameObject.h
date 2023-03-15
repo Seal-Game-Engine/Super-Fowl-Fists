@@ -1,4 +1,5 @@
 #pragma once
+#include <__tuple>
 #include <vector>
 #include <string>
 #include <array>
@@ -7,14 +8,15 @@ using objectId = int;
 using Vector3 = float; //placeholder for Transfomr
 using MonoBehaviour = float; //placeholder for MonoBehavior
 
+
 class GameObject {
   GameObject();
   GameObject(std::string name);
   GameObject(std::string name, MonoBehaviour);
 
  public:
-  bool activeInHierachy;
-  bool activeSelf;
+  bool activeInHierarchy;
+  bool activeSelf() const;
   bool isStatic;
   // layer
   // scene
@@ -25,34 +27,36 @@ class GameObject {
 
   // Properties
   static void Instantiate(objectId, Vector3, std::vector<MonoBehaviour>);
-  static void Destroy();
+  static void Destroy();//
   static void DontDestroyOnLoad(GameObject target);
-
 
   // Identifier
   static void Find(objectId);
   static GameObject FindWithTag(std::string);
   static std::vector<GameObject> FindGameObjectsWithTag(std::string);
   void GetInstanceID(objectId);
-  bool CompareTag(std::string);
-  void SetActive(bool);
+  bool CompareTag(std::string);     //done
+  void SetActive(bool);             //done
   std::string ToString();
-  template <typename T>
+  template <class T>
   static T FindObjectOfType();
-  template <typename T>
+  template <class T>
   static std::vector<T> FindObjectsOfType();
 
 
 
   // Components
-  template <typename T>
-  void AddComponenet(objectId, std::vector<MonoBehaviour>, T);
-  template <typename T>
-  void GetComponent(objectId, T);
-  template <typename T>
-  void GetComponentInParent(T);
-  template <typename T>
-  void GetComponentInChild(T);
-  template <typename T>
-  void TryGetComponent(T);
+  template <class T>
+  T AddComponent();
+  template <class T>
+  T GetComponent();
+  template <class T>
+  void GetComponentInParent(T);//
+  template <class T>
+  void GetComponentInChild(T);//
+  template <class T>
+  void TryGetComponent(T);//
+
+  private:
+    bool _activeSelf;
 };
