@@ -1,6 +1,5 @@
 #include "GameObject.h"
 #include <system_error>
-using namespace System;
 
 bool GameObject::activeSelf() const {return _activeSelf;}
 void GameObject::Instantiate(objectId, Vector3, std::vector<MonoBehaviour>){}
