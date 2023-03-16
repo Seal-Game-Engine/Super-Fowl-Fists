@@ -1,8 +1,9 @@
 #pragma once
-#include "SealEngine.h"
+#include "Object.h"
+using GameObject = int;
 
 namespace SealEngine {
-	class MonoBehaviour {
+	class MonoBehaviour : public Object {
 	public:
 #pragma region Messages
 		virtual void Awake() {}
@@ -31,8 +32,8 @@ namespace SealEngine {
 
 		bool enabled = true;
 		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
-		//gameObject	
-		// tag
+		GameObject gameObject;
+		std::string tag;
 		Transform transform;
 		std::string	name;
 

@@ -6,6 +6,9 @@
 #include "Vector3.h"
 #include "Transform.h"
 
+#include "Object.h"
+#include "MonoBehaviour.h"
+
 #include "Inputs.h"
 
 #include "Sprite.h"

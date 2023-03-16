@@ -1,5 +1,6 @@
 #pragma once
 #include "MonoBehaviour.h"
+#include "Sprite.h"
 
 namespace SealEngine {
 	class SpriteRenderer : public MonoBehaviour {
@@ -10,7 +11,7 @@ namespace SealEngine {
 		bool flipX, flipY;
 		//maskInteraction	Specifies how the sprite interacts with the masks.
 		//size	Property to set or get the size to render when the SpriteRenderer.drawMode is set to SpriteDrawMode.Sliced or SpriteDrawMode.Tiled.
-		Sprite	sprite;
+		Sprite sprite;
 		//spriteSortPoint	Determines the position of the Sprite used for sorting the SpriteRenderer.
 		//tileMode
 		bool forceRenderingOff;//	Allows turning off rendering for a specific component.
@@ -41,6 +42,7 @@ namespace SealEngine {
 			sortingOrder	Renderer's order within a sorting layer.
 			staticShadowCaster	Is this renderer a static shadow caster ?
 			worldToLocalMatrix*/
+		void Awake() override;
 		void Update() override;
 		void LateUpdate() override;
 	};

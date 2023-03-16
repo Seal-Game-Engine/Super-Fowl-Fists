@@ -5,7 +5,6 @@ using namespace SealEngine;
 
 class Enemy {
 public:
-	//Enemy();
 	void Draw();
 	void PlaceEnemy(Vector3);
 	void Init(char* fileName, int, int);
@@ -15,7 +14,7 @@ public:
 	Transform transform;
 	Vector3 pivotOffset = Vector3::zero();
 
-	Texture2D* textureLoader = new Texture2D();
+	Texture2D* textureLoader = new Texture2D(0, 0);
 	GLuint tex;
 	float runSpeed, jumpSpeed;
 	int actionTrigger;

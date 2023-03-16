@@ -2,9 +2,10 @@
 
 #include <GL/freeglut.h>
 #include <string>
+#include "Object.h"
 
 namespace SealEngine {
-	class Texture2D {
+	class Texture2D : public Object {
 	public:
 		Texture2D(int, int);
 

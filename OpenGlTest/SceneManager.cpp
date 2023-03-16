@@ -7,10 +7,9 @@
 #include "Enemy.h"
 using namespace SealEngine::InputSystem;
 
-Inputs* KbMs = new Inputs();
-Model* mdl = new Model();
-Player* player = new Player();
-Enemy* enemy = new Enemy();
+//Model* mdl = new Model();
+Player player;
+Enemy enemy;
 
 int SceneManager::RefreshScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -21,9 +20,9 @@ int SceneManager::RefreshScene() {
 
     //---
     glPushMatrix();
-    mdl->DrawModel();
-    player->Draw();
-    enemy->Draw();
+    //mdl->DrawModel();
+    player.Draw();
+    enemy.Draw();
     //glLoadIdentity();
     glPopMatrix();
 
@@ -57,9 +56,9 @@ bool SceneManager::InitGl() {
 
     glEnable(GL_TEXTURE_2D);
 
-    mdl->Initialize();
-    player->Init((char*)"Hector_Run.png");
-    enemy->Init((char*)"Googleplex.jpg", 1, 1);
+    //mdl->Initialize();
+    player.Init((char*)"Hector_Run.png");
+    enemy.Init((char*)"Googleplex.jpg", 1, 1);
 
     return true;
 }
@@ -74,9 +73,9 @@ void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
 }
 
 bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    mdl->Update();
-    player->Update();
-    enemy->Update();
+    //mdl->Update();
+    player.Update();
+    enemy.Update();
     if (uMsg == WM_SIZE) {
         ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh
         return true;
