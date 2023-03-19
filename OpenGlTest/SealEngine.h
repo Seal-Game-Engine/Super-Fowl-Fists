@@ -6,6 +6,7 @@
 #include "Vector3.h"
 #include "Transform.h"
 
+#include "KeyCode.h"
 #include "Inputs.h"
 
 #include "Sprite.h"

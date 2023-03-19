@@ -57,6 +57,6 @@ void Player::Actions(int action) {
 
 void Player::Update() {
 	using namespace InputSystem;
-	if (Inputs::GetKeyDown(VK_UP)) {
+	if (Inputs::GetKeyDown(KeyCode::UpArrow)) {
 	}
 }

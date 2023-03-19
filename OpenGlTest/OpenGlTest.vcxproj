@@ -167,6 +167,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.h" />
+    <ClCompile Include="KeyCode.h" />
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Parallax.cpp" />
     <ClCompile Include="Player.cpp" />
