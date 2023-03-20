@@ -4,10 +4,10 @@
 #include "Transform.h"
 
 namespace SealEngine {
-	enum FindObjectsInactive { Exclude, Include };
-
 	class Object {
 	public:
+		enum class FindObjectsInactive { Exclude, Include };
+
 		std::string name;
 		int GetInstanceId() const;
 		const std::string& ToString() const;
@@ -18,16 +18,18 @@ namespace SealEngine {
 
 		template<class T>
 			requires std::is_base_of<Object, T>::value
-		static T FindFirstObjectByType(FindObjectsInactive = Exclude);
+		static T FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude);
 
 		template<class T>
 			requires std::is_base_of<Object, T>::value
-		static std::vector<T> FindObjectsByType(FindObjectsInactive = Exclude);
+		static std::vector<T> FindObjectsByType(FindObjectsInactive = FindObjectsInactive::Exclude);
 
 		static Object Instantiate(Object);
 		static Object Instantiate(Object, Transform, bool = true);
 		static Object Instantiate(Object, Vector3, Transform);
 		//todo: check gameobject's version
+
+		Object();
 
 		operator bool() const;
 		bool operator!=(const Object&)const;

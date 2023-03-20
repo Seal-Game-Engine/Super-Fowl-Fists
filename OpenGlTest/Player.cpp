@@ -1,14 +1,16 @@
 #include "Player.h"
+#include "AssetManager.h"
 #include <windows.h>
 
-Player::Player() {
+Player::Player()
+	: textureLoader(AssetManager::Hector_Run) {
 	runSpeed = 0;
 	jumpSpeed = 0;
 	actionTrigger = 0;
 }
 
 void Player::Draw() {
-	textureLoader->Bind(tex);
+	//textureLoader.Bind();
 	glTranslated(0, 0, -2);
 	glColor3f(1, 1, 1);
 	glBegin(GL_POLYGON);
@@ -37,13 +39,11 @@ void Player::Draw() {
 	glEnd();
 }
 
-void Player::Init(char* fileName) {
+void Player::Init() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	int vfrm = 4, hfrm = 4;
-
-	textureLoader->Load(fileName, tex);
 }
 
 void Player::Actions(int action) {

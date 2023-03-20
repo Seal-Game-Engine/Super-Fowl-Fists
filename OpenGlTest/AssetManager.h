@@ -1,8 +1,10 @@
 #pragma once
+#include "SealEngine.h"
+using namespace SealEngine;
 
-namespace SealEngine {
-	class AssetManager	{
+class AssetManager {
+public:
+	static const Texture2D Hector_Run;
 
-	};
-}
-
+	static const Texture2D Googleplex;
+};

@@ -2,21 +2,25 @@
 
 #include <GL/freeglut.h>
 #include <string>
+#include <vector>
 #include "Object.h"
+namespace SealEngine { class Sprite; }
 
 namespace SealEngine {
 	class Texture2D : public Object {
 	public:
-		Texture2D(int, int);
+		Texture2D(std::string textureSource, int columns = 1, int rows = 1);
 
-		void Load(char*, GLuint&);
-		void Bind(GLuint);
-
-		unsigned char* image;
 		const int width() const;
 		const int height() const;
+		const GLuint textureName() const;
+
+		const Sprite& operator[](int);
 
 	private:
-		int _width, _height;
+		int _width, _height, _channelCount;
+		int _columns, _rows;
+		std::vector<Sprite> sprites;
+		GLuint _textureName;
 	};
 }

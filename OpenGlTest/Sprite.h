@@ -9,7 +9,7 @@ using Rect = int;
 namespace SealEngine {
 	class Sprite : public Object {
 	public:
-		Sprite(const Texture2D&, const Vector2&, float);
+		Sprite(const Texture2D& texture, const Vector2& pivot, float pixelsPerUnit);
 		//associatedAlphaSplitTexture	Returns the texture that contains the alpha channel from the source texture.Unity generates this texture under the hood for sprites that have alpha in the source, and need to be compressed using techniques like ETC1.Returns NULL if there is no associated alpha texture for the source sprite.This is the case if the sprite has not been setup to use ETC1 compression.
 			//border	Returns the border sizes of the sprite.
 			//bounds	Bounds of the Sprite, specified by its center and extents in world space units.

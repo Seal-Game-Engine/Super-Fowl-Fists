@@ -1,14 +1,14 @@
 #include "Texture2D.h"
 #include <SOIL2.h>
+#include "Sprite.h"
 using namespace SealEngine;
 
-Texture2D::Texture2D(int width, int height) : _width(width), _height(height) {}
+Texture2D::Texture2D(std::string textureSource, int columns, int rows)
+	: _columns(columns), _rows(rows) {
+	glGenTextures(1, &_textureName);
+	glBindTexture(GL_TEXTURE_2D, _textureName);
 
-void Texture2D::Load(char* fileName, GLuint& textureId) {
-	glGenTextures(1, &textureId);
-	glBindTexture(GL_TEXTURE_2D, textureId);
-	
-	image = SOIL_load_image(fileName, &_width, &_height, 0, SOIL_LOAD_RGBA);
+	auto image = SOIL_load_image(textureSource.c_str(), &_width, &_height, &_channelCount, SOIL_LOAD_RGBA);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width(), height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
@@ -18,12 +18,19 @@ void Texture2D::Load(char* fileName, GLuint& textureId) {
 
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-}
 
-//called on draw
-void Texture2D::Bind(GLuint textureId) {
-	glBindTexture(GL_TEXTURE_2D, textureId);
+	//todo: generate sprites vector
+	sprites.reserve(columns * rows);
+	for (int rowId = 0; rowId < rows; rowId++) {
+		for (int columnId = 0; columnId < columns; columnId++) {
+			sprites.push_back(Sprite(*this, Vector2(0.5f, 0.5f), 16));
+		}
+	}
 }
 
 const int Texture2D::width() const { return _width; }
 const int Texture2D::height() const { return _height; }
+
+const GLuint Texture2D::textureName() const { return _textureName; }
+
+const Sprite& Texture2D::operator[](int i) { return sprites[i]; }

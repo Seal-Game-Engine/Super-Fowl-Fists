@@ -57,8 +57,8 @@ bool SceneManager::InitGl() {
     glEnable(GL_TEXTURE_2D);
 
     //mdl->Initialize();
-    player.Init((char*)"Hector_Run.png");
-    enemy.Init((char*)"Googleplex.jpg", 1, 1);
+    player.Init();
+    enemy.Init(1, 1);
 
     return true;
 }

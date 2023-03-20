@@ -4,6 +4,7 @@ using namespace SealEngine;
 
 class Model {
 public:
+    Model();
     void DrawModel();
     void Update();
     void Initialize();

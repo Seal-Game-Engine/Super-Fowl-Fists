@@ -1,8 +1,12 @@
 #include "Model.h"
+#include "AssetManager.h"
 #include <windows.h>
 
+Model::Model()
+    : tLoad(AssetManager::Googleplex) {}
+
 void Model::DrawModel() {
-    tLoad.Bind(tex);
+    //tLoad.Bind(tex);
     glTranslatef(transform.position.x(), transform.position.y(), transform.position.z());
     glRotatef(transform.rotation.x(), 1, 0, 0);
     glRotatef(transform.rotation.y(), 0, 1, 0);
@@ -66,5 +70,5 @@ void Model::Update() {
 }
 
 void Model::Initialize() {
-    tLoad.Load((char*)"Googleplex.jpg", tex);
+    tLoad = Texture2D("Googleplex.jpg");
 }

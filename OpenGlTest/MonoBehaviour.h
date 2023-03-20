@@ -1,5 +1,10 @@
 #pragma once
 #include "Object.h"
+#include "Transform.h"
+namespace SealEngine { 
+	class Object;
+	class Transform;
+}
 using GameObject = int;
 
 namespace SealEngine {

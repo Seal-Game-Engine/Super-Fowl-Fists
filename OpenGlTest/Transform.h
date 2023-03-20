@@ -1,9 +1,10 @@
 #pragma once
 #include "Vector3.h"
+#include "MonoBehaviour.h"
 //namespace SealEngine { struct Vector3; }
 
 namespace SealEngine {
-	class Transform {
+	class Transform : public MonoBehaviour {
 	public:
 		Transform();
 		Transform(Vector3, Vector3, Vector3);

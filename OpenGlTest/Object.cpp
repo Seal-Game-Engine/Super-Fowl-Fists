@@ -26,6 +26,8 @@ std::vector<T> Object::FindObjectsByType(FindObjectsInactive findObjectsInactive
 }
 
 
+Object::Object() :_instanceId(0) {} //TODO replace 0 with static incremental int
+
 Object::operator bool() const { return true; }
 bool Object::operator==(const Object& obj) const { return GetInstanceId() == obj.GetInstanceId(); }
 bool Object::operator!=(const Object& obj) const { return !this->operator==(obj); }

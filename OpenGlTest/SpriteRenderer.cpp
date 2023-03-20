@@ -5,8 +5,7 @@ void SpriteRenderer::Awake() {
 }
 
 void SpriteRenderer::LateUpdate() {
-	//sprite.texture.Bind();
-
+	glBindTexture(GL_TEXTURE_2D, sprite.texture.textureName());
 	glPushMatrix();
 	{
 		glTranslated(transform.position.x(), transform.position.y(), transform.position.z());
