@@ -170,6 +170,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.h" />
+    <ClCompile Include="KeyCode.h" />
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Parallax.cpp" />

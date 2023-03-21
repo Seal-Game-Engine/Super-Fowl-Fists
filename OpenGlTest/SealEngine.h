@@ -11,6 +11,7 @@
 #include "Transform.h"
 #include "SpriteRenderer.h"
 
+#include "KeyCode.h"
 #include "Inputs.h"
 
 #include "Rect.h"

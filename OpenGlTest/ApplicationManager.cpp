@@ -226,7 +226,7 @@ bool ApplicationManager::TryToggleFullScreen() {
 }
 
 bool GetActionLOLL() {
-	if (InputSystem::Inputs::GetKeyDown(VK_ESCAPE)) return false;
+	if (InputSystem::Inputs::GetKeyDown(KeyCode::Escape)) return false;
 	return true;
 }
 

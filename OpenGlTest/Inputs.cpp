@@ -6,7 +6,7 @@ using namespace SealEngine;
 using namespace SealEngine::InputSystem;
 
 UINT Inputs::_uMessage = 0;
-WPARAM Inputs::_wParam = NULL;
+KeyCode Inputs::_wParam = (KeyCode)NULL;
 LPARAM Inputs::_lParam = NULL;
 
 float Inputs::prev_MouseX = 0;
@@ -16,7 +16,7 @@ bool Inputs::keys[256];
 
 bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LPARAM lParam) {
     _uMessage = uMessage;
-    _wParam = wParam;
+    _wParam = (KeyCode)wParam;
     _lParam = lParam;
 
     switch (uMessage) {
@@ -52,16 +52,16 @@ bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LP
     return true;
 }
 
-bool Inputs::GetKeyDown(const WPARAM wParam) {
+bool Inputs::GetKeyDown(const KeyCode wParam) {
     return _wParam == wParam && _uMessage == WM_KEYDOWN;
 }
 
-bool Inputs::GetKeyUp(const WPARAM wParam) {
+bool Inputs::GetKeyUp(const KeyCode wParam) {
     return _wParam == wParam && _uMessage == WM_KEYUP;
 }
 
-bool Inputs::GetKey(const WPARAM wParam) {
-    return keys[wParam];
+bool Inputs::GetKey(const KeyCode wParam) {
+    return keys[(int)wParam];
 }
 
 //pass in LOWORD(lParam) for x, HIWORD(lParam) for y

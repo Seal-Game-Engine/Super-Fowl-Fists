@@ -19,23 +19,23 @@ void Model::DrawModel() {
 
 void Model::Update() {
     using namespace InputSystem;
-    if (Inputs::GetKeyDown(VK_UP))
+    if (Inputs::GetKeyDown(KeyCode::UpArrow))
         transform.rotation -= Vector3::right() * 90;
 
-    if (Inputs::GetKeyDown(VK_DOWN))
+    if (Inputs::GetKeyDown(KeyCode::DownArrow))
         transform.rotation += Vector3::right() * 90;
 
-    if (Inputs::GetKeyDown(VK_LEFT))
+    if (Inputs::GetKeyDown(KeyCode::LeftArrow))
         transform.rotation -= Vector3::up() * 90;
 
-    if (Inputs::GetKeyDown(VK_RIGHT))
+    if (Inputs::GetKeyDown(KeyCode::RightArrow))
         transform.rotation += Vector3::up() * 90;
 
     Vector2 mouse = Inputs::GetMousePosition();
     transform.position = Vector3(mouse.x() / 100 - 3, -mouse.y() / 100, transform.position.z());
     
 
-    if (Inputs::GetKeyDown(0x53))//S
+    if (Inputs::GetKeyDown(KeyCode::S))//S
         transform.position = Vector3::zero();
 
     //if (Inputs::GetKeyDown(0x57))//W
@@ -50,13 +50,13 @@ void Model::Update() {
     //if (Inputs::GetKeyDown(0x44))//D
     //    transform.position.Set(transform.position.x() + 1, transform.position.y(), transform.position.z());
 
-    if (Inputs::GetKeyDown(VK_OEM_PLUS))
+    if (Inputs::GetKeyDown(KeyCode::Plus))
         transform.position.Set(transform.position.x(), transform.position.y(), transform.position.z() + 1);
 
-    if (Inputs::GetKeyDown(VK_OEM_MINUS))
+    if (Inputs::GetKeyDown(KeyCode::Minus))
         transform.position.Set(transform.position.x(), transform.position.y(), transform.position.z() - 1);
 
-    if (InputSystem::Inputs::GetKeyDown(VK_F1)) {
+    if (InputSystem::Inputs::GetKeyDown(KeyCode::F1)) {
         ApplicationManager::TryToggleFullScreen();
     }
 }

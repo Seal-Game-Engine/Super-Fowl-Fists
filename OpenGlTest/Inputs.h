@@ -1,5 +1,6 @@
 #pragma once
 #include "IMessageHandler.h"
+#include "KeyCode.h"
 namespace SealEngine { struct Vector2; }
 
 namespace SealEngine::InputSystem {
@@ -7,9 +8,9 @@ namespace SealEngine::InputSystem {
 	public:
 		bool TryHandleMessage(const UINT, const WPARAM, const LPARAM) override;
 
-		static bool GetKeyDown(const WPARAM);
-		static bool GetKeyUp(const WPARAM);
-		static bool GetKey(const WPARAM);
+		static bool GetKeyDown(const KeyCode);
+		static bool GetKeyUp(const KeyCode);
+		static bool GetKey(const KeyCode);
 
 		void mouseButtonDown(const WPARAM, double, double);
 		void mouseButtonUp();
@@ -25,7 +26,7 @@ namespace SealEngine::InputSystem {
 
 	private:
 		static UINT _uMessage;
-		static WPARAM _wParam;
+		static KeyCode _wParam;
 		static LPARAM _lParam;
 
 		static bool keys[256];
