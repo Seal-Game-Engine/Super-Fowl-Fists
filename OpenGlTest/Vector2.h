@@ -41,6 +41,8 @@ namespace SealEngine {
         static float Dot(const Vector2&, const Vector2&);
         static float Distance(const Vector2&, const Vector2&);
 
+        bool isPerpendicular(const Vector2&) const;
+
     private:
         float _x, _y;
     };

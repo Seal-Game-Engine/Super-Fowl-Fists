@@ -56,3 +56,14 @@ Vector3 Vector3::Cross(const Vector3& a, const Vector3& b) {
 }
 float Vector3::Distance(const Vector3& a, const Vector3& b) { return (a - b).magnitude(); }
 
+Vector3 Vector3::projectOnPlane(const Vector3& planeNormal) const
+{
+	// Calculate the dot product of the vector and the plane normal
+	float dot = Vector3::Dot(*this, planeNormal);
+
+	// Calculate the projection of the vector onto the plane
+	Vector3 projection = planeNormal * dot;
+
+	return projection;
+}
+
