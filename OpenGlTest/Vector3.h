@@ -4,7 +4,7 @@ namespace SealEngine { struct Vector2; }
 namespace SealEngine {
     struct Vector3 {
     public:
-        Vector3(const float&, const float&, const float&);
+        Vector3(const float x, const float y, const float z);
         Vector3(const Vector3&);
         operator Vector2() const;
 
@@ -12,7 +12,7 @@ namespace SealEngine {
         const float& y() const; 
         const float& z() const; 
 
-        void Set(const float&, const float&, const float&);
+        void Set(const float x, const float y, const float z);
 
         static Vector3 zero();
         static Vector3 one();
@@ -25,13 +25,13 @@ namespace SealEngine {
 
         Vector3 operator+(const Vector3&) const;
         Vector3 operator-(const Vector3&) const;
-        Vector3 operator*(const float&) const;
-        Vector3 operator/(const float&) const;
+        Vector3 operator*(const float) const;
+        Vector3 operator/(const float) const;
 
         Vector3& operator+=(const Vector3&);
         Vector3& operator-=(const Vector3&);
-        Vector3& operator*=(const float&);
-        Vector3& operator/=(const float&);
+        Vector3& operator*=(const float);
+        Vector3& operator/=(const float);
 
 
         bool operator==(const Vector3&) const;
@@ -44,8 +44,7 @@ namespace SealEngine {
         static float Dot(const Vector3&, const Vector3&);
         static Vector3 Cross(const Vector3&, const Vector3&);
         static float Distance(const Vector3&, const Vector3&);
-
-        Vector3 projectOnPlane(const Vector3&) const;
+        static Vector3 ProjectOnPlane(const Vector3& vector, const Vector3& planeNormal);
 
     private:
         float _x, _y, _z;

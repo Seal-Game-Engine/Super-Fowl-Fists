@@ -4,14 +4,14 @@ namespace SealEngine { struct Vector3; }
 namespace SealEngine {
     struct Vector2 {
     public:
-        Vector2(const float&, const float&);
+        Vector2(const float x, const float y);
         Vector2(const Vector2&);
         operator Vector3() const;
 
         const float& x() const;
         const float& y() const;
 
-        void Set(const float&, const float&);
+        void Set(const float x, const float y);
 
         static Vector2 zero();
         static Vector2 one();
@@ -22,13 +22,13 @@ namespace SealEngine {
 
         Vector2 operator+(const Vector2&) const;
         Vector2 operator-(const Vector2&) const;
-        Vector2 operator*(const float&) const;
-        Vector2 operator/(const float&) const;
+        Vector2 operator*(const float) const;
+        Vector2 operator/(const float) const;
 
         Vector2& operator+=(const Vector2&);
         Vector2& operator-=(const Vector2&);
-        Vector2& operator*=(const float&);
-        Vector2& operator/=(const float&);
+        Vector2& operator*=(const float);
+        Vector2& operator/=(const float);
 
 
         bool operator==(const Vector2&) const;
@@ -40,8 +40,7 @@ namespace SealEngine {
 
         static float Dot(const Vector2&, const Vector2&);
         static float Distance(const Vector2&, const Vector2&);
-
-        bool isPerpendicular(const Vector2&) const;
+        static Vector2 Perpendicular(const Vector2&);
 
     private:
         float _x, _y;

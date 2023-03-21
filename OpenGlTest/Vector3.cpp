@@ -3,7 +3,7 @@
 #include "Vector2.h"
 using namespace SealEngine;
 
-Vector3::Vector3(const float& x, const float& y, const float& z): _x(x), _y(y), _z(z) {}
+Vector3::Vector3(const float x, const float y, const float z): _x(x), _y(y), _z(z) {}
 Vector3::Vector3(const Vector3& obj) :_x(obj.x()), _y(obj.y()), _z(obj.z()) {}
 
 Vector3::operator Vector2() const { return Vector2(x(), y()); }
@@ -12,7 +12,7 @@ const float& Vector3::x() const { return _x; }
 const float& Vector3::y() const { return _y; }
 const float& Vector3::z() const { return _z; }
 
-void Vector3::Set(const float& x, const float& y, const float& z) {
+void Vector3::Set(const float x, const float y, const float z) {
 	_x = x; 
 	_y = y;
 	_z = z;
@@ -31,13 +31,13 @@ Vector3 Vector3::back() { return Vector3(0, 0, -1); }
 
 Vector3 Vector3::operator+(const Vector3& obj) const { return Vector3(x() + obj.x(), y() + obj.y(),z() + obj.z()); }
 Vector3 Vector3::operator-(const Vector3& obj) const { return Vector3(x() - obj.x(), y() - obj.y(), z() - obj.z()); }
-Vector3 Vector3::operator*(const float& obj) const { return Vector3(x() * obj, y() * obj, z() * obj); }
-Vector3 Vector3::operator/(const float& obj) const { return Vector3(x() / obj, y() / obj, z() / obj); }
+Vector3 Vector3::operator*(const float obj) const { return Vector3(x() * obj, y() * obj, z() * obj); }
+Vector3 Vector3::operator/(const float obj) const { return Vector3(x() / obj, y() / obj, z() / obj); }
 
 Vector3& Vector3::operator+=(const Vector3& obj) { return *this = this->operator+(obj); }
 Vector3& Vector3::operator-=(const Vector3& obj) { return *this = this->operator-(obj); }
-Vector3& Vector3::operator*=(const float& obj) { return *this = this->operator*(obj); }
-Vector3& Vector3::operator/=(const float& obj) { return *this = this->operator/(obj); }
+Vector3& Vector3::operator*=(const float obj) { return *this = this->operator*(obj); }
+Vector3& Vector3::operator/=(const float obj) { return *this = this->operator/(obj); }
 
 bool Vector3::operator==(const Vector3& obj) const { return x() == obj.x() && y() == obj.y() && z() == obj.z(); }
 bool Vector3::operator!=(const Vector3& obj) const { return !this->operator==(obj); }
@@ -56,14 +56,8 @@ Vector3 Vector3::Cross(const Vector3& a, const Vector3& b) {
 }
 float Vector3::Distance(const Vector3& a, const Vector3& b) { return (a - b).magnitude(); }
 
-Vector3 Vector3::projectOnPlane(const Vector3& planeNormal) const
-{
-	// Calculate the dot product of the vector and the plane normal
-	float dot = Vector3::Dot(*this, planeNormal);
-
+Vector3 Vector3::ProjectOnPlane(const Vector3& vector, const Vector3& planeNormal) {
 	// Calculate the projection of the vector onto the plane
-	Vector3 projection = planeNormal * dot;
-
-	return projection;
+	return planeNormal * Vector3::Dot(vector, planeNormal);//todo
 }
 
