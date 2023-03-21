@@ -2,27 +2,19 @@
 #include "AssetManager.h"
 #include <windows.h>
 
-Model::Model()
-    : tLoad(AssetManager::Googleplex) {}
-
 void Model::DrawModel() {
-    //tLoad.Bind(tex);
-    glTranslatef(transform.position.x(), transform.position.y(), transform.position.z());
-    glRotatef(transform.rotation.x(), 1, 0, 0);
-    glRotatef(transform.rotation.y(), 0, 1, 0);
-    glRotatef(transform.rotation.z(), 0, 0, 1);
+    glPushMatrix();
+    {
+        glTranslatef(transform.position.x(), transform.position.y(), transform.position.z());
+        glRotatef(transform.rotation.x(), 1, 0, 0);
+        glRotatef(transform.rotation.y(), 0, 1, 0);
+        glRotatef(transform.rotation.z(), 0, 0, 1);
 
-    glutSolidTeapot(transform.scale.y());
+        glBindTexture(GL_TEXTURE_2D, AssetManager::Googleplex.textureId());
 
-
-    /*Vector3 spoonPosition = transform.position + Vector3::up() * 2;
-
-    glRotatef(-transform.rotation.x(), 1, 0, 0);
-    glRotatef(transform.rotation.y(), 0, 1, 0);
-    glRotatef(-transform.rotation.z(), 0, 0, 1);
-    glTranslatef(spoonPosition.x(), spoonPosition.y(), spoonPosition.z());
-
-    glutSolidTeaspoon(transform.scale.y());*/
+        glutSolidTeapot(transform.scale.y());
+    }
+    glPopMatrix();
 }
 
 void Model::Update() {
@@ -39,8 +31,8 @@ void Model::Update() {
     if (Inputs::GetKeyDown(VK_RIGHT))
         transform.rotation += Vector3::up() * 90;
 
-        Vector2 mouse = Inputs::GetMousePosition();
-        transform.position = Vector3(mouse.x() / 100, -mouse.y() / 100, transform.position.z());
+    Vector2 mouse = Inputs::GetMousePosition();
+    transform.position = Vector3(mouse.x() / 100 - 3, -mouse.y() / 100, transform.position.z());
     
 
     if (Inputs::GetKeyDown(0x53))//S
@@ -67,8 +59,4 @@ void Model::Update() {
     if (InputSystem::Inputs::GetKeyDown(VK_F1)) {
         ApplicationManager::TryToggleFullScreen();
     }
-}
-
-void Model::Initialize() {
-    tLoad = Texture2D("Googleplex.jpg");
 }

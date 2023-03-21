@@ -11,7 +11,8 @@ namespace SealEngine {
 		bool flipX, flipY;
 		//maskInteraction	Specifies how the sprite interacts with the masks.
 		//size	Property to set or get the size to render when the SpriteRenderer.drawMode is set to SpriteDrawMode.Sliced or SpriteDrawMode.Tiled.
-		Sprite sprite;
+		const Sprite* sprite = nullptr;
+		
 		//spriteSortPoint	Determines the position of the Sprite used for sorting the SpriteRenderer.
 		//tileMode
 		bool forceRenderingOff;//	Allows turning off rendering for a specific component.

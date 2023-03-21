@@ -5,7 +5,7 @@
 using namespace SealEngine;
 
 Vector2::Vector2(const float& x, const float& y) : _x(x), _y(y) {}
-Vector2::Vector2(const Vector2& obj) :_x(obj.x()), _y(obj.y()) {}
+Vector2::Vector2(const Vector2& obj) : _x(obj.x()), _y(obj.y()) {}
 
 Vector2::operator Vector3() const { return Vector3(x(), y(), 0); }
 

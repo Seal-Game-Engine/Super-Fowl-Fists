@@ -1,7 +1,6 @@
 #pragma once
 #include "Vector3.h"
 #include "MonoBehaviour.h"
-//namespace SealEngine { struct Vector3; }
 
 namespace SealEngine {
 	class Transform : public MonoBehaviour {

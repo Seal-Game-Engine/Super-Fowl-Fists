@@ -1,4 +1,6 @@
 #pragma once
+#include "Player.h"
+#include <memory>
 #include "IMessageHandler.h"
 #include <GL/freeglut.h>
 
@@ -7,6 +9,8 @@ public:
     int RefreshScene();
     bool InitGl();
     void ResizeGl(GLfloat, GLfloat);
+    //std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
+
     bool TryHandleMessage(const UINT uMsg, const WPARAM wParam, const LPARAM lParam) override;
 
     //Unity
@@ -26,4 +30,5 @@ public:
     //activeSceneChanged	Subscribe to this event to get notified when the active Scene has changed.
     //sceneLoaded	Add a delegate to this to get notifications when a Scene has loaded.
     //sceneUnloaded
+
 };

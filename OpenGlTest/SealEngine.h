@@ -9,9 +9,11 @@
 #include "MonoBehaviour.h"
 
 #include "Transform.h"
+#include "SpriteRenderer.h"
 
 #include "Inputs.h"
 
+#include "Rect.h"
 #include "Sprite.h"
 #include "Texture2D.h"
 #include "SceneManager.h"

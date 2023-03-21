@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Transform.h"
+#include "Vector3.h"
+namespace SealEngine {
+	class Transform;
+}
 
 namespace SealEngine {
 	class Object {
@@ -32,11 +35,13 @@ namespace SealEngine {
 		Object();
 
 		operator bool() const;
-		bool operator!=(const Object&)const;
-		bool operator==(const Object&)const;
+		virtual bool operator!=(const Object&)const;
+		virtual bool operator==(const Object&)const;
 
 	private:
-		int _instanceId;
+		const int _instanceId;
+
+		static int _instanceIdCounter;
 	};
 }
 

@@ -4,8 +4,8 @@
 #include <vector>
 #include "SceneManager.h"
 #include "SealEngine.h"
-//#include "IMessageHandler.h"
 using namespace SealEngine::InputSystem;
+class SceneManager;
 
 namespace SealEngine {
 	class ApplicationManager {
@@ -17,8 +17,9 @@ namespace SealEngine {
 		static bool isFullScreen;
 		static HDC	deviceContextHandler;		// Private GDI Device Context
 
+		//static const std::unique_ptr<SceneManager> Scene;
 		static SceneManager* Scene;
-		static Inputs* Input;
+
 		static int NewMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow);
 
 		static std::vector<std::unique_ptr<IMessageHandler>> messageHandlers;

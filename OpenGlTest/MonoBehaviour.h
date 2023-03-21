@@ -1,8 +1,7 @@
 #pragma once
+#include <string>
 #include "Object.h"
-#include "Transform.h"
 namespace SealEngine { 
-	class Object;
 	class Transform;
 }
 using GameObject = int;
@@ -37,9 +36,9 @@ namespace SealEngine {
 
 		bool enabled = true;
 		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
-		GameObject gameObject;
+		GameObject gameObject();
 		std::string tag;
-		Transform transform;
+		Transform transform();
 		std::string	name;
 
 		//CompareTag	
