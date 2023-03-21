@@ -5,26 +5,31 @@
 #include "Model.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "CheckCollision.h"
+#include "AssetManager.h"
+#include "SOIL2.h"
+#include <memory>
 using namespace SealEngine::InputSystem;
 
-Inputs* KbMs = new Inputs();
-Model* mdl = new Model();
-Player* player = new Player();
-Enemy* enemy = new Enemy();
+std::unique_ptr<Model> model = std::unique_ptr<Model>(new Model);
+std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
+//Enemy enemy;
+std::unique_ptr <CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
+    player->LateUpdate();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    
     glPushMatrix();
-    glTranslated(0, 0, -8);
-    glPopMatrix();
+    {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
+        glTranslated(0, 0, -10);
+        //glPopMatrix();
 
-    //---
-    glPushMatrix();
-    mdl->DrawModel();
-    player->Draw();
-    enemy->Draw();
-    //glLoadIdentity();
+        //glLoadIdentity();
+        model->DrawModel();
+        player->renderer.LateUpdate();
+    //enemy.Draw();
+    }
     glPopMatrix();
 
     SwapBuffers(ApplicationManager::deviceContextHandler); // (Double Buffering)
@@ -34,7 +39,7 @@ int SceneManager::RefreshScene() {
 bool SceneManager::InitGl() {
     glutInit(&__argc, __argv);
 
-    glClearDepth(1.0);
+    glClearDepth(1.0f);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -43,7 +48,7 @@ bool SceneManager::InitGl() {
 
     //gluOrtho2D(0, 100, 100, 0);
     //gluPerspective(45.0, width / height, 0.1, 1000);
-    glMatrixMode(GL_MODELVIEW);
+    //glMatrixMode(GL_MODELVIEW);
 
     //---
     glDepthFunc(GL_LEQUAL);
@@ -51,15 +56,20 @@ bool SceneManager::InitGl() {
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    glEnable(GL_COLOR_MATERIAL);
+    
     GLLight Light(GL_LIGHT0);
     Light.Set(GL_LIGHT0);
 
     glEnable(GL_TEXTURE_2D);
-
-    mdl->Initialize();
-    player->Init((char*)"Hector_Run.png");
-    enemy->Init((char*)"Googleplex.jpg", 1, 1);
+    Texture2D::LoadUninitializedTextures();
+    //player->renderer.Awake();
+    //player->Awake();
+    //player->renderer.transform().position += Vector3::forward() * 5;
+    // 
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   // enemy.Init(1, 1);
 
     return true;
 }
@@ -69,14 +79,15 @@ void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45.0, width / height, 0.1, 1000);
+    
     glMatrixMode(GL_MODELVIEW);
-    //glLoadIdentity();//todo: test with not fullscreen
+    glLoadIdentity();//todo: test with not fullscreen
 }
 
 bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    mdl->Update();
+    model->Update();
     player->Update();
-    enemy->Update();
+    //enemy.Update();
     if (uMsg == WM_SIZE) {
         ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh
         return true;

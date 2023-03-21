@@ -1,9 +1,20 @@
 #pragma once
 #include "MonoBehaviour.h"
+#include "Sprite.h"
 
 namespace SealEngine {
 	class SpriteRenderer : public MonoBehaviour {
 	public:
+		//adaptiveModeThreshold	The current threshold for Sprite Renderer tiling.
+			//color	Rendering color for the Sprite graphic.
+			//drawMode	The current draw mode of the Sprite Renderer.
+		bool flipX, flipY;
+		//maskInteraction	Specifies how the sprite interacts with the masks.
+		//size	Property to set or get the size to render when the SpriteRenderer.drawMode is set to SpriteDrawMode.Sliced or SpriteDrawMode.Tiled.
+		const Sprite* sprite = nullptr;
+		
+		//spriteSortPoint	Determines the position of the Sprite used for sorting the SpriteRenderer.
+		//tileMode
 		bool forceRenderingOff;//	Allows turning off rendering for a specific component.
 		/*	isPartOfStaticBatch	Indicates whether the renderer is part of a static batch with other renderers.
 			isVisible	Is this renderer visible in any camera ? (Read Only)
@@ -32,6 +43,7 @@ namespace SealEngine {
 			sortingOrder	Renderer's order within a sorting layer.
 			staticShadowCaster	Is this renderer a static shadow caster ?
 			worldToLocalMatrix*/
+		void Awake() override;
 		void Update() override;
 		void LateUpdate() override;
 	};

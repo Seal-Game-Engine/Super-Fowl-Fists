@@ -13,7 +13,8 @@ HGLRC ApplicationManager::renderingContextHandler = NULL;		// Permanent Renderin
 HWND ApplicationManager::windowHandler = NULL;		// Holds Our Window Handle
 HINSTANCE ApplicationManager::instanceHandler = NULL;
 
-SceneManager* ApplicationManager::Scene = nullptr;
+//const std::unique_ptr<SceneManager> ApplicationManager::Scene = std::unique_ptr<SceneManager>();
+SceneManager* ApplicationManager::Scene = new SceneManager;
 
 std::vector<std::unique_ptr<IMessageHandler>> ApplicationManager::messageHandlers = std::vector<std::unique_ptr<IMessageHandler>>();
 
@@ -237,7 +238,7 @@ int ApplicationManager::NewMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPr
 
 	if (!SetupWindow(colorBits, true)) return 1;
 
-	Scene = new SceneManager;
+	//Scene = std::unique_ptr<SceneManager>(new SceneManager);
 	Scene->ResizeGl(width, height);
 	if (!Scene->InitGl()) {
 		MessageBox(NULL, L"Initialization Failed", L"ERROR", MB_OK | MB_ICONEXCLAMATION);

@@ -1,8 +1,13 @@
 #pragma once
-#include "SealEngine.h"
+#include <string>
+#include "Object.h"
+namespace SealEngine { 
+	class Transform;
+}
+using GameObject = int;
 
 namespace SealEngine {
-	class MonoBehaviour {
+	class MonoBehaviour : public Object {
 	public:
 #pragma region Messages
 		virtual void Awake() {}
@@ -31,9 +36,9 @@ namespace SealEngine {
 
 		bool enabled = true;
 		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
-		//gameObject	
-		// tag
-		Transform transform;
+		GameObject gameObject();
+		std::string tag;
+		Transform transform();
 		std::string	name;
 
 		//CompareTag	

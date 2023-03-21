@@ -1,50 +1,22 @@
 #include "Player.h"
+#include "AssetManager.h"
 #include <windows.h>
+#include <memory>
+#include <chrono>
 
 Player::Player() {
+	renderer.sprite = &AssetManager::Hector_Run[0];
 	runSpeed = 0;
 	jumpSpeed = 0;
 	actionTrigger = 0;
 }
 
-void Player::Draw() {
-	textureLoader->Bind(tex);
-	glTranslated(0, 0, -2);
-	glColor3f(1, 1, 1);
-	glBegin(GL_POLYGON);
-	{
-		Vector3* vertices = new Vector3[4]{
-			Vector3(-0.5f, -0.5f, -1),
-			Vector3(0.5f, -0.5f, -1),
-			Vector3(0.5f, 0.5f, -1),
-			Vector3(-0.5f, 0.5f, -1)
-		};
-
-		float xMin = 0, xMax = 1.0 / 4, yMin = 0, yMax = 1.0 / 4;
-
-		glTexCoord2f(xMin, yMax);//top left
-		glVertex3f(vertices[0].x(), vertices[0].y(), vertices[0].z());
-
-		glTexCoord2f(xMax, yMax);//top right
-		glVertex3f(vertices[1].x(), vertices[1].y(), vertices[1].z());
-
-		glTexCoord2f(xMax, yMin);//bottom left
-		glVertex3f(vertices[2].x(), vertices[2].y(), vertices[2].z());
-
-		glTexCoord2f(xMin, yMin);//bottom right
-		glVertex3f(vertices[3].x(), vertices[3].y(), vertices[3].z());
-	}
-	glEnd();
+void Player::Awake() {
+//	glEnable(GL_BLEND);
+//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void Player::Init(char* fileName) {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	int vfrm = 4, hfrm = 4;
-
-	textureLoader->Load(fileName, tex);
-}
 
 void Player::Actions(int action) {
 	switch (action) {
@@ -54,8 +26,20 @@ void Player::Actions(int action) {
 			break;
 	}
 }
+std::unique_ptr<const int> idleFrames = std::unique_ptr<const int>(new int[4] {0, 4, 0, 8});
+auto lastAnimatedFrame = std::chrono::high_resolution_clock::now();
+
+void Player::LateUpdate() {
+	static int frameId = 0;
+
+	if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - lastAnimatedFrame).count() > 50) {
+		renderer.sprite = &AssetManager::Hector_Run[idleFrames.get()[frameId++ % 4]];
+		lastAnimatedFrame = std::chrono::high_resolution_clock::now();
+	}
+}
 
 void Player::Update() {
+
 	using namespace InputSystem;
 	if (Inputs::GetKeyDown(KeyCode::UpArrow)) {
 	}

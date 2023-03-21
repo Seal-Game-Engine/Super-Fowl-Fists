@@ -1,7 +1,12 @@
 #include "Enemy.h"
+#include "AssetManager.h"
+
+Enemy::Enemy()
+	:textureLoader(AssetManager::Hector_Run) {}
 
 void Enemy::Draw()
 {
+	//bind()
 	glPushMatrix();
 	{
 		glTranslated(transform.position.x(), transform.position.y(), transform.position.z());
@@ -38,14 +43,24 @@ void Enemy::Draw()
 	glPopMatrix();
 }
 
-void Enemy::Init(char* fileName, int vframe, int hframe)
+void Enemy::Init(int vframe, int hframe)
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	int vfrm = 4, hfrm = 4;
+}
 
-	textureLoader->Load(fileName, tex);
+void Enemy::Actions(int action)
+{
+	int vfrm = 4;
+	float xMin = 0, xMax = 1.0 / 4;
+
+	switch (action) {
+	case 0:
+		xMax += 1.0 / vfrm;
+		xMin += 1.0 / vfrm;
+	}
 }
 
 void Enemy::Update()

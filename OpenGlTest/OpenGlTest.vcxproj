@@ -164,13 +164,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="CheckCollision.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.h" />
     <ClCompile Include="KeyCode.h" />
     <ClCompile Include="MonoBehaviour.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Parallax.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="main.cpp" />
@@ -183,11 +189,17 @@
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="CheckCollision.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLLight.h" />
     <ClInclude Include="MonoBehaviour.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Parallax.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="Model.h" />
