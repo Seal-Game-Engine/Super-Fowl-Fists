@@ -1,6 +1,9 @@
 #pragma once
 #include "IMessageHandler.h"
 #include <GL/freeglut.h>
+namespace SealEngine {
+class IMessageHandler;
+}
 
 class SceneManager : public IMessageHandler {
 public:
