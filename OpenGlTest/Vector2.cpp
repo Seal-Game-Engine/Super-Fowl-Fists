@@ -13,8 +13,8 @@ const float& Vector2::x() const { return _x; }
 const float& Vector2::y() const { return _y; }
 
 void Vector2::Set(const float& x, const float& y) {
-	_x = x;
-	_y = y;
+    _x = x;
+    _y = y;
 }
 
 Vector2 Vector2::zero() { return Vector2(0, 0); }
@@ -43,3 +43,8 @@ Vector2 Vector2::normalized() const { return *this / magnitude(); }
 
 float Vector2::Dot(const Vector2& a, const Vector2& b) { return a.x() * b.x() + a.y() * b.y(); }
 float Vector2::Distance(const Vector2& a, const Vector2& b) { return (a - b).magnitude(); }
+
+bool Vector2::isPerpendicular(const Vector2& other) const
+{
+    return Vector2::Dot(*this, other) == 0.0f;
+}

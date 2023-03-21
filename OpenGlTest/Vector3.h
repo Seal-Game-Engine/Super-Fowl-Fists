@@ -45,6 +45,8 @@ namespace SealEngine {
         static Vector3 Cross(const Vector3&, const Vector3&);
         static float Distance(const Vector3&, const Vector3&);
 
+        Vector3 projectOnPlane(const Vector3&) const;
+
     private:
         float _x, _y, _z;
     };
