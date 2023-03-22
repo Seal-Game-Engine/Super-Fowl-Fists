@@ -13,22 +13,29 @@ using namespace SealEngine::InputSystem;
 
 std::unique_ptr<Model> model = std::unique_ptr<Model>(new Model);
 std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
-//Enemy enemy;
+std::unique_ptr<Enemy> enemy = std::unique_ptr<Enemy>(new Enemy);
 std::unique_ptr <CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
     player->LateUpdate();
+    enemy->LateUpdate();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glPushMatrix();
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
-        glTranslated(0, 0, -10);
+        glTranslatef(0, 0, -10);
         //glPopMatrix();
 
         //glLoadIdentity();
         model->DrawModel();
         player->renderer.LateUpdate();
-    //enemy.Draw();
+
+        glPushMatrix(); 
+        {
+            glTranslatef(2, 0, 0);
+            enemy->renderer.LateUpdate(); 
+        }
+        glPopMatrix();
     }
     glPopMatrix();
 
@@ -76,12 +83,15 @@ bool SceneManager::InitGl() {
 
 void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
     glViewport(0, 0, width, height);
-    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0, width / height, 0.1, 1000);
+    glMatrixMode(GL_PROJECTION);
     
+    gluPerspective(45.0, width / height, 0.1, 1000);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();//todo: test with not fullscreen
+
+    //glOrtho(0, width, 0, height, 1, -1); // Origin in lower-left corner
+    //glOrtho(0, width, height, 0, 1, -1); // Origin in upper-left corner
 }
 
 bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {

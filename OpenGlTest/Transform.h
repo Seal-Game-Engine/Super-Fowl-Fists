@@ -5,9 +5,6 @@
 namespace SealEngine {
 	class Transform : public MonoBehaviour {
 	public:
-		Transform();
-		Transform(Vector3, Vector3, Vector3);
-
 		Vector3 position;
 		Vector3 rotation;
 		Vector3 scale;
@@ -15,5 +12,8 @@ namespace SealEngine {
 		Vector3 up() const;
 		Vector3 right() const;
 		Vector3 forward() const;
+		
+		Transform();
+		Transform(Vector3, Vector3, Vector3);
 	};
 }

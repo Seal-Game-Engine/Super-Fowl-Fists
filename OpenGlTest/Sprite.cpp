@@ -6,9 +6,6 @@ using namespace SealEngine;
 Sprite::Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot, float pixelsPerUnit)
 	: texture(&texture), rect(rect), pivot(pivot), _pixelsPerUnit(pixelsPerUnit) {}
 
-Sprite::Sprite(const Sprite& obj) 
-	: texture(obj.texture), rect(obj.rect), pivot(obj.pivot), _pixelsPerUnit(obj._pixelsPerUnit) {}
-
 float Sprite::pixelsPerUnit() { return _pixelsPerUnit; }
 
 const std::vector<Vector2>& Sprite::vertices()const {

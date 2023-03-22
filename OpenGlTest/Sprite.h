@@ -8,14 +8,12 @@ namespace SealEngine { class Texture2D; }
 namespace SealEngine {
 	class Sprite : public Object {
 	public:
-		Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot, float pixelsPerUnit);
-		Sprite(const Sprite&);
 		//associatedAlphaSplitTexture	Returns the texture that contains the alpha channel from the source texture.Unity generates this texture under the hood for sprites that have alpha in the source, and need to be compressed using techniques like ETC1.Returns NULL if there is no associated alpha texture for the source sprite.This is the case if the sprite has not been setup to use ETC1 compression.
-			//border	Returns the border sizes of the sprite.
-			//bounds	Bounds of the Sprite, specified by its center and extents in world space units.
-			//packed	Returns true if this Sprite is packed in an atlas.
-			//packingMode	If Sprite is packed(see Sprite.packed), returns its SpritePackingMode.
-			//packingRotation	If Sprite is packed(see Sprite.packed), returns its SpritePackingRotation.
+		//border	Returns the border sizes of the sprite.
+		//bounds	Bounds of the Sprite, specified by its center and extents in world space units.
+		//packed	Returns true if this Sprite is packed in an atlas.
+		//packingMode	If Sprite is packed(see Sprite.packed), returns its SpritePackingMode.
+		//packingRotation	If Sprite is packed(see Sprite.packed), returns its SpritePackingRotation.
 		Vector2 pivot; //	Location of the Sprite's center point in the Rect on the original Texture, specified in pixels.
 		float pixelsPerUnit();//	The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
 		Rect rect;	//Location of the Sprite on the original Texture, specified in pixels.
@@ -26,8 +24,9 @@ namespace SealEngine {
 		//uv	The base texture coordinates of the sprite mesh.
 		const std::vector<Vector2>& vertices() const;
 
+		Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot, float pixelsPerUnit);
+
 	private:
 		float _pixelsPerUnit;
 	};
 }
-

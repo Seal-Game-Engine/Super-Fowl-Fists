@@ -2,9 +2,7 @@
 #include <string>
 #include <vector>
 #include "Vector3.h"
-namespace SealEngine {
-	class Transform;
-}
+namespace SealEngine { class Transform; }
 
 namespace SealEngine {
 	class Object {

@@ -1,12 +1,11 @@
 #pragma once
+#include <chrono>
 #include "SealEngine.h"
-#include <memory>
 using namespace SealEngine;
 
 class Player {
 public:
 	Player();
-	void Awake();
 	void Actions(int);
 	void Update();
 	void LateUpdate();
@@ -18,5 +17,10 @@ public:
 	int actionTrigger;
 
 	SpriteRenderer renderer;
+
+private:
+	//Temporary
+	std::unique_ptr<const int> idleFrames = std::unique_ptr<const int>(new int[4] {1, 5, 1, 9});
+	std::chrono::steady_clock::time_point lastAnimatedFrame = std::chrono::steady_clock::now();
 };
 

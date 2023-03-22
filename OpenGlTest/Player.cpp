@@ -1,22 +1,12 @@
 #include "Player.h"
 #include "AssetManager.h"
-#include <windows.h>
-#include <memory>
-#include <chrono>
 
 Player::Player() {
-	renderer.sprite = &AssetManager::Hector_Run[0];
+	renderer.sprite = &AssetManager::Hector_Run[1];
 	runSpeed = 0;
 	jumpSpeed = 0;
 	actionTrigger = 0;
 }
-
-void Player::Awake() {
-//	glEnable(GL_BLEND);
-//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
-
 
 void Player::Actions(int action) {
 	switch (action) {
@@ -26,8 +16,6 @@ void Player::Actions(int action) {
 			break;
 	}
 }
-std::unique_ptr<const int> idleFrames = std::unique_ptr<const int>(new int[4] {0, 4, 0, 8});
-auto lastAnimatedFrame = std::chrono::high_resolution_clock::now();
 
 void Player::LateUpdate() {
 	static int frameId = 0;

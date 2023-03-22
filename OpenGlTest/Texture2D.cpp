@@ -5,18 +5,17 @@ using namespace SealEngine;
 
 std::stack<std::tuple<Texture2D&, const std::string_view>> Texture2D::uninitializedTextures = std::stack<std::tuple<Texture2D&, const std::string_view>>();
 
-Texture2D::Texture2D(std::string_view textureSource, int columns, int rows)
-	: _columns(columns), _rows(rows) {
+Texture2D::Texture2D(std::string_view textureSource, int columns, int rows) {
 	sprites.reserve((size_t)columns * rows);
 
 	//todo: figure out pixels per unit
 	//int spriteWidth = width() / columns;
 	//int spriteHeight = height() / rows;
-	float spriteWidth = 1.0f / _columns;
-	float spriteHeight = 1.0f / _rows;
+	float spriteWidth = 1.0f / columns;
+	float spriteHeight = 1.0f / rows;
 
-	for (int rowId = 0; rowId < _rows; rowId++)
-		for (int columnId = 0; columnId < _columns; columnId++)
+	for (int rowId = 0; rowId < rows; rowId++)
+		for (int columnId = 0; columnId < columns; columnId++)
 			sprites.emplace_back(Sprite(*this, Rect(columnId * spriteWidth, rowId * spriteHeight, spriteWidth, spriteHeight), Vector2(0.5f, 0.5f), 16));
 
 	uninitializedTextures.push({ *this, textureSource });
@@ -32,8 +31,8 @@ void Texture2D::LoadTexture(const std::string_view textureSource) {
 	glGenTextures(1, &_textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId());
 
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);//GL_LINEAR for smooth
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 

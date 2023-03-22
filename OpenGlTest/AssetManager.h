@@ -6,5 +6,7 @@ class AssetManager {
 public:
 	static const Texture2D Hector_Run;
 
+	static const Texture2D GreenSlime;
+
 	static const Texture2D Googleplex;
 };

@@ -1,68 +1,25 @@
 #include "Enemy.h"
 #include "AssetManager.h"
 
-Enemy::Enemy()
-	:textureLoader(AssetManager::Hector_Run) {}
+Enemy::Enemy() {
+	renderer.sprite = &AssetManager::GreenSlime[1];
+	runSpeed = 0;
+	jumpSpeed = 0;
+	actionTrigger = 0;
+}
 
-void Enemy::Draw()
-{
-	//bind()
-	glPushMatrix();
-	{
-		glTranslated(transform.position.x(), transform.position.y(), transform.position.z());
-		glRotatef(transform.rotation.x(), 1, 0, 0);
-		glRotatef(transform.rotation.y(), 0, 1, 0);
-		glRotatef(transform.rotation.z(), 0, 0, 1);
-		
-		glScalef(transform.scale.x(), transform.scale.y(), transform.scale.z());
+void Enemy::Actions(int action){
 
-		//Rendering
-		glBegin(GL_POLYGON);
-		{
-			Vector3* vertices = new Vector3[4]{
-			Vector3(-0.5f, -0.5f, -1),
-			Vector3(0.5f, -0.5f, -1),
-			Vector3(0.5f, 0.5f, -1),
-			Vector3(-0.5f, 0.5f, -1)
-			};
+}
 
-			float xMin = 0, xMax = 1.0 / 4, yMin = 0, yMax = 1.0 / 4;
-			
-			// Vertex3f for 3D
-			glTexCoord2f(xMin, yMin);
-			glVertex2f(1, 1); 
-			glTexCoord2f(xMax, yMin);
-			glVertex2f(1, 1);
-			glTexCoord2f(xMax, yMax);
-			glVertex2f(1, 1);
-			glTexCoord2f(xMin, yMax);
-			glVertex2f(1, 1);
-		}
-		glEnd();
+void Enemy::Update(){
+}
+
+void Enemy::LateUpdate(){
+	static int frameId = 0;
+
+	if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - lastAnimatedFrame).count() > 200) {
+		renderer.sprite = &AssetManager::GreenSlime[idleFrames.get()[frameId++ % 2]];
+		lastAnimatedFrame = std::chrono::high_resolution_clock::now();
 	}
-	glPopMatrix();
-}
-
-void Enemy::Init(int vframe, int hframe)
-{
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	int vfrm = 4, hfrm = 4;
-}
-
-void Enemy::Actions(int action)
-{
-	int vfrm = 4;
-	float xMin = 0, xMax = 1.0 / 4;
-
-	switch (action) {
-	case 0:
-		xMax += 1.0 / vfrm;
-		xMin += 1.0 / vfrm;
-	}
-}
-
-void Enemy::Update()
-{
 }

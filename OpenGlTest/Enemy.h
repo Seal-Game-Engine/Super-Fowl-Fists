@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include <chrono>
 #include "SealEngine.h"
 using namespace SealEngine;
 
@@ -7,18 +7,22 @@ using namespace SealEngine;
 class Enemy {
 public:
 	Enemy();
-	void Draw();
 	void PlaceEnemy(Vector3);
-	void Init(int, int);
 	void Actions(int);
 	void Update();
+	void LateUpdate();
 
 	Transform transform;
 	Vector3 pivotOffset = Vector3::zero();
 
-	Texture2D textureLoader;
-	GLuint tex;
 	float runSpeed, jumpSpeed;
 	int actionTrigger;
+
+	SpriteRenderer renderer;
+
+private:
+	//Temporary
+	std::unique_ptr<const int> idleFrames = std::unique_ptr<const int>(new int[2] {1, 5});
+	std::chrono::steady_clock::time_point lastAnimatedFrame = std::chrono::steady_clock::now();
 };
 
