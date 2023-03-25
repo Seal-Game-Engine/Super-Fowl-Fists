@@ -1,11 +1,16 @@
 #include "Player.h"
 #include "AssetManager.h"
+#include <irrKlang/irrKlang.h>
+
+#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
 Player::Player() {
 	renderer.sprite = &AssetManager::Hector_Run[1];
 	runSpeed = 0;
 	jumpSpeed = 0;
 	actionTrigger = 0;
+
+
 }
 
 void Player::Actions(int action) {
@@ -26,9 +31,15 @@ void Player::LateUpdate() {
 	}
 }
 
+
+
 void Player::Update() {
 
+	using namespace irrklang;
 	using namespace InputSystem;
 	if (Inputs::GetKeyDown(KeyCode::UpArrow)) {
+		ISoundEngine* audioEngine = createIrrKlangDevice();
+		audioEngine->play2D("PlasmaBlast.wav");
+		//audioEngine->drop();
 	}
 }

@@ -7,7 +7,12 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLLight.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="IMessageHandler.hpp" />
+=======
+    <ClCompile Include="IMessageHandler.h" />
+    <ClCompile Include="KeyCode.h" />
+>>>>>>> Stashed changes
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Parallax.cpp" />
@@ -24,8 +29,11 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="IMessageHandler.cpp" />
     <ClCompile Include="KeyCode.cpp" />
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -50,7 +58,10 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="ApplicationManager.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="KeyCode.h" />
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Image Include="Googleplex.jpg" />
