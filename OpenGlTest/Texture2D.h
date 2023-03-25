@@ -2,7 +2,7 @@
 #include <string>
 #include <stack>
 #include <tuple>
-#include <GL/freeglut.h>
+#include <freeglut/freeglut.h>
 #include "Object.h"
 namespace SealEngine { class Sprite; }
 

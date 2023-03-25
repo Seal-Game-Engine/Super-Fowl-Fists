@@ -1,4 +1,4 @@
-#include <GL/freeglut.h>
+#include <freeglut/freeglut.h>
 #include "SpriteRenderer.h"
 #include "Texture2D.h"
 #include "Transform.h"

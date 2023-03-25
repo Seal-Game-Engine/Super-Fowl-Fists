@@ -2,7 +2,7 @@
 #include "Player.h"
 #include <memory>
 #include "IMessageHandler.hpp"
-#include <GL/freeglut.h>
+#include <freeglut/freeglut.h>
 
 class SceneManager : public IMessageHandler {
 public:

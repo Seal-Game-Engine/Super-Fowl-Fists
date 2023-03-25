@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\..\Libraries\Common\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\Libraries\Common\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Common\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Common\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\..\Libraries\Common\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\Libraries\Common\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Common\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Common\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)..\..\Libraries\Common\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\Libraries\Common\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Common\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Common\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\..\Libraries\Common\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\Libraries\Common\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\Common\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\Common\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -100,8 +100,8 @@
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\Libraries\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\..\Libraries\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
+copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -122,8 +122,8 @@ copy "$(SolutionDir)..\..\Libraries\Common\bin\irrKlang.dll" "$(OutDir)";</Comma
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\Libraries\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\..\Libraries\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
+copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -140,8 +140,8 @@ copy "$(SolutionDir)..\..\Libraries\Common\bin\irrKlang.dll" "$(OutDir)";</Comma
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\Libraries\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\..\Libraries\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
+copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,8 +162,8 @@ copy "$(SolutionDir)..\..\Libraries\Common\bin\irrKlang.dll" "$(OutDir)";</Comma
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\Libraries\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\..\Libraries\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
+copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -20,6 +20,3 @@
 
 #include "SceneManager.h"
 #include "ApplicationManager.h"
-
-
-#include <GL/freeglut.h>
