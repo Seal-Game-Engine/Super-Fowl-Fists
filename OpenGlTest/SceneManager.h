@@ -1,7 +1,7 @@
 #pragma once
 #include "Player.h"
 #include <memory>
-#include "IMessageHandler.h"
+#include "IMessageHandler.hpp"
 #include <GL/freeglut.h>
 
 class SceneManager : public IMessageHandler {

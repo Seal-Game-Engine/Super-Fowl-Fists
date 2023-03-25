@@ -1,5 +1,5 @@
 #pragma once
-#include "IMessageHandler.h"
+#include "IMessageHandler.hpp"
 #include "KeyCode.h"
 namespace SealEngine { struct Vector2; }
 
