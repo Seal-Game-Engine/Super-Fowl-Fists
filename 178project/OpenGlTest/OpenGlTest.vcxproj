@@ -169,8 +169,9 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLLight.cpp" />
-    <ClCompile Include="IMessageHandler.h" />
-    <ClCompile Include="KeyCode.h" />
+    <ClCompile Include="IMessageHandler.cpp" />
+    <ClCompile Include="IMessageHandler.hpp" />
+    <ClCompile Include="KeyCode.cpp" />
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Parallax.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLLight.h" />
+    <ClInclude Include="KeyCode.h" />
     <ClInclude Include="MonoBehaviour.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Parallax.h" />
