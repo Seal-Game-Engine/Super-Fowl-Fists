@@ -1,7 +1,7 @@
 #pragma once
 
 //Math
-#include "IMessageHandler.h"
+#include "IMessageHandler.hpp"
 #include "Vector2.h"
 #include "Vector3.h"
 
