@@ -6,9 +6,9 @@ using namespace SealEngine;
 Vector3::Vector3(const float x, const float y, const float z): _x(x), _y(y), _z(z) {}
 Vector3::Vector3(const Vector3& obj) :_x(obj.x()), _y(obj.y()), _z(obj.z()) {}
 
-const float& Vector3::x() const { return _x; }
-const float& Vector3::y() const { return _y; }
-const float& Vector3::z() const { return _z; }
+float Vector3::x() const { return _x; }
+float Vector3::y() const { return _y; }
+float Vector3::z() const { return _z; }
 
 Vector3 Vector3::zero() { return Vector3(0, 0, 0); }
 Vector3 Vector3::one() { return Vector3(1, 1, 1); }

@@ -1,5 +1,6 @@
 #include "ApplicationManager.h";
 #include "Inputs.h"
+#include "Time.h"
 using namespace SealEngine;
 
 wchar_t ApplicationManager::windowClassName[] = L"OpenGL";
@@ -255,12 +256,14 @@ int ApplicationManager::NewMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPr
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		ApplicationManager::Scene->RefreshScene();
+		Time::OnNextFrame();
+		Scene->RefreshScene();
+
 
 		if (!GetActionLOLL()) break;
 	}
 
-	ApplicationManager::DestroyGlWindow();
+	DestroyGlWindow();
 	return msg.wParam;
 }
 

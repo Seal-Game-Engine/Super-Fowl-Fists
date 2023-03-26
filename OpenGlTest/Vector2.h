@@ -4,13 +4,13 @@ namespace SealEngine { struct Vector3; }
 namespace SealEngine {
     struct Vector2 {
     public:
-        const float& x() const;
-        const float& y() const;
-
-        void Set(const float x, const float y);
+        float x() const;
+        float y() const;
         float sqrMagnitude() const;
         float magnitude() const;
         Vector2 normalized() const;
+
+        void Set(const float x, const float y);
 
 
         static float Dot(const Vector2&, const Vector2&);
