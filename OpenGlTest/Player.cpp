@@ -23,7 +23,7 @@ void Player::Actions(int action) {
 void Player::LateUpdate() {
 	static float frameId = 0;
 	frameId += 15.0f * Time::deltaTime();
-	renderer.sprite = &AssetManager::Hector_Run[idleFrames.get()[(int)frameId % 4]];
+	renderer.sprite = &AssetManager::Hector_Run[idleFrames[(int)frameId % 4]];
 
 	if (Inputs::GetKeyDown(KeyCode::Space)) {
 		Time::timeScale = 0;

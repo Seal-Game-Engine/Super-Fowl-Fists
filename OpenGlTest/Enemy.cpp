@@ -18,5 +18,5 @@ void Enemy::Update(){
 void Enemy::LateUpdate(){
 	static float frameId = 0;
 	frameId += 5.0f * Time::deltaTime();
-	renderer.sprite = &AssetManager::GreenSlime[idleFrames.get()[(int)frameId % 2]];
+	renderer.sprite = &AssetManager::GreenSlime[idleFrames[(int)frameId % 2]];
 }

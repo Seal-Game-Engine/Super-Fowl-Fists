@@ -1,5 +1,6 @@
 #pragma once
 #include "SealEngine.h"
+#include <array>
 using namespace SealEngine;
 
 class Player {
@@ -19,6 +20,6 @@ public:
 
 private:
 	//Temporary
-	std::unique_ptr<const int> idleFrames = std::unique_ptr<const int>(new int[4] {1, 5, 1, 9});
+	std::array<const int, 4> idleFrames{ 1, 5, 1, 9 };
 };
 
