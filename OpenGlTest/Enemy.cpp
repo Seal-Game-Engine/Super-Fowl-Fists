@@ -16,10 +16,7 @@ void Enemy::Update(){
 }
 
 void Enemy::LateUpdate(){
-	static int frameId = 0;
-
-	if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - lastAnimatedFrame).count() > 200) {
-		renderer.sprite = &AssetManager::GreenSlime[idleFrames.get()[frameId++ % 2]];
-		lastAnimatedFrame = std::chrono::high_resolution_clock::now();
-	}
+	static float frameId = 0;
+	frameId += 5.0f * Time::deltaTime();
+	renderer.sprite = &AssetManager::GreenSlime[idleFrames[(int)frameId % 2]];
 }

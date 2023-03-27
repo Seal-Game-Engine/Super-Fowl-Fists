@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Time.h"
+
 //Math
 #include "IMessageHandler.hpp"
 #include "Vector2.h"

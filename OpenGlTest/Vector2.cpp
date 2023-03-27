@@ -6,8 +6,8 @@ using namespace SealEngine;
 Vector2::Vector2(const float x, const float y) : _x(x), _y(y) {}
 Vector2::Vector2(const Vector2& obj) : _x(obj.x()), _y(obj.y()) {}
 
-const float& Vector2::x() const { return _x; }
-const float& Vector2::y() const { return _y; }
+float Vector2::x() const { return _x; }
+float Vector2::y() const { return _y; }
 
 Vector2 Vector2::zero() { return Vector2(0, 0); }
 Vector2 Vector2::one() { return Vector2(1, 1); }

@@ -9,8 +9,6 @@ Player::Player() {
 	runSpeed = 0;
 	jumpSpeed = 0;
 	actionTrigger = 0;
-
-
 }
 
 void Player::Actions(int action) {
@@ -23,11 +21,15 @@ void Player::Actions(int action) {
 }
 
 void Player::LateUpdate() {
-	static int frameId = 0;
+	static float frameId = 0;
+	frameId += 15.0f * Time::deltaTime();
+	renderer.sprite = &AssetManager::Hector_Run[idleFrames[(int)frameId % 4]];
 
-	if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - lastAnimatedFrame).count() > 50) {
-		renderer.sprite = &AssetManager::Hector_Run[idleFrames.get()[frameId++ % 4]];
-		lastAnimatedFrame = std::chrono::high_resolution_clock::now();
+	if (Inputs::GetKeyDown(KeyCode::Space)) {
+		Time::timeScale = 0;
+	}
+	if (Inputs::GetKeyUp(KeyCode::Space)) {
+		Time::timeScale = 1;
 	}
 }
 
@@ -38,8 +40,8 @@ void Player::Update() {
 	using namespace irrklang;
 	using namespace InputSystem;
 	if (Inputs::GetKeyDown(KeyCode::UpArrow)) {
-		ISoundEngine* audioEngine = createIrrKlangDevice();
-		audioEngine->play2D("PlasmaBlast.wav");
+		//ISoundEngine* audioEngine = createIrrKlangDevice();
+		//audioEngine->play2D("PlasmaBlast.wav");
 		//audioEngine->drop();
 	}
 }

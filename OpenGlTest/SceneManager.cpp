@@ -17,6 +17,8 @@ std::unique_ptr<Enemy> enemy = std::unique_ptr<Enemy>(new Enemy);
 std::unique_ptr <CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
+    model->Update();
+    player->Update();
     player->LateUpdate();
     enemy->LateUpdate();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -95,8 +97,7 @@ void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
 }
 
 bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    model->Update();
-    player->Update();
+    
     //enemy.Update();
     if (uMsg == WM_SIZE) {
         ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh

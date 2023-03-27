@@ -1,6 +1,6 @@
 #pragma once
-#include <chrono>
 #include "SealEngine.h"
+#include <array>
 using namespace SealEngine;
 
 
@@ -22,7 +22,6 @@ public:
 
 private:
 	//Temporary
-	std::unique_ptr<const int> idleFrames = std::unique_ptr<const int>(new int[2] {1, 5});
-	std::chrono::steady_clock::time_point lastAnimatedFrame = std::chrono::steady_clock::now();
+	std::array<const int, 2> idleFrames{ 1, 5 };
 };
 
