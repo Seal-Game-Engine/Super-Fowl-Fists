@@ -40,10 +40,8 @@ void Player::Update() {
 	using namespace irrklang;
 	using namespace InputSystem;
 	if (Inputs::GetKeyDown(KeyCode::UpArrow)) {
-		ISoundEngine* audioEngine = createIrrKlangDevice();
-		audioEngine->play2D("PlasmaBlast.wav");
+		//ISoundEngine* audioEngine = createIrrKlangDevice();
+		//audioEngine->play2D("PlasmaBlast.wav");
 		//audioEngine->drop();
 	}
-
-
 }
