@@ -3,46 +3,33 @@
 #include <string>
 #include <array>
 
-using objectId = int;
-using Vector3 = float; //placeholder for Transfomr
-using MonoBehaviour = float; //placeholder for MonoBehavior
+#include "Object.h"
+#include "MonoBehaviour.h"
+#include "Vector3.h"
 
-
-class GameObject {
+namespace SealEngine {       
+  class GameObject : public Object {
   GameObject();
-  GameObject(std::string name);
-  GameObject(std::string name, MonoBehaviour);
+  GameObject(Object name);
+  GameObject(Object name, MonoBehaviour);
 
- public:
+  public:
   bool activeInHierarchy;
   bool activeSelf() const;
   bool isStatic;
+  std::string tag;
   // layer
   // scene
   // sceneCullingMask
-  std::string tag;
-  std::string name;
   // transform;
 
-  // Properties
-  static void Instantiate(objectId, Vector3, std::vector<MonoBehaviour>);
-  static void Destroy();//
-  static void DontDestroyOnLoad(GameObject target);
-
   // Identifier
-  static void Find(objectId);
+  static void Find(Object instanceId);
   static GameObject FindWithTag(std::string);
   static std::vector<GameObject> FindGameObjectsWithTag(std::string);
-  void GetInstanceID(objectId);
-  bool CompareTag(std::string);     //done
-  void SetActive(bool);             //done
-  std::string ToString();
-  template <class T>
-  static T FindObjectOfType();
-  template <class T>
-  static std::vector<T> FindObjectsOfType();
-
-
+  void GetInstanceID(Object instanceId);
+  bool CompareTag(std::string); // done
+  void SetActive(bool);         // done
 
   // Components
   template <class T>
@@ -50,12 +37,13 @@ class GameObject {
   template <class T>
   T GetComponent();
   template <class T>
-  void GetComponentInParent(T);//
+  void GetComponentInParent(T); //
   template <class T>
-  void GetComponentInChild(T);//
+  void GetComponentInChild(T); //
   template <class T>
-  void TryGetComponent(T);//
+  void TryGetComponent(T); //
 
   private:
-    bool _activeSelf;
-};
+  bool _activeSelf;
+  };
+}   
