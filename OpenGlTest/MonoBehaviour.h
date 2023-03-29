@@ -4,13 +4,12 @@
 namespace SealEngine { 
 	class Transform;
 }
-using GameObject = int;
 
 namespace SealEngine {
 	class MonoBehaviour : public Object {
 	public:
 #pragma region Messages
-		virtual void Awake() {}
+        virtual void Awake() {}
 		virtual void FixedUpdate() {}
 		virtual void LateUpdate() {}
 
@@ -36,7 +35,7 @@ namespace SealEngine {
 
 		bool enabled = true;
 		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
-		GameObject gameObject();
+		//GameObject gameObject();
 		std::string tag;
 		Transform transform();
 		std::string	name;

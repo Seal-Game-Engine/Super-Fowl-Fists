@@ -1,17 +1,16 @@
 #include "GameObject.h"
 #include <system_error>
+using namespace SealEngine;
 
-bool GameObject::activeSelf() const {return _activeSelf;}
-void GameObject::Instantiate(objectId, Vector3, std::vector<MonoBehaviour>){}
-GameObject GameObject::FindWithTag(std::string) {}
-bool GameObject::CompareTag(std::string tag) {return this->tag == tag;}
-void GameObject::SetActive(bool value) {_activeSelf=value;}
-template <class T>
+bool GameObject::activeSelf() const { return _activeSelf; }
 
-T GameObject::GetComponent() {
-
+//Object GameObject::Object::Instantiate(Object) {}
+GameObject GameObject::Find(std::string name) {}
+GameObject* GameObject::FindWithTag(std::string tag) { return nullptr; }
+std::vector<GameObject> GameObject::FindGameObjectsWithTag(
+	std::string) {
+	return std::vector<GameObject>();
 }
-template<class T>
-T GameObject::AddComponent() {
+bool GameObject::CompareTag(std::string tag) { return this->tag == tag; }
+void GameObject::SetActive(bool value) { _activeSelf = value; }
 
-}

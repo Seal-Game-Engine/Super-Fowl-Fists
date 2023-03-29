@@ -7,43 +7,58 @@
 #include "MonoBehaviour.h"
 #include "Vector3.h"
 
+using params = int;
+
 namespace SealEngine {
-class GameObject : public Object {
-  GameObject();
-  GameObject(Object name);
-  GameObject(Object name, MonoBehaviour);
+	class GameObject : public Object {
+		GameObject();
+		GameObject(std::string name);
+		GameObject(std::string name, params);
 
- public:
-  bool activeInHierarchy;
-  bool activeSelf() const;
-  bool isStatic;
-  std::string tag;
-  // layer
-  // scene
-  // sceneCullingMask
-  // transform;
+	public:
+		bool activeInHierarchy;
+		bool activeSelf() const;
+		bool isStatic;
+		std::string tag;
+		// layer
+		// scene
+		// sceneCullingMask
+		// transform;
 
-  // Identifier
-  static void Find(Object instanceId);
-  static GameObject FindWithTag(std::string);
-  static std::vector<GameObject> FindGameObjectsWithTag(std::string);
-  void GetInstanceID(Object instanceId);
-  bool CompareTag(std::string);  // done
-  void SetActive(bool);          // done
+		// Identifier
+		static GameObject Find(std::string name);
+		static GameObject* FindWithTag(std::string tag);
+		static std::vector<GameObject> FindGameObjectsWithTag(std::string tag);
+		bool CompareTag(std::string tag);  // done
+		void SetActive(bool value);          // done
 
-  // Components
-  template <class T>
-  T AddComponent();
-  template <class T>
-  T GetComponent();
-  template <class T>
-  void GetComponentInParent(T);  //
-  template <class T>
-  void GetComponentInChild(T);  //
-  template <class T>
-  void TryGetComponent(T);  //
+		// Components
+		template <class T>
+			requires std::is_base_of<MonoBehaviour, T>::value
+		T AddComponent();
+		template <class T>
+			requires std::is_base_of<MonoBehaviour, T>::value
+		T GetComponent();
+		template <class T>
+			requires std::is_base_of<MonoBehaviour, T>::value
+		bool TryGetComponent(T& component);  
 
- private:
-  bool _activeSelf;
-};
+		template <class T>
+			requires std::is_base_of<MonoBehaviour, T>::value
+		T GetComponentInParent(bool includeInactive = false);
+		template <class T>
+			requires std::is_base_of<MonoBehaviour, T>::value
+		T GetComponentInChild(bool includeInactive = false);
+
+		template <class T>
+			requires std::is_base_of<MonoBehaviour, T>::value
+		std::vector<T> GetComponentsInParent(bool includeInactive = false);  //
+		template <class T>
+			requires std::is_base_of<MonoBehaviour, T>::value
+		std::vector<T> GetComponentsInChild(bool includeInactive = false);  //
+
+
+	private:
+		bool _activeSelf;
+	};
 }  // namespace SealEngine
