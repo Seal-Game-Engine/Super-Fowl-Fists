@@ -7,8 +7,8 @@ namespace SealEngine {
 		const Vector2& position() const;
 		const Vector2& size() const;
 		const Vector2& minVertex() const;
-		const Vector2& maxVertex() const;
-		const Vector2& center() const;
+		const Vector2 maxVertex() const;
+		const Vector2 center() const;
 
 		void SetPosition(const float x, const float y);
 		void SetSize(const float width, const float height);

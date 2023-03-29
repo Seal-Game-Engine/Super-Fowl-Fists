@@ -19,9 +19,8 @@ public:
 	int actionTrigger;
 
 	SpriteRenderer renderer;
+	Animator animator;
 
 private:
-	//Temporary
-	std::array<const int, 2> idleFrames{ 1, 5 };
 };
 

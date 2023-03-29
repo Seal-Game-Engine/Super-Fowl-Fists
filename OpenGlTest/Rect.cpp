@@ -9,8 +9,8 @@ Rect::Rect(const Vector2& position, const Vector2& size)
 const Vector2& Rect::position() const { return _position; }
 const Vector2& Rect::size() const { return _size; }
 const Vector2& Rect::minVertex() const { return position(); }
-const Vector2& Rect::maxVertex() const { return position() + size(); }
-const Vector2& Rect::center() const { return position() + size() / 2; }
+const Vector2 Rect::maxVertex() const { return position() + size(); }
+const Vector2 Rect::center() const { return position() + size() / 2; }
 
 Rect Rect::zero() { return Rect(0, 0, 0, 0); }
 

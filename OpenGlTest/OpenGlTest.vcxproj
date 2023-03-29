@@ -167,6 +167,9 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationClip.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="AnimatorController.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="CheckCollision.cpp" />
@@ -195,6 +198,9 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationClip.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="AnimatorController.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="CheckCollision.h" />
     <ClInclude Include="Enemy.h" />

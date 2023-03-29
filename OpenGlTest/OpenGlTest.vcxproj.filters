@@ -27,6 +27,9 @@
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="AnimationClip.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="AnimatorController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -53,6 +56,9 @@
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="AnimationClip.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="AnimatorController.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Googleplex.jpg" />

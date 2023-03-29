@@ -38,8 +38,12 @@ namespace SealEngine {
 		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
 		GameObject gameObject();
 		std::string tag;
-		Transform transform();
+		Transform& transform();
 		std::string	name;
+
+
+		//tmp
+		Transform* _transform = nullptr;
 
 		//CompareTag	
 		//GetComponent	
