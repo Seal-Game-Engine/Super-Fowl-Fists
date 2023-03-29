@@ -7,13 +7,13 @@
 #include "MonoBehaviour.h"
 #include "Vector3.h"
 
-namespace SealEngine {       
-  class GameObject : public Object {
+namespace SealEngine {
+class GameObject : public Object {
   GameObject();
   GameObject(Object name);
   GameObject(Object name, MonoBehaviour);
 
-  public:
+ public:
   bool activeInHierarchy;
   bool activeSelf() const;
   bool isStatic;
@@ -28,8 +28,8 @@ namespace SealEngine {
   static GameObject FindWithTag(std::string);
   static std::vector<GameObject> FindGameObjectsWithTag(std::string);
   void GetInstanceID(Object instanceId);
-  bool CompareTag(std::string); // done
-  void SetActive(bool);         // done
+  bool CompareTag(std::string);  // done
+  void SetActive(bool);          // done
 
   // Components
   template <class T>
@@ -37,13 +37,13 @@ namespace SealEngine {
   template <class T>
   T GetComponent();
   template <class T>
-  void GetComponentInParent(T); //
+  void GetComponentInParent(T);  //
   template <class T>
-  void GetComponentInChild(T); //
+  void GetComponentInChild(T);  //
   template <class T>
-  void TryGetComponent(T); //
+  void TryGetComponent(T);  //
 
-  private:
+ private:
   bool _activeSelf;
-  };
-}   
+};
+}  // namespace SealEngine
