@@ -2,6 +2,7 @@
 #include "SpriteRenderer.h"
 #include "Texture2D.h"
 #include "Transform.h"
+#include <array>
 using namespace SealEngine;
 
 void SpriteRenderer::Awake() {
@@ -31,7 +32,7 @@ void SpriteRenderer::LateUpdate() {
 			Rect rect = sprite->rect;
 			//std::vector<Vector2> vertices = sprite->vertices();
 
-			Vector3* vertices = new Vector3[4]{
+			std::array<Vector3, 4> vertices{
 				Vector3(-0.5f, 0.5f, 1),
 				Vector3(0.5f, 0.5f, 1),
 				Vector3(0.5f, -0.5f, 1),
@@ -52,6 +53,8 @@ void SpriteRenderer::LateUpdate() {
 			glVertex3f(vertices[3].x(), vertices[3].y(), vertices[3].z());
 		}
 		glEnd();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	glPopMatrix();
 }

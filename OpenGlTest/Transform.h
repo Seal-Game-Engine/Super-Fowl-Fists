@@ -14,6 +14,6 @@ namespace SealEngine {
 		Vector3 forward() const;
 		
 		Transform();
-		Transform(Vector3, Vector3, Vector3);
+		Transform(Vector3 position, Vector3 rotation, Vector3 scale);
 	};
 }

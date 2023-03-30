@@ -14,4 +14,6 @@ public:
 	static const AnimatorController GreenSlime_Controller;
 
 	static const Texture2D Googleplex;
+
+	static const Texture2D Font;
 };

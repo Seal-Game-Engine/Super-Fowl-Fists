@@ -1,5 +1,6 @@
 #include "MonoBehaviour.h"
 #include "Transform.h"
+#include "GameObject.h"
 using namespace SealEngine;
 
 bool MonoBehaviour::operator!=(const MonoBehaviour& obj) {
