@@ -25,10 +25,19 @@ const AnimatorController AssetManager::Hector_Controller = AnimatorController(st
 	}),
 });
 
+const Texture2D AssetManager::Font = Texture2D("font.png", Texture2D::FilterMode::Nearest, 16, 8);
 const Texture2D AssetManager::GreenSlime = Texture2D("GreenSlime.png", Texture2D::FilterMode::Nearest, 4, 2);
 const AnimationClip AssetManager::GreenSlime_Idle = AnimationClip(std::vector<AnimationClip::AnimationFrame>{
-	{ GreenSlime[1], 0.15f },
-	{ GreenSlime[5], 0.15f },
+	//{ GreenSlime[1], 0.15f },
+	//{ GreenSlime[5], 0.15f },
+	{ Font[0], 1.0f},
+	{ Font[16], 1.0f },
+	{ Font[32], 1.0f },
+	{ Font[48], 1.0f },
+	{ Font[64], 1.0f },
+	{ Font[80], 1.0f },
+	{ Font[96], 1.0f },
+	{ Font[112], 1.0f },
 }, true);
 const AnimatorController AssetManager::GreenSlime_Controller = AnimatorController(std::vector<State>{
 	State("Idle", &GreenSlime_Idle, std::vector<State::Transition>{

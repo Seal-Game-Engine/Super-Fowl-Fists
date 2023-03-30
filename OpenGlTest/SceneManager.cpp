@@ -9,6 +9,7 @@
 #include "AssetManager.h"
 #include "SOIL2.h"
 #include <memory>
+#include "Font.h"
 using namespace SealEngine::InputSystem;
 
 std::unique_ptr<Model> model = std::unique_ptr<Model>(new Model);
@@ -31,6 +32,8 @@ int SceneManager::RefreshScene() {
         //glLoadIdentity();
         model->DrawModel();
         player->renderer.LateUpdate();
+
+        Font::RenderText("Hello World", Vector2(-10,-10), 1);
 
         glPushMatrix(); 
         {
