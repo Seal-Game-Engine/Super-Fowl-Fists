@@ -3,6 +3,7 @@
 #include "Object.h"
 namespace SealEngine { 
 	class Transform;
+	class GameObject;
 }
 
 namespace SealEngine {
@@ -35,10 +36,12 @@ namespace SealEngine {
 
 		bool enabled = true;
 		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
-		//GameObject gameObject();
+		GameObject& gameObject;
 		std::string tag;
 		Transform transform();
 		std::string	name;
+
+		MonoBehaviour(const GameObject& gameObject);
 
 		//CompareTag	
 		//GetComponent	

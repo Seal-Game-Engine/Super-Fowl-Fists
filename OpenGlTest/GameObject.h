@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <memory>
 
 #include "Object.h"
 #include "MonoBehaviour.h"
@@ -16,6 +17,7 @@ namespace SealEngine {
 		GameObject(std::string name, params);
 
 	public:
+		std::vector<std::unique_ptr<MonoBehaviour>> componentsList = std::vector<std::unique_ptr<MonoBehaviour>>{};
 		bool activeInHierarchy;
 		bool activeSelf() const;
 		bool isStatic;
