@@ -1,15 +1,16 @@
 #include "GameObject.h"
 #include "Transform.h"
-#include <system_error>
 using namespace SealEngine;
 
 //constructors
-GameObject::GameObject();
-GameObject::GameObject(std::string name){
+GameObject::GameObject() : transform() {
+	transform.gameObject = this;
+	componentsList.emplace_back(transform);
+}
+GameObject::GameObject(std::string name) : transform() {
 	this->name = name;
-	Transform transform;
-	transform.gameObject();
-	componentsList.emplace_back(Transform());
+	transform.gameObject = this;
+	componentsList.emplace_back(transform);
 }
 
 bool GameObject::activeSelf() const { return _activeSelf; }
@@ -22,27 +23,31 @@ void GameObject::SetActive(bool value) { _activeSelf = value; }
 
 template <class T>
 	requires std::is_base_of<MonoBehaviour, T>::value
-T AddComponent() { componentsList.pushback(T); }
+T GameObject::AddComponent() { componentsList.push_back(T); }
 template <class T>
 	requires std::is_base_of<MonoBehaviour, T>::value
-T GetComponent() { }
+T GameObject::GetComponent() { }
 template <class T>
 	requires std::is_base_of<MonoBehaviour, T>::value
-bool TryGetComponent(T& component) { return std::find(componentsList.begin(), compon.end(), c)
+bool GameObject::TryGetComponent(T& component) {
+	return std::find(componentsList.begin(), componentsList.end(), [](const MonoBehaviour& _component) {
+		component = dynamic_cast<T>(_component);
+		return component;
+		});
 }
 
 //Component
 template <class T>
 	requires std::is_base_of<MonoBehaviour, T>::value
-T GetComponentInParent() { return T(); }
+T GameObject::GetComponentInParent(bool includeInactive) { return T(); }
 template <class T>
 	requires std::is_base_of<MonoBehaviour, T>::value
-T GetComponentInChild() { return T(); }
+T GameObject::GetComponentInChild(bool includeInactive) { return T(); }
 
 //Component(s)
 template <class T>
 	requires std::is_base_of<MonoBehaviour, T>::value
-std::vector<T> GetComponentsInParent() { return std::vector<T>(); }
+std::vector<T> GameObject::GetComponentsInParent(bool includeInactive) { return std::vector<T>(); }
 template <class T>
 	requires std::is_base_of<MonoBehaviour, T>::value
-std::vector<T> GetComponentsInChild() { return std::vector<T>(); }
+std::vector<T> GameObject::GetComponentsInChild(bool includeInactive) { return std::vector<T>(); }

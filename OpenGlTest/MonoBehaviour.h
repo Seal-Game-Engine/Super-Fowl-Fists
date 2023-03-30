@@ -36,14 +36,10 @@ namespace SealEngine {
 
 		bool enabled = true;
 		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
-		GameObject& gameObject;
+		GameObject* gameObject;
 		std::string tag;
 		Transform& transform();
 		std::string	name;
-
-
-		MonoBehaviour(const GameObject& gameObject);
-=======
 
 		//tmp
 		Transform* _transform = nullptr;

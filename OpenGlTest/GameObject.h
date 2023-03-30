@@ -2,30 +2,30 @@
 #include <vector>
 #include <string>
 #include <array>
-#include <memory>
 
 #include "Object.h"
 #include "MonoBehaviour.h"
 #include "Vector3.h"
+#include "Transform.h"
 
 using params = int;
 
 namespace SealEngine {
 	class GameObject : public Object {
+	public:
 		GameObject();
 		GameObject(std::string name);
 		GameObject(std::string name, params);
 
-	public:
-		std::vector<std::unique_ptr<MonoBehaviour>> componentsList = std::vector<std::unique_ptr<MonoBehaviour>>{};
-		bool activeInHierarchy;
+		std::vector<MonoBehaviour> componentsList = std::vector<MonoBehaviour>{};
+		bool activeInHierarchy();
 		bool activeSelf() const;
-		bool isStatic;
+		bool isStatic = false;
 		std::string tag;
 		// layer
 		// scene
 		// sceneCullingMask
-		// transform;
+		Transform transform;
 
 		// Identifier
 		static GameObject Find(std::string name);
@@ -61,6 +61,6 @@ namespace SealEngine {
 
 
 	private:
-		bool _activeSelf;
+		bool _activeSelf = true;
 	};
 }  // namespace SealEngine

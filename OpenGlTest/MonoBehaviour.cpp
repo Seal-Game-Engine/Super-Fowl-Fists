@@ -12,6 +12,3 @@ Transform& MonoBehaviour::transform()
 {
     return *_transform;
 }
-
-SealEngine::MonoBehaviour::MonoBehaviour(const GameObject& gameObject) : gameObject(gameObject){
-}

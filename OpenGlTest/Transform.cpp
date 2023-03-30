@@ -3,7 +3,7 @@
 #include "SealEngine.h"
 using namespace SealEngine;
 
-Transform::Transform(gameObject) 
+Transform::Transform() 
 	: position(Vector3::zero()), rotation(Vector3::zero()), scale(Vector3::one()) {}
 Transform::Transform(Vector3 position, Vector3 rotation, Vector3 scale) 
 	: position(position), rotation(rotation), scale(scale) {}
