@@ -9,7 +9,7 @@ void SpriteRenderer::Awake() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void SealEngine::SpriteRenderer::Update()
+void SpriteRenderer::Update()
 {
 }
 

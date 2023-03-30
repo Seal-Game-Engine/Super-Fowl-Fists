@@ -10,11 +10,11 @@ float Time::_deltaTime = 0;
 long double Time::_unscaledTime = 0;
 float Time::_unscaledDeltaTime = 0;
 
-float Time::time() { return _time; }
+float Time::time() { return (float)_time; }
 double Time::timeAsDouble() { return _time; }
 float Time::deltaTime() { return _deltaTime; }
 
-float Time::unscaledTime() { return _unscaledTime; }
+float Time::unscaledTime() { return (float)_unscaledTime; }
 double Time::unscaledTimeAsDouble() { return _unscaledTime; }
 float Time::unscaledDeltaTime() { return _unscaledDeltaTime; }
 

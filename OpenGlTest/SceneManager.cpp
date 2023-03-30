@@ -14,13 +14,13 @@ using namespace SealEngine::InputSystem;
 std::unique_ptr<Model> model = std::unique_ptr<Model>(new Model);
 std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
 std::unique_ptr<Enemy> enemy = std::unique_ptr<Enemy>(new Enemy);
-std::unique_ptr <CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
+std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
     model->Update();
     player->Update();
-    player->LateUpdate();
-    enemy->LateUpdate();
+    player->animator.Update();
+    enemy->animator.Update();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glPushMatrix();

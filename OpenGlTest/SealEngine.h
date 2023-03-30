@@ -20,5 +20,9 @@
 #include "KeyCode.h"
 #include "Inputs.h"
 
+#include "AnimationClip.h"
+#include "AnimatorController.h"
+#include "Animator.h"
+
 #include "SceneManager.h"
 #include "ApplicationManager.h"

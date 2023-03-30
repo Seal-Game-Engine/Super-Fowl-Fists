@@ -8,9 +8,9 @@ bool MonoBehaviour::operator!=(const MonoBehaviour& obj) {
     return this != &obj;
 }
 
-Transform MonoBehaviour::transform()
+Transform& MonoBehaviour::transform()
 {
-    return Transform();
+    return *_transform;
 }
 
 SealEngine::MonoBehaviour::MonoBehaviour(const GameObject& gameObject) : gameObject(gameObject){
