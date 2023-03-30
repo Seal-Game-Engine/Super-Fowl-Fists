@@ -6,10 +6,11 @@
 
 
 #include <windows.h>
-#include <windowsx.h>
+//#include <windowsx.h>
 
 #include "SealEngine.h"
+#include <freeglut/freeglut.h>
 
-int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	return SealEngine::ApplicationManager::NewMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 }

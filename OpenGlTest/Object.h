@@ -18,11 +18,11 @@ namespace SealEngine {
 		static void DontDestroyOnLoad(Object);
 
 		template<class T>
-			requires std::is_base_of<Object, T>::value
+			//requires std::is_base_of<Object, T>::value
 		static T FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude);
 
 		template<class T>
-			requires std::is_base_of<Object, T>::value
+			//requires std::is_base_of<Object, T>::value
 		static std::vector<T> FindObjectsByType(FindObjectsInactive = FindObjectsInactive::Exclude);
 
 		static Object Instantiate(Object);

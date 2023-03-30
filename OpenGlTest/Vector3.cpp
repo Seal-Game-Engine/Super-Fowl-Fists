@@ -35,12 +35,12 @@ bool Vector3::operator!=(const Vector3& obj) const { return !this->operator==(ob
 Vector3::operator Vector2() const { return Vector2(x(), y()); }
 
 void Vector3::Set(const float x, const float y, const float z) {
-	_x = x; 
+	_x = x;
 	_y = y;
 	_z = z;
 }
-float Vector3::sqrMagnitude() const { return std::powf(x(), 2) + std::powf(y(), 2) + std::powf(z(), 2); }
-float Vector3::magnitude() const { return std::sqrtf(sqrMagnitude()); }
+float Vector3::sqrMagnitude() const { return std::pow(x(), 2) + std::pow(y(), 2) + std::pow(z(), 2); }
+float Vector3::magnitude() const { return std::sqrt(sqrMagnitude()); }
 Vector3 Vector3::normalized() const { return *this / magnitude(); }
 
 float Vector3::Dot(const Vector3& a, const Vector3& b) { return a.x() * b.x() + a.y() * b.y() + a.z() * b.z(); }

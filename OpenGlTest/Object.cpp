@@ -14,13 +14,13 @@ void Object::DontDestroyOnLoad(Object target) {
 }
 
 template<class T>
-	requires std::is_base_of<Object, T>::value
+	//requires std::is_base_of<Object, T>::value
 T Object::FindFirstObjectByType(FindObjectsInactive findObjectsInactive) {
 	return T();
 }
 
 template<class T>
-	requires std::is_base_of<Object, T>::value
+	//requires std::is_base_of<Object, T>::value
 std::vector<T> Object::FindObjectsByType(FindObjectsInactive findObjectsInactive) {
 	return std::vector<T>();
 }

@@ -11,7 +11,7 @@ public:
 		char letter;
 		Rect rect;
 	};
-	static void RenderText(std::string_view text, Vector2 position, float scale);//todo: color as param
+	static void RenderText(std::string text, Vector2 position, float scale);//todo: color as param
 	//std::array<CharacterSet, 1024> characters = std::array<CharacterSet, 1024>({ ' ', Rect::zero() });
 };
 

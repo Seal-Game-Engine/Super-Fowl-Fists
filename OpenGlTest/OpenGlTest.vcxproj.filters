@@ -63,8 +63,12 @@
     <ClInclude Include="Font.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Googleplex.jpg" />
-    <Image Include="Hector_Run.png" />
-    <Image Include="font.png" />
+    <Image Include="Assets\font.png" />
+    <Image Include="Assets\Googleplex.jpg" />
+    <Image Include="Assets\GreenSlime.png" />
+    <Image Include="Assets\Hector_Run.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\PlasmaBlast.wav" />
   </ItemGroup>
 </Project>

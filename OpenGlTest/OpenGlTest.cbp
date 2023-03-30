@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="OpenGlTest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="./Debug/OpenGlTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug/" />
+				<Option deps_output="./Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add directory="./../Common/include/" />
+					<Add directory="$(IncludePath)/" />
+				</Compiler>
+				<Linker>
+					<Add library="freeglut.lib" />
+					<Add library="freeglut_static.lib" />
+					<Add library="soil2.lib" />
+					<Add library="irrKlang.lib" />
+					<Add library="winmm.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="winspool.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="odbc32.lib" />
+					<Add library="odbccp32.lib" />
+					<Add directory="./../Common/lib/" />
+					<Add directory="$(LibraryPath)/" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Debug\&quot;;&#x0A;mkdir &quot;.\Debug\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Debug\Assets&quot;;' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="./Debug/OpenGlTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug/" />
+				<Option deps_output="./Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add directory="./../Common/include/" />
+					<Add directory="$(IncludePath)/" />
+				</Compiler>
+				<Linker>
+					<Add library="freeglut.lib" />
+					<Add library="freeglut_static.lib" />
+					<Add library="soil2.lib" />
+					<Add library="irrKlang.lib" />
+					<Add library="winmm.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="winspool.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="odbc32.lib" />
+					<Add library="odbccp32.lib" />
+					<Add directory="./../Common/lib/" />
+					<Add directory="$(LibraryPath)/" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Debug\&quot;;&#x0A;mkdir &quot;.\Debug\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Debug\Assets&quot;;' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release x64">
+				<Option output="./Release/OpenGlTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release/" />
+				<Option deps_output="./Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add directory="./../Common/include/" />
+					<Add directory="$(IncludePath)/" />
+				</Compiler>
+				<Linker>
+					<Add library="freeglut.lib" />
+					<Add library="freeglut_static.lib" />
+					<Add library="soil2.lib" />
+					<Add library="irrKlang.lib" />
+					<Add library="winmm.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="winspool.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="odbc32.lib" />
+					<Add library="odbccp32.lib" />
+					<Add directory="./../Common/lib/" />
+					<Add directory="$(LibraryPath)/" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Release\&quot;;&#x0A;mkdir &quot;.\Release\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Release\Assets&quot;;' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="./Release/OpenGlTest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release/" />
+				<Option deps_output="./Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add directory="./../Common/include/" />
+					<Add directory="$(IncludePath)/" />
+				</Compiler>
+				<Linker>
+					<Add library="freeglut.lib" />
+					<Add library="freeglut_static.lib" />
+					<Add library="soil2.lib" />
+					<Add library="irrKlang.lib" />
+					<Add library="winmm.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="winspool.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="odbc32.lib" />
+					<Add library="odbccp32.lib" />
+					<Add directory="./../Common/lib/" />
+					<Add directory="$(LibraryPath)/" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Release\&quot;;&#x0A;mkdir &quot;.\Release\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Release\Assets&quot;;' />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Unit filename="AnimationClip.cpp" />
+		<Unit filename="AnimationClip.h" />
+		<Unit filename="Animator.cpp" />
+		<Unit filename="Animator.h" />
+		<Unit filename="AnimatorController.cpp" />
+		<Unit filename="AnimatorController.h" />
+		<Unit filename="ApplicationManager.cpp" />
+		<Unit filename="ApplicationManager.h" />
+		<Unit filename="AssetManager.cpp" />
+		<Unit filename="AssetManager.h" />
+		<Unit filename="CheckCollision.cpp" />
+		<Unit filename="CheckCollision.h" />
+		<Unit filename="Enemy.cpp" />
+		<Unit filename="Enemy.h" />
+		<Unit filename="Font.cpp" />
+		<Unit filename="Font.h" />
+		<Unit filename="GLLight.cpp" />
+		<Unit filename="GLLight.h" />
+		<Unit filename="GameObject.cpp" />
+		<Unit filename="GameObject.h" />
+		<Unit filename="IMessageHandler.cpp" />
+		<Unit filename="IMessageHandler.hpp" />
+		<Unit filename="Inputs.cpp" />
+		<Unit filename="Inputs.h" />
+		<Unit filename="KeyCode.cpp" />
+		<Unit filename="KeyCode.h" />
+		<Unit filename="Model.cpp" />
+		<Unit filename="Model.h" />
+		<Unit filename="MonoBehaviour.cpp" />
+		<Unit filename="MonoBehaviour.h" />
+		<Unit filename="Object.cpp" />
+		<Unit filename="Object.h" />
+		<Unit filename="Parallax.cpp" />
+		<Unit filename="Parallax.h" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.h" />
+		<Unit filename="Rect.cpp" />
+		<Unit filename="Rect.h" />
+		<Unit filename="Scene.cpp" />
+		<Unit filename="Scene.h" />
+		<Unit filename="SceneManager.cpp" />
+		<Unit filename="SceneManager.h" />
+		<Unit filename="SealEngine.h" />
+		<Unit filename="Sprite.cpp" />
+		<Unit filename="Sprite.h" />
+		<Unit filename="SpriteRenderer.cpp" />
+		<Unit filename="SpriteRenderer.h" />
+		<Unit filename="Texture2D.cpp" />
+		<Unit filename="Texture2D.h" />
+		<Unit filename="Time.cpp" />
+		<Unit filename="Time.h" />
+		<Unit filename="Transform.cpp" />
+		<Unit filename="Transform.h" />
+		<Unit filename="Vector2.cpp" />
+		<Unit filename="Vector2.h" />
+		<Unit filename="Vector3.cpp" />
+		<Unit filename="Vector3.h" />
+		<Unit filename="main.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

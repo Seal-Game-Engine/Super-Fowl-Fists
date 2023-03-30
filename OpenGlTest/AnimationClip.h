@@ -14,7 +14,7 @@ namespace SealEngine {
 		float length() const;
 		bool loopTime;
 
-		std::vector<AnimationFrame> frames;
+		std::vector<AnimationFrame> frames = std::vector<AnimationFrame>{};
 		AnimationClip(std::vector<AnimationFrame> frames, bool loopTime);
 
 	private:

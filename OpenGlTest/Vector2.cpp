@@ -35,8 +35,8 @@ void Vector2::Set(const float x, const float y) {
     _x = x;
     _y = y;
 }
-float Vector2::sqrMagnitude() const { return std::powf(x(), 2) + std::powf(y(), 2); }
-float Vector2::magnitude() const { return std::sqrtf(sqrMagnitude()); }
+float Vector2::sqrMagnitude() const { return std::pow(x(), 2) + std::pow(y(), 2); }
+float Vector2::magnitude() const { return std::sqrt(sqrMagnitude()); }
 Vector2 Vector2::normalized() const { return *this / magnitude(); }
 
 float Vector2::Dot(const Vector2& a, const Vector2& b) { return a.x() * b.x() + a.y() * b.y(); }

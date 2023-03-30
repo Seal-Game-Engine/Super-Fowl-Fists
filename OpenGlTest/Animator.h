@@ -12,15 +12,15 @@ namespace SealEngine {
 
 		void SetAnimatorController(const AnimatorController* animatorController);
 
-		bool GetBool(const std::string_view name) const;
-		float GetFloat(const std::string_view name) const;
-		int GetInteger(const std::string_view name) const;
+		bool GetBool(const std::string& name) const;
+		float GetFloat(const std::string& name) const;
+		int GetInteger(const std::string& name) const;
 
-		void SetBool(const std::string_view name, bool value);
-		void SetFloat(const std::string_view name, float value);
-		void SetInteger(const std::string_view name, int value);
+		void SetBool(const std::string& name, bool value);
+		void SetFloat(const std::string& name, float value);
+		void SetInteger(const std::string& name, int value);
 
-		void Play(const std::string_view name);
+		void Play(const std::string& name);
 
 		void Update() override;
 		SpriteRenderer* renderer = nullptr;
@@ -36,9 +36,9 @@ namespace SealEngine {
 		void HandleStateEnter(const AnimatorController::AnimationState* state);
 		void HandleStateExit(const AnimatorController::AnimationState::Transition& transition);
 
-		std::map<std::string_view, int> intMap;
-		std::map<std::string_view, bool> boolMap;
-		std::map<std::string_view, float> floatMap;
+		std::map<std::string, int> intMap;
+		std::map<std::string, bool> boolMap;
+		std::map<std::string, float> floatMap;
 	};
 }
 

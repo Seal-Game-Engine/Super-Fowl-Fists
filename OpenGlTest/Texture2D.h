@@ -17,7 +17,7 @@ namespace SealEngine {
 
 		static void LoadUninitializedTextures();
 
-		Texture2D(const std::string_view textureSource, const FilterMode filterMode, int columns = 1, int rows = 1);
+		Texture2D(const std::string textureSource, const FilterMode filterMode, int columns = 1, int rows = 1);
 
 		const Sprite& operator[](int) const;
 
@@ -26,8 +26,8 @@ namespace SealEngine {
 		GLuint _textureId = 0;
 		std::vector<Sprite> sprites;
 
-		void LoadTexture(const std::string_view textureSource, const FilterMode filterMode);
+		void LoadTexture(const std::string& textureSource, const FilterMode filterMode);
 
-		static std::stack<std::tuple<Texture2D&, const std::string_view, const FilterMode>> uninitializedTextures;
+		static std::stack<std::tuple<Texture2D&, const std::string, const FilterMode>> uninitializedTextures;
 	};
 }

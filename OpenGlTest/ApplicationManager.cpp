@@ -20,12 +20,12 @@ SceneManager* ApplicationManager::Scene = new SceneManager;
 std::vector<std::unique_ptr<IMessageHandler>> ApplicationManager::messageHandlers = std::vector<std::unique_ptr<IMessageHandler>>();
 
 // Handle For This Window, Message For This Window, Additional Message Information, Additional Message Information
-LRESULT CALLBACK ApplicationManager::WndProc(_In_ HWND hWindow, _In_ UINT message, _In_ WPARAM wParam, _In_ LPARAM lParam) {
+LRESULT CALLBACK ApplicationManager::WndProc(HWND hWindow, UINT message, WPARAM wParam, LPARAM lParam) {
 	for (auto& messageHandler : messageHandlers) messageHandler->TryHandleMessage(message, wParam, lParam);
 
 	switch (message) {
-		case WM_ACTIVATE:							
-			ApplicationManager::isActive = !HIWORD(wParam);			
+		case WM_ACTIVATE:
+			ApplicationManager::isActive = !HIWORD(wParam);
 			break;
 
 		case WM_SYSCOMMAND:							// Intercept System Commands
@@ -48,31 +48,31 @@ LRESULT CALLBACK ApplicationManager::WndProc(_In_ HWND hWindow, _In_ UINT messag
 }
 
 void ApplicationManager::DestroyGlWindow() {
-	if (isFullScreen) {								
-		ChangeDisplaySettings(NULL, 0);					
-		ShowCursor(TRUE);								
+	if (isFullScreen) {
+		ChangeDisplaySettings(NULL, 0);
+		ShowCursor(TRUE);
 	}
 
 	if (renderingContextHandler) {
 		if (!wglMakeCurrent(NULL, NULL))
-			MessageBox(NULL, L"Release Of DC And RC Failed.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
+			MessageBoxW(NULL, L"Release Of DC And RC Failed.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		if (!wglDeleteContext(renderingContextHandler))
-			MessageBox(NULL, L"Release Rendering Context Failed.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
+			MessageBoxW(NULL, L"Release Rendering Context Failed.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		renderingContextHandler = nullptr;
 	}
 
 	if (deviceContextHandler && !ReleaseDC(windowHandler, deviceContextHandler)) {
-		MessageBox(NULL, L"Release Device Context Failed.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
+		MessageBoxW(NULL, L"Release Device Context Failed.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		deviceContextHandler = nullptr;
 	}
 
 	if (windowHandler && !DestroyWindow(windowHandler)) {
-		MessageBox(NULL, L"Could Not Release hWnd.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
+		MessageBoxW(NULL, L"Could Not Release hWnd.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		windowHandler = nullptr;
 	}
 
-	if (!UnregisterClass(windowClassName, instanceHandler)) {
-		MessageBox(NULL, L"Could Not Unregister Class.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
+	if (!UnregisterClassW(windowClassName, instanceHandler)) {
+		MessageBoxW(NULL, L"Could Not Unregister Class.", L"SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		instanceHandler = nullptr;
 	}
 }
@@ -101,27 +101,40 @@ bool ApplicationManager::SetupWindow(int colorBits, bool fullscreenflag) {
 	//};
 	//if (!RegisterClass(&windowClass)) {
 	//	MessageBox(NULL, L"Failed To Register The Window Class.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
-	//	return false;						
+	//	return false;
 	//}
 #pragma endregion
 
 #pragma region Extended WindowsClass
-	WNDCLASSEX windowClassEx{
-		.cbSize = sizeof(WNDCLASSEX),
-		.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC,
-		.lpfnWndProc = WndProc,
-		.cbClsExtra = 0,
-		.cbWndExtra = 0,
-		.hInstance = instanceHandler,
-		.hIcon = LoadIcon(windowClassEx.hInstance, IDI_APPLICATION),//.hIcon = LoadIcon(NULL, IDI_WINLOGO),
-		.hCursor = LoadCursor(NULL, IDC_ARROW),
-		.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1),//NULL
-		.lpszMenuName = NULL,
-		.lpszClassName = windowClassName,
-		.hIconSm = LoadIcon(windowClassEx.hInstance, IDI_APPLICATION)
+	WNDCLASSEXW windowClassEx{
+		//.cbSize = sizeof(WNDCLASSEX),
+		//.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC,
+		//.lpfnWndProc = WndProc,
+		//.cbClsExtra = 0,
+		//.cbWndExtra = 0,
+		//.hInstance = instanceHandler,
+		//.hIcon = LoadIcon(windowClassEx.hInstance, IDI_APPLICATION),//.hIcon = LoadIcon(NULL, IDI_WINLOGO),
+		//.hCursor = LoadCursor(NULL, IDC_ARROW),
+		//.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1),//NULL
+		//.lpszMenuName = NULL,
+		//.lpszClassName = windowClassName,
+		//.hIconSm = LoadIcon(windowClassEx.hInstance, IDI_APPLICATION)
+
+		sizeof(WNDCLASSEX),
+		CS_HREDRAW | CS_VREDRAW | CS_OWNDC,
+		WndProc,
+		0,
+		0,
+		instanceHandler,
+		LoadIcon(windowClassEx.hInstance, IDI_APPLICATION),//.hIcon = LoadIcon(NULL, IDI_WINLOGO),
+		LoadCursor(NULL, IDC_ARROW),
+		(HBRUSH)(COLOR_WINDOW + 1),//NULL
+		NULL,
+		windowClassName,
+		LoadIcon(windowClassEx.hInstance, IDI_APPLICATION)
 	};
-	if (!RegisterClassEx(&windowClassEx)) {
-		MessageBox(NULL, L"Call to RegisterClassEx failed!", L"Windows Desktop Guided Tour", NULL);
+	if (!RegisterClassExW(&windowClassEx)) {
+		MessageBoxW(NULL, L"Call to RegisterClassEx failed!", L"Windows Desktop Guided Tour", NULL);
 		return false;
 	}
 #pragma endregion
@@ -140,15 +153,20 @@ bool ApplicationManager::SetupWindow(int colorBits, bool fullscreenflag) {
 
 #pragma region WindowRect
 	RECT WindowRect{
-		.left = 0,
+		/*.left = 0,
 		.top = 0,
 		.right = width,
-		.bottom = height
+		.bottom = height*/
+
+		0,
+		0,
+		width,
+		height
 	};
 	AdjustWindowRectEx(&WindowRect, dwStyle, FALSE, dwExStyle);// Adjust Window To True Requested Size
 #pragma endregion
 
-	windowHandler = CreateWindowEx(
+	windowHandler = CreateWindowExW(
 		dwExStyle, //WS_EX_OVERLAPPEDWINDOW,
 		windowClassName,
 		windowTitle,
@@ -162,7 +180,7 @@ bool ApplicationManager::SetupWindow(int colorBits, bool fullscreenflag) {
 	);
 	if (!windowHandler) {
 		//DestroyGlWindow(windowHandler);						// Reset The Display
-		MessageBox(NULL, L"Window Creation Error.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
+		MessageBoxW(NULL, L"Window Creation Error.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;								// Return FALSE
 	}
 
@@ -187,28 +205,28 @@ bool ApplicationManager::SetupWindow(int colorBits, bool fullscreenflag) {
 
 #pragma region ErrorChecks
 	if (!(deviceContextHandler = GetDC(windowHandler))) {
-		MessageBox(NULL, L"Can't Create A GL Device Context.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
+		MessageBoxW(NULL, L"Can't Create A GL Device Context.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
 
 	int	PixelFormat;
 	if (!(PixelFormat = ChoosePixelFormat(deviceContextHandler, &pixelFormatDescriptor))) {
-		MessageBox(NULL, L"Can't Find A Suitable PixelFormat.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
+		MessageBoxW(NULL, L"Can't Find A Suitable PixelFormat.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
 
 	if (!SetPixelFormat(deviceContextHandler, PixelFormat, &pixelFormatDescriptor)) {
-		MessageBox(NULL, L"Can't Set The PixelFormat.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
+		MessageBoxW(NULL, L"Can't Set The PixelFormat.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
 
 	if (!(renderingContextHandler = wglCreateContext(deviceContextHandler))) {
-		MessageBox(NULL, L"Can't Create A GL Rendering Context.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
+		MessageBoxW(NULL, L"Can't Create A GL Rendering Context.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
 
 	if (!wglMakeCurrent(deviceContextHandler, renderingContextHandler)) {
-		MessageBox(NULL, L"Can't Activate The GL Rendering Context.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
+		MessageBoxW(NULL, L"Can't Activate The GL Rendering Context.", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
 #pragma endregion
@@ -231,7 +249,7 @@ bool GetActionLOLL() {
 	return true;
 }
 
-int ApplicationManager::NewMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
+int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	int colorBits = 256;
 	instanceHandler = hInstance;
 	int width = GetSystemMetrics(SM_CXSCREEN);
@@ -242,7 +260,7 @@ int ApplicationManager::NewMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPr
 	//Scene = std::unique_ptr<SceneManager>(new SceneManager);
 	Scene->ResizeGl(width, height);
 	if (!Scene->InitGl()) {
-		MessageBox(NULL, L"Initialization Failed", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
+		MessageBoxW(NULL, L"Initialization Failed", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
 	messageHandlers.emplace_back(Scene);
@@ -269,13 +287,13 @@ int ApplicationManager::NewMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPr
 
 //Create
 //1. init local var (width etc)
-// 
+//
 //2. window class extended, try register class
-// 
+//
 //3. window rect
 //4. init style and fullscreen settings
 //5. adjust window rect with style
-// 
+//
 //6. window creation and storage into window handler
 //
 //7. pixel format and bug checks

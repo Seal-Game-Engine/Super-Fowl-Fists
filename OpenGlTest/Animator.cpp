@@ -5,27 +5,27 @@ using namespace SealEngine;
 
 
 
-void Animator::SetAnimatorController(const AnimatorController* animatorController) { 
-	this->animatorController = animatorController; 
+void Animator::SetAnimatorController(const AnimatorController* animatorController) {
+	this->animatorController = animatorController;
 	if (!animatorController) return;
 
 	HandleStateEnter(&animatorController->states[0]);
 }
 
-bool Animator::GetBool(const std::string_view name) const { return boolMap.find(name)->second; }
-float Animator::GetFloat(const std::string_view name) const { return floatMap.find(name)->second; }
-int Animator::GetInteger(const std::string_view name) const { return intMap.find(name)->second; }
+bool Animator::GetBool(const std::string& name) const { return boolMap.at(name); }
+float Animator::GetFloat(const std::string& name) const { return floatMap.find(name)->second; }
+int Animator::GetInteger(const std::string& name) const { return intMap.find(name)->second; }
 
-void Animator::SetBool(const std::string_view name, bool value) { 
-	if (!boolMap.contains(name)) intMap.insert({ name, false });
+void Animator::SetBool(const std::string& name, bool value) {
+	if (!boolMap.count(name)) intMap.insert({ name, false });
 	boolMap.find(name)->second = value;
 }
-void Animator::SetFloat(const std::string_view name, float value) {
-	if (!floatMap.contains(name)) intMap.insert({ name, 0 });
+void Animator::SetFloat(const std::string& name, float value) {
+	if (!floatMap.count(name)) intMap.insert({ name, 0 });
 	floatMap.find(name)->second = value;
 }
-void Animator::SetInteger(const std::string_view name, int value) {
-	if (!intMap.contains(name)) intMap.insert({ name, 0 });
+void Animator::SetInteger(const std::string& name, int value) {
+	if (!intMap.count(name)) intMap.insert({ name, 0 });
 	intMap.find(name)->second = value;
 }
 
