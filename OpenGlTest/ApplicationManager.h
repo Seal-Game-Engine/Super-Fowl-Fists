@@ -25,6 +25,8 @@ namespace SealEngine {
 
 		static std::vector<std::unique_ptr<IMessageHandler>> messageHandlers;
 
+		static int width, height;
+
 	private:
 		static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 		static bool isActive;

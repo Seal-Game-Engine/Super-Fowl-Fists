@@ -17,6 +17,8 @@ HINSTANCE ApplicationManager::instanceHandler = NULL;
 //const std::unique_ptr<SceneManager> ApplicationManager::Scene = std::unique_ptr<SceneManager>();
 SceneManager* ApplicationManager::Scene = new SceneManager;
 
+int ApplicationManager::width = 0, ApplicationManager::height = 0;
+
 std::vector<std::unique_ptr<IMessageHandler>> ApplicationManager::messageHandlers = std::vector<std::unique_ptr<IMessageHandler>>();
 
 // Handle For This Window, Message For This Window, Additional Message Information, Additional Message Information
@@ -252,8 +254,8 @@ bool GetActionLOLL() {
 int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	int colorBits = 256;
 	instanceHandler = hInstance;
-	int width = GetSystemMetrics(SM_CXSCREEN);
-	int height = GetSystemMetrics(SM_CYSCREEN);
+	width = GetSystemMetrics(SM_CXSCREEN);
+	height = GetSystemMetrics(SM_CYSCREEN);
 
 	if (!SetupWindow(colorBits, true)) return 1;
 

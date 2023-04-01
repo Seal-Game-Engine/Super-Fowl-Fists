@@ -3,7 +3,7 @@
 #include "Time.h"
 
 //Math
-#include "IMessageHandler.hpp"
+#include "IMessageHandler.h"
 #include "Vector2.h"
 #include "Vector3.h"
 

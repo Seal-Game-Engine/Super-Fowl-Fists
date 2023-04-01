@@ -1,21 +1,19 @@
 #pragma once
-#include <string>
-#include "time.h"
 #include "SealEngine.h"
-	using namespace SealEngine;
+using namespace SealEngine;
 
-class Parallax {
-public:
-	Parallax();
+class Parallax
+{
+    public:
+        Parallax();
+        void Update();
+        void Scroll(Vector2 direction);
 
-	void drawSquare(float, float);
-	void initParallax();
-	void scroll(bool, std::string, float);
+        float speed = 0.1f;
+        Sprite sprite;
 
-	float xMax = 1, xMin = 0, yMax = 0, yMin = 1;
-
-	//Texture2D textureLoader = Texture2D(0, 0);
-
-	clock_t startTime;
+    private:
+        Rect rect = Rect(0, 0, 1, 1);
 };
+
 

@@ -1,25 +1,20 @@
 #pragma once
 #include "SealEngine.h"
-#include <array>
 using namespace SealEngine;
 
 class Player {
 public:
 	Player();
-	void Actions(int);
 	void Update();
 	void LateUpdate();
 
 	Transform transform;
 	Vector3 pivotOffset = Vector3::zero();
 
-	float runSpeed, jumpSpeed;
-	int actionTrigger;
-
 	SpriteRenderer renderer;
 	Animator animator;
 
 private:
-	
+	float speed = 4.0f;
 };
 

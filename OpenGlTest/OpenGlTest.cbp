@@ -13,35 +13,13 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-g" />
 					<Add option="-Wall" />
-					<Add directory="./../Common/include/" />
-					<Add directory="$(IncludePath)/" />
+					<Add option="-g" />
 				</Compiler>
-				<Linker>
-					<Add library="freeglut.lib" />
-					<Add library="freeglut_static.lib" />
-					<Add library="soil2.lib" />
-					<Add library="irrKlang.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="kernel32.lib" />
-					<Add library="user32.lib" />
-					<Add library="gdi32.lib" />
-					<Add library="winspool.lib" />
-					<Add library="comdlg32.lib" />
-					<Add library="advapi32.lib" />
-					<Add library="shell32.lib" />
-					<Add library="ole32.lib" />
-					<Add library="oleaut32.lib" />
-					<Add library="uuid.lib" />
-					<Add library="odbc32.lib" />
-					<Add library="odbccp32.lib" />
-					<Add directory="./../Common/lib/" />
-					<Add directory="$(LibraryPath)/" />
-				</Linker>
 				<ExtraCommands>
-					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Debug\&quot;;&#x0A;mkdir &quot;.\Debug\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Debug\Assets&quot;;' />
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Debug\&quot;;' />
+					<Add after='mkdir &quot;.\Debug\Assets&quot;' />
+					<Add after='copy &quot;.\Assets&quot; &quot;.\Debug\Assets&quot;;' />
 				</ExtraCommands>
 			</Target>
 			<Target title="Debug x64">
@@ -51,35 +29,13 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-g" />
 					<Add option="-Wall" />
-					<Add directory="./../Common/include/" />
-					<Add directory="$(IncludePath)/" />
+					<Add option="-g" />
 				</Compiler>
-				<Linker>
-					<Add library="freeglut.lib" />
-					<Add library="freeglut_static.lib" />
-					<Add library="soil2.lib" />
-					<Add library="irrKlang.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="kernel32.lib" />
-					<Add library="user32.lib" />
-					<Add library="gdi32.lib" />
-					<Add library="winspool.lib" />
-					<Add library="comdlg32.lib" />
-					<Add library="advapi32.lib" />
-					<Add library="shell32.lib" />
-					<Add library="ole32.lib" />
-					<Add library="oleaut32.lib" />
-					<Add library="uuid.lib" />
-					<Add library="odbc32.lib" />
-					<Add library="odbccp32.lib" />
-					<Add directory="./../Common/lib/" />
-					<Add directory="$(LibraryPath)/" />
-				</Linker>
 				<ExtraCommands>
-					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Debug\&quot;;&#x0A;mkdir &quot;.\Debug\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Debug\Assets&quot;;' />
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Debug\&quot;;' />
+					<Add after='mkdir &quot;.\Debug\Assets&quot;' />
+					<Add after='copy &quot;.\Assets&quot; &quot;.\Debug\Assets&quot;;' />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release x64">
@@ -90,33 +46,11 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add directory="./../Common/include/" />
-					<Add directory="$(IncludePath)/" />
 				</Compiler>
-				<Linker>
-					<Add library="freeglut.lib" />
-					<Add library="freeglut_static.lib" />
-					<Add library="soil2.lib" />
-					<Add library="irrKlang.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="kernel32.lib" />
-					<Add library="user32.lib" />
-					<Add library="gdi32.lib" />
-					<Add library="winspool.lib" />
-					<Add library="comdlg32.lib" />
-					<Add library="advapi32.lib" />
-					<Add library="shell32.lib" />
-					<Add library="ole32.lib" />
-					<Add library="oleaut32.lib" />
-					<Add library="uuid.lib" />
-					<Add library="odbc32.lib" />
-					<Add library="odbccp32.lib" />
-					<Add directory="./../Common/lib/" />
-					<Add directory="$(LibraryPath)/" />
-				</Linker>
 				<ExtraCommands>
-					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Release\&quot;;&#x0A;mkdir &quot;.\Release\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Release\Assets&quot;;' />
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Release\&quot;;' />
+					<Add after='mkdir &quot;.\Release\Assets&quot;' />
+					<Add after='copy &quot;.\Assets&quot; &quot;.\Release\Assets&quot;;' />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release Win32">
@@ -127,36 +61,24 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add directory="./../Common/include/" />
-					<Add directory="$(IncludePath)/" />
 				</Compiler>
-				<Linker>
-					<Add library="freeglut.lib" />
-					<Add library="freeglut_static.lib" />
-					<Add library="soil2.lib" />
-					<Add library="irrKlang.lib" />
-					<Add library="winmm.lib" />
-					<Add library="comctl32.lib" />
-					<Add library="kernel32.lib" />
-					<Add library="user32.lib" />
-					<Add library="gdi32.lib" />
-					<Add library="winspool.lib" />
-					<Add library="comdlg32.lib" />
-					<Add library="advapi32.lib" />
-					<Add library="shell32.lib" />
-					<Add library="ole32.lib" />
-					<Add library="oleaut32.lib" />
-					<Add library="uuid.lib" />
-					<Add library="odbc32.lib" />
-					<Add library="odbccp32.lib" />
-					<Add directory="./../Common/lib/" />
-					<Add directory="$(LibraryPath)/" />
-				</Linker>
 				<ExtraCommands>
-					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Release\&quot;;&#x0A;mkdir &quot;.\Release\Assets&quot;&#x0A;copy &quot;.\Assets&quot; &quot;.\Release\Assets&quot;;' />
+					<Add after='copy &quot;.\..\Common\bin&quot; &quot;.\Release\&quot;;' />
+					<Add after='mkdir &quot;.\Release\Assets&quot;' />
+					<Add after='copy &quot;.\Assets&quot; &quot;.\Release\Assets&quot;;' />
 				</ExtraCommands>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add directory="../Common/include" />
+		</Compiler>
+		<Linker>
+			<Add library="../Common/lib/freeglut.lib" />
+			<Add library="../Common/lib/soil2.lib" />
+			<Add library="../Common/lib/irrKlang.lib" />
+			<Add library="../Common/lib/freeglut_static.lib" />
+			<Add directory="../Common/lib" />
+		</Linker>
 		<Unit filename="AnimationClip.cpp" />
 		<Unit filename="AnimationClip.h" />
 		<Unit filename="Animator.cpp" />
@@ -189,8 +111,6 @@
 		<Unit filename="MonoBehaviour.h" />
 		<Unit filename="Object.cpp" />
 		<Unit filename="Object.h" />
-		<Unit filename="Parallax.cpp" />
-		<Unit filename="Parallax.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
 		<Unit filename="Rect.cpp" />
@@ -215,6 +135,8 @@
 		<Unit filename="Vector3.cpp" />
 		<Unit filename="Vector3.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="parallax.cpp" />
+		<Unit filename="parallax.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

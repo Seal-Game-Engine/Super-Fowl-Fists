@@ -11,8 +11,8 @@
 	"Inputs.h"
 	"Vector2.h"
 
-1680205413 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\inputs.h
-	"IMessageHandler.hpp"
+1680240412 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\inputs.h
+	"IMessageHandler.h"
 	"KeyCode.h"
 
 1680205452 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\keycode.h
@@ -183,15 +183,15 @@
 	"GameObject.h"
 	"Transform.h"
 
-1680206866 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
+1680236041 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
 	"AssetManager.h"
 
-1680147857 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.h
+1680235941 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.h
 	"SealEngine.h"
 
-1680082096 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine.h
+1680240407 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine.h
 	"Time.h"
-	"IMessageHandler.hpp"
+	"IMessageHandler.h"
 	"Vector2.h"
 	"Vector3.h"
 	"Rect.h"
@@ -209,17 +209,17 @@
 	"SceneManager.h"
 	"ApplicationManager.h"
 
-1679769678 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.h
-	"Player.h"
+1680240418 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.h
+	"Projectile.h"
 	<memory>
-	"IMessageHandler.hpp"
+	<vector>
+	"IMessageHandler.h"
 	<freeglut/freeglut.h>
 
-1680082540 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.h
+1680224255 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.h
 	"SealEngine.h"
-	<array>
 
-1680209670 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.h
+1680216562 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.h
 	<windows.h>
 	<memory>
 	<vector>
@@ -260,17 +260,19 @@
 1679436477 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\model.h
 	"SealEngine.h"
 
-1677547596 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.cpp
+1680236378 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.cpp
 	"Parallax.h"
+	"AssetManager.h"
+	"ApplicationManager.h"
 
-1679527015 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.h
-	<string>
-	"time.h"
+1680235173 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.h
 	"SealEngine.h"
 
-1680121745 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.cpp
+1680227019 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.cpp
 	"Player.h"
+	"Projectile.h"
 	"AssetManager.h"
+	"SceneManager.h"
 	<irrKlang/irrKlang.h>
 
 1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\\irrklang\irrklang.h
@@ -370,7 +372,7 @@
 	"ik_IRefCounted.h"
 	"ik_ISoundSource.h"
 
-1680147857 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
+1680234845 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
 	<windows.h>
 	"GLLight.h"
 	"SealEngine.h"
@@ -380,8 +382,8 @@
 	"CheckCollision.h"
 	"AssetManager.h"
 	"SOIL2.h"
-	<memory>
 	"Font.h"
+	"Parallax.h"
 
 1680146265 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\transform.cpp
 	"Transform.h"
@@ -393,7 +395,7 @@
 	"SealEngine.h"
 	<freeglut/freeglut.h>
 
-1680208410 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.cpp
+1680216644 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.cpp
 	"ApplicationManager.h"
 	"Inputs.h"
 	"Time.h"
@@ -519,4 +521,10 @@
 	"ik_ISoundSource.h"
 
 1676583406 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\soil2.h
+
+1680230372 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\projectile.h
+	"SealEngine.h"
+
+1679769224 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.h
+	<windows.h>
 

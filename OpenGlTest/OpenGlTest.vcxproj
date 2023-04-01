@@ -182,12 +182,12 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.cpp" />
-    <ClCompile Include="IMessageHandler.hpp" />
     <ClCompile Include="KeyCode.cpp" />
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Parallax.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -212,11 +212,13 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLLight.h" />
+    <ClInclude Include="IMessageHandler.h" />
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="MonoBehaviour.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Parallax.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
@@ -237,6 +239,8 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <Image Include="Assets\Googleplex.jpg" />
     <Image Include="Assets\GreenSlime.png" />
     <Image Include="Assets\Hector_Run.png" />
+    <Image Include="Assets\Projectile_Blue.png" />
+    <Image Include="Assets\X-wing.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\PlasmaBlast.wav" />

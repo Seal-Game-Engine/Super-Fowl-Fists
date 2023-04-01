@@ -1,17 +1,20 @@
 #pragma once
-#include "Player.h"
+#include "Projectile.h"
 #include <memory>
-#include "IMessageHandler.hpp"
+#include <vector>
+#include "IMessageHandler.h"
 #include <freeglut/freeglut.h>
+class Projectile;
 
 class SceneManager : public IMessageHandler {
 public:
     int RefreshScene();
     bool InitGl();
     void ResizeGl(GLfloat, GLfloat);
-    //std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
 
     bool TryHandleMessage(const UINT uMsg, const WPARAM wParam, const LPARAM lParam) override;
+
+    static std::vector<std::unique_ptr<Projectile>> projectiles;
 
     //Unity
     //static int sceneCount	The total number of currently loaded Scenes.
