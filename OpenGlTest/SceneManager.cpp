@@ -24,7 +24,6 @@ int SceneManager::RefreshScene() {
     for (auto& projectile : projectiles) {
         if (!projectile) continue;
         projectile->Update();
-        projectile->animator.Update();
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

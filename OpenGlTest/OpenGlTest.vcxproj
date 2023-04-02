@@ -100,7 +100,7 @@
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin" "$(OutDir)";
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
 copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
@@ -123,7 +123,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin" "$(OutDir)";
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
 copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
@@ -142,7 +142,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin" "$(OutDir)";
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
 copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
@@ -165,7 +165,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin" "$(OutDir)";
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
 copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>

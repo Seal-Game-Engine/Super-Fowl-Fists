@@ -24,5 +24,6 @@ void Projectile::Update() {
 		return;
 	}
 	transform.position += Vector2::up() * speed * Time::deltaTime();
+	animator.Update();
 }
 

@@ -5,9 +5,8 @@
 1679769224 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.hpp
 	<windows.h>
 
-1679436471 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\inputs.cpp
-	<windows.h>
-	<windowsx.h>
+1680396770 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\inputs.cpp
+	"SealPackages.h"
 	"Inputs.h"
 	"Vector2.h"
 
@@ -250,10 +249,9 @@
 	"SceneManager.h"
 	"SealPackages.h"
 
-1679436477 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\model.cpp
+1680396689 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\model.cpp
 	"Model.h"
 	"AssetManager.h"
-	<windows.h>
 
 1679436477 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\model.h
 	"SealEngine.h"
@@ -370,8 +368,7 @@
 	"ik_IRefCounted.h"
 	"ik_ISoundSource.h"
 
-1680394548 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
-	<windows.h>
+1680401732 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
 	"GLLight.h"
 	"SealEngine.h"
 	"Model.h"
@@ -387,8 +384,8 @@
 	<cmath>
 	"SealEngine.h"
 
-1680394831 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\main.cpp
-	<windows.h>
+1680396724 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\main.cpp
+	"SealPackages.h"
 	"SealEngine.h"
 
 1680216644 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.cpp
@@ -641,7 +638,7 @@
 
 1680241109 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\soil.h
 
-1680232294 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\projectile.cpp
+1680401756 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\projectile.cpp
 	"Projectile.h"
 	"AssetManager.h"
 	"SceneManager.h"
