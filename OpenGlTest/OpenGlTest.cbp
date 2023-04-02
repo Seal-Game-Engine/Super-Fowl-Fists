@@ -49,6 +49,11 @@
 					<Add option="-std=c++14" />
 					<Add option="-std=c17" />
 				</Compiler>
+				<ExtraCommands>
+					<Add after='cmd /c copy &quot;$(PROJECT_DIR)..\Common\bin\Win32&quot; &quot;$(TARGET_OUTPUT_DIR)&quot;;' />
+					<Add after='cmd /c mkdir &quot;$(TARGET_OUTPUT_DIR)Assets&quot;' />
+					<Add after='cmd /c copy &quot;$(PROJECT_DIR)Assets&quot; &quot;$(TARGET_OUTPUT_DIR)Assets&quot;;' />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
