@@ -1,9 +1,9 @@
 #pragma once
+#include "SealPackages.h"
 #include "Projectile.h"
 #include <memory>
 #include <vector>
 #include "IMessageHandler.h"
-#include "SealPackages.h"
 class Projectile;
 
 class SceneManager : public IMessageHandler {

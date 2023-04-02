@@ -1,6 +1,7 @@
 #pragma once
 
 #include <windows.h>
+#include <windowsx.h>
 
 #if _WIN64
 	#include <freeglut/glut.h>

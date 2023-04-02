@@ -1,5 +1,3 @@
-#include <windows.h>
-
 #include "GLLight.h"
 #include "SealEngine.h"
 #include "Model.h"

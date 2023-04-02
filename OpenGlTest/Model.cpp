@@ -1,6 +1,5 @@
 #include "Model.h"
 #include "AssetManager.h"
-#include <windows.h>
 
 void Model::DrawModel() {
     glPushMatrix();

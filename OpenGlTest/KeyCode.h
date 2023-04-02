@@ -1,6 +1,6 @@
 // https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 #pragma once
-#include <windows.h>
+#include "SealPackages.h"
 
 namespace SealEngine {
 	namespace InputSystem {

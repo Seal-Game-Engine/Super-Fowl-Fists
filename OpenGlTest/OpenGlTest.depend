@@ -15,8 +15,8 @@
 	"IMessageHandler.h"
 	"KeyCode.h"
 
-1680205452 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\keycode.h
-	<windows.h>
+1680396749 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\keycode.h
+	"SealPackages.h"
 
 1679960432 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\vector2.h
 
@@ -208,23 +208,22 @@
 	"SceneManager.h"
 	"ApplicationManager.h"
 
-1680392996 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.h
+1680396624 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.h
+	"SealPackages.h"
 	"Projectile.h"
 	<memory>
 	<vector>
 	"IMessageHandler.h"
-	"SealPackages.h"
 
 1680224255 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.h
 	"SealEngine.h"
 
-1680393170 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.h
-	<windows.h>
+1680396830 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.h
 	<memory>
 	<vector>
-	"SceneManager.h"
-	"SealEngine.h"
 	"SealPackages.h"
+	"SealEngine.h"
+	"SceneManager.h"
 
 1680120679 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\enemy.cpp
 	"Enemy.h"
@@ -522,11 +521,12 @@
 1680230372 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\projectile.h
 	"SealEngine.h"
 
-1679769224 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.h
-	<windows.h>
+1680396788 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.h
+	"SealPackages.h"
 
-1680396016 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealpackages.h
+1680396957 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealpackages.h
 	<windows.h>
+	<windowsx.h>
 	<freeglut/glut.h>
 	<SOIL2.h>
 	<irrKlang_x64/irrKlang.h>
