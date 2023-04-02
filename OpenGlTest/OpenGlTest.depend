@@ -1,6 +1,6 @@
 # depslib dependency file v1.0
-1679769224 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.cpp
-	"IMessageHandler.hpp"
+1680243672 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.cpp
+	"IMessageHandler.h"
 
 1679769224 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.hpp
 	<windows.h>
@@ -104,11 +104,11 @@
 	"Vector2.h"
 	"Texture2D.h"
 
-1680196882 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\texture2d.h
+1680393274 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\texture2d.h
 	<string>
 	<stack>
 	<tuple>
-	<freeglut/freeglut.h>
+	"SealPackages.h"
 	"Object.h"
 
 1665159171 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\\freeglut\freeglut.h
@@ -134,8 +134,8 @@
 	<stdarg.h>
 	<stdlib.h>
 
-1680147857 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\spriterenderer.cpp
-	<freeglut/freeglut.h>
+1680392937 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\spriterenderer.cpp
+	"SealPackages.h"
 	"SpriteRenderer.h"
 	"Texture2D.h"
 	"Transform.h"
@@ -162,8 +162,7 @@
 	"SpriteRenderer.h"
 	<map>
 
-1680206142 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\texture2d.cpp
-	<SOIL2.h>
+1680393274 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\texture2d.cpp
 	"Texture2D.h"
 	"Sprite.h"
 
@@ -183,7 +182,7 @@
 	"GameObject.h"
 	"Transform.h"
 
-1680236041 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
+1680395414 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
 	"AssetManager.h"
 
 1680235941 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.h
@@ -209,23 +208,23 @@
 	"SceneManager.h"
 	"ApplicationManager.h"
 
-1680240418 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.h
+1680392996 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.h
 	"Projectile.h"
 	<memory>
 	<vector>
 	"IMessageHandler.h"
-	<freeglut/freeglut.h>
+	"SealPackages.h"
 
 1680224255 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.h
 	"SealEngine.h"
 
-1680216562 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.h
+1680393170 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.h
 	<windows.h>
 	<memory>
 	<vector>
 	"SceneManager.h"
 	"SealEngine.h"
-	"freeglut/freeglut.h"
+	"SealPackages.h"
 
 1680120679 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\enemy.cpp
 	"Enemy.h"
@@ -235,22 +234,22 @@
 	"SealEngine.h"
 	<array>
 
-1680205556 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\font.cpp
+1680393129 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\font.cpp
 	"Font.h"
-	<freeglut/freeglut.h>
 	"AssetManager.h"
 	<array>
 
-1680205556 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\font.h
+1680393139 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\font.h
 	<array>
 	"SealEngine.h"
+	"SealPackages.h"
 
-1676015888 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gllight.cpp
+1680393108 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gllight.cpp
 	"GLLight.h"
 
-1679769669 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gllight.h
+1680393098 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gllight.h
 	"SceneManager.h"
-	<freeglut/freeglut.h>
+	"SealPackages.h"
 
 1679436477 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\model.cpp
 	"Model.h"
@@ -268,12 +267,12 @@
 1680235173 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.h
 	"SealEngine.h"
 
-1680227019 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.cpp
+1680395125 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.cpp
 	"Player.h"
 	"Projectile.h"
 	"AssetManager.h"
 	"SceneManager.h"
-	<irrKlang/irrKlang.h>
+	<cmath>
 
 1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\\irrklang\irrklang.h
 	"ik_irrKlangTypes.h"
@@ -372,7 +371,7 @@
 	"ik_IRefCounted.h"
 	"ik_ISoundSource.h"
 
-1680234845 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
+1680394548 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
 	<windows.h>
 	"GLLight.h"
 	"SealEngine.h"
@@ -381,7 +380,6 @@
 	"Enemy.h"
 	"CheckCollision.h"
 	"AssetManager.h"
-	"SOIL2.h"
 	"Font.h"
 	"Parallax.h"
 
@@ -390,10 +388,9 @@
 	<cmath>
 	"SealEngine.h"
 
-1680209716 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\main.cpp
+1680394831 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\main.cpp
 	<windows.h>
 	"SealEngine.h"
-	<freeglut/freeglut.h>
 
 1680216644 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.cpp
 	"ApplicationManager.h"
@@ -527,4 +524,125 @@
 
 1679769224 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.h
 	<windows.h>
+
+1680396016 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealpackages.h
+	<windows.h>
+	<freeglut/glut.h>
+	<SOIL2.h>
+	<irrKlang_x64/irrKlang.h>
+	<glut/glut.h>
+	<SOIL.h>
+
+1665159171 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\freeglut\glut.h
+	"freeglut_std.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\irrklang.h
+	"ik_irrKlangTypes.h"
+	"ik_vec3d.h"
+	"ik_IRefCounted.h"
+	"ik_IVirtualRefCounted.h"
+	"ik_ESoundOutputDrivers.h"
+	"ik_ESoundEngineOptions.h"
+	"ik_EStreamModes.h"
+	"ik_SAudioStreamFormat.h"
+	"ik_ISoundEngine.h"
+	"ik_ISoundSource.h"
+	"ik_ISound.h"
+	"ik_IAudioStream.h"
+	"ik_IAudioStreamLoader.h"
+	"ik_ISoundEffectControl.h"
+	"ik_ISoundStopEventReceiver.h"
+	"ik_IFileFactory.h"
+	"ik_IFileReader.h"
+	"ik_ISoundDeviceList.h"
+	"ik_IAudioRecorder.h"
+	"ik_ISoundMixedOutputReceiver.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_irrklangtypes.h
+	<wchar.h>
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_vec3d.h
+	<math.h>
+	"ik_irrKlangTypes.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_irefcounted.h
+	"ik_irrKlangTypes.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_ivirtualrefcounted.h
+	"ik_irrKlangTypes.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_esoundoutputdrivers.h
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_esoundengineoptions.h
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_estreammodes.h
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_saudiostreamformat.h
+	"ik_IRefCounted.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundengine.h
+	"ik_IRefCounted.h"
+	"ik_vec3d.h"
+	"ik_ISoundSource.h"
+	"ik_ISound.h"
+	"ik_EStreamModes.h"
+	"ik_IFileFactory.h"
+	"ik_ISoundMixedOutputReceiver.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundsource.h
+	"ik_IVirtualRefCounted.h"
+	"ik_vec3d.h"
+	"ik_EStreamModes.h"
+	"ik_SAudioStreamFormat.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isound.h
+	"ik_IVirtualRefCounted.h"
+	"ik_ISoundEffectControl.h"
+	"ik_vec3d.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundeffectcontrol.h
+	"ik_IVirtualRefCounted.h"
+	"ik_vec3d.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_ifilefactory.h
+	"ik_IRefCounted.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundmixedoutputreceiver.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_iaudiostream.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_iaudiostreamloader.h
+	"ik_IRefCounted.h"
+	"ik_IFileReader.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_ifilereader.h
+	"ik_IRefCounted.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundstopeventreceiver.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isounddevicelist.h
+	"ik_IRefCounted.h"
+
+1679529222 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_iaudiorecorder.h
+	"ik_IRefCounted.h"
+	"ik_ISoundSource.h"
+
+1680241304 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\glut\glut.h
+	<windows.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1680241109 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\soil.h
+
+1680232294 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\projectile.cpp
+	"Projectile.h"
+	"AssetManager.h"
+	"SceneManager.h"
 

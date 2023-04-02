@@ -2,7 +2,7 @@
 #include <string>
 #include <stack>
 #include <tuple>
-#include <freeglut/freeglut.h>
+#include "SealPackages.h"
 #include "Object.h"
 namespace SealEngine { class Sprite; }
 
@@ -28,6 +28,10 @@ namespace SealEngine {
 
 		void LoadTexture(const std::string& textureSource, const FilterMode filterMode);
 
+		struct TextureInitializer
+		{
+
+		};
 		static std::stack<std::tuple<Texture2D&, const std::string, const FilterMode>> uninitializedTextures;
 	};
 }

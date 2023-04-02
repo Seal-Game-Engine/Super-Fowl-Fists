@@ -2,6 +2,7 @@
 //#include "Rect.h"
 #include <array>
 #include "SealEngine.h"
+#include "SealPackages.h"
 using namespace SealEngine;
 
 class Font

@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include "IMessageHandler.h"
-#include <freeglut/freeglut.h>
+#include "SealPackages.h"
 class Projectile;
 
 class SceneManager : public IMessageHandler {

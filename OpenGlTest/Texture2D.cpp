@@ -1,4 +1,3 @@
-#include <SOIL2.h>
 #include "Texture2D.h"
 #include "Sprite.h"
 using namespace SealEngine;

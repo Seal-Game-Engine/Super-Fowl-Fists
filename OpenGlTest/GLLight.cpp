@@ -1,4 +1,3 @@
-#pragma once
 #include "GLLight.h"
 
 GLLight::GLLight(GLenum Light) {

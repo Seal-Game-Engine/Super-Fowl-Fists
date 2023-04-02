@@ -2,9 +2,7 @@
 #include "Projectile.h"
 #include "AssetManager.h"
 #include "SceneManager.h"
-#include <irrKlang/irrKlang.h>
-
-#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
+#include <cmath>
 
 Player::Player() {
 	transform.position.Set(0, -2, 0);
@@ -17,8 +15,8 @@ Player::Player() {
 
 void Player::Update() {
 	int x = (Inputs::GetKey(KeyCode::A) || Inputs::GetKey(KeyCode::LeftArrow)) && (Inputs::GetKey(KeyCode::D) || Inputs::GetKey(KeyCode::RightArrow)) ? 0
-		: Inputs::GetKey(KeyCode::A) || Inputs::GetKey(KeyCode::LeftArrow) ? -1 
-		: Inputs::GetKey(KeyCode::D) || Inputs::GetKey(KeyCode::RightArrow) ? 1 
+		: Inputs::GetKey(KeyCode::A) || Inputs::GetKey(KeyCode::LeftArrow) ? -1
+		: Inputs::GetKey(KeyCode::D) || Inputs::GetKey(KeyCode::RightArrow) ? 1
 		: 0;
 
 	int y = Inputs::GetKey(KeyCode::W) || Inputs::GetKey(KeyCode::UpArrow) ? 1
@@ -32,7 +30,7 @@ void Player::Update() {
 	if (std::abs(transform.position.y()) > (float)ApplicationManager::height / 280.0f) transform.position -= verticalMovement;
 
 	animator.SetInteger("x", x);
-	
+
 
 	static float nextFire = 0;
 	if (Inputs::GetKey(KeyCode::Space) && Time::time() >= nextFire) {

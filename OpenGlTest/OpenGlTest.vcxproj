@@ -225,6 +225,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="SealEngine.h" />
+    <ClInclude Include="SealPackages.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture2D.h" />

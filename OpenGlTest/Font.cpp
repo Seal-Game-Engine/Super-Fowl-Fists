@@ -1,5 +1,4 @@
 #include "Font.h"
-#include <freeglut/freeglut.h>
 #include "AssetManager.h"
 #include <array>
 

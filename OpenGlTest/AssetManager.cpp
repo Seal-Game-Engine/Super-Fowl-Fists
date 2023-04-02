@@ -61,7 +61,7 @@ const AnimatorController AssetManager::Projectile_Blue_Controller = AnimatorCont
 	State("Idle", &Projectile_Blue_Idle),
 });;
 
-const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.jpg", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
 
 const Texture2D AssetManager::Font = Texture2D("Assets/font.png", Texture2D::FilterMode::Nearest, 16, 8);
 const Texture2D AssetManager::GreenSlime = Texture2D("Assets/GreenSlime.png", Texture2D::FilterMode::Nearest, 4, 2);
@@ -83,4 +83,4 @@ const AnimatorController AssetManager::GreenSlime_Controller = AnimatorControlle
 	}),
 });
 
-const Texture2D AssetManager::Googleplex = Texture2D("Assets/Googleplex.jpg", Texture2D::FilterMode::Linear);
+const Texture2D AssetManager::Googleplex = Texture2D("Assets/Googleplex.png", Texture2D::FilterMode::Linear);

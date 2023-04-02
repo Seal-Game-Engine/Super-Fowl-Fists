@@ -63,6 +63,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="IMessageHandler.h" />
+    <ClInclude Include="SealPackages.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />

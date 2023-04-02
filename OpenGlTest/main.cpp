@@ -7,9 +7,7 @@
 
 #include <windows.h>
 //#include <windowsx.h>
-
 #include "SealEngine.h"
-#include <freeglut/freeglut.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	return SealEngine::ApplicationManager::NewMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);

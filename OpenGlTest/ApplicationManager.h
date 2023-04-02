@@ -4,7 +4,7 @@
 #include <vector>
 #include "SceneManager.h"
 #include "SealEngine.h"
-#include "freeglut/freeglut.h"
+#include "SealPackages.h"
 using namespace SealEngine::InputSystem;
 class SceneManager;
 

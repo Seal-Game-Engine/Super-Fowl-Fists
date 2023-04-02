@@ -7,18 +7,17 @@
 #include "Enemy.h"
 #include "CheckCollision.h"
 #include "AssetManager.h"
-#include "SOIL2.h"
 #include "Font.h"
 #include "Parallax.h"
 using namespace SealEngine::InputSystem;
 
 std::vector<std::unique_ptr<Projectile>> SceneManager::projectiles = std::vector<std::unique_ptr<Projectile>>{};
-std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
-std::unique_ptr<Parallax> parallax = std::unique_ptr<Parallax>(new Parallax);
 
 std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
+    static std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
+    static std::unique_ptr<Parallax> parallax = std::unique_ptr<Parallax>(new Parallax);
     parallax->Scroll(Vector2::down());
 
     player->Update();
@@ -50,7 +49,9 @@ int SceneManager::RefreshScene() {
 }
 
 bool SceneManager::InitGl() {
+#if _WIN64
     glutInit(&__argc, __argv);
+#endif
 
     glClearDepth(1.0f);
 
@@ -70,8 +71,8 @@ bool SceneManager::InitGl() {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     
-    GLLight Light(GL_LIGHT0);
-    Light.Set(GL_LIGHT0);
+    //GLLight Light(GL_LIGHT0);
+    //Light.Set(GL_LIGHT0);
 
     glEnable(GL_TEXTURE_2D);
     Texture2D::LoadUninitializedTextures();

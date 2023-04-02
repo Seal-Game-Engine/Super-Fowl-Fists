@@ -1,4 +1,4 @@
-#include <freeglut/freeglut.h>
+#include "SealPackages.h"
 #include "SpriteRenderer.h"
 #include "Texture2D.h"
 #include "Transform.h"
