@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneManager.h"
-#include <freeglut/freeglut.h>
+#include "SealPackages.h"
 
 class GLLight : SceneManager {
 public:

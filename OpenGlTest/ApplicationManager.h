@@ -1,9 +1,9 @@
 #pragma once
-#include <windows.h>
 #include <memory>
 #include <vector>
-#include "SceneManager.h"
+#include "SealPackages.h"
 #include "SealEngine.h"
+#include "SceneManager.h"
 using namespace SealEngine::InputSystem;
 class SceneManager;
 
@@ -20,12 +20,14 @@ namespace SealEngine {
 		//static const std::unique_ptr<SceneManager> Scene;
 		static SceneManager* Scene;
 
-		static int NewMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow);
+		static int NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 
 		static std::vector<std::unique_ptr<IMessageHandler>> messageHandlers;
 
+		static int width, height;
+
 	private:
-		static LRESULT CALLBACK WndProc(_In_ HWND, _In_ UINT, _In_ WPARAM, _In_ LPARAM);
+		static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 		static bool isActive;
 
 		static HGLRC renderingContextHandler;		// Permanent Rendering Context

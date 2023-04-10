@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -100,8 +100,9 @@
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
+mkdir "$(OutDir)Assets"
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,7 +113,7 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -122,8 +123,9 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
+mkdir "$(OutDir)Assets"
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -132,7 +134,7 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -140,8 +142,9 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
+mkdir "$(OutDir)Assets"
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,7 +155,7 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,8 +165,9 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
       <AdditionalDependencies>freeglut.lib;freeglut_static.lib;soil2.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)..\Common\bin\freeglut.dll" "$(OutDir)";
-copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
+      <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
+mkdir "$(OutDir)Assets"
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -178,12 +182,12 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.cpp" />
-    <ClCompile Include="IMessageHandler.hpp" />
     <ClCompile Include="KeyCode.cpp" />
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Parallax.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -208,17 +212,20 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLLight.h" />
+    <ClInclude Include="IMessageHandler.h" />
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="MonoBehaviour.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Parallax.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="SealEngine.h" />
+    <ClInclude Include="SealPackages.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture2D.h" />
@@ -229,9 +236,15 @@ copy "$(SolutionDir)..\Common\bin\irrKlang.dll" "$(OutDir)";</Command>
     <ClInclude Include="ApplicationManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="font.png" />
-    <Image Include="Googleplex.jpg" />
-    <Image Include="Hector_Run.png" />
+    <Image Include="Assets\font.png" />
+    <Image Include="Assets\Googleplex.jpg" />
+    <Image Include="Assets\GreenSlime.png" />
+    <Image Include="Assets\Hector_Run.png" />
+    <Image Include="Assets\Projectile_Blue.png" />
+    <Image Include="Assets\X-wing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\PlasmaBlast.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,9 +1,8 @@
 #include "Font.h"
-#include <freeglut/freeglut.h>
 #include "AssetManager.h"
 #include <array>
 
-void Font::RenderText(std::string_view text, Vector2 position, float scale) {
+void Font::RenderText(std::string text, Vector2 position, float scale) {
     glPushMatrix();
     {
         glTranslated(position.x(), position.y(), 0);

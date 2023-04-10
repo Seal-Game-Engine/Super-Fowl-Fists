@@ -1,5 +1,3 @@
-#include <windows.h>
-
 #include "GLLight.h"
 #include "SealEngine.h"
 #include "Model.h"
@@ -7,40 +5,39 @@
 #include "Enemy.h"
 #include "CheckCollision.h"
 #include "AssetManager.h"
-#include "SOIL2.h"
-#include <memory>
 #include "Font.h"
+#include "Parallax.h"
 using namespace SealEngine::InputSystem;
 
-std::unique_ptr<Model> model = std::unique_ptr<Model>(new Model);
-std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
-std::unique_ptr<Enemy> enemy = std::unique_ptr<Enemy>(new Enemy);
+std::vector<std::unique_ptr<Projectile>> SceneManager::projectiles = std::vector<std::unique_ptr<Projectile>>{};
+
 std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
-    model->Update();
+    static std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
+    static std::unique_ptr<Parallax> parallax = std::unique_ptr<Parallax>(new Parallax);
+    parallax->Scroll(Vector2::down());
+
     player->Update();
     player->animator.Update();
-    enemy->animator.Update();
+
+    for (auto& projectile : projectiles) {
+        if (!projectile) continue;
+        projectile->Update();
+    }
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glPushMatrix();
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
         glTranslatef(0, 0, -10);
         //glPopMatrix();
-
+        parallax->Update();
         //glLoadIdentity();
-        model->DrawModel();
         player->renderer.LateUpdate();
+        for (auto& projectile : projectiles) if(projectile) projectile->renderer.LateUpdate();
 
         Font::RenderText("Hello World", Vector2(-10,-10), 1);
-
-        glPushMatrix(); 
-        {
-            glTranslatef(2, 0, 0);
-            enemy->renderer.LateUpdate(); 
-        }
-        glPopMatrix();
     }
     glPopMatrix();
 
@@ -49,7 +46,9 @@ int SceneManager::RefreshScene() {
 }
 
 bool SceneManager::InitGl() {
+#if _WIN64
     glutInit(&__argc, __argv);
+#endif
 
     glClearDepth(1.0f);
 
@@ -69,8 +68,8 @@ bool SceneManager::InitGl() {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     
-    GLLight Light(GL_LIGHT0);
-    Light.Set(GL_LIGHT0);
+    //GLLight Light(GL_LIGHT0);
+    //Light.Set(GL_LIGHT0);
 
     glEnable(GL_TEXTURE_2D);
     Texture2D::LoadUninitializedTextures();

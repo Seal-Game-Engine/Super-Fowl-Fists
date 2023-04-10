@@ -1,11 +1,10 @@
-#include <SOIL2.h>
 #include "Texture2D.h"
 #include "Sprite.h"
 using namespace SealEngine;
 
-std::stack<std::tuple<Texture2D&, const std::string_view, const Texture2D::FilterMode>> Texture2D::uninitializedTextures = std::stack<std::tuple<Texture2D&, const std::string_view, const FilterMode>>();
+std::stack<std::tuple<Texture2D&, const std::string, const Texture2D::FilterMode>> Texture2D::uninitializedTextures = std::stack<std::tuple<Texture2D&, const std::string, const FilterMode>>();
 
-Texture2D::Texture2D(const std::string_view textureSource, const FilterMode filterMode, int columns, int rows) {
+Texture2D::Texture2D(const std::string textureSource, const FilterMode filterMode, int columns, int rows) {
 	sprites.reserve((size_t)columns * rows);
 
 	//todo: figure out pixels per unit
@@ -27,7 +26,7 @@ const GLuint& Texture2D::textureId() const { return _textureId; }
 
 const Sprite& Texture2D::operator[](int i) const { return sprites[i]; }
 
-void Texture2D::LoadTexture(const std::string_view textureSource, const FilterMode filterMode) {
+void Texture2D::LoadTexture(const std::string& textureSource, const FilterMode filterMode) {
 	glGenTextures(1, &_textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId());
 
@@ -42,7 +41,10 @@ void Texture2D::LoadTexture(const std::string_view textureSource, const FilterMo
 }
 void Texture2D::LoadUninitializedTextures() {
 	while (!uninitializedTextures.empty()) {
-		auto& [texture, textureSource, filterMode] = uninitializedTextures.top();
+		//auto& [texture, textureSource, filterMode] = uninitializedTextures.top();
+		auto& texture = std::get<0>(uninitializedTextures.top());
+		auto& textureSource = std::get<1>(uninitializedTextures.top());
+		auto& filterMode = std::get<2>(uninitializedTextures.top());
 		texture.LoadTexture(textureSource, filterMode);
 		uninitializedTextures.pop();
 	}

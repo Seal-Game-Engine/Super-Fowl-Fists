@@ -1,5 +1,4 @@
-#include <windows.h>
-#include <windowsx.h>
+#include "SealPackages.h"
 #include "Inputs.h"
 #include "Vector2.h"
 using namespace SealEngine;

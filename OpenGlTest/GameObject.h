@@ -36,27 +36,27 @@ namespace SealEngine {
 
 		// Components
 		template <class T>
-			requires std::is_base_of<MonoBehaviour, T>::value
+			//requires std::is_base_of<MonoBehaviour, T>::value
 		T AddComponent();
 		template <class T>
-			requires std::is_base_of<MonoBehaviour, T>::value
+			//requires std::is_base_of<MonoBehaviour, T>::value
 		T GetComponent();
 		template <class T>
-			requires std::is_base_of<MonoBehaviour, T>::value
-		bool TryGetComponent(T& component);  
+			//requires std::is_base_of<MonoBehaviour, T>::value
+		bool TryGetComponent(T& component);
 
 		template <class T>
-			requires std::is_base_of<MonoBehaviour, T>::value
+			//requires std::is_base_of<MonoBehaviour, T>::value
 		T GetComponentInParent(bool includeInactive = false);
 		template <class T>
-			requires std::is_base_of<MonoBehaviour, T>::value
+			//requires std::is_base_of<MonoBehaviour, T>::value
 		T GetComponentInChild(bool includeInactive = false);
 
 		template <class T>
-			requires std::is_base_of<MonoBehaviour, T>::value
+			//requires std::is_base_of<MonoBehaviour, T>::value
 		std::vector<T> GetComponentsInParent(bool includeInactive = false);  //
 		template <class T>
-			requires std::is_base_of<MonoBehaviour, T>::value
+			//requires std::is_base_of<MonoBehaviour, T>::value
 		std::vector<T> GetComponentsInChild(bool includeInactive = false);  //
 
 
