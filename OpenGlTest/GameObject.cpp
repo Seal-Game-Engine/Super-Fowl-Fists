@@ -2,6 +2,7 @@
 #include "Transform.h"
 using namespace SealEngine;
 
+		template<typename T> class my_template;
 //constructors
 GameObject::GameObject() : transform() {
 	transform.gameObject = this;
@@ -21,20 +22,30 @@ std::vector<GameObject> GameObject::FindGameObjectsWithTag(std::string tag) { re
 bool GameObject::CompareTag(std::string tag) { return this->tag == tag; }
 void GameObject::SetActive(bool value) { _activeSelf = value; }
 
-template <class T>
-	//requires std::is_base_of<MonoBehaviour, T>::value
+//template <typename T>
+//	void checkType() {
+//		BOOST_STATIC_ASSERT((std::is_base_of<MonoBehaviour, T>::value));
+		//static_assert(!std::is_same<MonoBehaviour, T>::value, "T must inherit from Monobehaviour");
+//		T GameObject::AddComponent() { componentsList.push_back(T()); }
+//	}
+
+//template<> class GameObject::my_template<MonoBehaviour> {
+//	my_template GameObject::AddComponent() { componentsList.push_back(my_template()); }
+//};
+
+template <typename T, typename std::enable_if<std::is_base_of<MonoBehaviour, T>::value>::type* = nullptr >
 T GameObject::AddComponent() { componentsList.push_back(T()); }
+
+
+
 template <class T>
 	//requires std::is_base_of<MonoBehaviour, T>::value
-T GameObject::GetComponent() { }
+T GameObject::GetComponent() { return componentsList.pop_back(T()); }
 template <class T>
 	//requires std::is_base_of<MonoBehaviour, T>::value
 bool GameObject::TryGetComponent(T& component) {
-	/*return std::find(componentsList.begin(), componentsList.end(), [](const MonoBehaviour& _component) {
-		component = dynamic_cast<T>(_component);
-		return component;
-		});*/
-		return true;
+	return std::find(componentsList.begin(), componentsList.end(), [](const MonoBehaviour& _component) {
+		return component == dynamic_cast<T>(_component);});
 }
 
 //Component

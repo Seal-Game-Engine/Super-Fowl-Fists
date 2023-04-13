@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <type_traits>
 
 #include "Object.h"
 #include "MonoBehaviour.h"
@@ -18,6 +19,7 @@ namespace SealEngine {
 		GameObject(std::string name, params);
 
 		std::vector<MonoBehaviour> componentsList = std::vector<MonoBehaviour>{};
+		template<typename T> class my_template;
 		bool activeInHierarchy();
 		bool activeSelf() const;
 		bool isStatic = false;
@@ -35,7 +37,7 @@ namespace SealEngine {
 		void SetActive(bool value);          // done
 
 		// Components
-		template <class T>
+		template <typename T, typename std::enable_if<std::is_base_of<MonoBehaviour, T>::value>::type* = nullptr >
 			//requires std::is_base_of<MonoBehaviour, T>::value
 		T AddComponent();
 		template <class T>
