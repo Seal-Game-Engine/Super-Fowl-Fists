@@ -1,11 +1,15 @@
 #pragma once
 #include <vector>
+#include "GameObject.h"
 
-using GameObject = int;
+namespace SealEngine {
+	class Scene {
+	public:
+		void virtual Refresh() {};
 
-class Scene
-{
-private:
-	std::vector<GameObject> gameobjects;
-};
+	private:
+		//std::vector<GameObject> gameobjects;
+
+	};
+}
 

@@ -1,20 +1,13 @@
 #include "GLLight.h"
 #include "SealEngine.h"
-#include "Model.h"
-#include "Player.h"
-#include "Enemy.h"
 #include "CheckCollision.h"
-#include "AssetManager.h"
 #include "Font.h"
-#include "Parallax.h"
 using namespace SealEngine::InputSystem;
-
-std::vector<std::unique_ptr<Projectile>> SceneManager::projectiles = std::vector<std::unique_ptr<Projectile>>{};
 
 std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
-    static std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
+    /*static std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
     static std::unique_ptr<Parallax> parallax = std::unique_ptr<Parallax>(new Parallax);
     parallax->Scroll(Vector2::down());
 
@@ -24,20 +17,22 @@ int SceneManager::RefreshScene() {
     for (auto& projectile : projectiles) {
         if (!projectile) continue;
         projectile->Update();
-    }
+    }*/
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glPushMatrix();
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
         glTranslatef(0, 0, -10);
-        //glPopMatrix();
-        parallax->Update();
-        //glLoadIdentity();
-        player->renderer.LateUpdate();
-        for (auto& projectile : projectiles) if(projectile) projectile->renderer.LateUpdate();
 
-        Font::RenderText("Hello World", Vector2(-10,-10), 1);
+        if (scenes.size() > currentSceneId && scenes[currentSceneId]) scenes[currentSceneId]->Refresh();
+        ////glPopMatrix();
+        //parallax->Update();
+        ////glLoadIdentity();
+        //player->renderer.LateUpdate();
+        //for (auto& projectile : projectiles) if(projectile) projectile->renderer.LateUpdate();
+
+        //Font::RenderText("Hello World", Vector2(-10,-10), 1);
     }
     glPopMatrix();
 
@@ -92,15 +87,13 @@ void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
     
     gluPerspective(45.0, width / height, 0.1, 1000);
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();//todo: test with not fullscreen
+    glLoadIdentity();
 
     //glOrtho(0, width, 0, height, 1, -1); // Origin in lower-left corner
     //glOrtho(0, width, height, 0, 1, -1); // Origin in upper-left corner
 }
 
 bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    
-    //enemy.Update();
     if (uMsg == WM_SIZE) {
         ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh
         return true;

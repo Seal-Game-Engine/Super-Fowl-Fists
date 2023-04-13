@@ -1,6 +1,6 @@
 #include "Projectile.h"
 #include "AssetManager.h"
-#include "SceneManager.h"
+#include "LandingScene.h"
 
 int Projectile::idCounter = 0;
 
@@ -15,9 +15,9 @@ Projectile::Projectile(Vector3 position) : destroyTime(Time::time() + lifeSpan),
 
 void Projectile::Update() {
 	if (Time::time() >= destroyTime) {
-		for (int i = 0; i < SceneManager::projectiles.size(); i++) {
-			if (SceneManager::projectiles[i]->id == id) {
-				SceneManager::projectiles.erase(SceneManager::projectiles.begin() + i);
+		for (int i = 0; i < LandingScene::projectiles.size(); i++) {
+			if (LandingScene::projectiles[i]->id == id) {
+				LandingScene::projectiles.erase(LandingScene::projectiles.begin() + i);
 				break;
 			}
 		}

@@ -1,8 +1,7 @@
 #pragma once
-#include "SceneManager.h"
 #include "SealPackages.h"
 
-class GLLight : SceneManager {
+class GLLight {
 public:
     GLLight(GLenum Light);
 

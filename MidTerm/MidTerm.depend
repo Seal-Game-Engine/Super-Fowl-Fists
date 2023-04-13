@@ -1,0 +1,195 @@
+# depslib dependency file v1.0
+1676341891 source:d:\gamedev2023\midterm\main.cpp
+	<windows.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<windows.h>
+	<GLScene.h>
+
+1677118773 d:\gamedev2023\midterm\include\glscene.h
+	<windows.h>
+	<GL/glut.h>
+	<iostream>
+
+1579736312 d:\gamedev2023\common\include\gl\glut.h
+	<windows.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1679354341 source:d:\gamedev2023\midterm\src\checkcollision.cpp
+	"checkCollision.h"
+
+1679354223 d:\gamedev2023\midterm\include\checkcollision.h
+	<commons.h>
+
+1679356498 d:\gamedev2023\midterm\include\commons.h
+	<math.h>
+
+1678325834 source:d:\gamedev2023\midterm\src\commons .cpp
+	"commons .h"
+
+1678326660 d:\gamedev2023\midterm\include\commons .h
+
+1679528161 source:d:\gamedev2023\midterm\src\enms.cpp
+	"enms.h"
+
+1679527043 d:\gamedev2023\midterm\include\enms.h
+	<GL/gl.h>
+	<textureLoader.h>
+	<commons.h>
+	<time.h>
+
+1676513121 d:\gamedev2023\midterm\include\textureloader.h
+	<iostream>
+	<SOIL.h>
+	<gl/gl.h>
+
+1579736312 d:\gamedev2023\common\include\soil.h
+
+1675732719 source:d:\gamedev2023\midterm\src\gllight.cpp
+	"GLLight.h"
+
+1675732697 d:\gamedev2023\midterm\include\gllight.h
+	<GLScene.h>
+
+1679527774 source:d:\gamedev2023\midterm\src\glscene.cpp
+	"GLScene.h"
+	<GLLight.h>
+	<Model.h>
+	<Inputs.h>
+	<parallax.h>
+	<player.h>
+	<enms.h>
+	<checkCollision.h>
+
+1677117534 d:\gamedev2023\midterm\include\model.h
+	<windows.h>
+	<GL/glut.h>
+	<textureLoader.h>
+
+1677722278 d:\gamedev2023\midterm\include\inputs.h
+	<windows.h>
+	<Model.h>
+	<parallax.h>
+	<player.h>
+
+1677547361 d:\gamedev2023\midterm\include\parallax.h
+	<textureLoader.h>
+	<time.h>
+
+1678326660 d:\gamedev2023\midterm\include\player.h
+	<GL/gl.h>
+	<textureLoader.h>
+	<commons.h>
+
+1678153327 source:d:\gamedev2023\midterm\src\inputs.cpp
+	"Inputs.h"
+
+1677550156 source:d:\gamedev2023\midterm\src\model.cpp
+	"Model.h"
+
+1677547587 source:d:\gamedev2023\midterm\src\parallax.cpp
+	"parallax.h"
+
+1679355945 source:d:\gamedev2023\midterm\src\player.cpp
+	"player.h"
+
+1676513121 source:d:\gamedev2023\midterm\src\textureloader.cpp
+	"textureLoader.h"
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\main.cpp
+	<windows.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<windows.h>
+	<GLScene.h>
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\glscene.h
+	<windows.h>
+	<GL/glut.h>
+	<iostream>
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\checkcollision.cpp
+	"checkCollision.h"
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\checkcollision.h
+	<commons.h>
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\commons.h
+	<math.h>
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\commons .cpp
+	"commons .h"
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\commons .h
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\enms.cpp
+	"enms.h"
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\enms.h
+	<GL/gl.h>
+	<textureLoader.h>
+	<commons.h>
+	<time.h>
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\textureloader.h
+	<iostream>
+	<SOIL.h>
+	<gl/gl.h>
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\soil.h
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\gllight.cpp
+	"GLLight.h"
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\gllight.h
+	<GLScene.h>
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\glscene.cpp
+	"GLScene.h"
+	<GLLight.h>
+	<Model.h>
+	<Inputs.h>
+	<parallax.h>
+	<player.h>
+	<enms.h>
+	<checkCollision.h>
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\model.h
+	<windows.h>
+	<GL/glut.h>
+	<textureLoader.h>
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\inputs.h
+	<windows.h>
+	<Model.h>
+	<parallax.h>
+	<player.h>
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\parallax.h
+	<textureLoader.h>
+	<time.h>
+
+1681342380 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\include\player.h
+	<GL/gl.h>
+	<textureLoader.h>
+	<commons.h>
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\inputs.cpp
+	"Inputs.h"
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\model.cpp
+	"Model.h"
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\parallax.cpp
+	"parallax.h"
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\player.cpp
+	"player.h"
+
+1681342380 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\midterm\src\textureloader.cpp
+	"textureLoader.h"
+

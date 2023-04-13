@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <type_traits>
 #include "Vector3.h"
 namespace SealEngine { class Transform; }
 
@@ -17,13 +18,15 @@ namespace SealEngine {
 		static void DestroyImmediate(Object, bool = false);
 		static void DontDestroyOnLoad(Object);
 
-		template<class T>
-			//requires std::is_base_of<Object, T>::value
-		static T FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude);
+		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		static T FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude) { 
+			return T();
+		}
 
-		template<class T>
-			//requires std::is_base_of<Object, T>::value
-		static std::vector<T> FindObjectsByType(FindObjectsInactive = FindObjectsInactive::Exclude);
+		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		static std::vector<T> FindObjectsByType(FindObjectsInactive = FindObjectsInactive::Exclude) {
+			return std::vector<T>(); 
+		}
 
 		static Object Instantiate(Object);
 		static Object Instantiate(Object, Transform, bool = true);

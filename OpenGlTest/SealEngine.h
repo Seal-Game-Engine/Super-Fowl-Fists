@@ -24,5 +24,6 @@
 #include "AnimatorController.h"
 #include "Animator.h"
 
+#include "Scene.h"
 #include "SceneManager.h"
 #include "ApplicationManager.h"

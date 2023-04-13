@@ -13,19 +13,6 @@ void Object::DestroyImmediate(Object object, bool allowDestroyingAssets) {
 void Object::DontDestroyOnLoad(Object target) {
 }
 
-template<class T>
-	//requires std::is_base_of<Object, T>::value
-T Object::FindFirstObjectByType(FindObjectsInactive findObjectsInactive) {
-	return T();
-}
-
-template<class T>
-	//requires std::is_base_of<Object, T>::value
-std::vector<T> Object::FindObjectsByType(FindObjectsInactive findObjectsInactive) {
-	return std::vector<T>();
-}
-
-
 int Object::_instanceIdCounter = 0;
 Object::Object() : _instanceId(_instanceIdCounter++) {}
 

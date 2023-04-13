@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Projectile.h"
 #include "AssetManager.h"
-#include "SceneManager.h"
+#include "LandingScene.h"
 #include <cmath>
 
 Player::Player() {
@@ -34,7 +34,7 @@ void Player::Update() {
 
 	static float nextFire = 0;
 	if (Inputs::GetKey(KeyCode::Space) && Time::time() >= nextFire) {
-		SceneManager::projectiles.push_back(std::make_unique<Projectile>(transform.position + Vector2::up() * 0.5f));
+		LandingScene::projectiles.push_back(std::make_unique<Projectile>(transform.position + Vector2::up() * 0.5f));
 		nextFire = Time::time() + 0.15f;
 	}
 }

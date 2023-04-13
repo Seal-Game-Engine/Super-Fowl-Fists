@@ -183,6 +183,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="GLLight.cpp" />
     <ClCompile Include="IMessageHandler.cpp" />
     <ClCompile Include="KeyCode.cpp" />
+    <ClCompile Include="LandingScene.cpp" />
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Parallax.cpp" />
@@ -214,6 +215,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="GLLight.h" />
     <ClInclude Include="IMessageHandler.h" />
     <ClInclude Include="KeyCode.h" />
+    <ClInclude Include="LandingScene.h" />
     <ClInclude Include="MonoBehaviour.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Parallax.h" />

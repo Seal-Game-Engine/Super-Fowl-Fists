@@ -1,6 +1,8 @@
 #include "ApplicationManager.h";
 #include "Inputs.h"
 #include "Time.h"
+#include "LandingScene.h"
+
 using namespace SealEngine;
 
 wchar_t ApplicationManager::windowClassName[] = L"OpenGL";
@@ -15,7 +17,7 @@ HWND ApplicationManager::windowHandler = NULL;		// Holds Our Window Handle
 HINSTANCE ApplicationManager::instanceHandler = NULL;
 
 //const std::unique_ptr<SceneManager> ApplicationManager::Scene = std::unique_ptr<SceneManager>();
-SceneManager* ApplicationManager::Scene = new SceneManager;
+SceneManager* ApplicationManager::sceneManager = new SceneManager;
 
 int ApplicationManager::width = 0, ApplicationManager::height = 0;
 
@@ -260,13 +262,15 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 	if (!SetupWindow(colorBits, true)) return 1;
 
 	//Scene = std::unique_ptr<SceneManager>(new SceneManager);
-	Scene->ResizeGl(width, height);
-	if (!Scene->InitGl()) {
+	sceneManager->ResizeGl(width, height);
+	if (!sceneManager->InitGl()) {
 		MessageBoxW(NULL, L"Initialization Failed", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
-	messageHandlers.emplace_back(Scene);
+	messageHandlers.emplace_back(sceneManager);
 	messageHandlers.emplace_back(new Inputs);
+
+	sceneManager->scenes.push_back(std::make_unique<LandingScene>());
 
 	MSG msg;
 	while (true) {
@@ -277,7 +281,7 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 			DispatchMessage(&msg);
 		}
 		Time::OnNextFrame();
-		Scene->RefreshScene();
+		sceneManager->RefreshScene();
 
 
 		if (!GetActionLOLL()) break;

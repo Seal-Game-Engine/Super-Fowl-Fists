@@ -49,11 +49,6 @@
 					<Add option="-std=c++14" />
 					<Add option="-std=c17" />
 				</Compiler>
-				<ExtraCommands>
-					<Add after='cmd /c copy &quot;$(PROJECT_DIR)..\Common\bin\Win32&quot; &quot;$(TARGET_OUTPUT_DIR)&quot;;' />
-					<Add after='cmd /c mkdir &quot;$(TARGET_OUTPUT_DIR)Assets&quot;' />
-					<Add after='cmd /c copy &quot;$(PROJECT_DIR)Assets&quot; &quot;$(TARGET_OUTPUT_DIR)Assets&quot;;' />
-				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
@@ -68,6 +63,11 @@
 			<Add library="gdi32" />
 			<Add directory="../Common/lib" />
 		</Linker>
+		<ExtraCommands>
+			<Add after='cmd /c copy &quot;$(PROJECT_DIR)..\Common\bin\Win32&quot; &quot;$(TARGET_OUTPUT_DIR)&quot;;' />
+			<Add after='cmd /c mkdir &quot;$(TARGET_OUTPUT_DIR)Assets&quot;;' />
+			<Add after='cmd /c copy &quot;$(PROJECT_DIR)Assets&quot; &quot;$(TARGET_OUTPUT_DIR)Assets&quot;;' />
+		</ExtraCommands>
 		<Unit filename="AnimationClip.cpp" />
 		<Unit filename="AnimationClip.h" />
 		<Unit filename="Animator.cpp" />
@@ -94,12 +94,16 @@
 		<Unit filename="Inputs.h" />
 		<Unit filename="KeyCode.cpp" />
 		<Unit filename="KeyCode.h" />
+		<Unit filename="LandingScene.cpp" />
+		<Unit filename="LandingScene.h" />
 		<Unit filename="Model.cpp" />
 		<Unit filename="Model.h" />
 		<Unit filename="MonoBehaviour.cpp" />
 		<Unit filename="MonoBehaviour.h" />
 		<Unit filename="Object.cpp" />
 		<Unit filename="Object.h" />
+		<Unit filename="Parallax.cpp" />
+		<Unit filename="Parallax.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
 		<Unit filename="Projectile.cpp" />
@@ -127,8 +131,6 @@
 		<Unit filename="Vector3.cpp" />
 		<Unit filename="Vector3.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="parallax.cpp" />
-		<Unit filename="parallax.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

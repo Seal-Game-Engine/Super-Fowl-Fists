@@ -5,7 +5,7 @@
 #include "SealEngine.h"
 #include "SceneManager.h"
 using namespace SealEngine::InputSystem;
-class SceneManager;
+namespace SealEngine { class SceneManager; }
 
 namespace SealEngine {
 	class ApplicationManager {
@@ -18,7 +18,7 @@ namespace SealEngine {
 		static HDC	deviceContextHandler;		// Private GDI Device Context
 
 		//static const std::unique_ptr<SceneManager> Scene;
-		static SceneManager* Scene;
+		static SceneManager* sceneManager;
 
 		static int NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 
