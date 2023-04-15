@@ -34,6 +34,7 @@ namespace SealEngine {
 		//todo: check gameobject's version
 
 		Object();
+		Object(const std::string& name);
 
 		operator bool() const;
 		virtual bool operator!=(const Object&)const;

@@ -6,11 +6,14 @@
 std::vector<std::unique_ptr<Projectile>> LandingScene::projectiles = std::vector<std::unique_ptr<Projectile>>{};
 
 void LandingScene::Refresh() {
-    static std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
-    static std::unique_ptr<Parallax> parallax = std::unique_ptr<Parallax>(new Parallax);
+    static std::unique_ptr<Player> player = std::make_unique<Player>();
+    static std::unique_ptr<Parallax> parallax = std::make_unique<Parallax>();
 
-    Object::FindFirstObjectByType<Object>();
-    Object::FindObjectsByType<Object>();
+    static std::unique_ptr<GameObject> gameObject = std::make_unique<GameObject>(
+        "Bob", std::vector<MonoBehaviour>{
+        SpriteRenderer(),
+            Animator(),
+    });
 
     parallax->Scroll(Vector2::down());
     parallax->Update();
