@@ -12,9 +12,9 @@ namespace SealEngine {
 
 		void SetAnimatorController(const AnimatorController* animatorController);
 
-		bool GetBool(const std::string& name) const;
-		float GetFloat(const std::string& name) const;
-		int GetInteger(const std::string& name) const;
+		bool GetBool(const std::string& name);
+		float GetFloat(const std::string& name);
+		int GetInteger(const std::string& name);
 
 		void SetBool(const std::string& name, bool value);
 		void SetFloat(const std::string& name, float value);

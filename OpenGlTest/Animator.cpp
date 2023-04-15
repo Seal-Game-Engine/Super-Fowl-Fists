@@ -12,20 +12,20 @@ void Animator::SetAnimatorController(const AnimatorController* animatorControlle
 	HandleStateEnter(&animatorController->states[0]);
 }
 
-bool Animator::GetBool(const std::string& name) const { return boolMap.at(name); }
-float Animator::GetFloat(const std::string& name) const { return floatMap.find(name)->second; }
-int Animator::GetInteger(const std::string& name) const { return intMap.find(name)->second; }
+bool Animator::GetBool(const std::string& name) { return boolMap[name]; }
+float Animator::GetFloat(const std::string& name) { return floatMap[name]; }
+int Animator::GetInteger(const std::string& name) { return intMap[name]; }
 
 void Animator::SetBool(const std::string& name, bool value) {
-	if (!boolMap.count(name)) intMap.insert({ name, false });
+	//if (!boolMap.count(name)) intMap.insert({ name, false });
 	boolMap.find(name)->second = value;
 }
 void Animator::SetFloat(const std::string& name, float value) {
-	if (!floatMap.count(name)) intMap.insert({ name, 0 });
+	//if (!floatMap.count(name)) intMap.insert({ name, 0 });
 	floatMap.find(name)->second = value;
 }
 void Animator::SetInteger(const std::string& name, int value) {
-	if (!intMap.count(name)) intMap.insert({ name, 0 });
+	//if (!intMap.count(name)) intMap.insert({ name, 0 });
 	intMap.find(name)->second = value;
 }
 

@@ -94,7 +94,7 @@
 1680935097 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\animatorcontroller.cpp
 	"AnimatorController.h"
 
-1680935097 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\animatorcontroller.h
+1681405835 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\animatorcontroller.h
 	"Object.h"
 	<map>
 	<functional>
@@ -157,7 +157,7 @@
 	"Time.h"
 	<map>
 
-1680935097 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\animator.h
+1681405745 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\animator.h
 	"MonoBehaviour.h"
 	"AnimatorController.h"
 	"SpriteRenderer.h"
@@ -183,7 +183,7 @@
 	"GameObject.h"
 	"Transform.h"
 
-1680935102 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
+1681404791 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
 	"AssetManager.h"
 
 1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.h
@@ -519,13 +519,13 @@
 1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\imessagehandler.h
 	"SealPackages.h"
 
-1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealpackages.h
+1681406072 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealpackages.h
 	<windows.h>
 	<windowsx.h>
 	<freeglut/glut.h>
 	<SOIL2.h>
 	<irrKlang_x64/irrKlang.h>
-	<glut/glut.h>
+	<GL/glut.h>
 	<SOIL.h>
 
 1665159171 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\freeglut\glut.h
@@ -649,4 +649,10 @@
 	"LandingScene.h"
 	"Player.h"
 	"Parallax.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\gl\glut.h
+	<windows.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
 

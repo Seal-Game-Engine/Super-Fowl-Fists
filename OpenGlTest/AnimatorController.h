@@ -14,7 +14,7 @@ namespace SealEngine {
 				const std::string targetState;
 				bool hasExitTime = false;
 				float exitTime = 1;
-				std::function<bool(const Animator&)> condition = [](const Animator&) { return true; };
+				std::function<bool(Animator&)> condition = [](const Animator&) { return true; };
 			};
 
 			const std::string& name;
