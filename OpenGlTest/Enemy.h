@@ -1,25 +1,15 @@
 #pragma once
 #include "SealEngine.h"
-#include <array>
 using namespace SealEngine;
 
 
-class Enemy {
+class Enemy : public MonoBehaviour {
 public:
-	Enemy();
-	void PlaceEnemy(Vector3);
-	void Actions(int);
-	void Update();
-	void LateUpdate();
+	float runSpeed = 0, jumpSpeed = 0;
+	int actionTrigger = 0;
 
-	Transform transform;
-	Vector3 pivotOffset = Vector3::zero();
-
-	float runSpeed, jumpSpeed;
-	int actionTrigger;
-
-	SpriteRenderer renderer;
-	Animator animator;
+	SpriteRenderer* renderer;
+	Animator* animator;
 
 private:
 };

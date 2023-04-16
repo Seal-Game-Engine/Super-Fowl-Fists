@@ -1,5 +1,6 @@
 #include "Animator.h"
 #include "Time.h"
+#include "GameObject.h"
 #include <map>
 using namespace SealEngine;
 
@@ -16,21 +17,17 @@ bool Animator::GetBool(const std::string& name) { return boolMap[name]; }
 float Animator::GetFloat(const std::string& name) { return floatMap[name]; }
 int Animator::GetInteger(const std::string& name) { return intMap[name]; }
 
-void Animator::SetBool(const std::string& name, bool value) {
-	//if (!boolMap.count(name)) intMap.insert({ name, false });
-	boolMap.find(name)->second = value;
-}
-void Animator::SetFloat(const std::string& name, float value) {
-	//if (!floatMap.count(name)) intMap.insert({ name, 0 });
-	floatMap.find(name)->second = value;
-}
-void Animator::SetInteger(const std::string& name, int value) {
-	//if (!intMap.count(name)) intMap.insert({ name, 0 });
-	intMap.find(name)->second = value;
+void Animator::SetBool(const std::string& name, bool value) { boolMap[name] = value; }
+void Animator::SetFloat(const std::string& name, float value) { floatMap[name] = value; }
+void Animator::SetInteger(const std::string& name, int value) { intMap[name] = value; }
+
+Animator::Animator(const AnimatorController* animatorController) {
+	SetAnimatorController(animatorController);
 }
 
 void Animator::Update() {
 	if (!animatorController) return;
+	if (!renderer)renderer = gameObject->GetComponent<SpriteRenderer>();
 
 	float clipElapsedTime = (Time::time() - clipBeginTime) / currentState->clip->length();
 

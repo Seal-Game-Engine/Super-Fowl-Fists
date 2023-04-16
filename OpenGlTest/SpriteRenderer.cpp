@@ -5,23 +5,25 @@
 #include <array>
 using namespace SealEngine;
 
+SpriteRenderer::SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY)
+	: sprite(sprite), flipX(flipX), flipY(flipY) {}
+
 void SpriteRenderer::Awake() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void SpriteRenderer::Update()
-{
+void SpriteRenderer::Update() {
 }
 
 void SpriteRenderer::LateUpdate() {
 	glPushMatrix();
 	{
-		glTranslated(transform().position.x(), transform().position.y(), transform().position.z());
-		glRotatef(transform().rotation.x(), 1, 0, 0);
-		glRotatef(transform().rotation.y(), 0, 1, 0);
-		glRotatef(transform().rotation.z(), 0, 0, 1);
-		glScalef(transform().scale.x(), transform().scale.y(), transform().scale.z());
+		glTranslated(transform()->position.x(), transform()->position.y(), transform()->position.z());
+		glRotatef(transform()->rotation.x(), 1, 0, 0);
+		glRotatef(transform()->rotation.y(), 0, 1, 0);
+		glRotatef(transform()->rotation.z(), 0, 0, 1);
+		glScalef(transform()->scale.x(), transform()->scale.y(), transform()->scale.z());
 
 		glBindTexture(GL_TEXTURE_2D, sprite->texture->textureId());
 		glColor4f(1, 1, 1, 1);

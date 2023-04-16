@@ -1,9 +1,9 @@
 #pragma once
 
+#include "IMessageHandler.h"
 #include "Time.h"
 
 //Math
-#include "IMessageHandler.h"
 #include "Vector2.h"
 #include "Vector3.h"
 
@@ -11,7 +11,9 @@
 #include "Sprite.h"
 #include "Texture2D.h"
 
+#include "IClonable.h"
 #include "Object.h"
+#include "GameObject.h"
 #include "MonoBehaviour.h"
 
 #include "Transform.h"

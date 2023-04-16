@@ -35,23 +35,13 @@ namespace SealEngine {
 #pragma endregion
 
 		bool enabled = true;
-		bool isActiveAndEnabled() { return enabled; /*gameobject.activeSelf*/ }
-		GameObject* gameObject;
+		bool isActiveAndEnabled();
+		GameObject* gameObject = nullptr;
 		std::string tag;
-		Transform& transform();
-		std::string	name;
-
-		//tmp
-		Transform* _transform = nullptr;
-
+		Transform* transform();
 
 		//CompareTag	
-		//GetComponent	
-		//GetComponentInChildren	
-		//GetComponentInParent	
-		//GetComponents	
-		//GetComponentsInChildren	
-		//GetComponentsInParent
+
 
 #pragma region Static
 		static void Destroy();
@@ -65,8 +55,15 @@ namespace SealEngine {
 		static void	Instantiate();
 #pragma endregion
 
+		MonoBehaviour() = default;
+		MonoBehaviour(const MonoBehaviour& obj) : Object(obj), enabled(obj.enabled) {}
+		std::shared_ptr<MonoBehaviour> Clone() const { return std::shared_ptr<MonoBehaviour>(Clone_impl()); }
+
 		bool operator!=(const MonoBehaviour&);
 		bool operator==(const MonoBehaviour&);
+
+	private:
+		virtual MonoBehaviour* Clone_impl() const override { return new MonoBehaviour(*this); }
 	};
 }
 

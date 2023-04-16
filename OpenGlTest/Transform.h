@@ -15,5 +15,9 @@ namespace SealEngine {
 		
 		Transform();
 		Transform(Vector3 position, Vector3 rotation, Vector3 scale);
+		std::shared_ptr<Transform> Clone() const { return std::shared_ptr<Transform>(Clone_impl()); }
+
+	private:
+		virtual Transform* Clone_impl() const override { return new Transform(*this); }
 	};
 }

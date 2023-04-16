@@ -7,8 +7,8 @@ public:
 	Projectile(Vector3 position);
 	Transform transform;
 
-	SpriteRenderer renderer;
-	Animator animator;
+	SpriteRenderer* renderer;
+	Animator* animator;
 
 
 	void Update();

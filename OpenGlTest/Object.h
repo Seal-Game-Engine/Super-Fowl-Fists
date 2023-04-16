@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 #include <type_traits>
+#include "IClonable.h"
 #include "Vector3.h"
 namespace SealEngine { class Transform; }
 
 namespace SealEngine {
-	class Object {
+	class Object : public IClonable {
 	public:
 		enum class FindObjectsInactive { Exclude, Include };
 
@@ -28,13 +30,15 @@ namespace SealEngine {
 			return std::vector<T>(); 
 		}
 
-		static Object Instantiate(Object);
+		static Object* Instantiate(Object);
 		static Object Instantiate(Object, Transform, bool = true);
 		static Object Instantiate(Object, Vector3, Transform);
 		//todo: check gameobject's version
 
 		Object();
 		Object(const std::string& name);
+		Object(const Object& obj);
+		std::shared_ptr<Object> Clone() const;
 
 		operator bool() const;
 		virtual bool operator!=(const Object&)const;
@@ -44,6 +48,8 @@ namespace SealEngine {
 		const int _instanceId;
 
 		static int _instanceIdCounter;
+
+		virtual Object* Clone_impl() const override { return new Object(*this); }
 	};
 }
 

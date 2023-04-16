@@ -8,7 +8,6 @@ bool MonoBehaviour::operator!=(const MonoBehaviour& obj) {
     return this != &obj;
 }
 
-Transform& MonoBehaviour::transform()
-{
-    return *_transform;
-}
+bool MonoBehaviour::isActiveAndEnabled() { return enabled && gameObject->activeSelf(); }
+
+Transform* MonoBehaviour::transform() { return gameObject->transform; }

@@ -2,19 +2,23 @@
 #include "SealEngine.h"
 using namespace SealEngine;
 
-class Player {
+class Player : public MonoBehaviour {
 public:
-	Player();
-	void Update();
-	void LateUpdate();
+	SpriteRenderer* renderer = nullptr;
+	Animator* animator = nullptr;
 
-	Transform transform;
-	Vector3 pivotOffset = Vector3::zero();
+	void Update() override;
+	//void LateUpdate() override;
 
-	SpriteRenderer renderer;
-	Animator animator;
+	void virtual test() {};
+
+	Player() = default;
+	Player(const Player& obj) : MonoBehaviour(obj) {}
+	std::shared_ptr<Player> Clone() const { return std::shared_ptr<Player>(Clone_impl()); }
 
 private:
 	float speed = 4.0f;
+
+	virtual Player* Clone_impl() const override{ return new Player(*this); }
 };
 

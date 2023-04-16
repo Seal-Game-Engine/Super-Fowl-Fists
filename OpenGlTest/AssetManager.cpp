@@ -1,6 +1,8 @@
 #include "AssetManager.h"
 using State = AnimatorController::AnimationState;
 
+#include "Player.h"
+
 const Texture2D AssetManager::Hector_Run = Texture2D("Assets/Hector_Run.png", Texture2D::FilterMode::Nearest, 4, 3);
 
 const AnimationClip AssetManager::Hector_Idle = AnimationClip({
@@ -50,6 +52,17 @@ const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 		{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") <= 0; } },
 	}),
 });;
+const GameObject AssetManager::XwingObject = GameObject(
+	"Player",
+	/*std::vector<MonoBehaviour>{
+	SpriteRenderer(&AssetManager::Xwing[0], false, false),
+		Animator(&AssetManager::Xwing_Controller),
+		Player(),*/
+		std::vector<std::shared_ptr<MonoBehaviour>>{
+		std::make_shared<SpriteRenderer>(&AssetManager::Xwing[0], false, false),
+			std::make_shared<Animator>(&AssetManager::Xwing_Controller),
+			std::make_shared<Player>(),
+});
 
 const Texture2D AssetManager::Projectile_Blue = Texture2D("Assets/Projectile_Blue.png", Texture2D::FilterMode::Nearest, 3, 1);
 const AnimationClip AssetManager::Projectile_Blue_Idle = AnimationClip({

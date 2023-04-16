@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 #include <string>
 #include <array>
 
@@ -7,6 +8,7 @@
 #include "MonoBehaviour.h"
 #include "Vector3.h"
 #include "Transform.h"
+class Player;
 
 namespace SealEngine {
 	class GameObject : public Object {
@@ -14,8 +16,13 @@ namespace SealEngine {
 		GameObject();
 		GameObject(const std::string& name);
 		GameObject(const std::string& name, std::vector<MonoBehaviour> components);
+		GameObject(const std::string& name, std::vector<std::shared_ptr<MonoBehaviour>> components);
+		GameObject(const GameObject& obj);
+		std::shared_ptr<GameObject> Clone() const { return std::shared_ptr<GameObject>(Clone_impl()); }
 
-		std::vector<MonoBehaviour> components = std::vector<MonoBehaviour>{};
+
+		std::vector<std::shared_ptr<MonoBehaviour>> components = std::vector<std::shared_ptr<MonoBehaviour>>{};
+		//std::vector<MonoBehaviour> components = std::vector<MonoBehaviour>{};
 		bool activeInHierarchy();
 		bool activeSelf() const;
 		bool isStatic = false;
@@ -23,7 +30,7 @@ namespace SealEngine {
 		// layer
 		// scene
 		// sceneCullingMask
-		Transform transform;
+		Transform* transform = nullptr;
 
 		// Identifier
 		static GameObject Find(std::string name);
@@ -32,24 +39,41 @@ namespace SealEngine {
 		bool CompareTag(std::string tag);  // done
 		void SetActive(bool value);          // done
 
+
+
+
 		// Components
 		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
-		T AddComponent() {
-			components.push_back(T());
+		T* AddComponent() {
+			std::shared_ptr<T> component = std::make_shared<T>();
+			component->gameObject = this;
+			components.push_back(component);
+			return component.get();
 		}
 
 		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
-		T GetComponent() {
+		//template<class T>
+		T* GetComponent() {
+			T* component = nullptr;
+			for (auto& _component : components) if (component = dynamic_cast<T*>(_component.get())) break;
+			/*for (auto& _component : components) {
+				MonoBehaviour* temp = &_component;
+				component = dynamic_cast<T*>(&_component);
+				if (component)  break;
+			}*/
+			return component;
 		}
+		/*template<>
+		Player* GetComponent(); */
 
 		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
-		bool TryGetComponent(T& component) {
-			/*return std::find(componentsList.begin(), componentsList.end(), [](const MonoBehaviour& _component) {
-		component = dynamic_cast<T>(_component);
-		return component;
-		});*/
-			return true;
+		bool TryGetComponent(T*& component) {
+			return GetComponent<T>() != nullptr;
+			//std::find(components.begin(), components.end(), [](const MonoBehaviour* _component) {
 		}
+
+#pragma region Nothing
+
 
 		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
 		T GetComponentInParent(bool includeInactive = false) {
@@ -73,8 +97,11 @@ namespace SealEngine {
 			return std::vector<T>();
 		}
 
+#pragma endregion
 
 	private:
 		bool _activeSelf = true;
+
+		virtual GameObject* Clone_impl() const override { return new GameObject(*this); }
 	};
 }  // namespace SealEngine

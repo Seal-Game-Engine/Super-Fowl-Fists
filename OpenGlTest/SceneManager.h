@@ -14,8 +14,8 @@ namespace SealEngine {
 
         bool TryHandleMessage(const UINT uMsg, const WPARAM wParam, const LPARAM lParam) override;
 
-        int currentSceneId = 0;
-        std::vector<std::unique_ptr<Scene>> scenes;
+        static int currentSceneId;
+        static std::vector<std::unique_ptr<Scene>> scenes;
 
         //Unity
         //static int sceneCount	The total number of currently loaded Scenes.

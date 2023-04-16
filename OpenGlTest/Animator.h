@@ -8,7 +8,7 @@ namespace SealEngine {
 	class Animator : public MonoBehaviour {
 	public:
 		enum AnimatorUpdateMode { Normal, UnscaledTime };
-		AnimatorUpdateMode updateMode;
+		AnimatorUpdateMode updateMode = Normal;
 
 		void SetAnimatorController(const AnimatorController* animatorController);
 
@@ -22,12 +22,20 @@ namespace SealEngine {
 
 		void Play(const std::string& name);
 
-		void Update() override;
+		const AnimatorController* animatorController = nullptr;
 		SpriteRenderer* renderer = nullptr;
 
+		Animator() = default;
+		Animator(const AnimatorController* animatorController);
+		Animator(const Animator& obj) : MonoBehaviour(obj) {
+			SetAnimatorController(obj.animatorController);
+		}
+		std::shared_ptr<Animator> Clone() const { return std::shared_ptr<Animator>(Clone_impl()); }
+
+		void Update() override;
+
 	private:
-		const AnimatorController* animatorController = nullptr;
-		const AnimatorController::AnimationState* currentState;
+		const AnimatorController::AnimationState* currentState = nullptr;
 		int currentFrame = 0;
 		float nextFrameTime = 0;
 		float clipBeginTime = 0;
@@ -39,6 +47,8 @@ namespace SealEngine {
 		std::map<std::string, int> intMap;
 		std::map<std::string, bool> boolMap;
 		std::map<std::string, float> floatMap;
+
+		virtual Animator* Clone_impl() const override { return new Animator(*this); }
 	};
 }
 

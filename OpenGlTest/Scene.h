@@ -5,11 +5,9 @@
 namespace SealEngine {
 	class Scene {
 	public:
-		void virtual Refresh() {};
+		void virtual Refresh();
 
-	private:
-		//std::vector<GameObject> gameobjects;
-
+		std::vector<std::shared_ptr<GameObject>> gameObjects = std::vector<std::shared_ptr<GameObject>>{};
 	};
 }
 

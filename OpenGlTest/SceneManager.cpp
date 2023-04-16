@@ -4,33 +4,19 @@
 #include "Font.h"
 using namespace SealEngine::InputSystem;
 
+int SceneManager::currentSceneId = 0;
+std::vector<std::unique_ptr<Scene>> SceneManager::scenes = std::vector<std::unique_ptr<Scene>>{};
 std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 int SceneManager::RefreshScene() {
-    /*static std::unique_ptr<Player> player = std::unique_ptr<Player>(new Player);
-    static std::unique_ptr<Parallax> parallax = std::unique_ptr<Parallax>(new Parallax);
-    parallax->Scroll(Vector2::down());
-
-    player->Update();
-    player->animator.Update();
-
-    for (auto& projectile : projectiles) {
-        if (!projectile) continue;
-        projectile->Update();
-    }*/
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+
     glPushMatrix();
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
         glTranslatef(0, 0, -10);
 
         if (scenes.size() > currentSceneId && scenes[currentSceneId]) scenes[currentSceneId]->Refresh();
-        ////glPopMatrix();
-        //parallax->Update();
         ////glLoadIdentity();
-        //player->renderer.LateUpdate();
-        //for (auto& projectile : projectiles) if(projectile) projectile->renderer.LateUpdate();
 
         //Font::RenderText("Hello World", Vector2(-10,-10), 1);
     }

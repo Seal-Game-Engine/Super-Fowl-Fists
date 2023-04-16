@@ -181,6 +181,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLLight.cpp" />
+    <ClCompile Include="IClonable.cpp" />
     <ClCompile Include="IMessageHandler.cpp" />
     <ClCompile Include="KeyCode.cpp" />
     <ClCompile Include="LandingScene.cpp" />
@@ -213,6 +214,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLLight.h" />
+    <ClInclude Include="IClonable.h" />
     <ClInclude Include="IMessageHandler.h" />
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="LandingScene.h" />

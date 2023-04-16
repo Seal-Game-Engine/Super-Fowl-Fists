@@ -14,6 +14,7 @@ public:
 	static const AnimationClip Xwing_Left;
 	static const AnimationClip Xwing_Right;
 	static const AnimatorController Xwing_Controller;
+	static const GameObject XwingObject;
 
 	static const Texture2D Projectile_Blue;
 	static const AnimationClip Projectile_Blue_Idle;

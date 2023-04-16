@@ -8,14 +8,14 @@ namespace SealEngine {
 		//adaptiveModeThreshold	The current threshold for Sprite Renderer tiling.
 			//color	Rendering color for the Sprite graphic.
 			//drawMode	The current draw mode of the Sprite Renderer.
-		bool flipX, flipY;
+		bool flipX = false, flipY = false;
 		//maskInteraction	Specifies how the sprite interacts with the masks.
 		//size	Property to set or get the size to render when the SpriteRenderer.drawMode is set to SpriteDrawMode.Sliced or SpriteDrawMode.Tiled.
 		const Sprite* sprite = nullptr;
 		
 		//spriteSortPoint	Determines the position of the Sprite used for sorting the SpriteRenderer.
 		//tileMode
-		bool forceRenderingOff;//	Allows turning off rendering for a specific component.
+		bool forceRenderingOff = false;//	Allows turning off rendering for a specific component.
 		/*	isPartOfStaticBatch	Indicates whether the renderer is part of a static batch with other renderers.
 			isVisible	Is this renderer visible in any camera ? (Read Only)
 			lightmapIndex	The index of the baked lightmap applied to this renderer.
@@ -43,9 +43,17 @@ namespace SealEngine {
 			sortingOrder	Renderer's order within a sorting layer.
 			staticShadowCaster	Is this renderer a static shadow caster ?
 			worldToLocalMatrix*/
+		SpriteRenderer() = default;
+		SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY);
+		SpriteRenderer(const SpriteRenderer& obj) :MonoBehaviour(obj), sprite(obj.sprite), flipX(obj.flipX), flipY(obj.flipY) {}
+		std::shared_ptr<SpriteRenderer> Clone() const { return std::shared_ptr<SpriteRenderer>(Clone_impl()); }
+
 		void Awake() override;
 		void Update() override;
 		void LateUpdate() override;
+
+	private:
+		virtual SpriteRenderer* Clone_impl() const override { return new SpriteRenderer(*this); }
 	};
 }
 
