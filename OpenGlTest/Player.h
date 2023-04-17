@@ -10,8 +10,6 @@ public:
 	void Update() override;
 	//void LateUpdate() override;
 
-	void virtual test() {};
-
 	Player() = default;
 	Player(const Player& obj) : MonoBehaviour(obj) {}
 	std::shared_ptr<Player> Clone() const { return std::shared_ptr<Player>(Clone_impl()); }

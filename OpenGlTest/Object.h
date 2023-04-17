@@ -16,10 +16,6 @@ namespace SealEngine {
 		int GetInstanceId() const;
 		const std::string& ToString() const;
 
-		static void Destroy(Object, float = 0.0f);
-		static void DestroyImmediate(Object, bool = false);
-		static void DontDestroyOnLoad(Object);
-
 		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
 		static T FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude) { 
 			return T();
@@ -30,10 +26,14 @@ namespace SealEngine {
 			return std::vector<T>(); 
 		}
 
-		static Object* Instantiate(Object);
+		static Object* Instantiate(const Object& obj);
 		static Object Instantiate(Object, Transform, bool = true);
-		static Object Instantiate(Object, Vector3, Transform);
+		static Object* Instantiate(const Object& obj, const Vector3& position, Transform);
 		//todo: check gameobject's version
+		static void Destroy(Object& obj, float = 0.0f);
+		static void DestroyImmediate(Object, bool = false);
+		static void DontDestroyOnLoad(Object);
+
 
 		Object();
 		Object(const std::string& name);

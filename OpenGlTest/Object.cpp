@@ -5,14 +5,6 @@ using namespace SealEngine;
 int Object::GetInstanceId() const { return _instanceId; }
 const std::string& Object::ToString() const { return name; }
 
-void Object::Destroy(Object object, float delayDuration) {
-}
-
-void Object::DestroyImmediate(Object object, bool allowDestroyingAssets) {
-}
-
-void Object::DontDestroyOnLoad(Object target) {
-}
 
 int Object::_instanceIdCounter = 0;
 
@@ -26,12 +18,13 @@ Object::operator bool() const { return true; }
 bool Object::operator==(const Object& obj) const { return GetInstanceId() == obj.GetInstanceId(); }
 bool Object::operator!=(const Object& obj) const { return !this->operator==(obj); }
 
-Object* Object::Instantiate(Object obj) {
-	GameObject* gameObject = nullptr;
+Object* Object::Instantiate(const Object& obj) {
 
-	if (gameObject = dynamic_cast<GameObject*>(&obj)) {
+	auto object = obj.Clone();
+
+	if (auto gameObject = std::dynamic_pointer_cast<GameObject>(object)) {
 		//GameObject gameObject = x;
-		SceneManager::scenes[SceneManager::currentSceneId]->gameObjects.emplace_back(std::shared_ptr<GameObject>(gameObject));
+		SceneManager::scenes[SceneManager::currentSceneId]->instantiationQueue.emplace_back(gameObject);
 
 	}
 	//}else if(gameObject = dynamic_cast<MonoBehaviour*>(&obj)->gameObject){
@@ -41,5 +34,27 @@ Object* Object::Instantiate(Object obj) {
 
 	//}
 	//SceneManager::scenes[SceneManager::currentSceneId]->gameObjects.push_back(GameObject(Object obj));
-	return gameObject;
+	return object.get();
+}
+
+Object* Object::Instantiate(const Object& obj, const Vector3& position, Transform)
+{
+	auto object = Instantiate(obj);
+
+	if (auto gameObject = dynamic_cast<GameObject*>(object)) {
+		gameObject->transform->position = position;
+	}
+
+	return object;
+}
+void Object::Destroy(Object& object, float delayDuration) {
+	if (auto gameObject = dynamic_cast<GameObject*>(&object)) {
+		SceneManager::scenes[SceneManager::currentSceneId]->destroyQueue.emplace_back(gameObject);
+	}
+}
+
+void Object::DestroyImmediate(Object object, bool allowDestroyingAssets) {
+}
+
+void Object::DontDestroyOnLoad(Object target) {
 }

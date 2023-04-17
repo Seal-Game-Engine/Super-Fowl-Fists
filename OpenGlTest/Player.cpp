@@ -27,7 +27,9 @@ void Player::Update() {
 
 	static float nextFire = 0;
 	if (Inputs::GetKey(KeyCode::Space) && Time::time() >= nextFire) {
-		LandingScene::projectiles.push_back(std::make_unique<Projectile>(transform()->position + Vector2::up() * 0.5f));
+		auto projectile = Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
+		auto comp = dynamic_cast<GameObject*>(projectile)->GetComponent<Projectile>();
+		comp->destroyTime = Time::time() + comp->lifeSpan;
 		nextFire = Time::time() + 0.15f;
 	}
 }

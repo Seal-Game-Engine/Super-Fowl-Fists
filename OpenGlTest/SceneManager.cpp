@@ -8,6 +8,13 @@ int SceneManager::currentSceneId = 0;
 std::vector<std::unique_ptr<Scene>> SceneManager::scenes = std::vector<std::unique_ptr<Scene>>{};
 std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
+void SceneManager::LoadScene(int sceneBuildIndex){
+    if (scenes.size() > sceneBuildIndex && scenes[sceneBuildIndex]) {
+        currentSceneId = sceneBuildIndex;
+        scenes[currentSceneId]->Load();
+    }
+}
+
 int SceneManager::RefreshScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

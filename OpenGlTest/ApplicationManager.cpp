@@ -271,6 +271,7 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 	messageHandlers.emplace_back(new Inputs);
 
 	sceneManager->scenes.push_back(std::make_unique<LandingScene>());
+	sceneManager->LoadScene(0);
 
 	MSG msg;
 	while (true) {

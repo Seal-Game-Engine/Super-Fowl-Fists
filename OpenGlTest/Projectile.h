@@ -2,23 +2,17 @@
 #include "SealEngine.h"
 using namespace SealEngine;
 
-class Projectile {
+class Projectile : public MonoBehaviour {
 public:
-	Projectile(Vector3 position);
-	Transform transform;
+	void Update() override;
 
-	SpriteRenderer* renderer;
-	Animator* animator;
-
-
-	void Update();
+	std::shared_ptr<Projectile> Clone() const { return std::shared_ptr<Projectile>(Clone_impl()); }
+	float destroyTime = 0;
+	float lifeSpan = 1.5f;
 
 private:
 	float speed = 8.0f;
-	float lifeSpan = 1.5f;
-	float destroyTime = 0;
 
-	int id;
-	static int idCounter;
+	virtual Projectile* Clone_impl() const override{ return new Projectile(*this); }
 };
 

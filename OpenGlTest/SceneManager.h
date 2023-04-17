@@ -8,6 +8,7 @@
 namespace SealEngine {
     class SceneManager : public IMessageHandler {
     public:
+        void LoadScene(int sceneBuildIndex);
         int RefreshScene();
         bool InitGl();
         void ResizeGl(GLfloat, GLfloat);

@@ -66,15 +66,15 @@
 	"Transform.h"
 	"GameObject.h"
 
-1681638287 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\monobehaviour.h
+1681640134 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\monobehaviour.h
 	<string>
 	"Object.h"
 
-1680147857 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\transform.h
+1681639465 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\transform.h
 	"Vector3.h"
 	"MonoBehaviour.h"
 
-1681637308 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gameobject.h
+1681639872 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gameobject.h
 	<vector>
 	<memory>
 	<string>
@@ -84,10 +84,11 @@
 	"Vector3.h"
 	"Transform.h"
 
-1681403051 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\object.cpp
+1681638342 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\object.cpp
 	"Object.h"
+	"SceneManager.h"
 
-1681610391 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scene.cpp
+1681624687 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scene.cpp
 	"Scene.h"
 
 1681612863 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scene.h
@@ -145,7 +146,7 @@
 	"Transform.h"
 	<array>
 
-1681638645 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\spriterenderer.h
+1681639338 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\spriterenderer.h
 	"MonoBehaviour.h"
 	"Sprite.h"
 
@@ -161,7 +162,7 @@
 	"GameObject.h"
 	<map>
 
-1681631790 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\animator.h
+1681639793 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\animator.h
 	"MonoBehaviour.h"
 	"AnimatorController.h"
 	"SpriteRenderer.h"
@@ -187,8 +188,9 @@
 	"GameObject.h"
 	"Transform.h"
 
-1681404791 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
+1681624800 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
 	"AssetManager.h"
+	"Player.h"
 
 1681612344 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.h
 	"SealEngine.h"
@@ -223,7 +225,7 @@
 	"IMessageHandler.h"
 	"Scene.h"
 
-1681609936 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.h
+1681640612 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.h
 	"SealEngine.h"
 
 1681590583 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.h
@@ -375,7 +377,7 @@
 	"ik_IRefCounted.h"
 	"ik_ISoundSource.h"
 
-1681344627 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
+1681621671 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\scenemanager.cpp
 	"GLLight.h"
 	"SealEngine.h"
 	"CheckCollision.h"
@@ -390,7 +392,7 @@
 	"SealPackages.h"
 	"SealEngine.h"
 
-1681590583 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.cpp
+1681616435 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\applicationmanager.cpp
 	"ApplicationManager.h"
 	"Inputs.h"
 	"Time.h"

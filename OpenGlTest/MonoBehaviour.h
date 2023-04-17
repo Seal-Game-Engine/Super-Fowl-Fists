@@ -42,19 +42,6 @@ namespace SealEngine {
 
 		//CompareTag	
 
-
-#pragma region Static
-		static void Destroy();
-		static void	DestroyImmediate();
-		//static void	DontDestroyOnLoad();
-		static void	FindAnyObjectByType();
-		static void	FindFirstObjectByType();
-		static void	FindObjectOfType();
-		static void	FindObjectsByType();
-		static void	FindObjectsOfType();
-		static void	Instantiate();
-#pragma endregion
-
 		MonoBehaviour() = default;
 		MonoBehaviour(const MonoBehaviour& obj) : Object(obj), enabled(obj.enabled) {}
 		std::shared_ptr<MonoBehaviour> Clone() const { return std::shared_ptr<MonoBehaviour>(Clone_impl()); }

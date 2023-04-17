@@ -2,6 +2,7 @@
 using State = AnimatorController::AnimationState;
 
 #include "Player.h"
+#include "Projectile.h"
 
 const Texture2D AssetManager::Hector_Run = Texture2D("Assets/Hector_Run.png", Texture2D::FilterMode::Nearest, 4, 3);
 
@@ -69,10 +70,17 @@ const AnimationClip AssetManager::Projectile_Blue_Idle = AnimationClip({
 	{ Projectile_Blue[0], 0.1f },
 	{ Projectile_Blue[1], 0.1f },
 	{ Projectile_Blue[2], 0.1f },
-}, true);;
+}, true);
 const AnimatorController AssetManager::Projectile_Blue_Controller = AnimatorController({
 	State("Idle", &Projectile_Blue_Idle),
-});;
+});
+const GameObject AssetManager::ProjectileObject_Blue = GameObject(
+	"Projectile (Blue)",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::Projectile_Blue[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Projectile_Blue_Controller),
+		std::make_shared<Projectile>(),
+});
 
 const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
 

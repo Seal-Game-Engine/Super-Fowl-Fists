@@ -9,6 +9,7 @@ class LandingScene : public Scene {
 public:
 	LandingScene();
 
+	void Load() override;
 	void Refresh() override;
 
 	static std::vector<std::unique_ptr<Projectile>> projectiles;

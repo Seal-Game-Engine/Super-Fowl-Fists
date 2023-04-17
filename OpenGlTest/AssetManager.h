@@ -19,6 +19,7 @@ public:
 	static const Texture2D Projectile_Blue;
 	static const AnimationClip Projectile_Blue_Idle;
 	static const AnimatorController Projectile_Blue_Controller;
+	static const GameObject ProjectileObject_Blue;
 
 	static const Texture2D GreenSlime;
 	static const AnimationClip GreenSlime_Idle;
