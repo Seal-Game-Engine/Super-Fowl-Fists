@@ -8,6 +8,7 @@ public:
 	static const AnimationClip Hector_Idle;
 	static const AnimationClip Hector_IdleN;
 	static const AnimatorController Hector_Controller;
+	static const GameObject HectorObject;
 
 	static const Texture2D Xwing;
 	static const AnimationClip Xwing_Idle;

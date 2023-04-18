@@ -10,8 +10,8 @@ namespace SealEngine {
 		void virtual Refresh();
 
 		std::vector<std::shared_ptr<GameObject>> gameObjects = std::vector<std::shared_ptr<GameObject>>{};
-		std::vector<std::shared_ptr<GameObject>> instantiationQueue = std::vector<std::shared_ptr<GameObject>>{};
-		std::vector<GameObject*> destroyQueue = std::vector<GameObject*>{};
+		std::queue<std::shared_ptr<GameObject>> instantiationQueue = std::queue<std::shared_ptr<GameObject>>{};
+		std::queue<GameObject*> destroyQueue = std::queue<GameObject*>{};
 	};
 }
 

@@ -5,6 +5,7 @@
 using namespace SealEngine::InputSystem;
 
 int SceneManager::currentSceneId = 0;
+float SceneManager::camDist = -10;
 std::vector<std::unique_ptr<Scene>> SceneManager::scenes = std::vector<std::unique_ptr<Scene>>{};
 std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
@@ -16,11 +17,16 @@ void SceneManager::LoadScene(int sceneBuildIndex){
 }
 
 int SceneManager::RefreshScene() {
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if (Inputs::GetKeyDown(KeyCode::Q))camDist++;
+    else if (Inputs::GetKeyDown(KeyCode::E))camDist--;
 
     glPushMatrix();
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
-        glTranslatef(0, 0, -10);
+        glTranslatef(0, 0, camDist);
 
         if (scenes.size() > currentSceneId && scenes[currentSceneId]) scenes[currentSceneId]->Refresh();
         ////glLoadIdentity();
@@ -44,7 +50,8 @@ bool SceneManager::InitGl() {
 
     //ResizeGl(0, 0);
     glMatrixMode(GL_PROJECTION);
-
+    //glLoadIdentity();
+    //glOrtho(0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), 0, -100, 100);
     //gluOrtho2D(0, 100, 100, 0);
     //gluPerspective(45.0, width / height, 0.1, 1000);
     //glMatrixMode(GL_MODELVIEW);
@@ -75,12 +82,14 @@ bool SceneManager::InitGl() {
 
 void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
     glViewport(0, 0, width, height);
-    glLoadIdentity();
+
     glMatrixMode(GL_PROJECTION);
-    
-    gluPerspective(45.0, width / height, 0.1, 1000);
-    glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    //gluPerspective(45.0, width / height, 0, 1000);
+    gluOrtho2D(0, width, height , 0);
+
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadIdentity();
 
     //glOrtho(0, width, 0, height, 1, -1); // Origin in lower-left corner
     //glOrtho(0, width, height, 0, 1, -1); // Origin in upper-left corner

@@ -14,10 +14,12 @@ namespace SealEngine {
         void ResizeGl(GLfloat, GLfloat);
 
         bool TryHandleMessage(const UINT uMsg, const WPARAM wParam, const LPARAM lParam) override;
+        void ResetOnNextFrame() override {}
 
         static int currentSceneId;
         static std::vector<std::unique_ptr<Scene>> scenes;
 
+        static float camDist;
         //Unity
         //static int sceneCount	The total number of currently loaded Scenes.
         //  sceneCountInBuildSettings	Number of Scenes in Build Settings.

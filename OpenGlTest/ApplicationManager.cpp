@@ -16,7 +16,7 @@ HGLRC ApplicationManager::renderingContextHandler = NULL;		// Permanent Renderin
 HWND ApplicationManager::windowHandler = NULL;		// Holds Our Window Handle
 HINSTANCE ApplicationManager::instanceHandler = NULL;
 
-//const std::unique_ptr<SceneManager> ApplicationManager::Scene = std::unique_ptr<SceneManager>();
+//const std::unique_ptr<SceneManager> ApplicationManager::sceneManager = std::unique_ptr<SceneManager>();
 SceneManager* ApplicationManager::sceneManager = new SceneManager;
 
 int ApplicationManager::width = 0, ApplicationManager::height = 0;
@@ -275,6 +275,8 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 
 	MSG msg;
 	while (true) {
+		for (auto& messageHandler : messageHandlers) messageHandler->ResetOnNextFrame();
+
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			if (msg.message == WM_QUIT) break;
 

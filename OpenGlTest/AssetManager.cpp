@@ -5,7 +5,6 @@ using State = AnimatorController::AnimationState;
 #include "Projectile.h"
 
 const Texture2D AssetManager::Hector_Run = Texture2D("Assets/Hector_Run.png", Texture2D::FilterMode::Nearest, 4, 3);
-
 const AnimationClip AssetManager::Hector_Idle = AnimationClip({
 	{ Hector_Run[1], 0.05f },
 	{ Hector_Run[5], 0.05f },
@@ -18,7 +17,6 @@ const AnimationClip AssetManager::Hector_IdleN = AnimationClip({
 	{ Hector_Run[0], 0.05f },
 	{ Hector_Run[8], 0.05f },
 }, true);
-
 const AnimatorController AssetManager::Hector_Controller = AnimatorController({
 	State("Idle", &Hector_Idle, {
 		{"IdleN", false, 1, [](auto& animator) { return animator.GetInteger("y") >= 0; } },
@@ -26,6 +24,13 @@ const AnimatorController AssetManager::Hector_Controller = AnimatorController({
 	State("IdleN", &Hector_IdleN, {
 		{"Idle", false, 1, [](auto& animator) { return animator.GetInteger("y") < 0; } },
 	}),
+});
+const GameObject AssetManager::HectorObject = GameObject(
+	"Hector",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::Hector_Run[1], false, false),
+		std::make_shared<Animator>(&AssetManager::Hector_Controller),
+		std::make_shared<Player>(),
 });
 
 const Texture2D AssetManager::Xwing = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
@@ -55,14 +60,10 @@ const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 });;
 const GameObject AssetManager::XwingObject = GameObject(
 	"Player",
-	/*std::vector<MonoBehaviour>{
-	SpriteRenderer(&AssetManager::Xwing[0], false, false),
-		Animator(&AssetManager::Xwing_Controller),
-		Player(),*/
-		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&AssetManager::Xwing[0], false, false),
-			std::make_shared<Animator>(&AssetManager::Xwing_Controller),
-			std::make_shared<Player>(),
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::Xwing[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
+		std::make_shared<Player>(),
 });
 
 const Texture2D AssetManager::Projectile_Blue = Texture2D("Assets/Projectile_Blue.png", Texture2D::FilterMode::Nearest, 3, 1);

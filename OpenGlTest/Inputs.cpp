@@ -1,6 +1,7 @@
 #include "SealPackages.h"
 #include "Inputs.h"
 #include "Vector2.h"
+#include "SceneManager.h"
 using namespace SealEngine;
 using namespace SealEngine::InputSystem;
 
@@ -41,6 +42,8 @@ bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LP
             break;
 
         case WM_MOUSEMOVE:
+            //prev_MouseX = GET_X_LPARAM(_lParam) - prev_MouseX;
+            //prev_MouseY = GET_Y_LPARAM(_lParam) - prev_MouseY;
             break;
 
         case WM_MOUSEWHEEL:
@@ -49,6 +52,12 @@ bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LP
             return false;
     }
     return true;
+}
+
+void Inputs::ResetOnNextFrame() {
+    _uMessage = 0;
+    _wParam = KeyCode::None;
+    _lParam = 0;
 }
 
 bool Inputs::GetKeyDown(const KeyCode wParam) {
@@ -94,13 +103,14 @@ void Inputs::mouseWheel(const WPARAM wParam, const double delta) {
 
 Vector2 Inputs::GetMousePosition() {
     int x, y;
-    if (_uMessage == WM_MOUSEMOVE) {
-        x = GET_X_LPARAM(_lParam) - prev_MouseX;
-        y = GET_Y_LPARAM(_lParam) - prev_MouseY;
+    glutMotionFunc([](int _x, int _y) { prev_MouseX = _x; prev_MouseY = _y; });
 
-        prev_MouseX = x;
-        prev_MouseY = y;
-    }
-    return _uMessage == WM_MOUSEMOVE ? Vector2(x, y) : Vector2(prev_MouseX, prev_MouseY);
-    //return Vector3(x / 10, y/10, 0);
+    int o = GetSystemMetrics(SM_CXSCREEN);
+
+    float factor = 1100 / -(float)SceneManager::camDist;
+
+    POINT mousePosition{};
+    return GetCursorPos(&mousePosition)
+        ? Vector2((float)(mousePosition.x - (float)GetSystemMetrics(SM_CXSCREEN) / 2) / factor, (float)(-mousePosition.y + GetSystemMetrics(SM_CYSCREEN) / 2) / factor)
+        : Vector2::zero();
 }

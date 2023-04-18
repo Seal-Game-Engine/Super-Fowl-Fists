@@ -35,11 +35,18 @@ void SpriteRenderer::LateUpdate() {
 			//std::vector<Vector2> vertices = sprite->vertices();
 
 			std::array<Vector3, 4> vertices{
+				Vector3(-0.5f, 0.5f,0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
+				Vector3(0.5f, 0.5f, 0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
+				Vector3(0.5f, -0.5f, 0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
+				Vector3(-0.5f, -0.5f, 0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
+			};
+
+			/*std::array<Vector3, 4> vertices{
 				Vector3(-0.5f, 0.5f, 1),
 				Vector3(0.5f, 0.5f, 1),
 				Vector3(0.5f, -0.5f, 1),
 				Vector3(-0.5f, -0.5f, 1),
-			};
+			};*/
 
 			// Vertex3f for 3D
 			glTexCoord2f(rect.minVertex().x(), rect.minVertex().y());

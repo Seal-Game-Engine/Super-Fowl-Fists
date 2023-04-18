@@ -8,6 +8,7 @@ namespace SealEngine {
 		class Inputs : public IMessageHandler {
 		public:
 			bool TryHandleMessage(const UINT, const WPARAM, const LPARAM) override;
+			void ResetOnNextFrame() override;
 
 			static bool GetKeyDown(const KeyCode);
 			static bool GetKeyUp(const KeyCode);

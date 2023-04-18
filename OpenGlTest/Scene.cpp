@@ -9,7 +9,7 @@ void Scene::Refresh() {
 
     while (!instantiationQueue.empty()) {
         gameObjects.emplace_back(instantiationQueue.front());
-        instantiationQueue.pop_back();
+        instantiationQueue.pop();
     }
 
     while (!destroyQueue.empty()) {
@@ -21,6 +21,6 @@ void Scene::Refresh() {
             }
         }
     WhileLoop:
-        destroyQueue.pop_back();
+        destroyQueue.pop();
     }
 }

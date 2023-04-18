@@ -15,7 +15,7 @@ namespace SealEngine {
 		//packingMode	If Sprite is packed(see Sprite.packed), returns its SpritePackingMode.
 		//packingRotation	If Sprite is packed(see Sprite.packed), returns its SpritePackingRotation.
 		Vector2 pivot; //	Location of the Sprite's center point in the Rect on the original Texture, specified in pixels.
-		float pixelsPerUnit();//	The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
+		float pixelsPerUnit() const;//	The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
 		Rect rect;	//Location of the Sprite on the original Texture, specified in pixels.
 		//spriteAtlasTextureScale	The Variant scale of texture used by the Sprite.This is useful to check when a Variant SpriteAtlas is being used by Sprites.
 		const Texture2D* texture;

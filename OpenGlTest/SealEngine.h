@@ -22,6 +22,8 @@
 #include "KeyCode.h"
 #include "Inputs.h"
 
+#include "Button.h"
+
 #include "AnimationClip.h"
 #include "AnimatorController.h"
 #include "Animator.h"

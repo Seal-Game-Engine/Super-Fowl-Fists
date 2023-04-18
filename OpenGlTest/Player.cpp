@@ -19,18 +19,25 @@ void Player::Update() {
 	Vector2 horizontalMovement = Vector2::right() * (float)x * speed * Time::deltaTime();
 	Vector2 verticalMovement = Vector2::up() * (float)y * speed * Time::deltaTime();
 	transform()->position += horizontalMovement + verticalMovement;
+	/*if (Inputs::GetKeyDown(KeyCode::UpArrow))
+		transform()->position+=Vector2::up();
+	if (Inputs::GetKeyDown(KeyCode::DownArrow))
+		transform()->position += Vector2::down();
+	if (Inputs::GetKeyDown(KeyCode::RightArrow))
+		transform()->position += Vector2::right();
+	if (Inputs::GetKeyDown(KeyCode::LeftArrow))
+		transform()->position += Vector2::left();*/
 	if (std::abs(transform()->position.x()) > (float)ApplicationManager::width / 280.0f) transform()->position -= horizontalMovement;
 	if (std::abs(transform()->position.y()) > (float)ApplicationManager::height / 280.0f) transform()->position -= verticalMovement;
 
 	animator->SetInteger("x", x);
 
 
-	static float nextFire = 0;
-	if (Inputs::GetKey(KeyCode::Space) && Time::time() >= nextFire) {
+	if (Inputs::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
 		auto projectile = Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
 		auto comp = dynamic_cast<GameObject*>(projectile)->GetComponent<Projectile>();
 		comp->destroyTime = Time::time() + comp->lifeSpan;
-		nextFire = Time::time() + 0.15f;
+		_nextFire = Time::time() + 0.15f;
 	}
 }
 

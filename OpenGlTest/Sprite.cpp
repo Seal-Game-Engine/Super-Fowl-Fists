@@ -6,7 +6,7 @@ using namespace SealEngine;
 Sprite::Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot, float pixelsPerUnit)
 	: texture(&texture), rect(rect), pivot(pivot), _pixelsPerUnit(pixelsPerUnit) {}
 
-float Sprite::pixelsPerUnit() { return _pixelsPerUnit; }
+float Sprite::pixelsPerUnit() const { return _pixelsPerUnit; }
 
 const std::vector<Vector2>& Sprite::vertices()const {
 	float halfWidth = (float)texture->width() / 2;
