@@ -2,14 +2,23 @@
 #include "AssetManager.h"
 #include "ApplicationManager.h"
 
-Parallax::Parallax() : sprite(AssetManager::SpaceBackground[0]) {}
-
 void Parallax::Update() {
+    rect.SetMinVertex(
+        rect.minVertex().x() - direction.x() * speed * Time::deltaTime(),
+        rect.minVertex().y() + direction.y() * speed * Time::deltaTime()
+    );
+
+    rect.SetMaxVertex(
+        rect.maxVertex().x() - direction.x() * speed * Time::deltaTime(),
+        rect.maxVertex().y() + direction.y() * speed * Time::deltaTime()
+    );
+
     float height = (float)ApplicationManager::height / 200;
-    float width = (float)sprite.texture->width() / sprite.texture->height() * height;
+    float width = (float)sprite->texture->width() / sprite->texture->height() * height;
+
     glPushMatrix();
     {
-        glBindTexture(GL_TEXTURE_2D, sprite.texture->textureId());
+        glBindTexture(GL_TEXTURE_2D, sprite->texture->textureId());
         //glScalef(3, 3, 1);
         glColor3f(1.0, 1.0, 1.0);
         glBegin(GL_QUADS);
@@ -31,14 +40,8 @@ void Parallax::Update() {
     glPopMatrix();
 }
 
-void Parallax::Scroll(Vector2 direction){
-    rect.SetMinVertex(
-        rect.minVertex().x() + direction.x() * speed * Time::deltaTime(),
-        rect.minVertex().y() + direction.y() * speed * Time::deltaTime()
-    );
+Parallax::Parallax(const Sprite* sprite, Vector2 direction, float speed) : sprite(sprite), direction(direction), speed(speed) {}
 
-    rect.SetMaxVertex(
-        rect.maxVertex().x() + direction.x() * speed * Time::deltaTime(),
-        rect.maxVertex().y() + direction.y() * speed * Time::deltaTime()
-    );
-}
+std::shared_ptr<Parallax> Parallax::Clone() const { return std::shared_ptr<Parallax>(Clone_impl()); }
+
+Parallax* Parallax::Clone_impl() const { return new Parallax(*this); }

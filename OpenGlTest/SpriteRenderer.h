@@ -45,15 +45,15 @@ namespace SealEngine {
 			worldToLocalMatrix*/
 		SpriteRenderer() = default;
 		SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY);
-		SpriteRenderer(const SpriteRenderer& obj) :MonoBehaviour(obj), sprite(obj.sprite), flipX(obj.flipX), flipY(obj.flipY) {}
-		std::shared_ptr<SpriteRenderer> Clone() const { return std::shared_ptr<SpriteRenderer>(Clone_impl()); }
+		SpriteRenderer(const SpriteRenderer& obj);
+		std::shared_ptr<SpriteRenderer> Clone() const;
 
 		void Awake() override;
 		void Update() override;
 		void LateUpdate() override;
 
 	private:
-		virtual SpriteRenderer* Clone_impl() const override { return new SpriteRenderer(*this); }
+		SpriteRenderer* Clone_impl() const override;
 	};
 }
 

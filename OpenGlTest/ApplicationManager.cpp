@@ -1,7 +1,7 @@
 #include "ApplicationManager.h";
 #include "Inputs.h"
 #include "Time.h"
-#include "LandingScene.h"
+#include "Assets_Scenes.h"
 
 using namespace SealEngine;
 
@@ -16,8 +16,8 @@ HGLRC ApplicationManager::renderingContextHandler = NULL;		// Permanent Renderin
 HWND ApplicationManager::windowHandler = NULL;		// Holds Our Window Handle
 HINSTANCE ApplicationManager::instanceHandler = NULL;
 
-//const std::unique_ptr<SceneManager> ApplicationManager::sceneManager = std::unique_ptr<SceneManager>();
-SceneManager* ApplicationManager::sceneManager = new SceneManager;
+std::unique_ptr<SceneManager> ApplicationManager::sceneManager = std::make_unique<SceneManager>();
+//SceneManager* ApplicationManager::sceneManager = new SceneManager;
 
 int ApplicationManager::width = 0, ApplicationManager::height = 0;
 
@@ -39,6 +39,8 @@ LRESULT CALLBACK ApplicationManager::WndProc(HWND hWindow, UINT message, WPARAM 
 					break;
 			}
 			break;
+		case WM_SIZE:
+			sceneManager->ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh
 
 		//case WM_CLOSE:
 		case WM_DESTROY:
@@ -146,7 +148,7 @@ bool ApplicationManager::SetupWindow(int colorBits, bool fullscreenflag) {
 	DWORD dwStyle;				// Window Style
 	DWORD dwExStyle;				// Window Extended Style
 
-	if (ApplicationManager::isFullScreen) {
+	if (isFullScreen) {
 		ShowCursor(TRUE);									// Hide Mouse Pointer
 		dwStyle = WS_POPUP;			// must handle Gsync situations: Windows Style
 		dwExStyle = WS_EX_APPWINDOW;								// Window Extended Style
@@ -248,11 +250,6 @@ bool ApplicationManager::TryToggleFullScreen() {
 	return SetupWindow(256, isFullScreen);
 }
 
-bool GetActionLOLL() {
-	if (InputSystem::Inputs::GetKeyDown(KeyCode::Escape)) return false;
-	return true;
-}
-
 int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	int colorBits = 256;
 	instanceHandler = hInstance;
@@ -267,18 +264,14 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 		MessageBoxW(NULL, L"Initialization Failed", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
-	messageHandlers.emplace_back(sceneManager);
-	messageHandlers.emplace_back(new Inputs);
-
-	sceneManager->scenes.push_back(std::make_unique<LandingScene>());
-	sceneManager->LoadScene(0);
+	messageHandlers.push_back(std::make_unique<Inputs>());
 
 	MSG msg;
 	while (true) {
 		for (auto& messageHandler : messageHandlers) messageHandler->ResetOnNextFrame();
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-			if (msg.message == WM_QUIT) break;
+			//if (msg.message == WM_QUIT) break;
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -286,8 +279,7 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 		Time::OnNextFrame();
 		sceneManager->RefreshScene();
 
-
-		if (!GetActionLOLL()) break;
+		if (InputSystem::Inputs::GetKeyDown(KeyCode::Escape)) break;
 	}
 
 	DestroyGlWindow();

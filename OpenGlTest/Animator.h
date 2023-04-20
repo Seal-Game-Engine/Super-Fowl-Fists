@@ -30,8 +30,9 @@ namespace SealEngine {
 		Animator(const Animator& obj) : MonoBehaviour(obj) {
 			SetAnimatorController(obj.animatorController);
 		}
-		std::shared_ptr<Animator> Clone() const { return std::shared_ptr<Animator>(Clone_impl()); }
+		std::shared_ptr<Animator> Clone() const;
 
+		void Awake() override;
 		void Update() override;
 
 	private:
@@ -48,7 +49,7 @@ namespace SealEngine {
 		std::map<std::string, bool> boolMap;
 		std::map<std::string, float> floatMap;
 
-		virtual Animator* Clone_impl() const override { return new Animator(*this); }
+		Animator* Clone_impl() const override;
 	};
 }
 

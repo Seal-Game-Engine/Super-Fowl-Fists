@@ -2,19 +2,17 @@
 #include "SealEngine.h"
 #include "CheckCollision.h"
 #include "Font.h"
+#include "Assets_Scenes.h"
 using namespace SealEngine::InputSystem;
 
 int SceneManager::currentSceneId = 0;
-float SceneManager::camDist = -10;
-std::vector<std::unique_ptr<Scene>> SceneManager::scenes = std::vector<std::unique_ptr<Scene>>{};
+float SceneManager::camDist = -6;
+//std::vector<std::unique_ptr<Scene>> SceneManager::scenes = std::vector<std::unique_ptr<Scene>>{};
+std::vector<Scene*> SceneManager::scenes = std::vector<Scene*>{};
+std::queue<int> SceneManager::sceneLoadQuery = std::queue<int>{};
 std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
-void SceneManager::LoadScene(int sceneBuildIndex){
-    if (scenes.size() > sceneBuildIndex && scenes[sceneBuildIndex]) {
-        currentSceneId = sceneBuildIndex;
-        scenes[currentSceneId]->Load();
-    }
-}
+void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.push(sceneBuildIndex); }
 
 int SceneManager::RefreshScene() {
     glMatrixMode(GL_MODELVIEW);
@@ -28,7 +26,7 @@ int SceneManager::RefreshScene() {
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
         glTranslatef(0, 0, camDist);
 
-        if (scenes.size() > currentSceneId && scenes[currentSceneId]) scenes[currentSceneId]->Refresh();
+        if (scenes.size() > currentSceneId) scenes[currentSceneId]->Refresh();
         ////glLoadIdentity();
 
         //Font::RenderText("Hello World", Vector2(-10,-10), 1);
@@ -36,6 +34,16 @@ int SceneManager::RefreshScene() {
     glPopMatrix();
 
     SwapBuffers(ApplicationManager::deviceContextHandler); // (Double Buffering)
+
+    while (!sceneLoadQuery.empty()) {
+        if (scenes.size() > sceneLoadQuery.front()) {
+            scenes[currentSceneId]->Unload();
+            currentSceneId = sceneLoadQuery.front();
+            scenes[currentSceneId]->Load();
+        }
+        sceneLoadQuery.pop();
+    }
+
     return 0;
 }
 
@@ -67,16 +75,14 @@ bool SceneManager::InitGl() {
     //Light.Set(GL_LIGHT0);
 
     glEnable(GL_TEXTURE_2D);
-    Texture2D::LoadUninitializedTextures();
-    //player->renderer.Awake();
-    //player->Awake();
-    //player->renderer.transform().position += Vector3::forward() * 5;
-    // 
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-   // enemy.Init(1, 1);
+    Texture2D::LoadUninitializedTextures();
 
+    scenes.push_back(&Assets_Scenes::LandingScene);
+    scenes.push_back(&Assets_Scenes::GameScene);
+    LoadScene(0);
     return true;
 }
 
@@ -85,20 +91,12 @@ void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    //gluPerspective(45.0, width / height, 0, 1000);
-    gluOrtho2D(0, width, height , 0);
+    gluPerspective(45.0, width / height, 0, 1000);
+    //gluOrtho2D(0, width, height , 0);
 
     //glMatrixMode(GL_MODELVIEW);
     //glLoadIdentity();
 
     //glOrtho(0, width, 0, height, 1, -1); // Origin in lower-left corner
     //glOrtho(0, width, height, 0, 1, -1); // Origin in upper-left corner
-}
-
-bool SceneManager::TryHandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    if (uMsg == WM_SIZE) {
-        ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh
-        return true;
-    }
-    return false;
 }

@@ -49,7 +49,7 @@ namespace SealEngine {
 
 		static int _instanceIdCounter;
 
-		virtual Object* Clone_impl() const override { return new Object(*this); }
+		Object* Clone_impl() const override;
 	};
 }
 

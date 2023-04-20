@@ -15,7 +15,7 @@ Texture2D::Texture2D(const std::string textureSource, const FilterMode filterMod
 
 	for (int rowId = 0; rowId < rows; rowId++)
 		for (int columnId = 0; columnId < columns; columnId++)
-			sprites.emplace_back(Sprite(*this, Rect(columnId * spriteWidth, rowId * spriteHeight, spriteWidth, spriteHeight), Vector2(0.5f, 0.5f), 32));
+			sprites.emplace_back(Sprite(*this, Rect(columnId * spriteWidth, rowId * spriteHeight, spriteWidth, spriteHeight), Vector2(0, 0), 32));
 
 	uninitializedTextures.push({ *this, textureSource, filterMode });
 }

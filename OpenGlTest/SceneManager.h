@@ -2,22 +2,21 @@
 #include "SealPackages.h"
 #include <memory>
 #include <vector>
+#include <queue>
 #include "IMessageHandler.h"
 #include "Scene.h"
 
 namespace SealEngine {
-    class SceneManager : public IMessageHandler {
+    class SceneManager {
     public:
-        void LoadScene(int sceneBuildIndex);
+        static void LoadScene(int sceneBuildIndex);
         int RefreshScene();
         bool InitGl();
         void ResizeGl(GLfloat, GLfloat);
 
-        bool TryHandleMessage(const UINT uMsg, const WPARAM wParam, const LPARAM lParam) override;
-        void ResetOnNextFrame() override {}
-
         static int currentSceneId;
-        static std::vector<std::unique_ptr<Scene>> scenes;
+        //static const std::vector<std::unique_ptr<Scene>> scenes;
+        static std::vector<Scene*> scenes;
 
         static float camDist;
         //Unity
@@ -37,6 +36,7 @@ namespace SealEngine {
         //activeSceneChanged	Subscribe to this event to get notified when the active Scene has changed.
         //sceneLoaded	Add a delegate to this to get notifications when a Scene has loaded.
         //sceneUnloaded
-
+    private:
+        static std::queue<int> sceneLoadQuery;
     };
 }

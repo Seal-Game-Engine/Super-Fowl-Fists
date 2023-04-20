@@ -3,6 +3,7 @@ using State = AnimatorController::AnimationState;
 
 #include "Player.h"
 #include "Projectile.h"
+#include "Parallax.h"
 
 const Texture2D AssetManager::Hector_Run = Texture2D("Assets/Hector_Run.png", Texture2D::FilterMode::Nearest, 4, 3);
 const AnimationClip AssetManager::Hector_Idle = AnimationClip({
@@ -84,6 +85,15 @@ const GameObject AssetManager::ProjectileObject_Blue = GameObject(
 });
 
 const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::GalaxyBackground = Texture2D("Assets/GalaxyBackground.png", Texture2D::FilterMode::Nearest);
+const GameObject AssetManager::GalaxyBackgroundObject = GameObject(
+	"Background",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Parallax>(&AssetManager::GalaxyBackground[0], Vector2::left(), 0.05f),
+});
+
+const Texture2D AssetManager::GameTitle = Texture2D("Assets/GameTitle.png", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
 
 const Texture2D AssetManager::Font = Texture2D("Assets/font.png", Texture2D::FilterMode::Nearest, 16, 8);
 const Texture2D AssetManager::GreenSlime = Texture2D("Assets/GreenSlime.png", Texture2D::FilterMode::Nearest, 4, 2);

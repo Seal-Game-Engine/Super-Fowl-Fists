@@ -19,7 +19,6 @@ bool Object::operator==(const Object& obj) const { return GetInstanceId() == obj
 bool Object::operator!=(const Object& obj) const { return !this->operator==(obj); }
 
 Object* Object::Instantiate(const Object& obj) {
-
 	auto object = obj.Clone();
 
 	if (auto gameObject = std::dynamic_pointer_cast<GameObject>(object)) {
@@ -39,9 +38,8 @@ Object* Object::Instantiate(const Object& obj) {
 
 Object* Object::Instantiate(const Object& obj, const Vector3& position, Transform)
 {
-	auto object = Instantiate(obj);
-
-	if (auto gameObject = dynamic_cast<GameObject*>(object)) {
+	Object* object = Instantiate(obj);
+	if (GameObject* gameObject = dynamic_cast<GameObject*>(object)) {
 		gameObject->transform->position = position;
 	}
 
@@ -58,3 +56,5 @@ void Object::DestroyImmediate(Object object, bool allowDestroyingAssets) {
 
 void Object::DontDestroyOnLoad(Object target) {
 }
+
+Object* Object::Clone_impl() const { return new Object(*this); }

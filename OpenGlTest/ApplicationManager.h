@@ -17,22 +17,24 @@ namespace SealEngine {
 		static bool isFullScreen;
 		static HDC	deviceContextHandler;		// Private GDI Device Context
 
-		//static const std::unique_ptr<SceneManager> Scene;
-		static SceneManager* sceneManager;
+		static std::unique_ptr<SceneManager> sceneManager;
+		//static SceneManager* sceneManager;
 
 		static int NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 
-		static std::vector<std::unique_ptr<IMessageHandler>> messageHandlers;
 
 		static int width, height;
 
 	private:
+		static std::vector<std::unique_ptr<IMessageHandler>> messageHandlers;
 		static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 		static bool isActive;
 
 		static HGLRC renderingContextHandler;		// Permanent Rendering Context
-		static HWND windowHandler;		// Holds Our Window Handle
-		static HINSTANCE instanceHandler;		// Holds The Instance Of The Application
+		static HWND windowHandler;		// Holds current Window Handle
+
+		/// <summary> Application instance </summary>
+		static HINSTANCE instanceHandler;
 
 		static wchar_t windowClassName[];
 		static wchar_t windowTitle[];

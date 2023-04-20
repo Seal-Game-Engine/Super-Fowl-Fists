@@ -4,12 +4,13 @@ using namespace SealEngine;
 
 class Player : public MonoBehaviour {
 public:
+	void Awake() override;
 	void Update() override;
 	//void LateUpdate() override;
 
 	Player() = default;
 	Player(const Player& obj) : MonoBehaviour(obj) {}
-	std::shared_ptr<Player> Clone() const { return std::shared_ptr<Player>(Clone_impl()); }
+	std::shared_ptr<Player> Clone() const;
 
 private:
 	SpriteRenderer* renderer = nullptr;
@@ -17,6 +18,6 @@ private:
 	float speed = 4.0f;
 	float _nextFire = 0;
 
-	virtual Player* Clone_impl() const override{ return new Player(*this); }
+	Player* Clone_impl() const override;
 };
 

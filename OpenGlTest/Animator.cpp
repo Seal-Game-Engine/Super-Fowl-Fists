@@ -25,19 +25,23 @@ Animator::Animator(const AnimatorController* animatorController) {
 	SetAnimatorController(animatorController);
 }
 
+std::shared_ptr<Animator> SealEngine::Animator::Clone() const { return std::shared_ptr<Animator>(Clone_impl()); }
+
+void Animator::Awake(){
+	renderer = gameObject->GetComponent<SpriteRenderer>();
+}
+
 void Animator::Update() {
 	if (!animatorController) return;
-	if (!renderer)renderer = gameObject->GetComponent<SpriteRenderer>();
 
 	float clipElapsedTime = (Time::time() - clipBeginTime) / currentState->clip->length();
 
 	for (auto& transition : currentState->transitions) {
-		if ((!transition.hasExitTime || transition.hasExitTime && clipElapsedTime >= transition.exitTime) && transition.condition(*this)) {
+		if (Time::timeScale > 0 && (!transition.hasExitTime || transition.hasExitTime && clipElapsedTime >= transition.exitTime) && transition.condition(*this)) {
 			HandleStateExit(transition);
 			break;
 		}
 	}
-
 
 	if (Time::time() >= nextFrameTime) {
 		if (++currentFrame == currentState->clip->frames.size()) currentFrame = currentState->clip->loopTime ? 0 : (int)currentState->clip->frames.size() - 1;
@@ -59,3 +63,5 @@ void Animator::HandleStateEnter(const AnimatorController::AnimationState* state)
 void Animator::HandleStateExit(const AnimatorController::AnimationState::Transition& transition) {
 	HandleStateEnter(&animatorController->map.find(transition.targetState)->second);
 }
+
+Animator* SealEngine::Animator::Clone_impl() const { return new Animator(*this); }

@@ -31,9 +31,11 @@
     <ClCompile Include="AnimatorController.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Projectile.cpp" />
-    <ClCompile Include="LandingScene.cpp" />
     <ClCompile Include="IClonable.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Assets_Scenes.cpp" />
+    <ClCompile Include="GameEventManager.cpp" />
+    <ClCompile Include="LandingEventManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -67,9 +69,11 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="IMessageHandler.h" />
     <ClInclude Include="SealPackages.h" />
-    <ClInclude Include="LandingScene.h" />
     <ClInclude Include="IClonable.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Assets_Scenes.h" />
+    <ClInclude Include="GameEventManager.h" />
+    <ClInclude Include="LandingEventManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />

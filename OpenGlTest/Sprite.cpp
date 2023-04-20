@@ -8,14 +8,16 @@ Sprite::Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot,
 
 float Sprite::pixelsPerUnit() const { return _pixelsPerUnit; }
 
-const std::vector<Vector2>& Sprite::vertices()const {
-	float halfWidth = (float)texture->width() / 2;
-	float halfHeight = (float)texture->height() / 2;
+const std::array<Vector2, 4>& Sprite::vertices()const {
+	float halfWidth = texture->width() * rect.size().x() / pixelsPerUnit() / 2;
+	float halfHeight = texture->height() * rect.size().y() / pixelsPerUnit() / 2;
 
-	return std::vector<Vector2>{		
-		Vector2(-pivot.x() - halfWidth, -pivot.y() - halfHeight),
-		Vector2(-pivot.x() + halfWidth, -pivot.y() - halfHeight),
-		Vector2(-pivot.x() + halfWidth, -pivot.y() + halfHeight),
-		Vector2(-pivot.x() - halfWidth, -pivot.y() + halfHeight),
+	Vector2 worldPointPivot = Vector2(halfWidth * pivot.x(), halfHeight * pivot.y());
+
+	return std::array<Vector2, 4>{
+		Vector2(-worldPointPivot.x() - halfWidth, -worldPointPivot.y() + halfHeight),
+		Vector2(-worldPointPivot.x() + halfWidth, -worldPointPivot.y() + halfHeight),
+		Vector2(-worldPointPivot.x() + halfWidth, -worldPointPivot.y() - halfHeight),
+		Vector2(-worldPointPivot.x() - halfWidth, -worldPointPivot.y() - halfHeight),
 	};
 }

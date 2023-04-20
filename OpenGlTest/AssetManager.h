@@ -29,6 +29,11 @@ public:
 	static const Texture2D Googleplex;
 
 	static const Texture2D SpaceBackground;
+	static const Texture2D GalaxyBackground;
+	static const GameObject GalaxyBackgroundObject;
 
 	static const Texture2D Font;
+
+	static const Texture2D GameTitle;
+	static const Texture2D PauseScreen;
 };

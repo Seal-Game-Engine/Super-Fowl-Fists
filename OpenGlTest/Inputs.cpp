@@ -12,7 +12,9 @@ LPARAM Inputs::_lParam = NULL;
 float Inputs::prev_MouseX = 0;
 float Inputs::prev_MouseY = 0;
 
-bool Inputs::keys[256];
+bool Inputs::keysHold[256];
+bool Inputs::keysDown[256];
+bool Inputs::keysUp[256];
 
 bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LPARAM lParam) {
     _uMessage = uMessage;
@@ -21,10 +23,12 @@ bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LP
 
     switch (uMessage) {
         case WM_KEYDOWN:
-            keys[wParam] = true;
+            if(!keysHold[wParam]) keysDown[wParam] = true;
+            keysHold[wParam] = true;
             break;
         case WM_KEYUP:
-            keys[wParam] = false;
+            if (keysHold[wParam]) keysUp[wParam] = true;
+            keysHold[wParam] = false;
             break;
 
         case WM_LBUTTONDOWN:
@@ -55,21 +59,22 @@ bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LP
 }
 
 void Inputs::ResetOnNextFrame() {
-    _uMessage = 0;
-    _wParam = KeyCode::None;
-    _lParam = 0;
+    for (int i = 0; i < 256; i++) {
+        keysDown[i] = false;
+        keysUp[i] = false;
+    }
 }
 
 bool Inputs::GetKeyDown(const KeyCode wParam) {
-    return _wParam == wParam && _uMessage == WM_KEYDOWN;
+    return keysDown[(int)wParam];
 }
 
 bool Inputs::GetKeyUp(const KeyCode wParam) {
-    return _wParam == wParam && _uMessage == WM_KEYUP;
+    return keysUp[(int)wParam];
 }
 
 bool Inputs::GetKey(const KeyCode wParam) {
-    return keys[(int)wParam];
+    return keysHold[(int)wParam];
 }
 
 //pass in LOWORD(lParam) for x, HIWORD(lParam) for y

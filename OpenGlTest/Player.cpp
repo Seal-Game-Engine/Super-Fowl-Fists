@@ -1,12 +1,13 @@
 #include "Player.h"
 #include "Projectile.h"
 #include "AssetManager.h"
-#include "LandingScene.h"
 #include <cmath>
 
-void Player::Update() {
-	if (!animator) animator = gameObject->GetComponent<Animator>();
+void Player::Awake(){
+	animator = gameObject->GetComponent<Animator>();
+}
 
+void Player::Update() {
 	int x = (Inputs::GetKey(KeyCode::A) || Inputs::GetKey(KeyCode::LeftArrow)) && (Inputs::GetKey(KeyCode::D) || Inputs::GetKey(KeyCode::RightArrow)) ? 0
 		: Inputs::GetKey(KeyCode::A) || Inputs::GetKey(KeyCode::LeftArrow) ? -1
 		: Inputs::GetKey(KeyCode::D) || Inputs::GetKey(KeyCode::RightArrow) ? 1
@@ -19,14 +20,7 @@ void Player::Update() {
 	Vector2 horizontalMovement = Vector2::right() * (float)x * speed * Time::deltaTime();
 	Vector2 verticalMovement = Vector2::up() * (float)y * speed * Time::deltaTime();
 	transform()->position += horizontalMovement + verticalMovement;
-	/*if (Inputs::GetKeyDown(KeyCode::UpArrow))
-		transform()->position+=Vector2::up();
-	if (Inputs::GetKeyDown(KeyCode::DownArrow))
-		transform()->position += Vector2::down();
-	if (Inputs::GetKeyDown(KeyCode::RightArrow))
-		transform()->position += Vector2::right();
-	if (Inputs::GetKeyDown(KeyCode::LeftArrow))
-		transform()->position += Vector2::left();*/
+	
 	if (std::abs(transform()->position.x()) > (float)ApplicationManager::width / 280.0f) transform()->position -= horizontalMovement;
 	if (std::abs(transform()->position.y()) > (float)ApplicationManager::height / 280.0f) transform()->position -= verticalMovement;
 
@@ -34,22 +28,11 @@ void Player::Update() {
 
 
 	if (Inputs::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
-		auto projectile = Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
-		auto comp = dynamic_cast<GameObject*>(projectile)->GetComponent<Projectile>();
-		comp->destroyTime = Time::time() + comp->lifeSpan;
+		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
 		_nextFire = Time::time() + 0.15f;
 	}
 }
 
+std::shared_ptr<Player> Player::Clone() const { return std::shared_ptr<Player>(Clone_impl()); }
 
-
-//void Player::Update() {
-//
-//	using namespace irrklang;
-//	using namespace InputSystem;
-//	if (Inputs::GetKeyDown(KeyCode::UpArrow)) {
-//		//ISoundEngine* audioEngine = createIrrKlangDevice();
-//		//audioEngine->play2D("PlasmaBlast.wav");
-//		//audioEngine->drop();
-//	}
-//}
+Player* Player::Clone_impl() const { return new Player(*this); }

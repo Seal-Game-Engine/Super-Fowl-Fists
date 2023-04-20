@@ -17,8 +17,9 @@ namespace SealEngine {
 		GameObject(const std::string& name);
 		GameObject(const std::string& name, std::vector<MonoBehaviour> components);
 		GameObject(const std::string& name, std::vector<std::shared_ptr<MonoBehaviour>> components);
+
 		GameObject(const GameObject& obj);
-		std::shared_ptr<GameObject> Clone() const { return std::shared_ptr<GameObject>(Clone_impl()); }
+		std::shared_ptr<GameObject> Clone() const;
 
 
 		std::vector<std::shared_ptr<MonoBehaviour>> components = std::vector<std::shared_ptr<MonoBehaviour>>{};
@@ -102,6 +103,6 @@ namespace SealEngine {
 	private:
 		bool _activeSelf = true;
 
-		virtual GameObject* Clone_impl() const override { return new GameObject(*this); }
+		virtual GameObject* Clone_impl() const override;
 	};
 }  // namespace SealEngine

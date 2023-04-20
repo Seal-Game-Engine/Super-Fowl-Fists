@@ -31,7 +31,9 @@ namespace SealEngine {
 			static KeyCode _wParam;
 			static LPARAM _lParam;
 
-			static bool keys[256];
+			static bool keysHold[256];
+			static bool keysDown[256];
+			static bool keysUp[256];
 		};
 	}
 }

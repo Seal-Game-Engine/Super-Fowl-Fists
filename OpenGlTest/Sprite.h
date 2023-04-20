@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <array>
 #include "Object.h"
 #include "Vector2.h"
 #include "Rect.h"
@@ -22,7 +22,7 @@ namespace SealEngine {
 		//Rect textureRect;
 		Vector2 textureRectOffset = Vector2(0, 0);
 		//uv	The base texture coordinates of the sprite mesh.
-		const std::vector<Vector2>& vertices() const;
+		const std::array<Vector2, 4>& vertices() const;
 
 		Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot, float pixelsPerUnit);
 

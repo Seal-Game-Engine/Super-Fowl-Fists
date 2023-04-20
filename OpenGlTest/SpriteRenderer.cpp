@@ -8,9 +8,13 @@ using namespace SealEngine;
 SpriteRenderer::SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY)
 	: sprite(sprite), flipX(flipX), flipY(flipY) {}
 
+SpriteRenderer::SpriteRenderer(const SpriteRenderer& obj) : MonoBehaviour(obj), sprite(obj.sprite), flipX(obj.flipX), flipY(obj.flipY) {}
+
+std::shared_ptr<SpriteRenderer> SpriteRenderer::Clone() const { return std::shared_ptr<SpriteRenderer>(Clone_impl()); }
+
 void SpriteRenderer::Awake() {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void SpriteRenderer::Update() {
@@ -32,34 +36,20 @@ void SpriteRenderer::LateUpdate() {
 		glBegin(GL_QUADS);
 		{
 			Rect rect = sprite->rect;
-			//std::vector<Vector2> vertices = sprite->vertices();
-
-			std::array<Vector3, 4> vertices{
-				Vector3(-0.5f, 0.5f,0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
-				Vector3(0.5f, 0.5f, 0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
-				Vector3(0.5f, -0.5f, 0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
-				Vector3(-0.5f, -0.5f, 0) * (sprite->texture->width() * rect.size().x()) / sprite->pixelsPerUnit(),
-			};
-
-			/*std::array<Vector3, 4> vertices{
-				Vector3(-0.5f, 0.5f, 1),
-				Vector3(0.5f, 0.5f, 1),
-				Vector3(0.5f, -0.5f, 1),
-				Vector3(-0.5f, -0.5f, 1),
-			};*/
+			std::array<Vector2, 4> vertices = sprite->vertices();
 
 			// Vertex3f for 3D
 			glTexCoord2f(rect.minVertex().x(), rect.minVertex().y());
-			glVertex3f(vertices[0].x(), vertices[0].y(), vertices[0].z());
+			glVertex2f(vertices[0].x(), vertices[0].y());
 
 			glTexCoord2f(rect.maxVertex().x(), rect.minVertex().y());
-			glVertex3f(vertices[1].x(), vertices[1].y(), vertices[1].z());
+			glVertex2f(vertices[1].x(), vertices[1].y());
 
 			glTexCoord2f(rect.maxVertex().x(), rect.maxVertex().y());
-			glVertex3f(vertices[2].x(), vertices[2].y(), vertices[2].z());
+			glVertex2f(vertices[2].x(), vertices[2].y());
 
 			glTexCoord2f(rect.minVertex().x(), rect.maxVertex().y());
-			glVertex3f(vertices[3].x(), vertices[3].y(), vertices[3].z());
+			glVertex2f(vertices[3].x(), vertices[3].y());
 		}
 		glEnd();
 
@@ -67,3 +57,5 @@ void SpriteRenderer::LateUpdate() {
 	}
 	glPopMatrix();
 }
+
+SpriteRenderer* SpriteRenderer::Clone_impl() const { return new SpriteRenderer(*this); }
