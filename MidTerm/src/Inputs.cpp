@@ -1,146 +1,128 @@
+#include "SealPackages.h"
 #include "Inputs.h"
+#include "Vector2.h"
+#include "SceneManager.h"
+using namespace SealEngine;
+using namespace SealEngine::InputSystem;
 
+UINT Inputs::_uMessage = 0;
+KeyCode Inputs::_wParam = (KeyCode)NULL;
+LPARAM Inputs::_lParam = NULL;
 
-Inputs::Inputs()
-{
-    //ctor
+float Inputs::prev_MouseX = 0;
+float Inputs::prev_MouseY = 0;
+
+bool Inputs::keysHold[256];
+bool Inputs::keysDown[256];
+bool Inputs::keysUp[256];
+bool Inputs::_anyKeyDown = false;
+
+bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LPARAM lParam) {
+    _uMessage = uMessage;
+    _wParam = (KeyCode)wParam;
+    _lParam = lParam;
+
+    switch (uMessage) {
+        case WM_KEYDOWN:
+            if (!keysHold[wParam]) {
+                keysDown[wParam] = true;
+                _anyKeyDown = true;
+            }
+            keysHold[wParam] = true;
+            break;
+        case WM_KEYUP:
+            if (keysHold[wParam]) keysUp[wParam] = true;
+            keysHold[wParam] = false;
+            break;
+
+        case WM_LBUTTONDOWN:
+            break;
+
+        case WM_RBUTTONDOWN:
+            break;
+
+        case WM_MBUTTONDOWN:
+            break;
+
+        case WM_LBUTTONUP:
+        case WM_RBUTTONUP:
+        case WM_MBUTTONUP:
+            break;
+
+        case WM_MOUSEMOVE:
+            //prev_MouseX = GET_X_LPARAM(_lParam) - prev_MouseX;
+            //prev_MouseY = GET_Y_LPARAM(_lParam) - prev_MouseY;
+            break;
+
+        case WM_MOUSEWHEEL:
+            break;
+        default:
+            return false;
+    }
+    return true;
 }
 
-Inputs::~Inputs()
-{
-    //dtor
-}
-void Inputs::keyEnv(parallax* plx, float speed)
-{
-     switch(wParam)
-  {
-  case VK_LEFT:
-    plx->xMax -=speed;
-    plx->xMin -=speed;
-    break;
-
-  case VK_RIGHT:
-    plx->xMax +=speed;
-    plx->xMin +=speed;
-    break;
-
-  case VK_DOWN:
-    plx->yMax +=speed;
-    plx->yMin +=speed;
-    break;
-
-  case VK_UP:
-    plx->yMax -=speed;
-    plx->yMin -=speed;
-    break;
-}
+void Inputs::ResetOnNextFrame() {
+    for (int i = 0; i < 256; i++) {
+        keysDown[i] = false;
+        keysUp[i] = false;
+    }
+    _anyKeyDown = false;
 }
 
-void Inputs::keyPressed(Model * mdl)
-{
-  switch(wParam)
-  {
-  case VK_LEFT:
-    mdl->rotateY -=1.0;
-    break;
-
-  case VK_RIGHT:
-    mdl->rotateY +=1.0;
-    break;
-
-  case VK_DOWN:
-    mdl->rotateX +=1.0;
-    break;
-
-  case VK_UP:
-    mdl->rotateX -=1.0;
-    break;
-
-  case VK_SUBTRACT:
-    mdl->zoom -=1.0;
-    break;
-
-    case VK_ADD:
-    mdl->zoom +=1.0;
-    break;
-  }
+bool Inputs::GetKeyDown(const KeyCode wParam) {
+    return keysDown[(int)wParam];
 }
 
-void Inputs::keyPlayer(player*  ply)
-{
-    switch(wParam)
-  {
-
-  case VK_RIGHT:
-   ply->actions(ply->WALKR);
-    break;
-
-  case VK_LEFT:
-    ply->actions(ply->WALKL);
-    break;
-
-  case VK_DOWN:
-
-    break;
-
-  case VK_UP:
-
-    break;
-}
+bool Inputs::GetKeyUp(const KeyCode wParam) {
+    return keysUp[(int)wParam];
 }
 
-
-
-void Inputs::keyUp()
-{
-   switch(wParam)
-  {}
+bool Inputs::GetKey(const KeyCode wParam) {
+    return keysHold[(int)wParam];
 }
 
-void Inputs::mouseBtnDwn(Model * mdl,double x, double y)
-{
-     prev_Mx = x;
-     prev_My = y;
+bool InputSystem::Inputs::anyKeyDown() { return _anyKeyDown; }
 
-     switch(wParam)
-     {
-         case MK_LBUTTON: Mouse_Rotate = true; break;
-         case MK_RBUTTON: Mouse_translate = true; break;
-         case MK_MBUTTON: break;
-     }
+//pass in LOWORD(lParam) for x, HIWORD(lParam) for y
+void Inputs::mouseButtonDown(const WPARAM wParam, double x, double y) {
+    prev_MouseX = x;
+    prev_MouseY = y;
+
+    switch (wParam) {
+        case MK_LBUTTON:
+            Mouse_Rotate = true;
+            break;
+        case MK_RBUTTON:
+            Mouse_Translate = true;
+            break;
+        case MK_MBUTTON:
+            break;
+    }
 }
 
-void Inputs::mouseBtnUp()
-{
+void Inputs::mouseButtonUp() {
     Mouse_Rotate = false;
-    Mouse_translate = false;
-}
-
-void Inputs::mouseWheel(Model * mdl,double delta)
-{
-    mdl->zoom +=delta/100.0;
-}
-
-void Inputs::mouseMove(Model * mdl,double x, double y)
-{
-    if(Mouse_translate)
-    {
-        mdl->posX += (x - prev_Mx)/100.0;
-        mdl->posY -= (y - prev_My)/100.0;
-
-        prev_Mx =x;
-        prev_My =y;
-    }
-
-    if(Mouse_Rotate)
-    {
-        mdl->rotateX += (x - prev_Mx)/3.0;
-        mdl->rotateY += (y - prev_My)/3.0;
-
-        prev_Mx =x;
-        prev_My =y;
-    }
+    Mouse_Translate = false;
 
 }
 
+//pass in GET_WHEEL_DELTA_WPARAM(wParam)
+void Inputs::mouseWheel(const WPARAM wParam, const double delta) {
+    float newDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+    delta / 100;//x += ?
+}
 
+Vector2 Inputs::GetMousePosition() {
+    //int x, y;
+    //glutMotionFunc([](int _x, int _y) { prev_MouseX = _x; prev_MouseY = _y; });
+
+    //int o = GetSystemMetrics(SM_CXSCREEN);
+
+    float factor = 1100 / -(float)SceneManager::camDist;
+
+    POINT mousePosition{};
+    return GetCursorPos(&mousePosition)
+        ? Vector2((float)(mousePosition.x - (float)GetSystemMetrics(SM_CXSCREEN) / 2) / factor, (float)(-mousePosition.y + GetSystemMetrics(SM_CYSCREEN) / 2) / factor)
+        : Vector2::zero();
+}

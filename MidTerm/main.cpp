@@ -15,8 +15,9 @@
 #include <iostream>
 #include <windows.h>		// Header File For Windows
 
-#include<GLScene.h>
-
+#include"SealEngine.h"
+#include"SealPackages.h"
+using namespace SealEngine;
 using namespace std;
 
 
@@ -31,7 +32,8 @@ bool	fullscreen=TRUE;	// Fullscreen Flag Set To Fullscreen Mode By Default
 
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
-GLScene *Scene = new GLScene();
+std::unique_ptr<SceneManager> sceneManager = std::make_unique<SceneManager>();
+std::vector<std::unique_ptr<IMessageHandler>> messageHandlers{};
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //										THE KILL GL WINDOW
@@ -243,7 +245,9 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 							WPARAM	wParam,			// Additional Message Information
 							LPARAM	lParam)			// Additional Message Information
 {
-    Scene->winMsg(hWnd,uMsg,wParam,lParam);
+    //Scene->winMsg(hWnd,uMsg,wParam,lParam);
+    	for (auto& messageHandler : messageHandlers) messageHandler->TryHandleMessage(message, wParam, lParam);
+
 	switch (uMsg)									// Check For Windows Messages
 	{
 		case WM_ACTIVATE:							// Watch For Window Activate Message
@@ -292,7 +296,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 
 		case WM_SIZE:								// Resize The OpenGL Window
 		{
-		    Scene->GLReSize(LOWORD(lParam),HIWORD(lParam));
+		    sceneManager->ReSizeGl(LOWORD(lParam),HIWORD(lParam));
                                                     // LoWord=Width, HiWord=Heigh
 			return 0;								// Jump Back
 		}
@@ -329,9 +333,11 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 	{
 		return 0;									// Quit If Window Was Not Created
 	}
+	messageHandlers.emplace_back(std::make_unique<Inputs>());
 
 	while(!done)									// Loop That Runs While done=FALSE
-	{
+	{		for (auto& messageHandler : messageHandlers) messageHandler->ResetOnNextFrame();
+
 		if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))	// Is There A Message Waiting?
 		{
 			if (msg.message==WM_QUIT)				// Have We Received A Quit Message?
@@ -346,8 +352,9 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 		}
 		else										// If There Are No Messages
 		{
+		    Time::OnNextFrame();
 			// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
-		if ((keys[VK_ESCAPE]) || (active && !Scene->drawScene()))
+		if ((active && sceneManager->Refresh()))
 			{
 				done=TRUE;							// ESC or DrawGLScene Signalled A Quit
 			}
@@ -355,18 +362,6 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 			{
 
 				SwapBuffers(hDC);				// Swap Buffers (Double Buffering)
-			}
-
-			if (keys[VK_F1])						// Is F1 Being Pressed?
-			{
-				keys[VK_F1]=FALSE;					// If So Make Key FALSE
-				KillGLWindow();						// Kill Our Current Window
-				fullscreen=!fullscreen;				// Toggle Fullscreen / Windowed Mode
-				// Recreate Our OpenGL Window
-				if (!CreateGLWindow("Game Engine Lesson 01",fullscreenWidth,fullscreenHeight,256,fullscreen))
-				{
-					return 0;						// Quit If Window Was Not Created
-				}
 			}
 		}
 	}

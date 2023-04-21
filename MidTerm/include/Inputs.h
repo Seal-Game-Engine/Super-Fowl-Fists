@@ -1,39 +1,43 @@
-#ifndef INPUTS_H
-#define INPUTS_H
-#include<windows.h>
-#include <Model.h>
-#include <parallax.h>
-#include <player.h>
+#pragma once
+#include "IMessageHandler.h"
+#include "KeyCode.h"
+namespace SealEngine { struct Vector2; }
 
-class Inputs
-{
-    public:
-        Inputs();
-        virtual ~Inputs();
+namespace SealEngine {
+	namespace InputSystem {
+		class Inputs : public IMessageHandler {
+		public:
+			bool TryHandleMessage(const UINT, const WPARAM, const LPARAM) override;
+			void ResetOnNextFrame() override;
 
-        void keyPressed(Model *);
-        void keyPlayer(player *);
-        void keyUp();
+			static bool GetKeyDown(const KeyCode);
+			static bool GetKeyUp(const KeyCode);
+			static bool GetKey(const KeyCode);
 
-        void mouseBtnDwn(Model *, double, double);
-        void mouseBtnUp();
-        void mouseWheel(Model *,double);
-        void mouseMove(Model *,double, double);
-        void keyEnv(parallax *, float);
+			static bool anyKeyDown();
 
-        WPARAM wParam;
+			void mouseButtonDown(const WPARAM, double, double);
+			void mouseButtonUp();
+			void mouseWheel(const WPARAM, const double);
 
-        double prev_Mx;
-        double prev_My;
+			static Vector2 GetMousePosition();
 
-        bool Mouse_translate =false;
-        bool Mouse_Rotate =false;
+			static float prev_MouseX;
+			static float prev_MouseY;
 
-      //  Model *mdl=new Model();
+			bool Mouse_Translate;
+			bool Mouse_Rotate;
 
-    protected:
+		private:
+			static UINT _uMessage;
+			static KeyCode _wParam;
+			static LPARAM _lParam;
 
-    private:
-};
+			static bool keysHold[256];
+			static bool keysDown[256];
+			static bool keysUp[256];
 
-#endif // INPUTS_H
+			static bool _anyKeyDown;
+		};
+	}
+}
