@@ -1,7 +1,7 @@
 #include "ApplicationManager.h";
 #include "Input.h"
 #include "Time.h"
-#include "Assets_Scenes.h"
+#include "../Assets_Scenes.h"
 
 using namespace SealEngine;
 

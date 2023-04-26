@@ -1,5 +1,5 @@
 #pragma once
-#include "SealEngine.h"
+#include "../SealEngine.h"
 using namespace SealEngine;
 
 class Collider2D :public MonoBehaviour{

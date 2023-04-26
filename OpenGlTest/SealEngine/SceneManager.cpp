@@ -1,9 +1,9 @@
-#include "GLLight.h"
-#include "SealEngine.h"
-#include "CheckCollision.h"
-#include "Font.h"
-#include "AssetManager.h"
-#include "Assets_Scenes.h"
+#include "../GLLight.h"
+#include "../SealEngine.h"
+//#include "CheckCollision.h"
+//#include "Font.h"
+#include "../AssetManager.h"
+#include "../Assets_Scenes.h"
 using namespace SealEngine::InputSystem;
 
 int SceneManager::currentSceneId = 0;
@@ -12,7 +12,7 @@ bool SceneManager::_quitApplication = false;
 //std::vector<std::unique_ptr<Scene>> SceneManager::scenes = std::vector<std::unique_ptr<Scene>>{};
 std::vector<Scene*> SceneManager::scenes = std::vector<Scene*>{};
 std::queue<int> SceneManager::sceneLoadQuery = std::queue<int>{};
-std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
+//std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.push(sceneBuildIndex); }
 

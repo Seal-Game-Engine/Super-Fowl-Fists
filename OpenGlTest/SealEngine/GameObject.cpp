@@ -1,6 +1,6 @@
 #include "GameObject.h"
 #include "Transform.h"
-#include "Player.h"
+#include "SceneManager.h"
 using namespace SealEngine;
 
 //constructors
@@ -62,7 +62,14 @@ GameObject::GameObject(const GameObject& obj)
 bool GameObject::activeSelf() const { return _activeSelf; }
 GameObject GameObject::Find(std::string name) { return GameObject(name); }
 GameObject* GameObject::FindWithTag(std::string tag) { return nullptr; }
-std::vector<GameObject> GameObject::FindGameObjectsWithTag(std::string tag) { return std::vector<GameObject>(); } //need SceneManager
+std::vector<GameObject*> GameObject::FindGameObjectsWithTag(const std::string& tag) {
+	std::vector<GameObject*> gameObjectsFound{};
+	for (auto& _gameObject : SceneManager::scenes[SceneManager::currentSceneId]->gameObjects) {
+		if (_gameObject->tag == tag)
+			gameObjectsFound.emplace_back(_gameObject.get());
+	}
+	return gameObjectsFound;
+}
 bool GameObject::CompareTag(std::string tag) { return this->tag == tag; }
 void GameObject::SetActive(bool value) { _activeSelf = value; }
 

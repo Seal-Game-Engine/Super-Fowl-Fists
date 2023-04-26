@@ -2,7 +2,7 @@
 #include <memory>
 #include <vector>
 #include "SealPackages.h"
-#include "SealEngine.h"
+#include "../SealEngine.h"
 #include "SceneManager.h"
 using namespace SealEngine::InputSystem;
 namespace SealEngine
