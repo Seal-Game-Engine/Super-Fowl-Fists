@@ -97,6 +97,7 @@ const GameObject AssetManager::ProjectileObject_Blue = GameObject(
 });
 #pragma endregion
 
+#pragma region Backgrounds
 const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::GalaxyBackground = Texture2D("Assets/GalaxyBackground.png", Texture2D::FilterMode::Nearest);
 const GameObject GalaxyBackgroundObject = GameObject(
@@ -104,7 +105,9 @@ const GameObject GalaxyBackgroundObject = GameObject(
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Parallax>(&AssetManager::GalaxyBackground[0], Vector2::left(), 0.05f),
 });
+#pragma endregion
 
+#pragma region Menu
 const Texture2D AssetManager::GameTitle = Texture2D("Assets/GameTitle.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::MenuOptions = Texture2D("Assets/MenuOptions.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
@@ -120,6 +123,7 @@ const AnimatorController AssetManager::GreenSlime_Controller = AnimatorControlle
 	State("Idle", &GreenSlime_Idle), 
 	});
 		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
+#pragma endregion
 
 #pragma region Nario
 const Texture2D AssetManager::Nario = Texture2D("Assets/Nario.png", Texture2D::FilterMode::Nearest, 3, 4);
@@ -169,6 +173,95 @@ const GameObject AssetManager::NarioObject = GameObject("Player", std::vector<st
 });
 #pragma endregion
 
+#pragma region BigTikeMyson
+const Texture2D AssetManager::BigTikeMyson = Texture2D("Assets/Fighter1.png", Texture2D::FilterMode::Nearest, 3, 4);
+const AnimationClip AssetManager::BigTikeMyson_Idle = AnimationClip({
+	{ BigTikeMyson[0], 0.2f },
+	{ BigTikeMyson[1], 0.3f },
+	{ BigTikeMyson[0], 0.2f },
+	{ BigTikeMyson[2], 0.3f },
+	}, true);
+const AnimationClip AssetManager::BigTikeMyson_Walk = AnimationClip({
+	{ BigTikeMyson[6], 0.1f },
+	{ BigTikeMyson[7], 0.1f },
+	{ BigTikeMyson[6], 0.1f },
+	{ BigTikeMyson[8], 0.1f },
+	}, true);
+const AnimationClip AssetManager::BigTikeMyson_Jump = AnimationClip({
+	{ BigTikeMyson[9], 0.1f },
+	{ BigTikeMyson[10], 0.1f },
+	{ BigTikeMyson[11], 0.1f }
+	}, false);
+
+const AnimatorController AssetManager::BigTikeMyson_Controller = AnimatorController({
+	State("Idle", &BigTikeMyson_Idle, {
+		{ "Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
+	}),
+	State("Walk", &BigTikeMyson_Walk, {
+		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
+	}),
+	State("Jump", &BigTikeMyson_Jump, {
+		{ "Idle", true, 3, [](auto& animator) { return true; } },
+	}),
+	});
+
+//const GameObject AssetManager::BigTikeMysonObject = GameObject("Player", std::vector<std::shared_ptr<MonoBehaviour>>{
+//	std::make_shared<SpriteRenderer>(&AssetManager::BigTikeMyson[0], false, false),
+//		std::make_shared<Animator>(&AssetManager::BigTikeMyson_Controller),
+//		std::make_shared<Player>(),
+//		std::make_shared<Collider2D>()
+//});
+#pragma endregion
+
+#pragma region MiniTikeMyson
+const Texture2D AssetManager::MiniTikeMyson = Texture2D("Assets/Fighter3.png", Texture2D::FilterMode::Nearest, 3, 3);
+const AnimationClip AssetManager::MiniTikeMyson_Idle = AnimationClip({
+	{ MiniTikeMyson[0], 0.2f },
+	{ MiniTikeMyson[1], 0.3f },
+	{ MiniTikeMyson[0], 0.2f },
+	{ MiniTikeMyson[2], 0.3f },
+	}, true);
+const AnimationClip AssetManager::MiniTikeMyson_Walk = AnimationClip({
+	{ MiniTikeMyson[3], 0.1f },
+	{ MiniTikeMyson[4], 0.1f },
+	{ MiniTikeMyson[3], 0.1f },
+	{ MiniTikeMyson[5], 0.1f },
+	}, true);
+const AnimationClip AssetManager::MiniTikeMyson_Jump = AnimationClip({
+	{ MiniTikeMyson[6], 0.1f },
+	{ MiniTikeMyson[7], 0.1f },
+	{ MiniTikeMyson[8], 0.1f }
+	}, false);
+
+const AnimatorController AssetManager::MiniTikeMyson_Controller = AnimatorController({
+	State("Idle", &MiniTikeMyson_Idle, {
+		{ "Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
+	}),
+	State("Walk", &MiniTikeMyson_Walk, {
+		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
+	}),
+	State("Jump", &MiniTikeMyson_Jump, {
+		{ "Idle", true, 3, [](auto& animator) { return true; } },
+	}),
+	});
+
+const GameObject AssetManager::MiniTikeMysonObject = GameObject("Player", std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::MiniTikeMyson[0], false, false),
+		std::make_shared<Animator>(&AssetManager::MiniTikeMyson_Controller),
+		std::make_shared<Player>(),
+		std::make_shared<Collider2D>()
+});
+#pragma endregion
+
+
+
+
+
+
+
+
+
+#pragma region Obstacle
 //Obstacle
 const Texture2D AssetManager::ObstacleTexture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3,1);
 const AnimationClip AssetManager::Obstacle_Idle = AnimationClip({
@@ -189,11 +282,18 @@ const GameObject AssetManager::ObstacleObject = GameObject("Obstacle", std::vect
 const GameObject AssetManager::ObstacleSpawnerObject = GameObject("ObstacleSpawnerObject", std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<ObstacleSpawner>(),
 });
+#pragma endregion
 
+#pragma region Misc
 //Misc
 const Texture2D AssetManager::SkyBackground = Texture2D("Assets/SkyBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::MountainBackground = Texture2D("Assets/MountainBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::Googleplex = Texture2D("Assets/Googleplex.png", Texture2D::FilterMode::Linear);
+#pragma endregion
+
+
+
+
 
 #pragma region LandingScene
 const GameObject TitleObject = GameObject(
@@ -242,7 +342,6 @@ Scene Assets_Scenes::MenuScene = Scene({
 	});
 #pragma endregion
 
-
 #pragma region TutorialScene
 const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
 const GameObject TutorialTextObject = GameObject(
@@ -262,8 +361,6 @@ Scene Assets_Scenes::TutorialScene = Scene({
 	});
 
 #pragma endregion
-
-
 
 #pragma region XwingScene
 const GameObject SpaceBackgroundObject = GameObject(
@@ -311,7 +408,7 @@ const GameObject NewNarioObject = GameObject("Player", std::vector<std::shared_p
 
 
 Scene Assets_Scenes::GameScene = Scene({
-	{&NewNarioObject, Transform(Vector3(0, -1.5f, 0))},
+	{&AssetManager::MiniTikeMysonObject, Transform()},
 	{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform()},
 	});

@@ -26,6 +26,7 @@ public:
 	static const Texture2D GreenSlime;
 	static const AnimationClip GreenSlime_Idle;
 	static const AnimatorController GreenSlime_Controller;
+
 	//Nario
 	static const Texture2D Nario;
 	static const AnimationClip Nario_Idle;
@@ -34,6 +35,22 @@ public:
 	static const AnimationClip Nario_Jump;
 	static const AnimatorController Nario_Controller;
 	static const GameObject NarioObject;
+
+	//Big TikeMyson
+	static const Texture2D BigTikeMyson;
+	static const AnimationClip BigTikeMyson_Idle;
+	static const AnimationClip BigTikeMyson_Walk;
+	static const AnimationClip BigTikeMyson_Jump;
+	static const AnimatorController BigTikeMyson_Controller;
+	static const GameObject BigTikeMysonObject;
+
+	//Mini TikeMyson
+	static const Texture2D MiniTikeMyson;
+	static const AnimationClip MiniTikeMyson_Idle;
+	static const AnimationClip MiniTikeMyson_Walk;
+	static const AnimationClip MiniTikeMyson_Jump;
+	static const AnimatorController MiniTikeMyson_Controller;
+	static const GameObject MiniTikeMysonObject;
 
 	//Obstacle
 	static const Texture2D ObstacleTexture;
