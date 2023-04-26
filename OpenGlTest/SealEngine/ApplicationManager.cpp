@@ -265,8 +265,6 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 		return false;
 	}
 	messageHandlers.emplace_back(std::make_unique<Input>());
-
-	sceneManager->scenes.push_back(std::make_unique<LandingScene>());
 	sceneManager->LoadScene(0);
 
 	MSG msg;

@@ -59,8 +59,6 @@ GameObject::GameObject(const GameObject& obj)
 	transform = GetComponent<Transform>();
 }
 
-std::shared_ptr<GameObject> SealEngine::GameObject::Clone() const { return std::shared_ptr<GameObject>(Clone_impl()); }
-
 bool GameObject::activeSelf() const { return _activeSelf; }
 GameObject GameObject::Find(std::string name) { return GameObject(name); }
 GameObject* GameObject::FindWithTag(std::string tag) { return nullptr; }

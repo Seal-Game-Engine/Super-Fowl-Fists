@@ -14,6 +14,3 @@ void Projectile::Update() {
 	}
 	transform()->position += Vector2::up() * speed * Time::deltaTime();
 }
-
-Projectile* Projectile::Clone_impl() const { return new Projectile(*this); }
-

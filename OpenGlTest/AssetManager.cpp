@@ -11,6 +11,8 @@ using State = AnimatorController::AnimationState;
 #include "Player.h"
 #include "Projectile.h"
 #include "Parallax.h"
+#include "Obstacle.h"
+#include "ObstacleSpawner.h"
 
 const Texture2D AssetManager::Hector_Run = Texture2D("Assets/Hector_Run.png", Texture2D::FilterMode::Nearest, 4, 3);
 const AnimationClip AssetManager::Hector_Idle = AnimationClip({
@@ -111,10 +113,9 @@ const AnimationClip AssetManager::GreenSlime_Idle = AnimationClip({
 	{ GreenSlime[5], 0.15f },
 }, true);
 const AnimatorController AssetManager::GreenSlime_Controller = AnimatorController({
-	State("Idle", &GreenSlime_Idle, {
+	State("Idle", &GreenSlime_Idle), 
+	});
 		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
-#include "Obstacle.h"
-#include "ObstacleSpawner.h"
 
 //Nario
 const Texture2D AssetManager::Nario = Texture2D("Assets/Nario.png", Texture2D::FilterMode::Nearest, 3, 4);

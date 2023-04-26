@@ -50,5 +50,3 @@ void SpriteRenderer::LateUpdate() {
 	}
 	glPopMatrix();
 }
-
-SpriteRenderer* SpriteRenderer::Clone_impl() const { return new SpriteRenderer(*this); }

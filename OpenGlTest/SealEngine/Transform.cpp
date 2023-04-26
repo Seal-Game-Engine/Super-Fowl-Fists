@@ -1,19 +1,11 @@
 #include "Transform.h"
 #include <cmath>
-#include "SealEngine.h"
 using namespace SealEngine;
 
 Transform::Transform(Vector3 position)
 	: position(position) {}
 Transform::Transform(Vector3 position, Vector3 rotation, Vector3 scale) 
 	: position(position), rotation(rotation), scale(scale) {}
-
-std::shared_ptr<Transform> Transform::Clone() const
-{
-	return std::shared_ptr<Transform>(Clone_impl());
-}
-
-Transform* SealEngine::Transform::Clone_impl() const { return new Transform(*this); }
 
 Vector3 Transform::up() const { 
 	Vector3 up = Vector3::up();

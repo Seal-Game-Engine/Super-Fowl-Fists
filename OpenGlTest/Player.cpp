@@ -17,25 +17,19 @@ void Player::Update() {
 		: Input::GetKey(KeyCode::S) || Input::GetKey(KeyCode::DownArrow) ? -1
 		: 0;
 
-	Vector2 horizontalMovement = Vector2::right() * (float)x * speed * Time::deltaTime();
-	Vector2 verticalMovement = Vector2::up() * (float)y * speed * Time::deltaTime();
+	Vector2 horizontalMovement = Vector2::right() * (float)x * _speed * Time::deltaTime();
+	Vector2 verticalMovement = Vector2::up() * (float)y * _speed * Time::deltaTime();
 	transform()->position += horizontalMovement + verticalMovement;
 	
 	if (std::abs(transform()->position.x()) > (float)ApplicationManager::width / 280.0f) transform()->position -= horizontalMovement;
 	if (std::abs(transform()->position.y()) > (float)ApplicationManager::height / 280.0f) transform()->position -= verticalMovement;
 
 	animator->SetInteger("x", x);
-#include "LandingScene.h"
-#include <cmath>
-void Player::Awake() {
-animator = gameObject->GetComponent<Animator>();
-}
 
-void Player::Update() {
 	/*
-	308.0f
-	315.0f
-	*/
+	//308.0f
+	//315.0f
+	
 
 	float screenWidth = 340.0f;
 	float screenHeight = 340.0f;
@@ -65,10 +59,8 @@ void Player::Update() {
 		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
 		_nextFire = Time::time() + 0.15f;
 	}
-}
-
-Player* Player::Clone_impl() const { return new Player(*this); }
 	animator->SetInteger("x", x);
+	*/
 }
 
 void Player::LateUpdate() {

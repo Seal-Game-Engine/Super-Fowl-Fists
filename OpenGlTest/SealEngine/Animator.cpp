@@ -29,6 +29,8 @@ Animator::Animator(const AnimatorController* animatorController) {
 	SetAnimatorController(animatorController);
 }
 
+void Animator::Awake() { renderer = gameObject->GetComponent<SpriteRenderer>(); }
+
 void Animator::Update() {
 	if (!animatorController) return;
 	if (!renderer)renderer = gameObject->GetComponent<SpriteRenderer>();
@@ -62,5 +64,3 @@ void Animator::HandleStateEnter(const AnimatorController::AnimationState* state)
 void Animator::HandleStateExit(const AnimatorController::AnimationState::Transition& transition) {
 	Play(transition.targetState);
 }
-
-Animator* SealEngine::Animator::Clone_impl() const { return new Animator(*this); }

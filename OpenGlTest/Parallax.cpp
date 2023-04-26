@@ -1,6 +1,4 @@
 #include "Parallax.h"
-#include "AssetManager.h"
-#include "ApplicationManager.h"
 
 void Parallax::Update() {
     rect.SetMinVertex(

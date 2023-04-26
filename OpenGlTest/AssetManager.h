@@ -1,5 +1,5 @@
 #pragma once
-#include<memory>
+#include <memory>
 #include "SealEngine.h"
 using namespace SealEngine;
 
@@ -56,7 +56,7 @@ public:
 	static const Texture2D MenuOptions;
 	static const Texture2D PauseScreen;
 	static const Texture2D PauseMessage;
-};
+
 	static const Texture2D SkyBackground;
 	static const Texture2D MountainBackground;
 };
