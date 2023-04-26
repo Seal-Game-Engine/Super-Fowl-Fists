@@ -406,8 +406,16 @@ const GameObject NewNarioObject = GameObject("Player", std::vector<std::shared_p
 		std::make_shared<Collider2D>()
 });
 
+const Texture2D ForestBackgroundTexture = Texture2D("Assets/level_1.png", Texture2D::FilterMode::Linear);
+const GameObject ForestBackgroundObject = GameObject(
+	"Background",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Parallax>(&ForestBackgroundTexture[0], Vector2::left(), 0.1f),
+});
+
 
 Scene Assets_Scenes::GameScene = Scene({
+	{&ForestBackgroundObject, Transform()},
 	{&AssetManager::MiniTikeMysonObject, Transform()},
 	{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform()},
