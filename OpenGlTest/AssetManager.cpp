@@ -414,10 +414,18 @@ const GameObject ForestBackgroundObject = GameObject(
 });
 
 
+const GameObject OtherGameEventManagerObject = GameObject(
+	"GameEventManager",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&TutorialText[0], false, false),
+		std::make_shared<GameEventManager>(),
+});
+
 Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
 	{&AssetManager::MiniTikeMysonObject, Transform()},
 	{&AssetManager::ObstacleSpawnerObject, Transform()},
-	{&GameEventManagerObject, Transform()},
+	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
+	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	});
 #pragma endregion
