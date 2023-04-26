@@ -11,11 +11,19 @@ void Obstacle::Awake() {
 	spawnedPosition = Vector2(x, y);
 }
 
+void Obstacle::Start(){
+	player = FindFirstObjectByType<NarioPlayer>();
+}
+
 void Obstacle::Update() { //move to other direction
-	if (spawnedPosition.x() > 0)
+	Vector2 direction = (player->transform()->position - transform()->position).normalized();
+
+	transform()->position += direction * (rand() % 5) * Time::deltaTime();
+
+	/*if (spawnedPosition.x() > 0)
 		transform()->position += Vector2::left() * (rand() % 5) * Time::deltaTime();
 	else
-		transform()->position += Vector2::right() * (rand() % 5) * Time::deltaTime();
+		transform()->position += Vector2::right() * (rand() % 5) * Time::deltaTime();*/
 }
 
 void Obstacle::OnCollisionEnter2D() {
