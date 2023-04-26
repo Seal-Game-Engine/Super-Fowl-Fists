@@ -2,9 +2,8 @@
 #include "AssetManager.h"
 
 void ObstacleSpawner::Update() {
-	if(Time::time() >= nextSpawnTime)
-	{Object::Instantiate(AssetManager::ObstacleObject);
-	nextSpawnTime = Time::time() + spawnDelay;}
-	
-
+	if (Time::time() >= nextSpawnTime) {
+		Object::Instantiate(AssetManager::ObstacleObject);
+		nextSpawnTime = Time::time() + spawnDelay;
+	}
 }

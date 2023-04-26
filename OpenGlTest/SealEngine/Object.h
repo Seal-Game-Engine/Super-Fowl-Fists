@@ -24,17 +24,26 @@ namespace SealEngine {
 
 			auto& gameObjects = SceneManager::GetActiveScene()->gameObjects;
 			for (int i = 0; i < gameObjects.size(); i++) {
-				if (target = dynamic_cast<T*>(gameObjects[i].get())) break;
+				if (target = dynamic_cast<T*>(gameObjects[i].get())) return target;
 
 				for (int j = 0; j < gameObjects[i]->components.size(); j++)
-					if (target = dynamic_cast<T*>(gameObjects[i]->components[j].get())) break;
+					if (target = dynamic_cast<T*>(gameObjects[i]->components[j].get())) return target;
 			}
-			return target;
+			return nullptr;
 		}
 
 		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
-		static std::vector<T> FindObjectsByType(FindObjectsInactive = FindObjectsInactive::Exclude) {
-			return std::vector<T>(); 
+		static std::vector<T*> FindObjectsByType(FindObjectsInactive = FindObjectsInactive::Exclude) {
+			std::vector<T*> targets{};
+
+			auto& gameObjects = SceneManager::GetActiveScene()->gameObjects;
+			for (int i = 0; i < gameObjects.size(); i++) {
+				if (auto target = dynamic_cast<T*>(gameObjects[i].get())) targets.emplace_back(target);
+
+				for (int j = 0; j < gameObjects[i]->components.size(); j++)
+					if (auto target = dynamic_cast<T*>(gameObjects[i]->components[j].get())) targets.emplace_back(target);
+			}
+			return targets;
 		}
 
 		static Object* Instantiate(const Object& obj);

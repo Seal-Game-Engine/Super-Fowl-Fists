@@ -1,5 +1,6 @@
 #include "NarioPlayer.h"
 #include "AssetManager.h"
+#include "Obstacle.h"
 #include <cmath>
 
 void NarioPlayer::Awake() {
@@ -35,6 +36,11 @@ void NarioPlayer::Update() {
 	if (transform()->position.y() < -((float)ApplicationManager::height / screenHeight)) transform()->position.Set(transform()->position.x(), -(float)ApplicationManager::height / screenHeight, transform()->position.z());
 
 	animator->SetInteger("x", x);
+
+	if (Input::GetKeyDown(KeyCode::Space)) {
+		auto obstacles = FindObjectsByType<Obstacle>();
+		for (auto& obstacle : obstacles) Destroy(*obstacle->gameObject);
+	}
 }
 
 void NarioPlayer::LateUpdate() {
