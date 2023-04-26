@@ -82,11 +82,15 @@ void Player::Update() {
 void Player::LateUpdate() {
 
 	std::vector<Collider2D*> myColliders = gameObject->GetComponents<Collider2D>();
+	auto& z = SceneManager::scenes[SceneManager::currentSceneId];
 	for (auto& _gameObject : SceneManager::GetActiveScene()->gameObjects) {
+		auto x = gameObject->GetInstanceId();
+		auto y = _gameObject->GetInstanceId();
+		if (x == y) continue;
   		std::vector<Collider2D*> otherColliders = _gameObject->GetComponents<Collider2D>();
 		for (auto& myCollider : myColliders)
 			for (auto& otherCollider : otherColliders) {
-				if (*myCollider->gameObject != *otherCollider->gameObject && Collider2D::checkCollision(*myCollider,*otherCollider)) {
+				if (*myCollider->gameObject != *otherCollider->gameObject && Collider2D::checkCollision(*myCollider, *otherCollider)) {
 					for (auto& component : gameObject->components) component->OnCollisionEnter2D();
 					for (auto& component : otherCollider->gameObject->components) component->OnCollisionEnter2D();
 				}
@@ -95,6 +99,6 @@ void Player::LateUpdate() {
 }
 
 void Player::OnCollisionEnter2D(){
-	//renderer->enabled = false;
+	renderer->enabled = false;
 }
 

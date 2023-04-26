@@ -269,7 +269,7 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 		return false;
 	}
 	messageHandlers.emplace_back(std::make_unique<Input>());
-	sceneManager->LoadScene(0);
+	
 
 	MSG msg;
 	while (true) {

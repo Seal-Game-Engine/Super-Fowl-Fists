@@ -8,7 +8,7 @@ void Collider2D::Update() {
 }
 
 bool Collider2D::checkCollision(Collider2D& a, Collider2D& b) {
-	return Vector2::Distance(a.transform()->position, b.transform()->position) < 1;
+	return Vector2::Distance(a.transform()->position, b.transform()->position) < 0.5f;
 }
 
 

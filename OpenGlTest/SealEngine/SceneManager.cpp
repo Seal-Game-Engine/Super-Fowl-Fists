@@ -15,7 +15,7 @@ std::vector<Scene*> SceneManager::scenes = std::vector<Scene*>{};
 std::queue<int> SceneManager::sceneLoadQuery = std::queue<int>{};
 //std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
-void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.push(sceneBuildIndex); }
+void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.emplace(sceneBuildIndex); }
 
 Scene* SceneManager::GetActiveScene() { return scenes[currentSceneId]; }
 
@@ -42,9 +42,9 @@ bool SceneManager::RefreshScene() {
 
     while (!sceneLoadQuery.empty()) {
         if (scenes.size() > sceneLoadQuery.front()) {
-            scenes[currentSceneId]->Unload();
+            GetActiveScene()->Unload();
             currentSceneId = sceneLoadQuery.front();
-            scenes[currentSceneId]->Load();
+            GetActiveScene()->Load();
         }
         sceneLoadQuery.pop();
     }
