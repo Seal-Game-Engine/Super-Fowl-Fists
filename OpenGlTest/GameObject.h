@@ -21,6 +21,44 @@ namespace SealEngine {
         GameObject(const GameObject& obj);
         std::shared_ptr<GameObject> Clone() const;
 
+		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+		std::vector<T*> GetComponents() {
+			std::vector<T*> tComponents{};
+			for (auto& _component : components) if (T* component = dynamic_cast<T*>(_component.get())) tComponents.emplace_back(component);
+			return tComponents;
+		}
+
+		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+		bool TryGetComponent(T*& component) {
+			return GetComponent<T>() != nullptr;
+		}
+
+#pragma region Nothing
+
+
+		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+		T GetComponentInParent(bool includeInactive = false) {
+			return T();
+		}
+
+
+		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+		T GetComponentInChild(bool includeInactive = false) {
+			return T();
+		}
+
+		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+		std::vector<T> GetComponentsInParent(bool includeInactive = false) {
+			return std::vector<T>();
+		
+		}
+
+		template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+		std::vector<T> GetComponentsInChild(bool includeInactive = false) {
+			return std::vector<T>();
+		}
+
+#pragma endregion
 
         std::vector<std::shared_ptr<MonoBehaviour>> components{};
         //std::vector<MonoBehaviour> components = std::vector<MonoBehaviour>{};

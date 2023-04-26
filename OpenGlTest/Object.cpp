@@ -53,5 +53,3 @@ void Object::DestroyImmediate(Object object, bool allowDestroyingAssets) {
 
 void Object::DontDestroyOnLoad(Object target) {
 }
-
-Object* Object::Clone_impl() const { return new Object(*this); }

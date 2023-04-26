@@ -1,4 +1,4 @@
-#include "Rect.h"
+ #include "Rect.h"
 using namespace SealEngine;
 
 Rect::Rect(const float x, const float y, const float width, const float height)

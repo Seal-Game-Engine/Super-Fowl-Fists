@@ -10,8 +10,6 @@ bool MonoBehaviour::operator!=(const MonoBehaviour& obj) {
     return this != &obj;
 }
 
-MonoBehaviour* SealEngine::MonoBehaviour::Clone_impl() const { return new MonoBehaviour(*this); }
-
 bool MonoBehaviour::isActiveAndEnabled() { return enabled && gameObject->activeSelf(); }
 
 Transform* MonoBehaviour::transform() { return gameObject->transform; }

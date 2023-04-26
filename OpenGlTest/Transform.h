@@ -21,6 +21,6 @@ public:
     std::shared_ptr<Transform> Clone() const;
 
 private:
-    Transform* Clone_impl() const override;
+    Transform* Clone_impl() const override { return new Transform(*this); }
 };
 }

@@ -12,7 +12,5 @@ public:
 
 private:
 	float speed = 8.0f;
-
-	Projectile* Clone_impl() const override;
+	Projectile* Clone_impl() const override { return new Projectile(*this); }
 };
-

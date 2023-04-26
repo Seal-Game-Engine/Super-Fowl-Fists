@@ -68,8 +68,6 @@ std::vector<GameObject> GameObject::FindGameObjectsWithTag(std::string tag) { re
 bool GameObject::CompareTag(std::string tag) { return this->tag == tag; }
 void GameObject::SetActive(bool value) { _activeSelf = value; }
 
-GameObject* SealEngine::GameObject::Clone_impl() const { return new GameObject(*this); }
-
 //template<>
 //Player* GameObject::GetComponent()
 //{

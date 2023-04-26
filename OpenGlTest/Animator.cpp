@@ -21,18 +21,17 @@ void Animator::SetBool(const std::string& name, bool value) { boolMap[name] = va
 void Animator::SetFloat(const std::string& name, float value) { floatMap[name] = value; }
 void Animator::SetInteger(const std::string& name, int value) { intMap[name] = value; }
 
+void Animator::Play(const std::string& name) {
+	HandleStateEnter(&animatorController->map.find(name)->second);
+}
+
 Animator::Animator(const AnimatorController* animatorController) {
 	SetAnimatorController(animatorController);
 }
 
-std::shared_ptr<Animator> SealEngine::Animator::Clone() const { return std::shared_ptr<Animator>(Clone_impl()); }
-
-void Animator::Awake(){
-	renderer = gameObject->GetComponent<SpriteRenderer>();
-}
-
 void Animator::Update() {
 	if (!animatorController) return;
+	if (!renderer)renderer = gameObject->GetComponent<SpriteRenderer>();
 
 	float clipElapsedTime = (Time::time() - clipBeginTime) / currentState->clip->length();
 
@@ -61,7 +60,7 @@ void Animator::HandleStateEnter(const AnimatorController::AnimationState* state)
 }
 
 void Animator::HandleStateExit(const AnimatorController::AnimationState::Transition& transition) {
-	HandleStateEnter(&animatorController->map.find(transition.targetState)->second);
+	Play(transition.targetState);
 }
 
 Animator* SealEngine::Animator::Clone_impl() const { return new Animator(*this); }

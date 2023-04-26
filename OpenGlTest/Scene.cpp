@@ -31,7 +31,7 @@ void Scene::Refresh() {
     while (!instantiationQueue.empty()) {
         awakeEventQueue.push(instantiationQueue.front().get());
         startEventQueue.push(instantiationQueue.front().get());
-        gameObjects.push_back(instantiationQueue.front());
+        gameObjects.emplace_back(instantiationQueue.front());
         instantiationQueue.pop();
     }
 

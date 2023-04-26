@@ -51,7 +51,7 @@ namespace SealEngine {
 		void LateUpdate() override;
 
 	private:
-		SpriteRenderer* Clone_impl() const override;
+		virtual SpriteRenderer* Clone_impl() const override { return new SpriteRenderer(*this); }
 	};
 }
 
