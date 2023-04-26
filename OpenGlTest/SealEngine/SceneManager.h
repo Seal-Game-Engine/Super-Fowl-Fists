@@ -4,12 +4,17 @@
 #include <vector>
 #include <queue>
 #include "IMessageHandler.h"
-#include "Scene.h"
+//#include "Scene.h"
+namespace SealEngine {
+    class Scene;
+}
 
 namespace SealEngine {
     class SceneManager {
     public:
         static void LoadScene(int sceneBuildIndex);
+        static Scene* GetActiveScene();
+
         bool RefreshScene();
         bool InitGl();
         void ResizeGl(GLfloat, GLfloat);

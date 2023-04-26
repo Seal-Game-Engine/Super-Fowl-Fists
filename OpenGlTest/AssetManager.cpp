@@ -9,6 +9,8 @@
 using State = AnimatorController::AnimationState;
 
 #include "Player.h"
+#include "XwingPlayer.h"
+#include "NarioPlayer.h"
 #include "Projectile.h"
 #include "Parallax.h"
 #include "Obstacle.h"
@@ -43,18 +45,19 @@ const GameObject AssetManager::HectorObject = GameObject(
 		std::make_shared<Player>(),
 });
 
-const Texture2D AssetManager::Xwing = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
+#pragma region Xwing
+const Texture2D AssetManager::XwingTexture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
 const AnimationClip AssetManager::Xwing_Idle = AnimationClip({
-	{ Xwing[0], 0.05f },
-	{ Xwing[3], 0.05f },
+	{ XwingTexture[0], 0.05f },
+	{ XwingTexture[3], 0.05f },
 }, true);
 const AnimationClip AssetManager::Xwing_Left = AnimationClip({
-	{ Xwing[1], 0.05f },
-	{ Xwing[4], 0.05f },
+	{ XwingTexture[1], 0.05f },
+	{ XwingTexture[4], 0.05f },
 }, true);
 const AnimationClip AssetManager::Xwing_Right = AnimationClip({
-	{ Xwing[2], 0.05f },
-	{ Xwing[5], 0.05f },
+	{ XwingTexture[2], 0.05f },
+	{ XwingTexture[5], 0.05f },
 }, true);
 const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 	State("Idle", &Xwing_Idle, {
@@ -69,18 +72,18 @@ const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 	}),
 });;
 const GameObject AssetManager::XwingObject = GameObject(
-	"Player",
+	"Xwing",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::Xwing[0], false, false),
+	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
-		std::make_shared<Player>(),
+		std::make_shared<XwingPlayer>(),
 });
 
-const Texture2D AssetManager::Projectile_Blue = Texture2D("Assets/Projectile_Blue.png", Texture2D::FilterMode::Nearest, 3, 1);
+const Texture2D AssetManager::Projectile_Blue_Texture = Texture2D("Assets/Projectile_Blue.png", Texture2D::FilterMode::Nearest, 3, 1);
 const AnimationClip AssetManager::Projectile_Blue_Idle = AnimationClip({
-	{ Projectile_Blue[0], 0.1f },
-	{ Projectile_Blue[1], 0.1f },
-	{ Projectile_Blue[2], 0.1f },
+	{ Projectile_Blue_Texture[0], 0.1f },
+	{ Projectile_Blue_Texture[1], 0.1f },
+	{ Projectile_Blue_Texture[2], 0.1f },
 }, true);
 const AnimatorController AssetManager::Projectile_Blue_Controller = AnimatorController({
 	State("Idle", &Projectile_Blue_Idle),
@@ -88,10 +91,11 @@ const AnimatorController AssetManager::Projectile_Blue_Controller = AnimatorCont
 const GameObject AssetManager::ProjectileObject_Blue = GameObject(
 	"Projectile (Blue)",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::Projectile_Blue[0], false, false),
+	std::make_shared<SpriteRenderer>(&AssetManager::Projectile_Blue_Texture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Projectile_Blue_Controller),
 		std::make_shared<Projectile>(),
 });
+#pragma endregion
 
 const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::GalaxyBackground = Texture2D("Assets/GalaxyBackground.png", Texture2D::FilterMode::Nearest);
@@ -117,7 +121,7 @@ const AnimatorController AssetManager::GreenSlime_Controller = AnimatorControlle
 	});
 		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
 
-//Nario
+#pragma region Nario
 const Texture2D AssetManager::Nario = Texture2D("Assets/Nario.png", Texture2D::FilterMode::Nearest, 3, 4);
 const AnimationClip AssetManager::Nario_Idle = AnimationClip({
 	{ Nario[0], 0.2f },
@@ -160,9 +164,11 @@ const AnimatorController AssetManager::Nario_Controller = AnimatorController({
 const GameObject AssetManager::NarioObject = GameObject("Player", std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::Nario[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Nario_Controller),
-		std::make_shared<Player>(),
+		std::make_shared<NarioPlayer>(),
 		std::make_shared<Collider2D>()
 });
+#pragma endregion
+
 //Obstacle
 const Texture2D AssetManager::ObstacleTexture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3,1);
 const AnimationClip AssetManager::Obstacle_Idle = AnimationClip({
@@ -257,7 +263,9 @@ Scene Assets_Scenes::TutorialScene = Scene({
 
 #pragma endregion
 
-#pragma region GameScene
+
+
+#pragma region XwingScene
 const GameObject SpaceBackgroundObject = GameObject(
 	"Background",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
@@ -270,7 +278,7 @@ const GameObject GameEventManagerObject = GameObject(
 		std::make_shared<SpriteRenderer>(&AssetManager::PauseMessage[0], false, false),
 		std::make_shared<GameEventManager>(),
 });
-Scene Assets_Scenes::GameScene = Scene({
+Scene Assets_Scenes::XwingScene = Scene({
 	{&SpaceBackgroundObject, Transform()},
 	{&AssetManager::XwingObject, Transform(Vector3(0, -1, 0))},
 
@@ -285,4 +293,11 @@ Scene Assets_Scenes::GameScene = Scene({
 	});
 #pragma endregion
 
+#pragma region NarioScene
+Scene Assets_Scenes::NarioScene = Scene({
+	{&AssetManager::NarioObject, Transform()},
+	{&AssetManager::ObstacleSpawnerObject, Transform()},
+	{&GameEventManagerObject, Transform()},
+	});
+#pragma endregion
 

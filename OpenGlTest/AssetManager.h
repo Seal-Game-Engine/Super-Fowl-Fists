@@ -11,14 +11,14 @@ public:
 	static const AnimatorController Hector_Controller;
 	static const GameObject HectorObject;
 
-	static const Texture2D Xwing;
+	static const Texture2D XwingTexture;
 	static const AnimationClip Xwing_Idle;
 	static const AnimationClip Xwing_Left;
 	static const AnimationClip Xwing_Right;
 	static const AnimatorController Xwing_Controller;
 	static const GameObject XwingObject;
 
-	static const Texture2D Projectile_Blue;
+	static const Texture2D Projectile_Blue_Texture;
 	static const AnimationClip Projectile_Blue_Idle;
 	static const AnimatorController Projectile_Blue_Controller;
 	static const GameObject ProjectileObject_Blue;

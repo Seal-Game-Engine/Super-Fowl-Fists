@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "SceneManager.h"
+#include "Scene.h"
 using namespace SealEngine;
 
 //constructors

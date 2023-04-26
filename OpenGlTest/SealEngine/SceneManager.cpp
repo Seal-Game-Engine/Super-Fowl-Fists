@@ -4,6 +4,7 @@
 //#include "Font.h"
 #include "../AssetManager.h"
 #include "../Assets_Scenes.h"
+#include "Scene.h"
 using namespace SealEngine::InputSystem;
 
 int SceneManager::currentSceneId = 0;
@@ -15,6 +16,8 @@ std::queue<int> SceneManager::sceneLoadQuery = std::queue<int>{};
 //std::unique_ptr<CheckCollision> hit = std::unique_ptr<CheckCollision>(new CheckCollision);
 
 void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.push(sceneBuildIndex); }
+
+Scene* SceneManager::GetActiveScene() { return scenes[currentSceneId]; }
 
 bool SceneManager::RefreshScene() {
     glMatrixMode(GL_MODELVIEW);
@@ -84,8 +87,8 @@ bool SceneManager::InitGl() {
 
     scenes.push_back(&Assets_Scenes::LandingScene);
     scenes.push_back(&Assets_Scenes::MenuScene);
-    scenes.push_back(&Assets_Scenes::TutorialScene);
-    scenes.push_back(&Assets_Scenes::GameScene);
+    scenes.push_back(&Assets_Scenes::NarioScene);
+    scenes.push_back(&Assets_Scenes::XwingScene);
     LoadScene(0);
     return true;
 }

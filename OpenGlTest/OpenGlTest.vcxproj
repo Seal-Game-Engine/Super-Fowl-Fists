@@ -173,6 +173,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Assets_Scenes.cpp" />
+    <ClCompile Include="NarioPlayer.cpp" />
     <ClCompile Include="SealEngine\Button.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -209,10 +210,12 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="SealEngine\Vector2.cpp" />
     <ClCompile Include="SealEngine\Vector3.cpp" />
     <ClCompile Include="TutorialEventManager.cpp" />
+    <ClCompile Include="XwingPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Assets_Scenes.h" />
+    <ClInclude Include="NarioPlayer.h" />
     <ClInclude Include="SealEngine\Button.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Font.h" />
@@ -250,6 +253,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="SealEngine\Vector3.h" />
     <ClInclude Include="SealEngine\SealPackages.h" />
     <ClInclude Include="TutorialEventManager.h" />
+    <ClInclude Include="XwingPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />

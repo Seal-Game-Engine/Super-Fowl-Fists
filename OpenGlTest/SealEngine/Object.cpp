@@ -1,5 +1,7 @@
 #include "Object.h"
-#include "SceneManager.h"
+//#include "SceneManager.h"
+#include "Scene.h"
+#include "GameObject.h"
 using namespace SealEngine;
 
 int Object::GetInstanceId() const { return _instanceId; }

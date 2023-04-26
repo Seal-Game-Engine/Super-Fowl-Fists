@@ -5,6 +5,8 @@
 #include <type_traits>
 #include "IClonable.h"
 #include "Vector3.h"
+#include "SceneManager.h"
+//#include "Scene.h"
 namespace SealEngine { class Transform; }
 
 namespace SealEngine {
@@ -17,8 +19,17 @@ namespace SealEngine {
 		const std::string& ToString() const;
 
 		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
-		static T FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude) { 
-			return T();
+		static T* FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude) {
+			T* target = nullptr;
+
+			auto& gameObjects = SceneManager::GetActiveScene()->gameObjects;
+			for (int i = 0; i < gameObjects.size(); i++) {
+				if (target = dynamic_cast<T*>(gameObjects[i].get())) break;
+
+				for (int j = 0; j < gameObjects[i]->components.size(); j++)
+					if (target = dynamic_cast<T*>(gameObjects[i]->components[j].get())) break;
+			}
+			return target;
 		}
 
 		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
@@ -56,7 +67,7 @@ namespace SealEngine {
 
 		static int _instanceIdCounter;
 
-		virtual Object* Clone_impl() const override { return new Object(*this); }
+		Object* Clone_impl() const override { return new Object(*this); }
 	};
 }
 

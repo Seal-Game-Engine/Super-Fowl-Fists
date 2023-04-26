@@ -1,4 +1,6 @@
 #include "Scene.h"
+#include "GameObject.h"
+//#include "Transform.h"
 using namespace SealEngine;
 
 Scene::Scene(std::vector<GameObjectInitializer> gameObjects) : _gameObjects(gameObjects) {}
@@ -36,7 +38,7 @@ void Scene::Refresh() {
     }
 
     while (!destroyQueue.empty()) {
-        for (int i = 0; i < gameObjects.size(); i++) {
+         for (int i = 0; i < gameObjects.size(); i++) {
             if (*gameObjects[i] == *destroyQueue.front()) {
                 gameObjects[i].reset();
                 gameObjects.erase(gameObjects.begin() + i);

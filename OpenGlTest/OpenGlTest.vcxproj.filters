@@ -39,6 +39,8 @@
     <ClCompile Include="SealEngine\Transform.cpp" />
     <ClCompile Include="SealEngine\Vector2.cpp" />
     <ClCompile Include="SealEngine\Vector3.cpp" />
+    <ClCompile Include="XwingPlayer.cpp" />
+    <ClCompile Include="NarioPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -80,6 +82,8 @@
     <ClInclude Include="SealEngine\Transform.h" />
     <ClInclude Include="SealEngine\Vector2.h" />
     <ClInclude Include="SealEngine\Vector3.h" />
+    <ClInclude Include="XwingPlayer.h" />
+    <ClInclude Include="NarioPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />

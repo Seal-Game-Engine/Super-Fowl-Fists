@@ -41,9 +41,13 @@ LRESULT CALLBACK ApplicationManager::WndProc(HWND hWindow, UINT message, WPARAM 
 			break;
 		case WM_SIZE:
 			sceneManager->ResizeGl(LOWORD(lParam), HIWORD(lParam)); // LoWord=Width, HiWord=Heigh
+			break;
 
 		//case WM_CLOSE:
+		//case WM_QUIT:
+			
 		case WM_DESTROY:
+			//DestroyGlWindow();
 			PostQuitMessage(0);
 			break;
 

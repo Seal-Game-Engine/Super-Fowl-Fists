@@ -46,9 +46,6 @@ namespace SealEngine {
 		MonoBehaviour(const MonoBehaviour& obj) : Object(obj), enabled(obj.enabled) {}
 		std::shared_ptr<MonoBehaviour> Clone() const { return std::shared_ptr<MonoBehaviour>(Clone_impl()); }
 
-		bool operator!=(const MonoBehaviour&);
-		bool operator==(const MonoBehaviour&);
-
 	private:
 		virtual MonoBehaviour* Clone_impl() const override { return new MonoBehaviour(*this); }
 	};
