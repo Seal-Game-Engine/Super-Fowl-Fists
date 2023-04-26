@@ -15,7 +15,7 @@ Texture2D::Texture2D(const std::string textureSource, const FilterMode filterMod
 
 	for (int rowId = 0; rowId < rows; rowId++)
 		for (int columnId = 0; columnId < columns; columnId++)
-			sprites.emplace_back(Sprite(*this, Rect(columnId * spriteWidth, rowId * spriteHeight, spriteWidth, spriteHeight), Vector2(0, 0), 32));
+			sprites.emplace_back(*this, Rect(columnId * spriteWidth, rowId * spriteHeight, spriteWidth, spriteHeight), Vector2(0, 0), 32);
 
 	uninitializedTextures.push({ *this, textureSource, filterMode });
 }
@@ -38,10 +38,13 @@ void Texture2D::LoadTexture(const std::string& textureSource, const FilterMode f
 	auto image = SOIL_load_image(textureSource.data(), &_width, &_height, &_channelCount, SOIL_LOAD_RGBA);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width(), height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
+
+	for (auto& sprite : sprites) { sprite.LoadVertices(); }
 }
 void Texture2D::LoadUninitializedTextures() {
 	while (!uninitializedTextures.empty()) {
-		uninitializedTextures.front().texture.LoadTexture(uninitializedTextures.front().textureSource, uninitializedTextures.front().filterMode);
+		auto& textureInitializer = uninitializedTextures.front();
+		textureInitializer.texture.LoadTexture(textureInitializer.textureSource, textureInitializer.filterMode);
 		uninitializedTextures.pop();
 	}
 }

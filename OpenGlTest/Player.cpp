@@ -8,13 +8,13 @@ void Player::Awake(){
 }
 
 void Player::Update() {
-	int x = (Inputs::GetKey(KeyCode::A) || Inputs::GetKey(KeyCode::LeftArrow)) && (Inputs::GetKey(KeyCode::D) || Inputs::GetKey(KeyCode::RightArrow)) ? 0
-		: Inputs::GetKey(KeyCode::A) || Inputs::GetKey(KeyCode::LeftArrow) ? -1
-		: Inputs::GetKey(KeyCode::D) || Inputs::GetKey(KeyCode::RightArrow) ? 1
+	int x = (Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow)) && (Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow)) ? 0
+		: Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow) ? -1
+		: Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow) ? 1
 		: 0;
 
-	int y = Inputs::GetKey(KeyCode::W) || Inputs::GetKey(KeyCode::UpArrow) ? 1
-		: Inputs::GetKey(KeyCode::S) || Inputs::GetKey(KeyCode::DownArrow) ? -1
+	int y = Input::GetKey(KeyCode::W) || Input::GetKey(KeyCode::UpArrow) ? 1
+		: Input::GetKey(KeyCode::S) || Input::GetKey(KeyCode::DownArrow) ? -1
 		: 0;
 
 	Vector2 horizontalMovement = Vector2::right() * (float)x * speed * Time::deltaTime();
@@ -27,12 +27,10 @@ void Player::Update() {
 	animator->SetInteger("x", x);
 
 
-	if (Inputs::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
+	if (Input::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
 		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
 		_nextFire = Time::time() + 0.15f;
 	}
 }
-
-std::shared_ptr<Player> Player::Clone() const { return std::shared_ptr<Player>(Clone_impl()); }
 
 Player* Player::Clone_impl() const { return new Player(*this); }

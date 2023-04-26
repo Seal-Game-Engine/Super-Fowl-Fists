@@ -1,5 +1,6 @@
 #pragma once
 //#include "ApplicationManager.h";
+#include <time.h>
 #include <chrono>
 
 namespace SealEngine {
@@ -15,15 +16,15 @@ namespace SealEngine {
 		static float unscaledTime();
 		static double unscaledTimeAsDouble();
 		static float unscaledDeltaTime();
-		
+
 		//fixedTime	The time since the last FixedUpdate started(Read Only).This is the time in seconds since the start of the game.
 		//fixedTimeAsDouble	The double precision time since the last FixedUpdate started(Read Only).This is the time in seconds since the start of the game.
 		//static float fixedDeltaTime();
-		
+
 		//fixedUnscaledTime	The timeScale - independent time at the beginning of the last MonoBehaviour.FixedUpdate phase(Read Only).This is the time in seconds since the start of the game.
 		//fixedUnscaledTimeAsDouble	The double precision timeScale - independent time at the beginning of the last FixedUpdate(Read Only).This is the time in seconds since the start of the game.
 		//fixedUnscaledDeltaTime	The timeScale - independent interval in seconds from the last MonoBehaviour.FixedUpdate phase to the current one(Read Only).
-		
+
 		//captureDeltaTime	Slows your application’s playback time to allow Unity to save screenshots in between frames.
 		//captureFramerate	The reciprocal of Time.captureDeltaTime.
 		//frameCount	The total number of frames since the start of the game(Read Only).
@@ -35,7 +36,7 @@ namespace SealEngine {
 		//smoothDeltaTime	A smoothed out Time.deltaTime(Read Only).
 		//timeSinceLevelLoad	The time since this frame started(Read Only).This is the time in seconds since the last non - additive scene has finished loading.
 		//timeSinceLevelLoadAsDouble	The double precision time since this frame started(Read Only).This is the time in seconds since the last non - additive scene has finished loading.
-		
+
 		static void OnNextFrame();
 
 	private:

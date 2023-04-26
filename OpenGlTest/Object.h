@@ -27,8 +27,15 @@ namespace SealEngine {
 		}
 
 		static Object* Instantiate(const Object& obj);
-		static Object Instantiate(Object, Transform, bool = true);
-		static Object* Instantiate(const Object& obj, const Vector3& position, Transform);
+		//static Object Instantiate(Object, Transform, bool = true);
+		static Object* Instantiate(const Object& obj, const Vector3& position, Transform parent);
+
+		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		static T* InstantiateT(const T& obj) { return dynamic_cast<T*>(Instantiate(obj)); }
+
+		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		static T* InstantiateT(const T& obj, const Vector3& position, Transform parent) { return dynamic_cast<T*>(Instantiate(obj, position, parent)); }
+
 		//todo: check gameobject's version
 		static void Destroy(Object& obj, float = 0.0f);
 		static void DestroyImmediate(Object, bool = false);

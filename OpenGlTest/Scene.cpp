@@ -42,6 +42,14 @@ void Scene::Refresh() {
                 gameObjects.erase(gameObjects.begin() + i);
                 goto WhileLoop;
             }
+
+            for (int j = 0; j < gameObjects[i]->components.size(); j++) {
+                if (*gameObjects[i]->components[j] == *destroyQueue.front()) {
+                    gameObjects[i]->components[j].reset();
+                    gameObjects[i]->components.erase(gameObjects[i]->components.begin() + j);
+                    goto WhileLoop;
+                }
+            }
         }
     WhileLoop:
         destroyQueue.pop();

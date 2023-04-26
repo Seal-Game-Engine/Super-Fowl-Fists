@@ -1,11 +1,11 @@
 #include "Button.h"
 #include "GameObject.h"
-#include "Inputs.h"
+#include "Input.h"
 #include "SceneManager.h"
 using namespace SealEngine;
 
 void Button::Update(){
-	if (InputSystem::Inputs::GetKeyDown(InputSystem::KeyCode::Return)) {
+	if (InputSystem::Input::GetKeyDown(InputSystem::KeyCode::Return)) {
 		static int sceneId = 0;
 		sceneId = ++sceneId % 2;
 		SceneManager::LoadScene(sceneId);
@@ -14,8 +14,8 @@ void Button::Update(){
 
 	if (!renderer) renderer = gameObject->GetComponent<SpriteRenderer>();
 
-	transform()->position = SealEngine::InputSystem::Inputs::GetMousePosition();
+	transform()->position = SealEngine::InputSystem::Input::GetMousePosition();
 
-	if (SealEngine::InputSystem::Inputs::GetKey(SealEngine::InputSystem::KeyCode::P))
+	if (SealEngine::InputSystem::Input::GetKey(SealEngine::InputSystem::KeyCode::P))
 		transform()->position = transform()->position;
 }

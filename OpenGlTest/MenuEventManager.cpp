@@ -2,10 +2,10 @@
 
 void MenuEventManager::Update() {
 	using namespace InputSystem;
-	if (Inputs::GetKeyDown(KeyCode::W) || Inputs::GetKeyDown(KeyCode::UpArrow)) selectionId = --selectionId % selectionPositions.size();
-	if (Inputs::GetKeyDown(KeyCode::S) || Inputs::GetKeyDown(KeyCode::DownArrow))selectionId = ++selectionId % selectionPositions.size();
+	if (Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow)) selectionId = --selectionId % selectionPositions.size();
+	if (Input::GetKeyDown(KeyCode::S) || Input::GetKeyDown(KeyCode::DownArrow))selectionId = ++selectionId % selectionPositions.size();
 
-	if (Inputs::GetKeyDown(KeyCode::Space) || Inputs::GetKeyDown(KeyCode::Return)) {
+	if (Input::GetKeyDown(KeyCode::Space) || Input::GetKeyDown(KeyCode::Return)) {
 		switch (selectionId) {
 		case 0:
 			SceneManager::LoadScene(3); break;
@@ -16,7 +16,7 @@ void MenuEventManager::Update() {
 		}
 	}
 
-	if (Inputs::GetKeyDown(KeyCode::Escape)) SceneManager::LoadScene(0);
+	if (Input::GetKeyDown(KeyCode::Escape)) SceneManager::LoadScene(0);
 
 	transform()->position = selectionPositions[selectionId];
 }

@@ -46,9 +46,7 @@ namespace SealEngine {
 		SpriteRenderer() = default;
 		SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY);
 		SpriteRenderer(const SpriteRenderer& obj);
-		std::shared_ptr<SpriteRenderer> Clone() const;
 
-		void Awake() override;
 		void Update() override;
 		void LateUpdate() override;
 

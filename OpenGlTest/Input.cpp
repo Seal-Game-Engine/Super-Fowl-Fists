@@ -1,23 +1,23 @@
 #include "SealPackages.h"
-#include "Inputs.h"
+#include "Input.h"
 #include "Vector2.h"
 #include "SceneManager.h"
 using namespace SealEngine;
 using namespace SealEngine::InputSystem;
 
-UINT Inputs::_uMessage = 0;
-KeyCode Inputs::_wParam = (KeyCode)NULL;
-LPARAM Inputs::_lParam = NULL;
+UINT Input::_uMessage = 0;
+KeyCode Input::_wParam = (KeyCode)NULL;
+LPARAM Input::_lParam = NULL;
 
-float Inputs::prev_MouseX = 0;
-float Inputs::prev_MouseY = 0;
+float Input::prev_MouseX = 0;
+float Input::prev_MouseY = 0;
 
-bool Inputs::keysHold[256];
-bool Inputs::keysDown[256];
-bool Inputs::keysUp[256];
-bool Inputs::_anyKeyDown = false;
+bool Input::keysHold[256];
+bool Input::keysDown[256];
+bool Input::keysUp[256];
+bool Input::_anyKeyDown = false;
 
-bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LPARAM lParam) {
+bool Input::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LPARAM lParam) {
     _uMessage = uMessage;
     _wParam = (KeyCode)wParam;
     _lParam = lParam;
@@ -62,7 +62,7 @@ bool Inputs::TryHandleMessage(const UINT uMessage, const WPARAM wParam, const LP
     return true;
 }
 
-void Inputs::ResetOnNextFrame() {
+void Input::ResetOnNextFrame() {
     for (int i = 0; i < 256; i++) {
         keysDown[i] = false;
         keysUp[i] = false;
@@ -70,22 +70,22 @@ void Inputs::ResetOnNextFrame() {
     _anyKeyDown = false;
 }
 
-bool Inputs::GetKeyDown(const KeyCode wParam) {
+bool Input::GetKeyDown(const KeyCode wParam) {
     return keysDown[(int)wParam];
 }
 
-bool Inputs::GetKeyUp(const KeyCode wParam) {
+bool Input::GetKeyUp(const KeyCode wParam) {
     return keysUp[(int)wParam];
 }
 
-bool Inputs::GetKey(const KeyCode wParam) {
+bool Input::GetKey(const KeyCode wParam) {
     return keysHold[(int)wParam];
 }
 
-bool InputSystem::Inputs::anyKeyDown() { return _anyKeyDown; }
+bool InputSystem::Input::anyKeyDown() { return _anyKeyDown; }
 
 //pass in LOWORD(lParam) for x, HIWORD(lParam) for y
-void Inputs::mouseButtonDown(const WPARAM wParam, double x, double y) {
+void Input::mouseButtonDown(const WPARAM wParam, double x, double y) {
     prev_MouseX = x;
     prev_MouseY = y;
 
@@ -101,19 +101,19 @@ void Inputs::mouseButtonDown(const WPARAM wParam, double x, double y) {
     }
 }
 
-void Inputs::mouseButtonUp() {
+void Input::mouseButtonUp() {
     Mouse_Rotate = false;
     Mouse_Translate = false;
 
 }
 
 //pass in GET_WHEEL_DELTA_WPARAM(wParam)
-void Inputs::mouseWheel(const WPARAM wParam, const double delta) {
+void Input::mouseWheel(const WPARAM wParam, const double delta) {
     float newDelta = GET_WHEEL_DELTA_WPARAM(wParam);
     delta / 100;//x += ?
 }
 
-Vector2 Inputs::GetMousePosition() {
+Vector2 Input::GetMousePosition() {
     //int x, y;
     //glutMotionFunc([](int _x, int _y) { prev_MouseX = _x; prev_MouseY = _y; });
 

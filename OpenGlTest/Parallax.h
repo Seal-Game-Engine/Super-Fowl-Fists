@@ -13,7 +13,6 @@ class Parallax:public MonoBehaviour{
 
         Parallax() = default;
         Parallax(const Sprite* sprite, Vector2 direction, float speed);
-        std::shared_ptr<Parallax> Clone() const;
 
     private:
         Rect rect = Rect(0, 0, 1, 1);

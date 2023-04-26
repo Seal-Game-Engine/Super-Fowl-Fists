@@ -6,11 +6,9 @@ class Player : public MonoBehaviour {
 public:
 	void Awake() override;
 	void Update() override;
-	//void LateUpdate() override;
 
 	Player() = default;
 	Player(const Player& obj) : MonoBehaviour(obj) {}
-	std::shared_ptr<Player> Clone() const;
 
 private:
 	SpriteRenderer* renderer = nullptr;

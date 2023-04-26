@@ -4,13 +4,8 @@ void LandingEventManager::Update()
 {
     using namespace InputSystem;
 
-    if (Inputs::GetKeyDown(KeyCode::Return)) SceneManager::LoadScene(1);
-    if (Inputs::GetKeyDown(KeyCode::Escape)) SceneManager::Quit();
-}
-
-std::shared_ptr<LandingEventManager> LandingEventManager::Clone() const
-{
-    return std::shared_ptr<LandingEventManager>(Clone_impl());
+    if (Input::GetKeyDown(KeyCode::Return)) SceneManager::LoadScene(1);
+    if (Input::GetKeyDown(KeyCode::Escape)) SceneManager::Quit();
 }
 
 LandingEventManager* LandingEventManager::Clone_impl() const

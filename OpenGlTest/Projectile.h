@@ -7,7 +7,6 @@ public:
 	void Awake() override;
 	void Update() override;
 
-	std::shared_ptr<Projectile> Clone() const;
 	float destroyTime = 0;
 	float lifeSpan = 1.5f;
 

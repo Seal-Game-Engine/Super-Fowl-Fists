@@ -18,15 +18,17 @@ namespace SealEngine {
 		float pixelsPerUnit() const;//	The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
 		Rect rect;	//Location of the Sprite on the original Texture, specified in pixels.
 		//spriteAtlasTextureScale	The Variant scale of texture used by the Sprite.This is useful to check when a Variant SpriteAtlas is being used by Sprites.
-		const Texture2D* texture;
+		const Texture2D* texture = nullptr;
 		//Rect textureRect;
 		Vector2 textureRectOffset = Vector2(0, 0);
 		//uv	The base texture coordinates of the sprite mesh.
 		std::array<Vector2, 4> vertices() const;
 
+		void LoadVertices();
 		Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot, float pixelsPerUnit);
 
 	private:
-		float _pixelsPerUnit;
+		float _pixelsPerUnit = 16;
+		std::array<Vector2, 4> _vertices{ Vector2::zero(), Vector2::zero(), Vector2::zero(), Vector2::zero() };
 	};
 }

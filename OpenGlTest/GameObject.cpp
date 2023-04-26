@@ -62,7 +62,6 @@ GameObject::GameObject(const GameObject& obj)
 std::shared_ptr<GameObject> SealEngine::GameObject::Clone() const { return std::shared_ptr<GameObject>(Clone_impl()); }
 
 bool GameObject::activeSelf() const { return _activeSelf; }
-//Object GameObject::Object::Instantiate(Object) {}
 GameObject GameObject::Find(std::string name) { return GameObject(name); }
 GameObject* GameObject::FindWithTag(std::string tag) { return nullptr; }
 std::vector<GameObject> GameObject::FindGameObjectsWithTag(std::string tag) { return std::vector<GameObject>(); } //need SceneManager

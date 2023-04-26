@@ -179,6 +179,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="Assets_Scenes.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CheckCollision.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameEventManager.cpp" />
@@ -197,13 +198,11 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Inputs.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Texture2D.cpp" />
-    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TutorialEventManager.cpp" />
     <ClCompile Include="Vector2.cpp" />
@@ -217,6 +216,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="Assets_Scenes.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CheckCollision.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameEventManager.h" />
@@ -235,14 +235,12 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Inputs.h" />
-    <ClInclude Include="Model.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="SealEngine.h" />
     <ClInclude Include="SealPackages.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture2D.h" />
-    <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TutorialEventManager.h" />
     <ClInclude Include="Vector2.h" />

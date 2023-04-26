@@ -42,6 +42,4 @@ void Parallax::Update() {
 
 Parallax::Parallax(const Sprite* sprite, Vector2 direction, float speed) : sprite(sprite), direction(direction), speed(speed) {}
 
-std::shared_ptr<Parallax> Parallax::Clone() const { return std::shared_ptr<Parallax>(Clone_impl()); }
-
 Parallax* Parallax::Clone_impl() const { return new Parallax(*this); }

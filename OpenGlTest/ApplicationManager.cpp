@@ -1,5 +1,5 @@
 #include "ApplicationManager.h";
-#include "Inputs.h"
+#include "Input.h"
 #include "Time.h"
 #include "Assets_Scenes.h"
 
@@ -264,7 +264,7 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 		MessageBoxW(NULL, L"Initialization Failed", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
-	messageHandlers.emplace_back(std::make_unique<Inputs>());
+	messageHandlers.emplace_back(std::make_unique<Input>());
 
 	MSG msg;
 	while (true) {

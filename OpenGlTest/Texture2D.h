@@ -28,8 +28,7 @@ namespace SealEngine {
 
 		void LoadTexture(const std::string& textureSource, const FilterMode filterMode);
 
-		struct TextureInitializer
-		{
+		struct TextureInitializer {
 			Texture2D& texture;
 			const std::string textureSource;
 			const FilterMode filterMode;

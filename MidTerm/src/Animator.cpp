@@ -1,5 +1,5 @@
 #include "Animator.h"
-#include "Time.h"
+#include "Time2.h"
 #include "GameObject.h"
 #include <map>
 using namespace SealEngine;

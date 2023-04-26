@@ -7,15 +7,13 @@ void GameEventManager::Awake(){
 }
 
 void GameEventManager::Update() {
-	if (!_isPaused && (Inputs::GetKeyDown(KeyCode::Escape) || Inputs::GetKeyDown(KeyCode::Return))) TogglePause();
+	if (!_isPaused && (Input::GetKeyDown(KeyCode::Escape) || Input::GetKeyDown(KeyCode::Return))) TogglePause();
 
 	else if (_isPaused) {
-		if (Inputs::GetKeyDown(KeyCode::Escape)) SceneManager::LoadScene(1);
-		if (Inputs::anyKeyDown()) TogglePause();
+		if (Input::GetKeyDown(KeyCode::Escape)) SceneManager::LoadScene(1);
+		if (Input::anyKeyDown()) TogglePause();
 	}
 }
-
-std::shared_ptr<GameEventManager> GameEventManager::Clone() const { return std::shared_ptr<GameEventManager>(Clone_impl()); }
 
 void GameEventManager::TogglePause(){
 	_isPaused = !_isPaused;

@@ -21,8 +21,8 @@ bool SceneManager::RefreshScene() {
     glLoadIdentity();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if (Inputs::GetKeyDown(KeyCode::Q))camDist++;
-    else if (Inputs::GetKeyDown(KeyCode::E))camDist--;
+    if (Input::GetKeyDown(KeyCode::Q))camDist++;
+    else if (Input::GetKeyDown(KeyCode::E))camDist--;
 
     glPushMatrix();
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);

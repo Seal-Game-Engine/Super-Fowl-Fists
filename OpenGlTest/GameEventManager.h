@@ -10,8 +10,6 @@ public:
 	void Awake() override;
 	void Update() override;
 
-	std::shared_ptr<GameEventManager> Clone() const;
-
 private:
 	void TogglePause();
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IMessageHandler.h"
-#include "Time.h"
+#include "Clock.h"
 
 //Math
 #include "Vector2.h"
@@ -20,7 +20,7 @@
 #include "SpriteRenderer.h"
 
 #include "KeyCode.h"
-#include "Inputs.h"
+#include "Input.h"
 
 #include "Button.h"
 

@@ -16,16 +16,14 @@
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Inputs.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
-    <ClCompile Include="Time.cpp" />
     <ClCompile Include="AnimationClip.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AnimatorController.cpp" />
@@ -36,6 +34,9 @@
     <ClCompile Include="Assets_Scenes.cpp" />
     <ClCompile Include="GameEventManager.cpp" />
     <ClCompile Include="LandingEventManager.cpp" />
+    <ClCompile Include="MenuEventManager.cpp" />
+    <ClCompile Include="TutorialEventManager.cpp" />
+    <ClCompile Include="Clock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -51,8 +52,7 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Inputs.h" />
-    <ClInclude Include="Model.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="SealEngine.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderer.h" />
@@ -61,7 +61,6 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="ApplicationManager.h" />
-    <ClInclude Include="Time.h" />
     <ClInclude Include="AnimationClip.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AnimatorController.h" />
@@ -74,6 +73,9 @@
     <ClInclude Include="Assets_Scenes.h" />
     <ClInclude Include="GameEventManager.h" />
     <ClInclude Include="LandingEventManager.h" />
+    <ClInclude Include="MenuEventManager.h" />
+    <ClInclude Include="TutorialEventManager.h" />
+    <ClInclude Include="Clock.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />

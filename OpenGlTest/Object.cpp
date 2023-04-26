@@ -22,9 +22,7 @@ Object* Object::Instantiate(const Object& obj) {
 	auto object = obj.Clone();
 
 	if (auto gameObject = std::dynamic_pointer_cast<GameObject>(object)) {
-		//GameObject gameObject = x;
 		SceneManager::scenes[SceneManager::currentSceneId]->instantiationQueue.push(gameObject);
-
 	}
 	//}else if(gameObject = dynamic_cast<MonoBehaviour*>(&obj)->gameObject){
 
@@ -45,10 +43,9 @@ Object* Object::Instantiate(const Object& obj, const Vector3& position, Transfor
 
 	return object;
 }
+
 void Object::Destroy(Object& object, float delayDuration) {
-	if (auto gameObject = dynamic_cast<GameObject*>(&object)) {
-		SceneManager::scenes[SceneManager::currentSceneId]->destroyQueue.push(gameObject);
-	}
+	SceneManager::scenes[SceneManager::currentSceneId]->destroyQueue.push(&object);
 }
 
 void Object::DestroyImmediate(Object object, bool allowDestroyingAssets) {

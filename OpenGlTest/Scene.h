@@ -23,7 +23,7 @@ public:
 
     std::vector<std::shared_ptr<GameObject>> gameObjects{};
     std::queue<std::shared_ptr<GameObject>> instantiationQueue{};
-    std::queue<GameObject*> destroyQueue{};
+    std::queue<Object*> destroyQueue{};
 
 private:
     std::vector<GameObjectInitializer> _gameObjects{};

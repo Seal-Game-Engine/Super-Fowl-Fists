@@ -10,13 +10,6 @@ SpriteRenderer::SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY)
 
 SpriteRenderer::SpriteRenderer(const SpriteRenderer& obj) : MonoBehaviour(obj), sprite(obj.sprite), flipX(obj.flipX), flipY(obj.flipY) {}
 
-std::shared_ptr<SpriteRenderer> SpriteRenderer::Clone() const { return std::shared_ptr<SpriteRenderer>(Clone_impl()); }
-
-void SpriteRenderer::Awake() {
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
 void SpriteRenderer::Update() {
 }
 
