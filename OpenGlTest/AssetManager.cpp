@@ -301,3 +301,10 @@ Scene Assets_Scenes::NarioScene = Scene({
 	});
 #pragma endregion
 
+#pragma region GameScene
+Scene Assets_Scenes::GameScene = Scene({
+	{&AssetManager::NarioObject, Transform()},
+	{&AssetManager::ObstacleSpawnerObject, Transform()},
+	{&GameEventManagerObject, Transform()},
+	});
+#pragma endregion

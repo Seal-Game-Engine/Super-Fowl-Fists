@@ -85,10 +85,11 @@ bool SceneManager::InitGl() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Texture2D::LoadUninitializedTextures();
 
-    scenes.push_back(&Assets_Scenes::LandingScene);
-    scenes.push_back(&Assets_Scenes::MenuScene);
-    scenes.push_back(&Assets_Scenes::NarioScene);
-    scenes.push_back(&Assets_Scenes::XwingScene);
+    scenes.emplace_back(&Assets_Scenes::LandingScene);
+    scenes.emplace_back(&Assets_Scenes::MenuScene);
+    scenes.emplace_back(&Assets_Scenes::NarioScene);
+    scenes.emplace_back(&Assets_Scenes::XwingScene);
+    scenes.emplace_back(&Assets_Scenes::GameScene);
     LoadScene(0);
     return true;
 }
