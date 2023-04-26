@@ -15,6 +15,8 @@ void MenuEventManager::Update() {
 			SceneManager::Quit(); break;
 		case 3:
 			SceneManager::LoadScene(4); break;
+		case 4:
+			SceneManager::LoadScene(5); break;
 		}
 	}
 

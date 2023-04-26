@@ -87,9 +87,10 @@ bool SceneManager::InitGl() {
 
     scenes.emplace_back(&Assets_Scenes::LandingScene);
     scenes.emplace_back(&Assets_Scenes::MenuScene);
+    scenes.emplace_back(&Assets_Scenes::TutorialScene);
+    scenes.emplace_back(&Assets_Scenes::GameScene);
     scenes.emplace_back(&Assets_Scenes::NarioScene);
     scenes.emplace_back(&Assets_Scenes::XwingScene);
-    scenes.emplace_back(&Assets_Scenes::GameScene);
     LoadScene(0);
     return true;
 }

@@ -9,7 +9,7 @@ public:
 
 private:
 	int selectionId = 0;
-	std::array<Vector2, 4> selectionPositions{ Vector2(1, 1), Vector2(1, 0), Vector2(1, -1), Vector2(2, 1) };
+	std::array<Vector2, 5> selectionPositions = { Vector2(1, 1), Vector2(1, 0), Vector2(1, -1), Vector2(2, 1), Vector2(2, 0), };
 
 	MenuEventManager* Clone_impl() const;
 };
