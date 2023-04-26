@@ -1,6 +1,7 @@
 #pragma once
 #include "SealEngine.h"
 #include "NarioPlayer.h"
+#include "Player.h"
 
 using namespace SealEngine;
 
@@ -14,9 +15,10 @@ public:
 	Vector2 spawnedPosition = Vector2::zero();
 
 private:
-	float speed = 5.0f;
+	float speed = 0.5f;
 	
-	NarioPlayer* player;
+	NarioPlayer* narioPlayer = nullptr;
+	Player* player = nullptr;
 
 	Obstacle* Clone_impl() const override { return new Obstacle(*this); }
 };

@@ -7,6 +7,7 @@ public:
 	void Awake() override;
 	void Update() override;
 	void LateUpdate() override;
+	void OnCollisionEnter2D() override;
 
 	Player() = default;
 
@@ -20,6 +21,11 @@ private:
 	float _nextSpawn = 0.0f;
 	float _speed = 5.0f;
 	float stopGravity = 0.0f;
+
+	enum class PowerState : int { Small, Buff };
+	PowerState powerState = PowerState::Small;
+
+	static const std::array<const AnimatorController*, 2> animatorControllers;
 
 	Player* Clone_impl() const override { return new Player(*this); }
 };

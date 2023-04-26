@@ -6,7 +6,7 @@ class ObstacleSpawner : public MonoBehaviour{
 public:
 	void Update() override;
 
-	const float spawnDelay = 1.0f;
+	const float spawnDelay = 2.0f;
 	float nextSpawnTime = currentTime + spawnDelay;
 	float currentTime = Time::time();
 private:

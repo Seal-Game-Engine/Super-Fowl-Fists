@@ -8,7 +8,6 @@ public:
 	Collider2D(float width, float height);
 
 	void Update() override;
-	std::shared_ptr<Collider2D> Clone() const { return std::shared_ptr<Collider2D>(Clone_impl()); }
 	static bool checkCollision(Collider2D& a,Collider2D& b);
 	Rect colliderBox = Rect(0,0,1,1);
 

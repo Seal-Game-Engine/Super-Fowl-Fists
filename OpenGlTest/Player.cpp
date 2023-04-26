@@ -3,7 +3,10 @@
 #include "AssetManager.h"
 #include <cmath>
 
+const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::Xwing_Controller, &AssetManager::Nario_Controller };
+
 void Player::Awake(){
+	renderer = gameObject->GetComponent<SpriteRenderer>();
 	animator = gameObject->GetComponent<Animator>();
 }
 
@@ -23,7 +26,13 @@ void Player::Update() {
 	
 	if (std::abs(transform()->position.x()) > (float)ApplicationManager::width / 280.0f) transform()->position -= horizontalMovement;
 	if (std::abs(transform()->position.y()) > (float)ApplicationManager::height / 280.0f) transform()->position -= verticalMovement;
+	
+	if (Input::GetKeyDown(KeyCode::Space)) {
+		powerState = (PowerState)(((int)powerState + 1) % 2);
+		animator->SetAnimatorController(animatorControllers[(int)powerState]);
 
+		if (!renderer->enabled)renderer->enabled = true;
+	}
 	animator->SetInteger("x", x);
 
 	/*
@@ -55,10 +64,7 @@ void Player::Update() {
 	if (std::abs(transform()->position.x()) > (float)ApplicationManager::width / screenWidth) transform()->position -= horizontalMovement;
 	if (transform()->position.y() < -((float)ApplicationManager::height / screenHeight)) transform()->position.Set(transform()->position.x(), -(float)ApplicationManager::height / screenHeight, transform()->position.z());
 
-	if (Input::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
-		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
-		_nextFire = Time::time() + 0.15f;
-	}
+
 	animator->SetInteger("x", x);
 	*/
 }
@@ -66,15 +72,19 @@ void Player::Update() {
 void Player::LateUpdate() {
 
 	std::vector<Collider2D*> myColliders = gameObject->GetComponents<Collider2D>();
-	for (auto& _gameObject : SceneManager::scenes[SceneManager::currentSceneId]->gameObjects) {
+	for (auto& _gameObject : SceneManager::GetActiveScene()->gameObjects) {
   		std::vector<Collider2D*> otherColliders = _gameObject->GetComponents<Collider2D>();
 		for (auto& myCollider : myColliders)
 			for (auto& otherCollider : otherColliders) {
-				if (Collider2D::checkCollision(*myCollider,*otherCollider)) {
+				if (*myCollider->gameObject != *otherCollider->gameObject && Collider2D::checkCollision(*myCollider,*otherCollider)) {
 					for (auto& component : gameObject->components) component->OnCollisionEnter2D();
 					for (auto& component : otherCollider->gameObject->components) component->OnCollisionEnter2D();
 				}
 			}
 	}
+}
+
+void Player::OnCollisionEnter2D(){
+	//renderer->enabled = false;
 }
 

@@ -302,8 +302,16 @@ Scene Assets_Scenes::NarioScene = Scene({
 #pragma endregion
 
 #pragma region GameScene
+const GameObject NewNarioObject = GameObject("Player", std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::Nario[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Nario_Controller),
+		std::make_shared<Player>(),
+		std::make_shared<Collider2D>()
+});
+
+
 Scene Assets_Scenes::GameScene = Scene({
-	{&AssetManager::NarioObject, Transform()},
+	{&NewNarioObject, Transform(Vector3(0, -1.5f, 0))},
 	{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform()},
 	});
