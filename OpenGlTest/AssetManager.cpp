@@ -174,23 +174,39 @@ const GameObject AssetManager::NarioObject = GameObject("Player", std::vector<st
 #pragma endregion
 
 #pragma region BigTikeMyson
-const Texture2D AssetManager::BigTikeMyson = Texture2D("Assets/Fighter1.png", Texture2D::FilterMode::Nearest, 3, 4);
+const Texture2D AssetManager::BigTikeMyson = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 3);
 const AnimationClip AssetManager::BigTikeMyson_Idle = AnimationClip({
-	{ BigTikeMyson[0], 0.2f },
-	{ BigTikeMyson[1], 0.3f },
-	{ BigTikeMyson[0], 0.2f },
-	{ BigTikeMyson[2], 0.3f },
+	{ BigTikeMyson[8], 0.1f },
+	{ BigTikeMyson[9], 0.1f },
+	{ BigTikeMyson[10], 0.1f },
+	{ BigTikeMyson[11], 0.1f },
+	{ BigTikeMyson[12], 0.1f },
+	{ BigTikeMyson[13], 0.1f },
 	}, true);
 const AnimationClip AssetManager::BigTikeMyson_Walk = AnimationClip({
+	{ BigTikeMyson[0], 0.1f },
+	{ BigTikeMyson[1], 0.1f },
+	{ BigTikeMyson[2], 0.1f },
+	{ BigTikeMyson[3], 0.1f },
+	{ BigTikeMyson[4], 0.1f },
+	{ BigTikeMyson[5], 0.1f },
 	{ BigTikeMyson[6], 0.1f },
 	{ BigTikeMyson[7], 0.1f },
-	{ BigTikeMyson[6], 0.1f },
-	{ BigTikeMyson[8], 0.1f },
 	}, true);
 const AnimationClip AssetManager::BigTikeMyson_Jump = AnimationClip({
 	{ BigTikeMyson[9], 0.1f },
 	{ BigTikeMyson[10], 0.1f },
 	{ BigTikeMyson[11], 0.1f }
+	}, false);
+const AnimationClip AssetManager::BigTikeMyson_Punch = AnimationClip({
+	{ BigTikeMyson[16], 0.1f },
+	{ BigTikeMyson[17], 0.1f },
+	{ BigTikeMyson[18], 0.1f },
+	{ BigTikeMyson[19], 0.1f },
+	{ BigTikeMyson[20], 0.1f },
+	{ BigTikeMyson[21], 0.1f },
+	{ BigTikeMyson[22], 0.1f },
+	{ BigTikeMyson[23], 0.1f },
 	}, false);
 
 const AnimatorController AssetManager::BigTikeMyson_Controller = AnimatorController({
@@ -201,7 +217,10 @@ const AnimatorController AssetManager::BigTikeMyson_Controller = AnimatorControl
 		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
 	}),
 	State("Jump", &BigTikeMyson_Jump, {
-		{ "Idle", true, 3, [](auto& animator) { return true; } },
+		{ "Idle", true, 3 },
+	}),
+	State("Punch", &BigTikeMyson_Punch, {
+		{ "Idle", true, 1 },
 	}),
 	});
 
@@ -424,7 +443,7 @@ const GameObject OtherGameEventManagerObject = GameObject(
 Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
 	{&AssetManager::MiniTikeMysonObject, Transform()},
-	{&AssetManager::ObstacleSpawnerObject, Transform()},
+	//{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	});

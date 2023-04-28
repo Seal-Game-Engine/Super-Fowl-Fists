@@ -19,7 +19,7 @@ private:
 	float _nextFire = 0;
 
 	float _nextSpawn = 0.0f;
-	float _speed = 5.0f;
+	float _speed = 1.0f;
 	float stopGravity = 0.0f;
 
 	enum class PowerState : int { Small, Buff };
