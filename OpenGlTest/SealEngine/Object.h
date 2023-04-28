@@ -19,29 +19,33 @@ namespace SealEngine {
 		const std::string& ToString() const;
 
 		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
-		static T* FindFirstObjectByType(FindObjectsInactive = FindObjectsInactive::Exclude) {
+		static T* FindFirstObjectByType(FindObjectsInactive findObjectsInactive = FindObjectsInactive::Exclude) {
 			T* target = nullptr;
 
-			auto& gameObjects = SceneManager::GetActiveScene()->gameObjects;
-			for (int i = 0; i < gameObjects.size(); i++) {
-				if (target = dynamic_cast<T*>(gameObjects[i].get())) return target;
+			for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+				if (findObjectsInactive == FindObjectsInactive::Exclude && !gameObject->activeSelf()) continue;
+				if (target = dynamic_cast<T*>(gameObject.get())) return target;
 
-				for (int j = 0; j < gameObjects[i]->components.size(); j++)
-					if (target = dynamic_cast<T*>(gameObjects[i]->components[j].get())) return target;
+				for (auto& component : gameObject->components) {
+					if (!component->enabled) continue;
+					if (target = dynamic_cast<T*>(component.get())) return target;
+				}
 			}
 			return nullptr;
 		}
 
 		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
-		static std::vector<T*> FindObjectsByType(FindObjectsInactive = FindObjectsInactive::Exclude) {
+		static std::vector<T*> FindObjectsByType(FindObjectsInactive findObjectsInactive = FindObjectsInactive::Exclude) {
 			std::vector<T*> targets{};
 
-			auto& gameObjects = SceneManager::GetActiveScene()->gameObjects;
-			for (int i = 0; i < gameObjects.size(); i++) {
-				if (auto target = dynamic_cast<T*>(gameObjects[i].get())) targets.emplace_back(target);
+			for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+				if (findObjectsInactive == FindObjectsInactive::Exclude && !gameObject->activeSelf()) continue;
+				if (auto target = dynamic_cast<T*>(gameObject.get())) targets.emplace_back(target);
 
-				for (int j = 0; j < gameObjects[i]->components.size(); j++)
-					if (auto target = dynamic_cast<T*>(gameObjects[i]->components[j].get())) targets.emplace_back(target);
+				for (auto& component : gameObject->components) {
+					if (!component->enabled) continue;
+					if (auto target = dynamic_cast<T*>(component.get())) targets.emplace_back(target);
+				}
 			}
 			return targets;
 		}
@@ -76,7 +80,7 @@ namespace SealEngine {
 
 		static int _instanceIdCounter;
 
-		Object* Clone_impl() const override { return new Object(*this); }
+		Object* _Clone() const override { return new Object(*this); }
 	};
 }
 

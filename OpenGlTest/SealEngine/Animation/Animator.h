@@ -1,7 +1,7 @@
 #pragma once
-#include "MonoBehaviour.h"
+#include "../MonoBehaviour.h"
 #include "AnimatorController.h"
-#include "SpriteRenderer.h"
+#include "../SpriteRenderer.h"
 #include <map>
 
 namespace SealEngine {
@@ -48,7 +48,7 @@ namespace SealEngine {
 		std::map<std::string, bool> boolMap;
 		std::map<std::string, float> floatMap;
 
-		Animator* Clone_impl() const override { return new Animator(*this); }
+		Animator* _Clone() const override { return new Animator(*this); }
 	};
 }
 

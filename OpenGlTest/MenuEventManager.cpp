@@ -25,4 +25,4 @@ void MenuEventManager::Update() {
 	transform()->position = selectionPositions[selectionId];
 }
 
-MenuEventManager* MenuEventManager::Clone_impl() const { return new MenuEventManager(*this); }
+MenuEventManager* MenuEventManager::_Clone() const { return new MenuEventManager(*this); }

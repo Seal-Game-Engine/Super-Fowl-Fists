@@ -2,6 +2,7 @@
 
 void Projectile::Awake(){
 	destroyTime = Time::time() + lifeSpan;
+	_rigidbody = gameObject->GetComponent<Rigidbody2D>();
 }
 
 void Projectile::Update() {
@@ -9,5 +10,5 @@ void Projectile::Update() {
 		Destroy(*gameObject);
 		return;
 	}
-	transform()->position += Vector2::up() * speed * Time::deltaTime();
+	_rigidbody->velocity = Vector2::up() * speed;
 }

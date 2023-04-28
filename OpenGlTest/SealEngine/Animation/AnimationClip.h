@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "Object.h"
-#include "Sprite.h"
+#include "../Object.h"
+#include "../Sprite.h"
 
 namespace SealEngine {
 	class AnimationClip : public Object {

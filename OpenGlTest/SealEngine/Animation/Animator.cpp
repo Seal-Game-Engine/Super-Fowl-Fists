@@ -1,6 +1,6 @@
 #include "Animator.h"
-#include "Clock.h"
-#include "GameObject.h"
+#include "../Clock.h"
+#include "../GameObject.h"
 #include <map>
 using namespace SealEngine;
 

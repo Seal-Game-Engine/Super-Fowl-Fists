@@ -6,15 +6,14 @@ using namespace SealEngine;
 Scene::Scene(std::vector<GameObjectInitializer> gameObjects) : _gameObjects(gameObjects) {}
 
 void Scene::Load() {
-    int i = _gameObjects.size();
-    for (auto& __gameObject : _gameObjects) {
-        if (i == 0) break;
-        Object::Instantiate(*__gameObject.gameObject, __gameObject.transform.position, Transform());
-        i--;
-    }
+    for (auto& __gameObject : _gameObjects) Object::Instantiate(*__gameObject.gameObject, __gameObject.transform.position, Transform());
 }
 
 void Scene::Unload(){
+    while (!instantiationQueue.empty()) instantiationQueue.pop();
+    while (!destroyQueue.empty()) destroyQueue.pop();
+    while (!awakeEventQueue.empty()) awakeEventQueue.pop();
+    while (!awakeEventQueue.empty()) awakeEventQueue.pop();
     gameObjects.clear();
 }
 
@@ -43,8 +42,9 @@ void Scene::Refresh() {
     }
 
     while (!destroyQueue.empty()) {
-         for (int i = 0; i < gameObjects.size(); i++) {
+        for (int i = 0; i < gameObjects.size(); i++) {
             if (*gameObjects[i] == *destroyQueue.front()) {
+                for (auto& component : gameObjects[i]->components)component->OnDestroy();
                 gameObjects[i].reset();
                 gameObjects.erase(gameObjects.begin() + i);
                 goto WhileLoop;
@@ -52,6 +52,7 @@ void Scene::Refresh() {
 
             for (int j = 0; j < gameObjects[i]->components.size(); j++) {
                 if (*gameObjects[i]->components[j] == *destroyQueue.front()) {
+                    gameObjects[i]->components[j]->OnDestroy();
                     gameObjects[i]->components[j].reset();
                     gameObjects[i]->components.erase(gameObjects[i]->components.begin() + j);
                     goto WhileLoop;

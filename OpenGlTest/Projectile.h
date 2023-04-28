@@ -12,5 +12,7 @@ public:
 
 private:
 	float speed = 8.0f;
-	Projectile* Clone_impl() const override { return new Projectile(*this); }
+	Rigidbody2D* _rigidbody = nullptr;
+
+	Projectile* _Clone() const override { return new Projectile(*this); }
 };

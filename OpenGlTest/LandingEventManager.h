@@ -7,5 +7,5 @@ public:
 	void Update() override;
 
 private:
-	LandingEventManager* Clone_impl()const;
+	LandingEventManager* _Clone()const;
 };

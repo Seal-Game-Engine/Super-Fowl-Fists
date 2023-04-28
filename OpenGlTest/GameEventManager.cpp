@@ -21,4 +21,4 @@ void GameEventManager::TogglePause(){
 	Time::timeScale = _isPaused ? 0 : 1;
 }
 
-GameEventManager* GameEventManager::Clone_impl() const { return new GameEventManager(*this); }
+GameEventManager* GameEventManager::_Clone() const { return new GameEventManager(*this); }

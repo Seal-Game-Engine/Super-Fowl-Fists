@@ -13,10 +13,7 @@ void NarioPlayer::Update() {
 
 	float screenWidth = 340.0f;
 	float screenHeight = 340.0f;
-	int x = (Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow)) && (Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow)) ? 0
-		: Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow) ? -1
-		: Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow) ? 1
-		: 0;
+	int x = Input::GetAxisRaw("Horizontal");
 
 	float gravityDelayTime = .3f;
 	const float gForce = 10.0f;
@@ -40,20 +37,5 @@ void NarioPlayer::Update() {
 	if (Input::GetKeyDown(KeyCode::Space)) {
 		auto obstacles = FindObjectsByType<Obstacle>();
 		for (auto& obstacle : obstacles) Destroy(*obstacle->gameObject);
-	}
-}
-
-void NarioPlayer::LateUpdate() {
-
-	std::vector<Collider2D*> myColliders = gameObject->GetComponents<Collider2D>();
-	for (auto& _gameObject : SceneManager::scenes[SceneManager::currentSceneId]->gameObjects) {
-		std::vector<Collider2D*> otherColliders = _gameObject->GetComponents<Collider2D>();
-		for (auto& myCollider : myColliders)
-			for (auto& otherCollider : otherColliders) {
-				if (Collider2D::checkCollision(*myCollider, *otherCollider)) {
-					for (auto& component : gameObject->components) component->OnCollisionEnter2D();
-					for (auto& component : otherCollider->gameObject->components) component->OnCollisionEnter2D();
-				}
-			}
 	}
 }

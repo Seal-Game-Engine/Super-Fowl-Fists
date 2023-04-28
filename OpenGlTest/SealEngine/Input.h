@@ -1,17 +1,13 @@
 #pragma once
 #include "IMessageHandler.h"
 #include "KeyCode.h"
-namespace SealEngine
-{
-struct Vector2;
-}
+#include <queue>
+#include <string>
+namespace SealEngine { struct Vector2; }
 
-namespace SealEngine
-{
-    namespace InputSystem
-    {
-        class Input : public IMessageHandler
-        {
+namespace SealEngine {
+    namespace InputSystem {
+        class Input : public IMessageHandler {
         public:
             bool TryHandleMessage(const UINT, const WPARAM, const LPARAM) override;
             void ResetOnNextFrame() override;
@@ -19,6 +15,8 @@ namespace SealEngine
             static bool GetKeyDown(const KeyCode);
             static bool GetKeyUp(const KeyCode);
             static bool GetKey(const KeyCode);
+
+            static float GetAxisRaw(const std::string& axisName);
 
             static bool anyKeyDown();
 
@@ -42,6 +40,8 @@ namespace SealEngine
             static bool keysHold[256];
             static bool keysDown[256];
             static bool keysUp[256];
+
+            static std::queue<int> keysToggled;
 
             static bool _anyKeyDown;
         };

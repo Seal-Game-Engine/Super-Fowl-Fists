@@ -10,16 +10,16 @@ public:
 	void Awake() override;
 	void Start() override;
 	void Update() override;
-	void OnCollisionEnter2D() override;
-
-	Vector2 spawnedPosition = Vector2::zero();
+	void OnCollisionEnter2D(Collision2D collision) override;
 
 private:
 	float speed = 0.5f;
 	
+	Rigidbody2D* rigidbody = nullptr;
+
 	NarioPlayer* narioPlayer = nullptr;
 	Player* player = nullptr;
 
-	Obstacle* Clone_impl() const override { return new Obstacle(*this); }
+	Obstacle* _Clone() const override { return new Obstacle(*this); }
 };
 

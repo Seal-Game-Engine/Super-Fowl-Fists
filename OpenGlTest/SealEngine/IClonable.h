@@ -3,8 +3,8 @@
 
 class IClonable{
 public:
-	std::shared_ptr<IClonable> Clone() const { return std::shared_ptr<IClonable>(this->Clone_impl()); };
+	std::shared_ptr<IClonable> Clone() const { return std::shared_ptr<IClonable>(this->_Clone()); };
 private:
-	virtual IClonable* Clone_impl() const = 0;
+	virtual IClonable* _Clone() const = 0;
 };
 

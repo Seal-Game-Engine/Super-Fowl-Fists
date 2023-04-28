@@ -15,6 +15,6 @@ private:
 
 	bool _isPaused = false;
 
-	GameEventManager* Clone_impl() const override;
+	GameEventManager* _Clone() const override;
 };
 

@@ -24,12 +24,16 @@
 
 #include "SealEngine/Button.h"
 
-#include "SealEngine/AnimationClip.h"
-#include "SealEngine/AnimatorController.h"
-#include "SealEngine/Animator.h"
+#include "SealEngine/Animation/AnimationClip.h"
+#include "SealEngine/Animation/AnimatorController.h"
+#include "SealEngine/Animation/Animator.h"
 
 #include "SealEngine/Scene.h"
 #include "SealEngine/SceneManager.h"
 #include "SealEngine/ApplicationManager.h"
 
-#include "SealEngine/Collider2D.h"
+#include "SealEngine/Physics/Collision2D.h"
+#include "SealEngine/Physics/Collider2D.h"
+#include "SealEngine/Physics/CircleCollider2D.h"
+#include "SealEngine/Physics/BoxCollider2D.h"
+#include "SealEngine/Physics/Rigidbody2D.h"

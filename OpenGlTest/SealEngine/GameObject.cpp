@@ -19,24 +19,6 @@ GameObject::GameObject(const std::string& name)
 	transform = _transform.get();
 	components.emplace_back(_transform);
 }
-GameObject::GameObject(const std::string& name, std::vector<MonoBehaviour> components)
-	: Object(name){//}, components(components), transform() {
-
-	//this->components.emplace_back(transform);
-
-	/*for (auto& component : this->components) {
-		component.gameObject = this;
-	}*/
-	/*transform.gameObject = this;
-	this->components.emplace_back(transform);
-
-	for (auto& component : components) {
-		this->components.emplace_back(component);
-	}
-	for (auto& component : this->components) {
-		component->gameObject = this;
-	}*/
-}
 GameObject::GameObject(const std::string& name, std::vector<std::shared_ptr<MonoBehaviour>> components)
 	: Object(name), components(std::move(components)) {
 	auto _transform = std::make_shared<Transform>();

@@ -7,7 +7,7 @@ public:
 	void Awake() override;
 	void Update() override;
 	void LateUpdate() override;
-	void OnCollisionEnter2D() override;
+	void OnCollisionEnter2D(Collision2D collision) override;
 
 	Player() = default;
 
@@ -27,6 +27,6 @@ private:
 
 	static const std::array<const AnimatorController*, 2> animatorControllers;
 
-	Player* Clone_impl() const override { return new Player(*this); }
+	Player* _Clone() const override { return new Player(*this); }
 };
 

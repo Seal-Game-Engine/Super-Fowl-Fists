@@ -10,6 +10,6 @@ public:
 	float nextSpawnTime = currentTime + spawnDelay;
 	float currentTime = Time::time();
 private:
-	ObstacleSpawner* Clone_impl() const override { return new ObstacleSpawner(*this); }
+	ObstacleSpawner* _Clone() const override { return new ObstacleSpawner(*this); }
 };
 

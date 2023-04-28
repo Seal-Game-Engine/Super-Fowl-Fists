@@ -15,7 +15,6 @@ namespace SealEngine {
     public:
         GameObject();
         GameObject(const std::string& name);
-        GameObject(const std::string& name, std::vector<MonoBehaviour> components);
         GameObject(const std::string& name, std::vector<std::shared_ptr<MonoBehaviour>> components);
 
         GameObject(const GameObject& obj);
@@ -51,6 +50,7 @@ namespace SealEngine {
         T* GetComponent() {
             T* component = nullptr;
             for (auto& _component : components) if (component = dynamic_cast<T*>(_component.get())) return component;
+            return nullptr;
         }
 
         template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
@@ -90,6 +90,6 @@ namespace SealEngine {
     private:
         bool _activeSelf = true;
 
-        virtual GameObject* Clone_impl() const override { return new GameObject(*this); };
+        virtual GameObject* _Clone() const override { return new GameObject(*this); };
     };
 }

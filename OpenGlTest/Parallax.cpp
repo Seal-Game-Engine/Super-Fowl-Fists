@@ -40,4 +40,4 @@ void Parallax::Update() {
 
 Parallax::Parallax(const Sprite* sprite, Vector2 direction, float speed) : sprite(sprite), direction(direction), speed(speed) {}
 
-Parallax* Parallax::Clone_impl() const { return new Parallax(*this); }
+Parallax* Parallax::_Clone() const { return new Parallax(*this); }

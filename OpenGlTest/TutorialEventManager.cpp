@@ -5,4 +5,4 @@ void TutorialEventManager::Update(){
 	if (Input::GetKeyDown(KeyCode::Escape) || Input::GetKeyDown(KeyCode::Return))SceneManager::LoadScene(1);
 }
 
-TutorialEventManager* TutorialEventManager::Clone_impl() const { return new TutorialEventManager(*this); }
+TutorialEventManager* TutorialEventManager::_Clone() const { return new TutorialEventManager(*this); }

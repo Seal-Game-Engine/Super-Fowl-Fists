@@ -17,6 +17,7 @@ namespace SealEngine {
         static float Dot(const Vector3&, const Vector3&);
         static Vector3 Cross(const Vector3&, const Vector3&);
         static float Distance(const Vector3&, const Vector3&);
+        static Vector3 Project(const Vector3& vector, const Vector3& onNormal);
         static Vector3 ProjectOnPlane(const Vector3& vector, const Vector3& planeNormal);
 
         static Vector3 zero();

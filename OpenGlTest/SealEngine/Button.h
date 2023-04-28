@@ -9,12 +9,12 @@ namespace SealEngine {
 		std::function<void()> onClick = {};
 		void Update() override;
 
-		std::shared_ptr<Button> Clone() const { return std::shared_ptr<Button>(Clone_impl()); }
+		std::shared_ptr<Button> Clone() const { return std::shared_ptr<Button>(_Clone()); }
 
 	private:
 		SpriteRenderer* renderer;
 
-		Button* Clone_impl() const override { return new Button(*this); }
+		Button* _Clone() const override { return new Button(*this); }
 	};
 }
 

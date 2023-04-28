@@ -17,7 +17,7 @@ class Parallax:public MonoBehaviour{
     private:
         Rect rect = Rect(0, 0, 1, 1);
 
-        Parallax* Clone_impl() const override;
+        Parallax* _Clone() const override;
 };
 
 

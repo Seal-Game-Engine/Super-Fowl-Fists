@@ -1,14 +1,8 @@
 #include "Obstacle.h"
-#include "AssetManager.h"
-#include <random>
+#include "Projectile.h"
 
 void Obstacle::Awake() {
-	float determine = rand() % 10;
-	float x = (rand() % 14) - 7;
-	float y = (rand() % 4) - 3;
-	transform()->position = Vector2(x, y);
-	if (determine > 3) transform()->rotation = Vector3::forward() * 30 * Time::deltaTime();
-	spawnedPosition = Vector2(x, y);
+	rigidbody = gameObject->GetComponent<Rigidbody2D>();
 }
 
 void Obstacle::Start(){
@@ -19,7 +13,8 @@ void Obstacle::Start(){
 void Obstacle::Update() { //move to other direction
 	Vector2 direction = ((player ? player->transform()->position : narioPlayer->transform()->position) - transform()->position).normalized();
 
-	transform()->position += direction * speed * Time::deltaTime();
+	//transform()->position += direction * speed * Time::deltaTime();
+	rigidbody->velocity = direction * speed;
 
 	/*if (spawnedPosition.x() > 0)
 		transform()->position += Vector2::left() * (rand() % 5) * Time::deltaTime();
@@ -27,6 +22,6 @@ void Obstacle::Update() { //move to other direction
 		transform()->position += Vector2::right() * (rand() % 5) * Time::deltaTime();*/
 }
 
-void Obstacle::OnCollisionEnter2D() {
-	Destroy(*gameObject);
+void Obstacle::OnCollisionEnter2D(Collision2D collision) {
+	if (collision.gameObject()->GetComponent<Projectile>()) Destroy(*gameObject);
 }

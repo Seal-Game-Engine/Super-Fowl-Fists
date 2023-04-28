@@ -7,6 +7,6 @@ public:
 	void Update() override;
 
 private:
-	TutorialEventManager* Clone_impl() const;
+	TutorialEventManager* _Clone() const;
 };
 

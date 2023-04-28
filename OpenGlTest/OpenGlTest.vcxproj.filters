@@ -16,12 +16,12 @@
     <ClCompile Include="TutorialEventManager.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleSpawner.cpp" />
-    <ClCompile Include="SealEngine\AnimationClip.cpp" />
-    <ClCompile Include="SealEngine\Animator.cpp" />
-    <ClCompile Include="SealEngine\AnimatorController.cpp" />
+    <ClCompile Include="SealEngine\Animation\AnimationClip.cpp" />
+    <ClCompile Include="SealEngine\Animation\Animator.cpp" />
+    <ClCompile Include="SealEngine\Animation\AnimatorController.cpp" />
     <ClCompile Include="SealEngine\ApplicationManager.cpp" />
     <ClCompile Include="SealEngine\Clock.cpp" />
-    <ClCompile Include="SealEngine\Collider2D.cpp" />
+    <ClCompile Include="SealEngine\Physics\Collider2D.cpp" />
     <ClCompile Include="SealEngine\GameObject.cpp" />
     <ClCompile Include="SealEngine\IClonable.cpp" />
     <ClCompile Include="SealEngine\IMessageHandler.cpp" />
@@ -41,6 +41,10 @@
     <ClCompile Include="SealEngine\Vector3.cpp" />
     <ClCompile Include="XwingPlayer.cpp" />
     <ClCompile Include="NarioPlayer.cpp" />
+    <ClCompile Include="SealEngine\Physics\Rigidbody2D.cpp" />
+    <ClCompile Include="SealEngine\Physics\Collision2D.cpp" />
+    <ClCompile Include="SealEngine\Physics\BoxCollider2D.cpp" />
+    <ClCompile Include="SealEngine\Physics\CircleCollider2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -59,12 +63,12 @@
     <ClInclude Include="TutorialEventManager.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstacleSpawner.h" />
-    <ClInclude Include="SealEngine\AnimationClip.h" />
-    <ClInclude Include="SealEngine\Animator.h" />
-    <ClInclude Include="SealEngine\AnimatorController.h" />
+    <ClInclude Include="SealEngine\Animation\AnimationClip.h" />
+    <ClInclude Include="SealEngine\Animation\Animator.h" />
+    <ClInclude Include="SealEngine\Animation\AnimatorController.h" />
     <ClInclude Include="SealEngine\ApplicationManager.h" />
     <ClInclude Include="SealEngine\Clock.h" />
-    <ClInclude Include="SealEngine\Collider2D.h" />
+    <ClInclude Include="SealEngine\Physics\Collider2D.h" />
     <ClInclude Include="SealEngine\GameObject.h" />
     <ClInclude Include="SealEngine\IClonable.h" />
     <ClInclude Include="SealEngine\IMessageHandler.h" />
@@ -84,6 +88,10 @@
     <ClInclude Include="SealEngine\Vector3.h" />
     <ClInclude Include="XwingPlayer.h" />
     <ClInclude Include="NarioPlayer.h" />
+    <ClInclude Include="SealEngine\Physics\Rigidbody2D.h" />
+    <ClInclude Include="SealEngine\Physics\Collision2D.h" />
+    <ClInclude Include="SealEngine\Physics\BoxCollider2D.h" />
+    <ClInclude Include="SealEngine\Physics\CircleCollider2D.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />

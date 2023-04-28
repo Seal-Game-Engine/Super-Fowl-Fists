@@ -16,6 +16,7 @@ namespace SealEngine {
         static float Dot(const Vector2&, const Vector2&);
         static float Distance(const Vector2&, const Vector2&);
         static Vector2 Perpendicular(const Vector2&);
+        static Vector2 Lerp(const Vector2& a, const Vector2& b, float t);
 
         static Vector2 zero();
         static Vector2 one();
