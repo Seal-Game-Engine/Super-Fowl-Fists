@@ -36,6 +36,9 @@ void Player::Update() {
 		animator->SetAnimatorController(animatorControllers[(int)powerState]);
 	}
 
+	if (Input::GetKeyDown(KeyCode::H)) {
+		animator->Play("Punch");
+	}
 	animator->SetBool("isWalking", std::abs(x) > 0);
 	if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
 

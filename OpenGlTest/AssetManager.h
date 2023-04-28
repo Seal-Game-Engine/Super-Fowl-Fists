@@ -41,6 +41,7 @@ public:
 	static const AnimationClip BigTikeMyson_Idle;
 	static const AnimationClip BigTikeMyson_Walk;
 	static const AnimationClip BigTikeMyson_Jump;
+	static const AnimationClip BigTikeMyson_Punch;
 	static const AnimatorController BigTikeMyson_Controller;
 	static const GameObject BigTikeMysonObject;
 
@@ -49,6 +50,7 @@ public:
 	static const AnimationClip MiniTikeMyson_Idle;
 	static const AnimationClip MiniTikeMyson_Walk;
 	static const AnimationClip MiniTikeMyson_Jump;
+	static const AnimationClip MiniTikeMyson_Punch;
 	static const AnimatorController MiniTikeMyson_Controller;
 	static const GameObject MiniTikeMysonObject;
 
