@@ -19,9 +19,6 @@ void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.emplace(scene
 Scene* SceneManager::GetActiveScene() { return scenes[currentSceneId]; }
 
 bool SceneManager::RefreshScene() {
-    //glMatrixMode(GL_MODELVIEW);
-    //glLoadIdentity();
-
     if (Input::GetKeyDown(KeyCode::Q))camDist++;
     else if (Input::GetKeyDown(KeyCode::E))camDist--;
 
@@ -29,14 +26,13 @@ bool SceneManager::RefreshScene() {
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
         //glTranslatef(0, 0, camDist);
 
+        //glLoadIdentity();
         if (scenes.size() > currentSceneId) scenes[currentSceneId]->Refresh();
-        ////glLoadIdentity();
 
         //Font::RenderText("Hello World", Vector2(-10,-10), 1);
     }
     glPopMatrix();
     glFinish();
-    SwapBuffers(ApplicationManager::deviceContextHandler); // (Double Buffering)
 
     while (!sceneLoadQuery.empty()) {
         if (scenes.size() > sceneLoadQuery.front()) {
@@ -46,6 +42,7 @@ bool SceneManager::RefreshScene() {
         }
         sceneLoadQuery.pop();
     }
+    SwapBuffers(ApplicationManager::deviceContextHandler); // (Double Buffering)
 
     return _quitApplication;
 }
@@ -55,7 +52,7 @@ bool SceneManager::InitGl() {
     glutInit(&__argc, __argv);
 #endif
 
-    //glClearDepth(1.0f);
+    glClearDepth(1.0f);
 
     //glEnable(GL_DEPTH_TEST);
 
@@ -71,7 +68,7 @@ bool SceneManager::InitGl() {
     //glDepthFunc(GL_LEQUAL);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     //glDisable(GL_DEPTH_TEST);
-    glDisable(GL_LIGHTING);
+    //glDisable(GL_LIGHTING);
     //glEnable(GL_LIGHTING);
     //glEnable(GL_LIGHT0);
 

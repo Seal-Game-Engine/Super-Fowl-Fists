@@ -6,7 +6,10 @@ using namespace SealEngine;
 Scene::Scene(std::vector<GameObjectInitializer> gameObjects) : _gameObjects(gameObjects) {}
 
 void Scene::Load() {
-    for (auto& __gameObject : _gameObjects) Object::Instantiate(*__gameObject.gameObject, __gameObject.transform.position, Transform());
+    for (auto& __gameObject : _gameObjects) {
+        auto gameObject = Object::InstantiateT<GameObject>(*__gameObject.gameObject, __gameObject.transform.position, Transform());
+        gameObject->transform->scale = __gameObject.transform.scale;
+    }
 }
 
 void Scene::Unload(){
@@ -35,7 +38,8 @@ void Scene::Refresh() {
     }
 
     while (!instantiationQueue.empty()) {
-        awakeEventQueue.emplace(instantiationQueue.front().get());
+        //awakeEventQueue.emplace(instantiationQueue.front().get());
+        for (auto& component : instantiationQueue.front()->components) component->Awake();
         startEventQueue.emplace(instantiationQueue.front().get());
         gameObjects.emplace_back(instantiationQueue.front());
         instantiationQueue.pop();

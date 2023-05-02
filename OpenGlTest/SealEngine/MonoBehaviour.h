@@ -22,18 +22,18 @@ namespace SealEngine {
 
 		//virtual void FixedUpdate() {}
 		virtual void OnCollisionEnter2D(Collision2D collision) {}
-		//virtual void OnCollisionExit2D() {}
-		//virtual void OnCollisionStay2D() {}
+		//virtual void OnCollisionStay2D(Collision2D collision) {}
+		//virtual void OnCollisionExit2D(Collision2D collision) {}
+		//virtual void OnTriggerEnter2D(Collider2D collider) {}
+		//virtual void OnTriggerStay2D(Collider2D collider) {}
+		//virtual void OnTriggerExit2D(Collider2D collider) {}
 
 		/*virtual void OnCollisionEnter() {}
-		virtual void OnCollisionExit() {}
 		virtual void OnCollisionStay() {}
+		virtual void OnCollisionExit() {}
 		virtual void OnTriggerEnter() {}
-		virtual void OnTriggerEnter2D() {}
-		virtual void OnTriggerExit() {}
-		virtual void OnTriggerExit2D() {}
 		virtual void OnTriggerStay() {}
-		virtual void OnTriggerStay2D() {}
+		virtual void OnTriggerExit() {}
 		virtual void Reset() {}*/
 #pragma endregion
 

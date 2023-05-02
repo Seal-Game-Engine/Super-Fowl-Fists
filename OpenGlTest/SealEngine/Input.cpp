@@ -80,20 +80,18 @@ bool Input::GetKeyDown(const KeyCode wParam) { return keysDown[(int)wParam]; }
 bool Input::GetKeyUp(const KeyCode wParam) { return keysUp[(int)wParam]; }
 bool Input::GetKey(const KeyCode wParam) { return keysHold[(int)wParam]; }
 
-float Input::GetAxisRaw(const std::string& axisName) {
-	float value = 0;
-
-	if (axisName == "Horizontal")
-		value =
-		(Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow) ? -1 : 0) +
-		(Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow) ? 1 : 0);
-
-	else if (axisName == "Vertical")
-		value =
-		(Input::GetKey(KeyCode::W) || Input::GetKey(KeyCode::UpArrow) ? 1 : 0) +
-		(Input::GetKey(KeyCode::S) || Input::GetKey(KeyCode::DownArrow) ? -1 : 0);
-
-	return value;
+float Input::GetAxisRaw(const Axis axis) {
+	switch (axis) {
+	case Axis::Horizontal:
+		return
+			(Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow) ? -1 : 0) +
+			(Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow) ? 1 : 0);
+	case Axis::Vertical:
+		return
+			(Input::GetKey(KeyCode::W) || Input::GetKey(KeyCode::UpArrow) ? 1 : 0) +
+			(Input::GetKey(KeyCode::S) || Input::GetKey(KeyCode::DownArrow) ? -1 : 0);
+	}
+	return 0;
 }
 
 bool Input::anyKeyDown() { return _anyKeyDown; }

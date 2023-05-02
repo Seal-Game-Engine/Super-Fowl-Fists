@@ -21,7 +21,7 @@ void Player::Update() {
 	if (Time::time() >= stopGravity)
 		transform()->position += gravity;
 	else transform()->position -= gravity * 1.5f;
-	int x = Input::GetAxisRaw("Horizontal");
+	int x = Input::GetAxisRaw(Input::Axis::Horizontal);
 	Vector2 horizontalMovement = Vector2::right() * (float)x * _speed * Time::deltaTime();
 
 	transform()->position += horizontalMovement;

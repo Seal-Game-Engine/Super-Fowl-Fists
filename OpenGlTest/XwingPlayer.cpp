@@ -10,13 +10,14 @@ void XwingPlayer::Awake() {
 }
 
 void XwingPlayer::Update() {
-	int x = Input::GetAxisRaw("Horizontal");
-	int y = Input::GetAxisRaw("Vertical");
+	int x = Input::GetAxisRaw(Input::Axis::Horizontal);
+	int y = Input::GetAxisRaw(Input::Axis::Vertical);
 
 	Vector2 horizontalMovement = Vector2::right() * (float)x * _speed;
 	Vector2 verticalMovement = Vector2::up() * (float)y * _speed;
-	if((horizontalMovement + verticalMovement).magnitude() > 0) 
-		rigidbody->velocity = horizontalMovement + verticalMovement;
+	rigidbody->AddForce(horizontalMovement + verticalMovement);
+	/*if((horizontalMovement + verticalMovement).magnitude() > 0) 
+		rigidbody->velocity = horizontalMovement + verticalMovement;*/
 
 	//if (std::abs(transform()->position.x()) > (float)ApplicationManager::width / 280.0f) transform()->position -= horizontalMovement;
 	//if (std::abs(transform()->position.y()) > (float)ApplicationManager::height / 280.0f) transform()->position -= verticalMovement;

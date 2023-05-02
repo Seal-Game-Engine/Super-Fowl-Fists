@@ -79,7 +79,8 @@ const GameObject AssetManager::XwingObject = GameObject(
 	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
 		std::make_shared<Rigidbody2D>(),
-		std::make_shared<CircleCollider2D>(0.25f, Vector2(0, -0.0625)),
+		//std::make_shared<CircleCollider2D>(0.25f, Vector2(0, -0.0625)),
+		std::make_shared<BoxCollider2D>(Vector2(0.5f, 0.5f), Vector2(0, -0.0625f)),
 		std::make_shared<XwingPlayer>(),
 });
 
@@ -295,8 +296,8 @@ const GameObject AssetManager::ObstacleObject = GameObject("Obstacle", std::vect
 	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Obstacle_Controller),
 		std::make_shared<Rigidbody2D>(),
-		std::make_shared<BoxCollider2D>(Vector2(2, 1)),
-		std::make_shared<Obstacle>()
+		std::make_shared<BoxCollider2D>(),
+		//std::make_shared<Obstacle>()
 });
 
 //ObstaclesSpawner
@@ -406,12 +407,13 @@ const GameObject OtherGameEventManagerObject = GameObject(
 const GameObject Ground = GameObject(
 	"Ground",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<BoxCollider2D>(Vector2(10, 1)),
+	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
+	std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
 });
 
 Scene Assets_Scenes::XwingScene = Scene({
 	{&SpaceBackgroundObject, Transform()},
-	//{&Ground, Transform(Vector3(0, -8, 0))},
+	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	{&AssetManager::XwingObject, Transform(Vector3(0, -1, 0))},
 	{&AssetManager::ObstacleSpawnerObject, Transform()},
 	/*{GameObject(

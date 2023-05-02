@@ -1,13 +1,15 @@
 #include "Collider2D.h"
 #include "Rigidbody2D.h"
 #include "Collision2D.h"
+#include "ContactPoint2D.h"
 #include "../GameObject.h"
 #include "../Scene.h"
+#include <algorithm>
 using namespace SealEngine;
 
 Collider2D::Collider2D(Vector2 offset) : offset(offset) {}
 
-void Collider2D::Start() {
+void Collider2D::Awake() {
 	_attachedRigidbody = gameObject->GetComponent<Rigidbody2D>();
 }
 
@@ -16,10 +18,17 @@ void Collider2D::LateUpdate() {
 
 	std::vector<Collider2D*> sceneColliders = FindObjectsByType<Collider2D>();
 	for (auto& sceneCollider : sceneColliders) {
-		if (*this == *sceneCollider || !Collider2D::CheckCollision(*this, *sceneCollider)) continue;
+		std::vector<Vector2> normals{};
+		if (*this == *sceneCollider || !Collider2D::Collide(*this, *sceneCollider, normals)) continue;
 
-		for (auto& component : gameObject->components) component->OnCollisionEnter2D(Collision2D(sceneCollider, this));
-		for (auto& component : sceneCollider->gameObject->components) component->OnCollisionEnter2D(Collision2D(this, sceneCollider));
+		for (auto& component : gameObject->components) 
+			component->OnCollisionEnter2D(Collision2D(sceneCollider, this, normals));
+		for (auto& component : sceneCollider->gameObject->components) {
+			std::vector<Vector2> invertedNormals{};
+			invertedNormals.reserve(normals.size());
+			std::for_each(normals.begin(), normals.end(), [&invertedNormals](const auto& normal) { invertedNormals.emplace_back(normal * -1); });
+			component->OnCollisionEnter2D(Collision2D(this, sceneCollider, invertedNormals));
+		}
 	}
 }
 
@@ -27,46 +36,30 @@ bool Collider2D::InCollisionRange(Collider2D& a, Collider2D& b){
 	return Vector2::Distance(a.transform()->position + a.offset, b.transform()->position + b.offset) < (a.circumradius() + b.circumradius());
 }
 
-void Collider2D::ProjectVerticesOnAxis(const std::vector<Vector2>& worldSpaceVertices, const Vector2& axis, float& min, float& max){
-	min = FLT_MAX;
-	max = FLT_MIN;
-	
-	for (auto& vertice : worldSpaceVertices) {
-		float projection = Vector2::Dot(vertice, axis);
-		if (projection < min) min = projection;
-		if (projection > max) max = projection;
-	}
-}
-
-bool Collider2D::CheckCollision(Collider2D& a, Collider2D& b) {
+bool Collider2D::Collide(Collider2D& a, Collider2D& b, std::vector<Vector2>& normals) {
 	if (!InCollisionRange(a, b)) return false;
 
-	for (int i = 0; i < a.worldSpaceVertices().size() && b.worldSpaceVertices().size() > 0; i++) {
-		Vector2 axis = Vector2::Perpendicular(a.worldSpaceVertices()[((unsigned long long)i + 1) % a.worldSpaceVertices().size()] - a.worldSpaceVertices()[i]);
+	float minA, maxA, minB, maxB;
+	Vector2 normal = Vector2::zero();
+	for (auto& axis : a.separationAxes(b.worldSpaceVertices())) {
+		a.ProjectVerticesOn(axis, minA, maxA);
+		b.ProjectVerticesOn(axis, minB, maxB);
 
-		float minA, maxA, minB, maxB;
-		ProjectVerticesOnAxis(a.worldSpaceVertices(), axis, minA, maxA);
-		ProjectVerticesOnAxis(b.worldSpaceVertices(), axis, minB, maxB);
+		if (minA > maxB || minB > maxA) return false;
 
-		if (minA >= maxB || minB >= maxA) return false;
+		normals.emplace_back(axis * (std::min)(maxA - minB, maxB - minA) * 
+			(Vector2::Dot(b.transform()->position - a.transform()->position, axis) < 0 ? -1 : 1));
 	}
 
-	for (int i = 0; i < b.worldSpaceVertices().size() && a.worldSpaceVertices().size() > 0; i++) {
-		Vector2 axis = Vector2::Perpendicular(b.worldSpaceVertices()[((unsigned long long)i + 1) % b.worldSpaceVertices().size()] - b.worldSpaceVertices()[i]);
+	for (auto& axis : b.separationAxes(a.worldSpaceVertices())) {
+		a.ProjectVerticesOn(axis, minA, maxA);
+		b.ProjectVerticesOn(axis, minB, maxB);
 
-		float minA, maxA, minB, maxB;
-		ProjectVerticesOnAxis(a.worldSpaceVertices(), axis, minA, maxA);
-		ProjectVerticesOnAxis(b.worldSpaceVertices(), axis, minB, maxB);
+		if (minA > maxB || minB > maxA) return false;
 
-		if (minA >= maxB || minB >= maxA) return false;
+		normals.emplace_back(axis * (std::min)(maxA - minB, maxB - minA) *
+			(Vector2::Dot(b.transform()->position - a.transform()->position, axis) < 0 ? -1 : 1));
 	}
 
 	return true;
 }
-
-//write code to project circle to axis:
-//v1,v2 = ctr + dir * r, ctr - dir * r
-//dot v1, v2 , axis, swap minmax
-
-//circle axis:
-//vector = circle ctr to nearest vertex of polygon

@@ -16,7 +16,8 @@ namespace SealEngine {
             static bool GetKeyUp(const KeyCode);
             static bool GetKey(const KeyCode);
 
-            static float GetAxisRaw(const std::string& axisName);
+            enum class Axis { Horizontal, Vertical, MouseX, MouseY };
+            static float GetAxisRaw(const Axis axis);
 
             static bool anyKeyDown();
 
