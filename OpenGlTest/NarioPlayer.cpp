@@ -35,7 +35,7 @@ void NarioPlayer::Update() {
 	animator->SetInteger("x", x);
 
 	if (Input::GetKeyDown(KeyCode::Space)) {
-		auto obstacles = FindObjectsByType<Obstacle>();
+		auto obstacles = Scene::FindObjectsByType<Obstacle>();
 		for (auto& obstacle : obstacles) Destroy(*obstacle->gameObject);
 	}
 }

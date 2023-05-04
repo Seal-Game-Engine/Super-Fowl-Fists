@@ -1,6 +1,7 @@
 #include "SealPackages.h"
 #include "Input.h"
 #include "Vector2.h"
+#include "Vector3.h"
 #include "SceneManager.h"
 using namespace SealEngine;
 using namespace SealEngine::InputSystem;
@@ -126,6 +127,30 @@ void Input::mouseWheel(const WPARAM wParam, const double delta) {
 }
 
 Vector2 Input::GetMousePosition() {
+	int x = 0, y = 0;//mouse position
+
+	//lecture
+	GLdouble modelViewMatrix[16];
+	GLdouble projectionMatrix[16];
+	GLint viewPort[4];
+	Vector3 windowVector = Vector3::zero();
+	GLdouble winX, winY, winZ;
+	Vector3 positionVector = Vector3::zero();
+	GLdouble posX, posY, posZ;
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelViewMatrix);
+	glGetDoublev(GL_PROJECTION_MATRIX, projectionMatrix);
+	glGetIntegerv(GL_VIEWPORT, viewPort);
+	//windowVector = Vector3(
+	winX = x;
+	winY = (float)viewPort[3] - y;
+	glReadPixels(x, (int)viewPort[3] - y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
+	gluUnProject(winX, winY, winZ, modelViewMatrix, projectionMatrix, viewPort, &posX, &posY, &posZ);
+	//end class
+
+
+
 	//int x, y;
 	//glutMotionFunc([](int _x, int _y) { prev_MouseX = _x; prev_MouseY = _y; });
 

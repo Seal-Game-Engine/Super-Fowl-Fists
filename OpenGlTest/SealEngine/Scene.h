@@ -4,10 +4,11 @@
 #include <memory>
 #include <tuple>
 #include "Transform.h"
+#include "GameObject.h"
 
 namespace SealEngine {
     class Object;
-    class GameObject;
+    //class GameObject;
     //class Transform;
 }
 
@@ -19,6 +20,39 @@ namespace SealEngine {
             Transform transform;
         };
     public:
+		enum class FindObjectsInactive { Exclude, Include };
+
+		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		static T* FindFirstObjectByType(FindObjectsInactive findObjectsInactive = FindObjectsInactive::Exclude) {
+			T* target = nullptr;
+
+			for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+				if (findObjectsInactive == FindObjectsInactive::Exclude && !gameObject->activeSelf()) continue;
+				if (target = dynamic_cast<T*>(gameObject.get())) return target;
+
+				for (auto& component : gameObject->components) {
+					if (!component->enabled) continue;
+					if (target = dynamic_cast<T*>(component.get())) return target;
+				}
+			}
+			return nullptr;
+		}
+
+		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		static std::vector<T*> FindObjectsByType(FindObjectsInactive findObjectsInactive = FindObjectsInactive::Exclude) {
+			std::vector<T*> targets{};
+
+			for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+				if (findObjectsInactive == FindObjectsInactive::Exclude && !gameObject->activeSelf()) continue;
+				if (auto target = dynamic_cast<T*>(gameObject.get())) targets.emplace_back(target);
+
+				for (auto& component : gameObject->components) {
+					if (!component->enabled) continue;
+					if (auto target = dynamic_cast<T*>(component.get())) targets.emplace_back(target);
+				}
+			}
+			return targets;
+		}
 
         Scene(std::vector<GameObjectInitializer> gameObjects);
         void Load();

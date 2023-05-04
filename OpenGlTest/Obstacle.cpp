@@ -6,8 +6,8 @@ void Obstacle::Awake() {
 }
 
 void Obstacle::Start(){
-	player = FindFirstObjectByType<Player>();
-	narioPlayer = FindFirstObjectByType<NarioPlayer>();
+	player = Scene::FindFirstObjectByType<Player>();
+	narioPlayer = Scene::FindFirstObjectByType<NarioPlayer>();
 }
 
 void Obstacle::Update() { //move to other direction

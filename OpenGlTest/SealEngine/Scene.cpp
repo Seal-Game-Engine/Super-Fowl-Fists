@@ -1,13 +1,12 @@
 #include "Scene.h"
 #include "GameObject.h"
-//#include "Transform.h"
 using namespace SealEngine;
 
 Scene::Scene(std::vector<GameObjectInitializer> gameObjects) : _gameObjects(gameObjects) {}
 
 void Scene::Load() {
     for (auto& __gameObject : _gameObjects) {
-        auto gameObject = Object::InstantiateT<GameObject>(*__gameObject.gameObject, __gameObject.transform.position, Transform());
+        auto gameObject = Object::InstantiateT<GameObject>(*__gameObject.gameObject, __gameObject.transform.position);
         gameObject->transform->scale = __gameObject.transform.scale;
     }
 }
@@ -33,6 +32,7 @@ void Scene::Refresh() {
 
     for (auto& gameObject : gameObjects) {
         if (!gameObject->activeSelf()) continue;
+        for (auto& component : gameObject->components) { if (component->enabled)component->RunCoroutines(); }
         for (auto& component : gameObject->components) { if (component->enabled) component->Update(); }
         for (auto& component : gameObject->components) { if (component->enabled) component->LateUpdate(); }
     }

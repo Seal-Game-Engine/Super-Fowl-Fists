@@ -14,12 +14,12 @@ public:
 private:
 	SpriteRenderer* renderer = nullptr;
 	Animator* animator = nullptr;
-	Collider2D* collider = nullptr;
+	Rigidbody2D* rigidbody = nullptr;
 
 	float _nextFire = 0;
 
 	float _nextSpawn = 0.0f;
-	float _speed = 1.0f;
+	float _speed = 4.0f;
 	float stopGravity = 0.0f;
 
 	enum class PowerState : int { Small, Buff };

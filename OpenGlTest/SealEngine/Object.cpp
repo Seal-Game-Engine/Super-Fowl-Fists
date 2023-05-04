@@ -1,5 +1,4 @@
 #include "Object.h"
-//#include "SceneManager.h"
 #include "Scene.h"
 #include "GameObject.h"
 using namespace SealEngine;
@@ -36,7 +35,7 @@ Object* Object::Instantiate(const Object& obj) {
 	return object.get();
 }
 
-Object* Object::Instantiate(const Object& obj, const Vector3& position, Transform)
+Object* Object::Instantiate(const Object& obj, const Vector3& position, Transform*)
 {
 	Object* object = Instantiate(obj);
 	if (GameObject* gameObject = dynamic_cast<GameObject*>(object)) {

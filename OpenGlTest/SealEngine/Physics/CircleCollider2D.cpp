@@ -1,8 +1,9 @@
 #include "CircleCollider2D.h"
 #include "../Transform.h"
+#include <algorithm>
 using namespace SealEngine;
 
-CircleCollider2D::CircleCollider2D(float radius, Vector2 offset) : radius(radius), Collider2D(offset) {}
+CircleCollider2D::CircleCollider2D(float radius, bool isTrigger, Vector2 offset) : radius(radius), Collider2D(isTrigger, offset) {}
 
 void CircleCollider2D::ProjectVerticesOn(const Vector2& axis, float& min, float& max) {
 	Vector2 worldSpaceCenter = transform()->position + offset;

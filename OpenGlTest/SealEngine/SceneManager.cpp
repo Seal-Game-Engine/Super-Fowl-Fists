@@ -22,6 +22,7 @@ bool SceneManager::RefreshScene() {
     if (Input::GetKeyDown(KeyCode::Q))camDist++;
     else if (Input::GetKeyDown(KeyCode::E))camDist--;
 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
     {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
         //glTranslatef(0, 0, camDist);
@@ -74,7 +75,6 @@ bool SceneManager::InitGl() {
 
     //GLLight Light(GL_LIGHT0);
     //Light.Set(GL_LIGHT0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_COLOR_MATERIAL);

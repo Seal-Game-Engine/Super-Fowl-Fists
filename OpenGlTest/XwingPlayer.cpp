@@ -15,15 +15,17 @@ void XwingPlayer::Update() {
 
 	Vector2 horizontalMovement = Vector2::right() * (float)x * _speed;
 	Vector2 verticalMovement = Vector2::up() * (float)y * _speed;
-	rigidbody->AddForce(horizontalMovement + verticalMovement);
-	/*if((horizontalMovement + verticalMovement).magnitude() > 0) 
-		rigidbody->velocity = horizontalMovement + verticalMovement;*/
+	//rigidbody->AddForce(horizontalMovement + verticalMovement);
+	if ((horizontalMovement + verticalMovement).magnitude() > 0)
+		rigidbody->velocity = horizontalMovement + verticalMovement;
+	else rigidbody->velocity = Vector2::zero();
+
 
 	//if (std::abs(transform()->position.x()) > (float)ApplicationManager::width / 280.0f) transform()->position -= horizontalMovement;
 	//if (std::abs(transform()->position.y()) > (float)ApplicationManager::height / 280.0f) transform()->position -= verticalMovement;
 
 	if (Input::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
-		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f, Transform());
+		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
 		_nextFire = Time::time() + 0.15f;
 	}
 	animator->SetInteger("x", x);

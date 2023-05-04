@@ -6,7 +6,7 @@ namespace SealEngine {
     public:
         Vector2 size = Vector2::one();
 
-        BoxCollider2D(Vector2 size = Vector3::one(), Vector2 offset = Vector2::zero());
+        BoxCollider2D(Vector2 size = Vector3::one(), bool isTrigger = false, Vector2 offset = Vector2::zero());
 
     private:
         void ProjectVerticesOn(const Vector2& axis, float& min, float& max) override;

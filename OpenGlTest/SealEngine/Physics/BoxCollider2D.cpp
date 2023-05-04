@@ -1,8 +1,9 @@
 #include "BoxCollider2D.h"
 #include "../Transform.h"
+#include <cfloat>
 using namespace SealEngine;
 
-BoxCollider2D::BoxCollider2D(Vector2 size, Vector2 offset) : size(size), Collider2D(offset) {}
+BoxCollider2D::BoxCollider2D(Vector2 size, bool isTrigger, Vector2 offset) : size(size), Collider2D(isTrigger, offset) {}
 
 void BoxCollider2D::ProjectVerticesOn(const Vector2& axis, float& min, float& max) {
 	min = FLT_MAX;

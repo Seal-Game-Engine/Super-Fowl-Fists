@@ -23,11 +23,15 @@ namespace SealEngine {
 		Rigidbody2D* otherRigidbody();
 
 		int contactCount();
+		float separation() const { return _separation; }
+		Vector2 normal() const { return _normal; }
 		Vector2 relativeVelocity();
 
-		Collision2D(Collider2D* collider, Collider2D* otherCollider, const std::vector<Vector2>& normals);
+		Collision2D(Collider2D* collider, Collider2D* otherCollider, const float separation, const Vector2& normal);
 
 	private:
+		float _separation = 0;
+		Vector2 _normal = Vector2::zero();
 		std::vector<ContactPoint2D> _contacts{};
 	};
 }
