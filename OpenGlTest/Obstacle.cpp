@@ -6,21 +6,14 @@ void Obstacle::Awake() {
 }
 
 void Obstacle::Start(){
-	player = Scene::FindFirstObjectByType<Player>();
-	narioPlayer = Scene::FindFirstObjectByType<NarioPlayer>();
+	player = gameObject->FindWithTag("Player");
 }
 
 void Obstacle::Update() { //move to other direction
-	Vector2 direction = ((player ? player->transform()->position : narioPlayer->transform()->position) - transform()->position).normalized();
+	Vector2 direction = (player->transform->position - transform()->position).normalized();
 
-	//transform()->position += direction * speed * Time::deltaTime();
-	//rigidbody->velocity = direction * speed;
-	rigidbody->AddForce(direction * speed);
-
-	/*if (spawnedPosition.x() > 0)
-		transform()->position += Vector2::left() * (rand() % 5) * Time::deltaTime();
-	else
-		transform()->position += Vector2::right() * (rand() % 5) * Time::deltaTime();*/
+	//rigidbody->velocity = Vector2(direction.x() * _speed, rigidbody->velocity.y());
+	rigidbody->AddForce(direction * _speed);
 }
 
 void Obstacle::OnCollisionEnter2D(Collision2D collision) {

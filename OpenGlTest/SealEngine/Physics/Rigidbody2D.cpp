@@ -3,6 +3,7 @@
 #include "../GameObject.h"
 #include "../Clock.h"
 #include <cfloat>
+#include "../Input.h"
 using namespace SealEngine;
 
 Rigidbody2D::Rigidbody2D(float mass, float gravityScale) :mass(mass), gravityScale(gravityScale) {}
@@ -19,14 +20,13 @@ void Rigidbody2D::LateUpdate() {
 void Rigidbody2D::OnCollisionStay2D(Collision2D collision) {
 	float e = 0.5f;
 
-	transform()->position += collision.normal() * -collision.separation() * 2 * Time::deltaTime();
+	transform()->position += collision.normal() * -collision.separation();
 
 	if (Vector2::Dot(collision.relativeVelocity(), collision.normal()) > 0) return;
 
-	auto j = -(1.0f + e) * Vector2::Dot(collision.relativeVelocity(), collision.normal());//
+	auto j = -(1.0f + e) * Vector2::Dot(collision.relativeVelocity(), collision.normal());
 	j /= (1.0f / mass) + (1.0f / (collision.otherRigidbody() ? collision.otherRigidbody()->mass : FLT_MAX));
-	auto impulse = collision.normal() * -j;
-	velocity += impulse / mass;
+	AddForce(collision.normal() * -j, ForceMode2D::Impulse);
 }
 
 void Rigidbody2D::AddForce(Vector2 force, ForceMode2D mode) { 

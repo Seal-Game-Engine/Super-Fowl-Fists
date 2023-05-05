@@ -45,7 +45,7 @@ const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 	}),
 });;
 const GameObject AssetManager::XwingObject = GameObject(
-	"Xwing", "Untagged",
+	"Xwing", "Player",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
@@ -172,7 +172,7 @@ const AnimatorController AssetManager::Nario_Controller = AnimatorController({
 	});
 
 const GameObject AssetManager::NarioObject = GameObject(
-	"Player", "Untagged",
+	"Player", "Player",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::Nario[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Nario_Controller),
@@ -271,7 +271,7 @@ const AnimatorController AssetManager::MiniTikeMyson_Controller = AnimatorContro
 	});
 
 const GameObject AssetManager::MiniTikeMysonObject = GameObject(
-	"Player", "Untagged",
+	"Player", "Player",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::MiniTikeMyson[0], false, false),
 		std::make_shared<Animator>(&AssetManager::MiniTikeMyson_Controller),
@@ -418,7 +418,7 @@ Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	{&AssetManager::MiniTikeMysonObject, Transform()},
-	{&AssetManager::ObstacleSpawnerObject, Transform()},
+	//{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	});

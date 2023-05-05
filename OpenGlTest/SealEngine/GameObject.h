@@ -32,7 +32,7 @@ namespace SealEngine {
 
         // Identifier
         static GameObject Find(std::string name);
-        static GameObject* FindWithTag(std::string tag);
+        static GameObject* FindWithTag(const std::string& tag);
         static std::vector<GameObject*> FindGameObjectsWithTag(const std::string& tag);
         bool CompareTag(std::string tag);  // done
         void SetActive(bool value);          // done

@@ -27,7 +27,8 @@ void Collider2D::LateUpdate() {
 
 		if (Collider2D::Collide(*this, *sceneCollider, separation, normal)) {
 			if (!isActiveCollision) {
-				_activeCollisions.emplace_back(sceneCollider);
+				_activeCollisions.emplace_back(sceneCollider->gameObject);
+#pragma region Enter
 				if (isTrigger || sceneCollider->isTrigger) {
 					for (auto& component : gameObject->components) component->OnTriggerEnter2D(sceneCollider);
 					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerEnter2D(sceneCollider);
@@ -35,7 +36,9 @@ void Collider2D::LateUpdate() {
 					for (auto& component : gameObject->components) component->OnCollisionEnter2D(Collision2D(sceneCollider, this, separation, normal));
 					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionEnter2D(Collision2D(this, sceneCollider, separation, normal * -1));
 				}
+#pragma endregion
 			} else {
+#pragma region Stay
 				if (isTrigger || sceneCollider->isTrigger) {
 					for (auto& component : gameObject->components) component->OnTriggerStay2D(sceneCollider);
 					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerStay2D(sceneCollider);
@@ -43,10 +46,12 @@ void Collider2D::LateUpdate() {
 					for (auto& component : gameObject->components) component->OnCollisionStay2D(Collision2D(sceneCollider, this, separation, normal));
 					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionStay2D(Collision2D(this, sceneCollider, separation, normal * -1));
 				}
+#pragma endregion
 			}
 		} else {
 			if (isActiveCollision) {
-				_activeCollisions.remove(sceneCollider);
+				_activeCollisions.remove(sceneCollider->gameObject);
+#pragma region Exit
 				if (isTrigger || sceneCollider->isTrigger) {
 					for (auto& component : gameObject->components) component->OnTriggerExit2D(sceneCollider);
 					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerExit2D(sceneCollider);
@@ -54,6 +59,7 @@ void Collider2D::LateUpdate() {
 					for (auto& component : gameObject->components) component->OnCollisionExit2D(Collision2D(sceneCollider, this, separation, normal));
 					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionExit2D(Collision2D(this, sceneCollider, separation, normal * -1));
 				}
+#pragma endregion
 			}
 		}
 	}
@@ -65,29 +71,29 @@ bool Collider2D::InCollisionRange(Collider2D& a, Collider2D& b){
 
 bool Collider2D::Collide(Collider2D& a, Collider2D& b, float& separation, Vector2& normal) {
 	if (!InCollisionRange(a, b)) return false;
-	separation = Vector2::Distance(a.transform()->position, b.transform()->position);
-	normal = (b.transform()->position - a.transform()->position).normalized();
 
-	float minA, maxA, minB, maxB;
+	float minA, maxA, minB, maxB, currentSeparation;
+
 	for (auto& axis : a.separationAxes(b.worldSpaceVertices())) {
 		a.ProjectVerticesOn(axis, minA, maxA);
 		b.ProjectVerticesOn(axis, minB, maxB);
 
 		if (minA > maxB || minB > maxA) return false;
-
-		if (auto currentSeparation = (std::min)(maxA - minB, maxB - minA) < separation) {
+		
+		currentSeparation = (std::min)(maxA - minB, maxB - minA);
+		if (currentSeparation < separation) {
 			separation = currentSeparation;
 			normal = axis * (Vector2::Dot(b.transform()->position - a.transform()->position, axis) < 0 ? -1 : 1);
 		}
 	}
-
 	for (auto& axis : b.separationAxes(a.worldSpaceVertices())) {
 		a.ProjectVerticesOn(axis, minA, maxA);
 		b.ProjectVerticesOn(axis, minB, maxB);
 
 		if (minA > maxB || minB > maxA) return false;
-
-		if (auto currentSeparation = (std::min)(maxA - minB, maxB - minA) < separation) {
+		
+		currentSeparation = (std::min)(maxA - minB, maxB - minA);
+		if (currentSeparation < separation) {
 			separation = currentSeparation;
 			normal = axis * (Vector2::Dot(b.transform()->position - a.transform()->position, axis) < 0 ? -1 : 1);
 		}
@@ -97,6 +103,6 @@ bool Collider2D::Collide(Collider2D& a, Collider2D& b, float& separation, Vector
 }
 
 bool Collider2D::IsActiveCollision(const Collider2D* otherCollider) const {
-	for (auto& collider : _activeCollisions)if (collider == otherCollider) return true;
+	for (auto& collider : _activeCollisions) if (collider == otherCollider->gameObject) return true;
 	return false;
 }

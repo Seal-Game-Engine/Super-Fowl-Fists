@@ -41,4 +41,19 @@ void Player::Update() {
 
 void Player::OnCollisionEnter2D(Collision2D collision) {
 	if (collision.gameObject()->CompareTag("Ground")) _canJump = true;
+	if (collision.gameObject()->CompareTag("Ground")) animator->Play("Punch");
+	//Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
+}
+
+void Player::OnCollisionStay2D(Collision2D collision) {
+	if (collision.gameObject()->CompareTag("Ground")) {
+		transform()->rotation += Vector3::forward() * 5 * Time::deltaTime();
+	}
+}
+
+void Player::OnCollisionExit2D(Collision2D collision){
+	if (collision.gameObject()->CompareTag("Ground")) {
+		powerState = (PowerState)(((int)powerState + 1) % 2);
+		animator->SetAnimatorController(animatorControllers[(int)powerState]);
+	}
 }

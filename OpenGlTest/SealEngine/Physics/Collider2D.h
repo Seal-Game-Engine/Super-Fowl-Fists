@@ -29,6 +29,6 @@ namespace SealEngine {
 
 
 		Rigidbody2D* _attachedRigidbody = nullptr;
-		std::list<Collider2D*> _activeCollisions{};
+		std::list<GameObject*> _activeCollisions{};
 	};
 }

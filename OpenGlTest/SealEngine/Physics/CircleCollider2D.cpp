@@ -15,6 +15,8 @@ void CircleCollider2D::ProjectVerticesOn(const Vector2& axis, float& min, float&
 }
 
 std::vector<Vector2> CircleCollider2D::separationAxes(const std::vector<Vector2>& otherPolygonVertices) {
+	if (otherPolygonVertices.empty()) return{};
+
 	Vector2 worldSpaceCenter = transform()->position + offset;
 
 	Vector2 nearestVertex = *std::min_element(otherPolygonVertices.begin(), otherPolygonVertices.end(), [&](const auto& a, const auto& b) {
