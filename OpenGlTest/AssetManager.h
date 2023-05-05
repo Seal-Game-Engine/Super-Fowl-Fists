@@ -27,6 +27,17 @@ public:
 	static const AnimationClip GreenSlime_Idle;
 	static const AnimatorController GreenSlime_Controller;
 
+	//Sensei
+	static const Texture2D SenseiTexture;
+	static const AnimationClip Sensei_Idle;
+	static const AnimationClip Sensei_Walking;
+	static const AnimationClip Sensei_Hadoken;
+	static const AnimationClip Sensei_CallsReinforcements;
+	static const AnimationClip Sensei_CallingReinforcements;
+	static const AnimationClip Sensei_Teleport;
+	static const AnimatorController Sensei_Controller;
+	static const GameObject SenseiObject;
+
 	//Boss
 	static const Texture2D BossTexture;
 	static const AnimationClip Boss_Charging;

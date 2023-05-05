@@ -19,119 +19,45 @@ using State = AnimatorController::AnimationState;
 #include "Boss.h"
 #include<string>
 
-
-#pragma region Xwing
-const Texture2D AssetManager::XwingTexture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
-const AnimationClip AssetManager::Xwing_Idle = AnimationClip({
-	{ XwingTexture[0], 0.05f },
-	{ XwingTexture[3], 0.05f },
-}, true);
-const AnimationClip AssetManager::Xwing_Left = AnimationClip({
-	{ XwingTexture[1], 0.05f },
-	{ XwingTexture[4], 0.05f },
-}, true);
-const AnimationClip AssetManager::Xwing_Right = AnimationClip({
-	{ XwingTexture[2], 0.05f },
-	{ XwingTexture[5], 0.05f },
-}, true);
-const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
-	State("Idle", &Xwing_Idle, {
-		{ "Left", false, 1, [](auto& animator) { return animator.GetInteger("x") < 0; } },
-		{ "Right", false, 1, [](auto& animator) { return animator.GetInteger("x") > 0; } },
-	}),
-	State("Left", &Xwing_Left, {
-		{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") >= 0; } },
-	}),
-	State("Right", &Xwing_Right, {
-		{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") <= 0; } },
-	}),
-});;
-const GameObject AssetManager::XwingObject = GameObject(
-	"Xwing", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
-		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
-		std::make_shared<Rigidbody2D>(),
-		std::make_shared<CircleCollider2D>(0.25f, false, Vector2(0, -0.0625)),
-		//std::make_shared<BoxCollider2D>(Vector2(0.5f, 0.5f), false, Vector2(0, -0.0625f)),
-		std::make_shared<XwingPlayer>(),
-});
-
-const Texture2D AssetManager::Projectile_Blue_Texture = Texture2D("Assets/Projectile_Blue.png", Texture2D::FilterMode::Nearest, 3, 1);
-const AnimationClip AssetManager::Projectile_Blue_Idle = AnimationClip({
-	{ Projectile_Blue_Texture[0], 0.1f },
-	{ Projectile_Blue_Texture[1], 0.1f },
-	{ Projectile_Blue_Texture[2], 0.1f },
-}, true);
-const AnimatorController AssetManager::Projectile_Blue_Controller = AnimatorController({
-	State("Idle", &Projectile_Blue_Idle),
-});
-const GameObject AssetManager::ProjectileObject_Blue = GameObject(
-	"Projectile (Blue)", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::Projectile_Blue_Texture[0], false, false),
-		std::make_shared<Animator>(&AssetManager::Projectile_Blue_Controller),
-		std::make_shared<Rigidbody2D>(),
-		std::make_shared<CircleCollider2D>(0.125f),
-		std::make_shared<Projectile>(),
-});
-#pragma endregion
-
-#pragma region Obstacle
-//Obstacle
-const Texture2D AssetManager::ObstacleTexture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3,1);
-const AnimationClip AssetManager::Obstacle_Idle = AnimationClip({
-	{ ObstacleTexture[0], 0.2f },
-	{ ObstacleTexture[1], 0.3f },
-	{ ObstacleTexture[2], 0.2f },
-	{ ObstacleTexture[1], 0.3f },
+#pragma region Sensei
+const Texture2D AssetManager::SenseiTexture = Texture2D("Assets/MasterWu.png", Texture2D::FilterMode::Nearest, 8, 7);
+const AnimationClip AssetManager::Sensei_Idle = AnimationClip({
+	{ SenseiTexture[0], 0.1f },
+	{ SenseiTexture[1], 0.1f },
+	{ SenseiTexture[2], 0.1f },
 	}, true);
-const AnimatorController AssetManager::Obstacle_Controller = AnimatorController({State("Idle", &Obstacle_Idle, {})});
-const GameObject AssetManager::ObstacleObject = GameObject(
-	"Obstacle", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
-		std::make_shared<Animator>(&AssetManager::Obstacle_Controller),
-		std::make_shared<Rigidbody2D>(),
-		std::make_shared<BoxCollider2D>(Vector2(1, 1)),
-		std::make_shared<Obstacle>()
-});
-
-//ObstaclesSpawner
-const GameObject AssetManager::ObstacleSpawnerObject = GameObject(
-	"ObstacleSpawnerObject", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<ObstacleSpawner>(),
-});
-#pragma endregion
-
-#pragma region Backgrounds
-const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
-const Texture2D AssetManager::GalaxyBackground = Texture2D("Assets/GalaxyBackground.png", Texture2D::FilterMode::Nearest);
-const GameObject GalaxyBackgroundObject = GameObject(
-	"Background", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<Parallax>(&AssetManager::GalaxyBackground[0], Vector2::left(), 0.05f),
-});
-#pragma endregion
-
-#pragma region Menu
-const Texture2D AssetManager::GameTitle = Texture2D("Assets/GameTitle.png", Texture2D::FilterMode::Nearest);
-const Texture2D AssetManager::MenuOptions = Texture2D("Assets/MenuOptions.png", Texture2D::FilterMode::Nearest);
-const Texture2D AssetManager::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
-const Texture2D AssetManager::PauseMessage = Texture2D("Assets/PauseMessage.png", Texture2D::FilterMode::Nearest);
-
-const Texture2D AssetManager::Font = Texture2D("Assets/font.png", Texture2D::FilterMode::Nearest, 16, 8);
-const Texture2D AssetManager::GreenSlime = Texture2D("Assets/GreenSlime.png", Texture2D::FilterMode::Nearest, 4, 2);
-const AnimationClip AssetManager::GreenSlime_Idle = AnimationClip({
-	{ GreenSlime[1], 0.15f },
-	{ GreenSlime[5], 0.15f },
-}, true);
-const AnimatorController AssetManager::GreenSlime_Controller = AnimatorController({
-	State("Idle", &GreenSlime_Idle),
-	});
-		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
-#pragma endregion
+const AnimationClip AssetManager::Sensei_Walking = AnimationClip({
+	{ SenseiTexture[6], 0.1f },
+	{ SenseiTexture[7], 0.1f },
+	{ SenseiTexture[8], 0.1f },
+	}, true);
+const AnimationClip AssetManager::Sensei_Hadoken = AnimationClip({
+	{ SenseiTexture[12], 0.1f },
+	{ SenseiTexture[13], 0.1f },
+	{ SenseiTexture[14], 0.1f },
+	}, true);
+const AnimationClip AssetManager::Sensei_CallsReinforcements = AnimationClip({
+	{ SenseiTexture[18], 0.1f },
+	{ SenseiTexture[19], 0.1f },
+	{ SenseiTexture[20], 0.1f },
+	{ SenseiTexture[21], 0.1f },
+	{ SenseiTexture[22], 0.1f },
+	{ SenseiTexture[23], 0.1f },
+	}, true);
+const AnimationClip AssetManager::Sensei_CallingReinforcements = AnimationClip({
+	{ SenseiTexture[20], 0.1f },
+	{ SenseiTexture[21], 0.1f },
+	{ SenseiTexture[22], 0.1f },
+	{ SenseiTexture[23], 0.1f },
+	}, true);
+const AnimationClip AssetManager::Sensei_Teleport = AnimationClip({
+	{ SenseiTexture[24], 0.1f },
+	{ SenseiTexture[25], 0.1f },
+	{ SenseiTexture[26], 0.1f },
+	{ SenseiTexture[27], 0.1f },
+	{ SenseiTexture[28], 0.1f },
+	{ SenseiTexture[29], 0.1f },
+	}, true);
 
 #pragma region Boss1
 const Texture2D AssetManager::BossTexture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
@@ -337,15 +263,136 @@ const GameObject AssetManager::MiniTikeMysonObject = GameObject(
 });
 #pragma endregion
 
+#pragma region Testing
+#pragma region Xwing
+const Texture2D AssetManager::XwingTexture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
+const AnimationClip AssetManager::Xwing_Idle = AnimationClip({
+	{ XwingTexture[0], 0.05f },
+	{ XwingTexture[3], 0.05f },
+}, true);
+const AnimationClip AssetManager::Xwing_Left = AnimationClip({
+	{ XwingTexture[1], 0.05f },
+	{ XwingTexture[4], 0.05f },
+}, true);
+const AnimationClip AssetManager::Xwing_Right = AnimationClip({
+	{ XwingTexture[2], 0.05f },
+	{ XwingTexture[5], 0.05f },
+}, true);
+const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
+	State("Idle", &Xwing_Idle, {
+		{ "Left", false, 1, [](auto& animator) { return animator.GetInteger("x") < 0; } },
+		{ "Right", false, 1, [](auto& animator) { return animator.GetInteger("x") > 0; } },
+	}),
+	State("Left", &Xwing_Left, {
+		{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") >= 0; } },
+	}),
+	State("Right", &Xwing_Right, {
+		{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") <= 0; } },
+	}),
+});;
+const GameObject AssetManager::XwingObject = GameObject(
+	"Xwing", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(0.25f, false, Vector2(0, -0.0625)),
+		//std::make_shared<BoxCollider2D>(Vector2(0.5f, 0.5f), false, Vector2(0, -0.0625f)),
+		std::make_shared<XwingPlayer>(),
+});
+
+const Texture2D AssetManager::Projectile_Blue_Texture = Texture2D("Assets/Projectile_Blue.png", Texture2D::FilterMode::Nearest, 3, 1);
+const AnimationClip AssetManager::Projectile_Blue_Idle = AnimationClip({
+	{ Projectile_Blue_Texture[0], 0.1f },
+	{ Projectile_Blue_Texture[1], 0.1f },
+	{ Projectile_Blue_Texture[2], 0.1f },
+}, true);
+const AnimatorController AssetManager::Projectile_Blue_Controller = AnimatorController({
+	State("Idle", &Projectile_Blue_Idle),
+});
+const GameObject AssetManager::ProjectileObject_Blue = GameObject(
+	"Projectile (Blue)", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::Projectile_Blue_Texture[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Projectile_Blue_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(0.125f),
+		std::make_shared<Projectile>(),
+});
+#pragma endregion
+
+#pragma region Obstacle
+//Obstacle
+const Texture2D AssetManager::ObstacleTexture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3,1);
+const AnimationClip AssetManager::Obstacle_Idle = AnimationClip({
+	{ ObstacleTexture[0], 0.2f },
+	{ ObstacleTexture[1], 0.3f },
+	{ ObstacleTexture[2], 0.2f },
+	{ ObstacleTexture[1], 0.3f },
+	}, true);
+const AnimatorController AssetManager::Obstacle_Controller = AnimatorController({State("Idle", &Obstacle_Idle, {})});
+const GameObject AssetManager::ObstacleObject = GameObject(
+	"Obstacle", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Obstacle_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<BoxCollider2D>(Vector2(1, 1)),
+		std::make_shared<Obstacle>()
+});
+
+//ObstaclesSpawner
+const GameObject AssetManager::ObstacleSpawnerObject = GameObject(
+	"ObstacleSpawnerObject", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<ObstacleSpawner>(),
+});
+#pragma endregion
+#pragma endregion
+
+#pragma region UI
+
+#pragma region Backgrounds
+const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::GalaxyBackground = Texture2D("Assets/GalaxyBackground.png", Texture2D::FilterMode::Nearest);
+const GameObject GalaxyBackgroundObject = GameObject(
+	"Background", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Parallax>(&AssetManager::GalaxyBackground[0], Vector2::left(), 0.05f),
+});
+#pragma endregion
+
+#pragma region Menu
+const Texture2D AssetManager::GameTitle = Texture2D("Assets/GameTitle.png", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::MenuOptions = Texture2D("Assets/MenuOptions.png", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::PauseMessage = Texture2D("Assets/PauseMessage.png", Texture2D::FilterMode::Nearest);
+
+const Texture2D AssetManager::Font = Texture2D("Assets/font.png", Texture2D::FilterMode::Nearest, 16, 8);
+const Texture2D AssetManager::GreenSlime = Texture2D("Assets/GreenSlime.png", Texture2D::FilterMode::Nearest, 4, 2);
+const AnimationClip AssetManager::GreenSlime_Idle = AnimationClip({
+	{ GreenSlime[1], 0.15f },
+	{ GreenSlime[5], 0.15f },
+}, true);
+const AnimatorController AssetManager::GreenSlime_Controller = AnimatorController({
+	State("Idle", &GreenSlime_Idle),
+	});
+		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
+#pragma endregion
+
+#pragma endregion
+
 #pragma region Misc
 //Misc
 const Texture2D AssetManager::SkyBackground = Texture2D("Assets/SkyBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::MountainBackground = Texture2D("Assets/MountainBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::Googleplex = Texture2D("Assets/Googleplex.png", Texture2D::FilterMode::Linear);
-#pragma endregion
-
 const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::FilterMode::Nearest);
 
+#pragma endregion
+
+
+#pragma region Scenes
 
 #pragma region LandingScene
 const GameObject TitleObject = GameObject(
@@ -479,4 +526,5 @@ Scene Assets_Scenes::GameScene = Scene({
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	});
+#pragma endregion
 #pragma endregion
