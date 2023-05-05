@@ -16,7 +16,7 @@ void Rigidbody2D::LateUpdate() {
 	//velocity = (transform()->position - _initialPosition);
 }
 
-void Rigidbody2D::OnCollisionEnter2D(Collision2D collision) {
+void Rigidbody2D::OnCollisionStay2D(Collision2D collision) {
 	float e = 0.5f;
 
 	transform()->position += collision.normal() * -collision.separation() * 2 * Time::deltaTime();

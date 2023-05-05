@@ -21,23 +21,41 @@ void Collider2D::LateUpdate() {
 	for (auto& sceneCollider : sceneColliders) {
 		float separation = FLT_MAX;
 		Vector2 normal = Vector2::zero();
-		if (*this == *sceneCollider || !Collider2D::Collide(*this, *sceneCollider, separation, normal)) continue;
+		if (*this == *sceneCollider) continue;
 
-		if (isTrigger || sceneCollider->isTrigger) {
-			for (auto& component : gameObject->components)
-				component->OnTriggerEnter2D(sceneCollider);
-			for (auto& component : sceneCollider->gameObject->components)
-				component->OnTriggerEnter2D(sceneCollider);
+		bool isActiveCollision = IsActiveCollision(sceneCollider);
+
+		if (Collider2D::Collide(*this, *sceneCollider, separation, normal)) {
+			if (!isActiveCollision) {
+				_activeCollisions.emplace_back(sceneCollider);
+				if (isTrigger || sceneCollider->isTrigger) {
+					for (auto& component : gameObject->components) component->OnTriggerEnter2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerEnter2D(sceneCollider);
+				} else {
+					for (auto& component : gameObject->components) component->OnCollisionEnter2D(Collision2D(sceneCollider, this, separation, normal));
+					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionEnter2D(Collision2D(this, sceneCollider, separation, normal * -1));
+				}
+			} else {
+				if (isTrigger || sceneCollider->isTrigger) {
+					for (auto& component : gameObject->components) component->OnTriggerStay2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerStay2D(sceneCollider);
+				} else {
+					for (auto& component : gameObject->components) component->OnCollisionStay2D(Collision2D(sceneCollider, this, separation, normal));
+					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionStay2D(Collision2D(this, sceneCollider, separation, normal * -1));
+				}
+			}
 		} else {
-			for (auto& component : gameObject->components)
-				component->OnCollisionEnter2D(Collision2D(sceneCollider, this, separation, normal));
-			for (auto& component : sceneCollider->gameObject->components)
-				component->OnCollisionEnter2D(Collision2D(this, sceneCollider, separation, normal * -1));
+			if (isActiveCollision) {
+				_activeCollisions.remove(sceneCollider);
+				if (isTrigger || sceneCollider->isTrigger) {
+					for (auto& component : gameObject->components) component->OnTriggerExit2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerExit2D(sceneCollider);
+				} else {
+					for (auto& component : gameObject->components) component->OnCollisionExit2D(Collision2D(sceneCollider, this, separation, normal));
+					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionExit2D(Collision2D(this, sceneCollider, separation, normal * -1));
+				}
+			}
 		}
-	}
-
-	for (auto& collider : _activeCollisions) {
-	
 	}
 }
 
@@ -76,4 +94,9 @@ bool Collider2D::Collide(Collider2D& a, Collider2D& b, float& separation, Vector
 	}
 
 	return true;
+}
+
+bool Collider2D::IsActiveCollision(const Collider2D* otherCollider) const {
+	for (auto& collider : _activeCollisions)if (collider == otherCollider) return true;
+	return false;
 }
