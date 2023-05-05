@@ -1,8 +1,9 @@
 #pragma once
-#include "../MonoBehaviour.h"
-#include "AnimatorController.h"
-#include "../SpriteRenderer.h"
 #include <map>
+
+#include "../MonoBehaviour.h"
+#include "../SpriteRenderer.h"
+#include "AnimatorController.h"
 
 namespace SealEngine {
 	class Animator : public MonoBehaviour {

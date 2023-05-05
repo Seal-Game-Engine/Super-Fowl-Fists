@@ -59,6 +59,9 @@ public:
 	static const AnimationClip Obstacle_Idle;
 	static const AnimatorController Obstacle_Controller;
 	static const GameObject ObstacleObject;
+	
+	//Boss
+	static const Texture2D BossTexture;
 
 	//Spawner
 	static const GameObject ObstacleSpawnerObject;

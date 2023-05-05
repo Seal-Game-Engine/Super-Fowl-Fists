@@ -6,7 +6,6 @@ class Player : public MonoBehaviour {
 public:
 	void Awake() override;
 	void Update() override;
-	void LateUpdate() override;
 	void OnCollisionEnter2D(Collision2D collision) override;
 
 	Player() = default;
@@ -14,13 +13,11 @@ public:
 private:
 	SpriteRenderer* renderer = nullptr;
 	Animator* animator = nullptr;
-	Collider2D* collider = nullptr;
+	Rigidbody2D* rigidbody = nullptr;
 
+	float _speed = 4.0f;
+	bool _canJump = true;
 	float _nextFire = 0;
-
-	float _nextSpawn = 0.0f;
-	float _speed = 1.0f;
-	float stopGravity = 0.0f;
 
 	enum class PowerState : int { Small, Buff };
 	PowerState powerState = PowerState::Small;

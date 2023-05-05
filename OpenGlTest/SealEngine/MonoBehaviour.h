@@ -1,10 +1,13 @@
 #pragma once
 #include <string>
+#include <list>
+#include <functional>
 #include "Object.h"
 #include "Physics/Collision2D.h"
 namespace SealEngine { 
 	class Transform;
 	class GameObject;
+	class Collider2D;
 }
 
 namespace SealEngine {
@@ -13,6 +16,8 @@ namespace SealEngine {
 #pragma region Messages
         virtual void Awake() {}
 		virtual void Start() {}
+		
+		void RunCoroutines();
 		virtual void Update() {}
 		virtual void LateUpdate() {}
 
@@ -22,20 +27,24 @@ namespace SealEngine {
 
 		//virtual void FixedUpdate() {}
 		virtual void OnCollisionEnter2D(Collision2D collision) {}
-		//virtual void OnCollisionExit2D() {}
-		//virtual void OnCollisionStay2D() {}
+		virtual void OnCollisionStay2D(Collision2D collision) {}
+		virtual void OnCollisionExit2D(Collision2D collision) {}
+		virtual void OnTriggerEnter2D(Collider2D* collider) {}
+		virtual void OnTriggerStay2D(Collider2D* collider) {}
+		virtual void OnTriggerExit2D(Collider2D* collider) {}
 
 		/*virtual void OnCollisionEnter() {}
-		virtual void OnCollisionExit() {}
 		virtual void OnCollisionStay() {}
+		virtual void OnCollisionExit() {}
 		virtual void OnTriggerEnter() {}
-		virtual void OnTriggerEnter2D() {}
-		virtual void OnTriggerExit() {}
-		virtual void OnTriggerExit2D() {}
 		virtual void OnTriggerStay() {}
-		virtual void OnTriggerStay2D() {}
+		virtual void OnTriggerExit() {}
 		virtual void Reset() {}*/
 #pragma endregion
+
+		void Invoke(std::function<void()> action, float delayDuration);
+		void InvokeRepeating(std::function<void()> action, float delayDuration, float repeatRate);
+		void CancelInvoke();
 
 		bool enabled = true;
 		bool isActiveAndEnabled();
@@ -50,6 +59,8 @@ namespace SealEngine {
 		std::shared_ptr<MonoBehaviour> Clone() const { return std::shared_ptr<MonoBehaviour>(_Clone()); }
 
 	private:
+		std::list<std::pair<std::function<void()>, float>> _coroutines{};
+
 		virtual MonoBehaviour* _Clone() const override { return new MonoBehaviour(*this); }
 	};
 }
