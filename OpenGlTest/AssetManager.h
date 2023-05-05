@@ -27,14 +27,18 @@ public:
 	static const AnimationClip GreenSlime_Idle;
 	static const AnimatorController GreenSlime_Controller;
 
-	//Nario
-	static const Texture2D Nario;
-	static const AnimationClip Nario_Idle;
-	static const AnimationClip Nario_Left;
-	static const AnimationClip Nario_Right;
-	static const AnimationClip Nario_Jump;
-	static const AnimatorController Nario_Controller;
-	static const GameObject NarioObject;
+	//Boss
+	static const Texture2D BossTexture;
+	static const AnimationClip Boss_Charging;
+	static const AnimationClip Boss_Charged;
+	static const AnimationClip Boss_Close;
+	static const AnimationClip Boss_Chomp_Indicator;
+	static const AnimationClip Boss_Bomb_Indicator;
+	static const AnimationClip Boss_Open;
+	static const AnimationClip Boss_Chomp_Attack;
+	static const AnimationClip Boss_Bomb_Attack;
+	static const AnimatorController Boss_Controller;
+	static const GameObject BossObject;
 
 	//Big TikeMyson
 	static const Texture2D BigTikeMyson;

@@ -9,12 +9,14 @@
 using State = AnimatorController::AnimationState;
 
 #include "Player.h"
+//#include "Boss.h"
 #include "XwingPlayer.h"
 #include "NarioPlayer.h"
 #include "Projectile.h"
 #include "Parallax.h"
 #include "Obstacle.h"
 #include "ObstacleSpawner.h"
+#include "Boss.h"
 #include<string>
 
 
@@ -131,54 +133,108 @@ const AnimatorController AssetManager::GreenSlime_Controller = AnimatorControlle
 		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
 #pragma endregion
 
-#pragma region Nario
-const Texture2D AssetManager::Nario = Texture2D("Assets/Nario.png", Texture2D::FilterMode::Nearest, 3, 4);
-const AnimationClip AssetManager::Nario_Idle = AnimationClip({
-	{ Nario[0], 0.2f },
-	{ Nario[1], 0.3f },
-	{ Nario[0], 0.2f },
-	{ Nario[2], 0.3f },
+#pragma region Boss1
+const Texture2D AssetManager::BossTexture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
+const AnimationClip AssetManager::Boss_Charging = AnimationClip({
+	{ BossTexture[8], 0.1f },
+	{ BossTexture[9], 0.1f },
+	{ BossTexture[10], 0.1f },
+	{ BossTexture[11], 0.1f },
+	{ BossTexture[12], 0.1f },
+	{ BossTexture[13], 0.1f },
+	{ BossTexture[14], 0.1f },
 	}, true);
-const AnimationClip AssetManager::Nario_Right = AnimationClip({
-	{ Nario[3], 0.1f },
-	{ Nario[4], 0.1f },
-	{ Nario[3], 0.1f },
-	{ Nario[5], 0.1f },
+const AnimationClip AssetManager::Boss_Charged = AnimationClip({
+	{ BossTexture[8], 0.1f },
+	{ BossTexture[9], 0.1f },
+	{ BossTexture[10], 0.1f },
+	{ BossTexture[11], 0.1f },
+	{ BossTexture[12], 0.1f },
+	{ BossTexture[13], 0.1f },
+	{ BossTexture[14], 0.1f },
+	{ BossTexture[15], 0.1f },
 	}, true);
-const AnimationClip AssetManager::Nario_Left = AnimationClip({
-	{ Nario[6], 0.1f },
-	{ Nario[7], 0.1f },
-	{ Nario[6], 0.1f },
-	{ Nario[8], 0.1f },
+const AnimationClip AssetManager::Boss_Chomp_Indicator = AnimationClip({
+	{ BossTexture[48], 0.1f },
+	{ BossTexture[49], 0.1f },
 	}, true);
-const AnimationClip AssetManager::Nario_Jump = AnimationClip({
-	{ Nario[11], 0.1f }
-	}, false);
-
-const AnimatorController AssetManager::Nario_Controller = AnimatorController({
-	State("Idle", &Nario_Idle, {
-		{ "Left", false, 1, [](auto& animator) { return animator.GetInteger("x") < 0; } },
-		{ "Right", false, 1, [](auto& animator) { return animator.GetInteger("x") > 0; } },
+const AnimationClip AssetManager::Boss_Bomb_Indicator = AnimationClip({
+	{ BossTexture[40], 0.1f },
+	{ BossTexture[41], 0.1f },
+	}, true);
+const AnimationClip AssetManager::Boss_Chomp_Attack = AnimationClip({
+	{ BossTexture[16], 0.075f },
+	{ BossTexture[17], 0.075f },
+	{ BossTexture[18], 0.075f },
+	{ BossTexture[19], 0.075f },
+	{ BossTexture[20], 0.075f },
+	{ BossTexture[21], 0.075f },
+	{ BossTexture[22], 0.075f },
+	{ BossTexture[23], 0.075f },
+	}, true);
+const AnimationClip AssetManager::Boss_Bomb_Attack = AnimationClip({
+	{ BossTexture[32], 0.05f },
+	{ BossTexture[33], 0.05f },
+	{ BossTexture[34], 0.05f },
+	{ BossTexture[35], 0.05f },
+	{ BossTexture[36], 0.05f },
+	}, true);
+const AnimationClip AssetManager::Boss_Open = AnimationClip({
+	{ BossTexture[0], 0.1f },
+	{ BossTexture[1], 0.1f },
+	{ BossTexture[2], 0.1f },
+	{ BossTexture[3], 0.1f },
+	{ BossTexture[4], 0.1f },
+	{ BossTexture[5], 0.1f },
+	{ BossTexture[6], 0.1f },
+	{ BossTexture[7], 0.1f },
+	}, true);
+const AnimationClip AssetManager::Boss_Close = AnimationClip({
+	{ BossTexture[24], 0.1f },
+	{ BossTexture[25], 0.1f },
+	{ BossTexture[26], 0.1f },
+	{ BossTexture[27], 0.1f },
+	{ BossTexture[28], 0.1f },
+	{ BossTexture[29], 0.1f },
+	{ BossTexture[30], 0.1f },
+	{ BossTexture[31], 0.1f },
+	}, true);
+const AnimatorController AssetManager::Boss_Controller = AnimatorController({
+	State("Charging", &Boss_Charging, {
+		{ "Charged", false, 1, [](auto& animator) { return animator.GetInteger("move") > 0; } },
 	}),
-	State("Left", &Nario_Left, {
-		{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") >= 0; } },
+	State("Charged", &Boss_Charged, {
+		{ "Open", true, 1 },
 	}),
-	State("Right", &Nario_Right, {
-		{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") <= 0; } },
+	State("Open", &Boss_Open, {
+		{ "BombId", false, 1, [](auto& animator) { return animator.GetInteger("move") == 1; } },
+		{ "ChompId", false, 1, [](auto& animator) { return animator.GetInteger("move") == 2; } },
 	}),
-	State("Jump", &Nario_Jump, {
-		{ "Idle", true, 3, [](auto& animator) { return true; } },
+	State("Close", &Boss_Close, {
+		{ "Charging", true, 1, [](auto& animator) { animator.SetInteger("move", 0); return true; } },
+	}),
+	State("BombId", &Boss_Bomb_Indicator, {
+		{ "BombAtk", true, 3 },
+	}),
+	State("ChompId", &Boss_Chomp_Indicator, {
+		{ "ChompAtk", true, 3 },
+	}),
+	State("BombAtk", &Boss_Bomb_Attack, {
+		{ "Close", true, 20 },
+	}),
+	State("ChompAtk", &Boss_Chomp_Attack, {
+		{ "Close", true, 20 },
 	}),
 	});
 
-const GameObject AssetManager::NarioObject = GameObject(
+const GameObject AssetManager::BossObject = GameObject(
 	"Player", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::Nario[0], false, false),
-		std::make_shared<Animator>(&AssetManager::Nario_Controller),
+	std::make_shared<SpriteRenderer>(&AssetManager::BossTexture[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Boss_Controller),
 		std::make_shared<Rigidbody2D>(),
-		std::make_shared<CircleCollider2D>(),
-		std::make_shared<NarioPlayer>(),
+		std::make_shared<BoxCollider2D>(),
+		std::make_shared<Boss>(),
 });
 #pragma endregion
 
@@ -417,8 +473,9 @@ const GameObject ForestBackgroundObject = GameObject(
 Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
-	{&AssetManager::MiniTikeMysonObject, Transform()},
-	{&AssetManager::ObstacleSpawnerObject, Transform()},
+	{&AssetManager::BossObject, Transform()},
+	//{&AssetManager::MiniTikeMysonObject, Transform()},
+	//{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	});

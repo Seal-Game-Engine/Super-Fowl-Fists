@@ -173,6 +173,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Assets_Scenes.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="SealEngine\Physics\ContactPoint2D.cpp" />
     <ClCompile Include="SealEngine\Physics\CircleCollider2D.cpp" />
     <ClCompile Include="SealEngine\Physics\BoxCollider2D.cpp" />
@@ -220,6 +221,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Assets_Scenes.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="SealEngine\Physics\ContactPoint2D.h" />
     <ClInclude Include="SealEngine\Physics\CircleCollider2D.h" />
     <ClInclude Include="SealEngine\Physics\BoxCollider2D.h" />
