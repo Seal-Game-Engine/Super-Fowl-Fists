@@ -391,7 +391,6 @@ const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::Filter
 
 #pragma endregion
 
-
 #pragma region Scenes
 
 #pragma region LandingScene
