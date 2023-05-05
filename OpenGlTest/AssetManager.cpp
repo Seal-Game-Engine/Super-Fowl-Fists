@@ -17,40 +17,7 @@ using State = AnimatorController::AnimationState;
 #include "ObstacleSpawner.h"
 #include<string>
 
-<<<<<<< HEAD
-=======
-#pragma region Hector
-const Texture2D AssetManager::Hector_Run = Texture2D("Assets/Hector_Run.png", Texture2D::FilterMode::Nearest, 4, 3);
-const AnimationClip AssetManager::Hector_Idle = AnimationClip({
-	{ Hector_Run[1], 0.05f },
-	{ Hector_Run[5], 0.05f },
-	{ Hector_Run[1], 0.05f },
-	{ Hector_Run[9], 0.05f },
-}, true);
-const AnimationClip AssetManager::Hector_IdleN = AnimationClip({
-	{ Hector_Run[0], 0.05f },
-	{ Hector_Run[4], 0.05f },
-	{ Hector_Run[0], 0.05f },
-	{ Hector_Run[8], 0.05f },
-}, true);
-const AnimatorController AssetManager::Hector_Controller = AnimatorController({
-	State("Idle", &Hector_Idle, {
-		{"IdleN", false, 1, [](auto& animator) { return animator.GetInteger("y") >= 0; } },
-	}),
-	State("IdleN", &Hector_IdleN, {
-		{"Idle", false, 1, [](auto& animator) { return animator.GetInteger("y") < 0; } },
-	}),
-});
-const GameObject AssetManager::HectorObject = GameObject(
-	"Hector", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::Hector_Run[1], false, false),
-		std::make_shared<Animator>(&AssetManager::Hector_Controller),
-		std::make_shared<Player>(),
-});
-#pragma endregion
 
->>>>>>> 5e7cc0b3779d0c12829b5b96d2cbc98c05fff1b4
 #pragma region Xwing
 const Texture2D AssetManager::XwingTexture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
 const AnimationClip AssetManager::Xwing_Idle = AnimationClip({
@@ -118,16 +85,20 @@ const AnimationClip AssetManager::Obstacle_Idle = AnimationClip({
 	{ ObstacleTexture[1], 0.3f },
 	}, true);
 const AnimatorController AssetManager::Obstacle_Controller = AnimatorController({State("Idle", &Obstacle_Idle, {})});
-const GameObject AssetManager::ObstacleObject = GameObject("Obstacle", std::vector<std::shared_ptr<MonoBehaviour>>{
+const GameObject AssetManager::ObstacleObject = GameObject(
+	"Obstacle", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Obstacle_Controller),
 		std::make_shared<Rigidbody2D>(),
-		std::make_shared<BoxCollider2D>(Vector2(2, 1)),
+		std::make_shared<BoxCollider2D>(Vector2(1, 1)),
 		std::make_shared<Obstacle>()
 });
 
 //ObstaclesSpawner
-const GameObject AssetManager::ObstacleSpawnerObject = GameObject("ObstacleSpawnerObject", std::vector<std::shared_ptr<MonoBehaviour>>{
+const GameObject AssetManager::ObstacleSpawnerObject = GameObject(
+	"ObstacleSpawnerObject", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<ObstacleSpawner>(),
 });
 #pragma endregion
@@ -160,8 +131,6 @@ const AnimatorController AssetManager::GreenSlime_Controller = AnimatorControlle
 		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
 #pragma endregion
 
-<<<<<<< HEAD
-=======
 #pragma region Nario
 const Texture2D AssetManager::Nario = Texture2D("Assets/Nario.png", Texture2D::FilterMode::Nearest, 3, 4);
 const AnimationClip AssetManager::Nario_Idle = AnimationClip({
@@ -213,7 +182,6 @@ const GameObject AssetManager::NarioObject = GameObject(
 });
 #pragma endregion
 
->>>>>>> 5e7cc0b3779d0c12829b5b96d2cbc98c05fff1b4
 #pragma region BigTikeMyson
 const Texture2D AssetManager::BigTikeMyson = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
 const AnimationClip AssetManager::BigTikeMyson_Idle = AnimationClip({
@@ -313,45 +281,6 @@ const GameObject AssetManager::MiniTikeMysonObject = GameObject(
 });
 #pragma endregion
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-#pragma region Obstacle
-//Obstacle
-const Texture2D AssetManager::ObstacleTexture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3,1);
-const AnimationClip AssetManager::Obstacle_Idle = AnimationClip({
-	{ ObstacleTexture[0], 0.2f },
-	{ ObstacleTexture[1], 0.3f },
-	{ ObstacleTexture[2], 0.2f },
-	{ ObstacleTexture[1], 0.3f },
-	}, true);
-const AnimatorController AssetManager::Obstacle_Controller = AnimatorController({State("Idle", &Obstacle_Idle, {})});
-const GameObject AssetManager::ObstacleObject = GameObject(
-	"Obstacle", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
-		std::make_shared<Animator>(&AssetManager::Obstacle_Controller),
-		std::make_shared<Rigidbody2D>(),
-		std::make_shared<BoxCollider2D>(),
-		//std::make_shared<Obstacle>()
-});
-
-//ObstaclesSpawner
-const GameObject AssetManager::ObstacleSpawnerObject = GameObject(
-	"ObstacleSpawnerObject", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<ObstacleSpawner>(),
-});
-#pragma endregion
-
->>>>>>> 5e7cc0b3779d0c12829b5b96d2cbc98c05fff1b4
 #pragma region Misc
 //Misc
 const Texture2D AssetManager::SkyBackground = Texture2D("Assets/SkyBackground.png", Texture2D::FilterMode::Nearest);
@@ -359,10 +288,14 @@ const Texture2D AssetManager::MountainBackground = Texture2D("Assets/MountainBac
 const Texture2D AssetManager::Googleplex = Texture2D("Assets/Googleplex.png", Texture2D::FilterMode::Linear);
 #pragma endregion
 
+const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::FilterMode::Nearest);
+
+
 #pragma region LandingScene
 const GameObject TitleObject = GameObject(
 	"Title", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Parallax>(&BossScene[0],Vector2::zero(), 0),
 	std::make_shared<SpriteRenderer>(&AssetManager::GameTitle[0], false, false),
 });
 const GameObject LandingEventManagerObject = GameObject(
