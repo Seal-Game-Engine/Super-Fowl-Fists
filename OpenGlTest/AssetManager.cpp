@@ -264,7 +264,7 @@ const AnimatorController AssetManager::MiniTikeMyson_Controller = AnimatorContro
 		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
 	}),
 	State("Jump", &MiniTikeMyson_Jump, {
-		{ "Idle", true, 3, [](auto& animator) { return true; } },
+		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
 	}),
 	});
 
@@ -414,7 +414,7 @@ const GameObject OtherGameEventManagerObject = GameObject(
 });
 
 const GameObject Ground = GameObject(
-	"Ground", "Untagged",
+	"Ground", "Ground",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
 	std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
@@ -460,7 +460,7 @@ Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	{&AssetManager::MiniTikeMysonObject, Transform()},
-	//{&AssetManager::ObstacleSpawnerObject, Transform()},
+	{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	});

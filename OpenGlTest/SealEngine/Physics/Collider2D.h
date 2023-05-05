@@ -27,5 +27,6 @@ namespace SealEngine {
 		virtual std::vector<Vector2> worldSpaceVertices() { return {}; }
 
 		Rigidbody2D* _attachedRigidbody = nullptr;
+		std::vector<Collider2D*> _activeCollisions{};
 	};
 }

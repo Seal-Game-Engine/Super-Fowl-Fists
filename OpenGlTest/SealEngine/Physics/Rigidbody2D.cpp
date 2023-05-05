@@ -5,13 +5,10 @@
 #include <cfloat>
 using namespace SealEngine;
 
+Rigidbody2D::Rigidbody2D(float mass, float gravityScale) :mass(mass), gravityScale(gravityScale) {}
+
 void Rigidbody2D::Update(){
-	_initialPosition = transform()->position;
-
-
 	AddForce(Vector2::down() * mass * 9.81f * gravityScale);
-	//velocity = Vector2::Lerp(velocity, Vector2::zero(), Time::deltaTime());
-
 	transform()->position += velocity * Time::deltaTime();
 }
 

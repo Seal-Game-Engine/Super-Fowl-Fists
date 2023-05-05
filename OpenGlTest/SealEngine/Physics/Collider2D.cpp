@@ -35,6 +35,10 @@ void Collider2D::LateUpdate() {
 				component->OnCollisionEnter2D(Collision2D(this, sceneCollider, separation, normal * -1));
 		}
 	}
+
+	for (auto& collider : _activeCollisions) {
+	
+	}
 }
 
 bool Collider2D::InCollisionRange(Collider2D& a, Collider2D& b){
