@@ -1,6 +1,7 @@
 #include "SealPackages.h"
 #include "Input.h"
 #include "Vector2.h"
+#include "Vector3.h"
 #include "SceneManager.h"
 using namespace SealEngine;
 using namespace SealEngine::InputSystem;
@@ -80,20 +81,18 @@ bool Input::GetKeyDown(const KeyCode wParam) { return keysDown[(int)wParam]; }
 bool Input::GetKeyUp(const KeyCode wParam) { return keysUp[(int)wParam]; }
 bool Input::GetKey(const KeyCode wParam) { return keysHold[(int)wParam]; }
 
-float Input::GetAxisRaw(const std::string& axisName) {
-	float value = 0;
-
-	if (axisName == "Horizontal")
-		value =
-		(Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow) ? -1 : 0) +
-		(Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow) ? 1 : 0);
-
-	else if (axisName == "Vertical")
-		value =
-		(Input::GetKey(KeyCode::W) || Input::GetKey(KeyCode::UpArrow) ? 1 : 0) +
-		(Input::GetKey(KeyCode::S) || Input::GetKey(KeyCode::DownArrow) ? -1 : 0);
-
-	return value;
+float Input::GetAxisRaw(const Axis axis) {
+	switch (axis) {
+	case Axis::Horizontal:
+		return
+			(Input::GetKey(KeyCode::A) || Input::GetKey(KeyCode::LeftArrow) ? -1 : 0) +
+			(Input::GetKey(KeyCode::D) || Input::GetKey(KeyCode::RightArrow) ? 1 : 0);
+	case Axis::Vertical:
+		return
+			(Input::GetKey(KeyCode::W) || Input::GetKey(KeyCode::UpArrow) ? 1 : 0) +
+			(Input::GetKey(KeyCode::S) || Input::GetKey(KeyCode::DownArrow) ? -1 : 0);
+	}
+	return 0;
 }
 
 bool Input::anyKeyDown() { return _anyKeyDown; }
@@ -128,6 +127,30 @@ void Input::mouseWheel(const WPARAM wParam, const double delta) {
 }
 
 Vector2 Input::GetMousePosition() {
+	int x = 0, y = 0;//mouse position
+
+	//lecture
+	GLdouble modelViewMatrix[16];
+	GLdouble projectionMatrix[16];
+	GLint viewPort[4];
+	Vector3 windowVector = Vector3::zero();
+	GLdouble winX, winY, winZ;
+	Vector3 positionVector = Vector3::zero();
+	GLdouble posX, posY, posZ;
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelViewMatrix);
+	glGetDoublev(GL_PROJECTION_MATRIX, projectionMatrix);
+	glGetIntegerv(GL_VIEWPORT, viewPort);
+	//windowVector = Vector3(
+	winX = x;
+	winY = (float)viewPort[3] - y;
+	glReadPixels(x, (int)viewPort[3] - y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
+	gluUnProject(winX, winY, winZ, modelViewMatrix, projectionMatrix, viewPort, &posX, &posY, &posZ);
+	//end class
+
+
+
 	//int x, y;
 	//glutMotionFunc([](int _x, int _y) { prev_MouseX = _x; prev_MouseY = _y; });
 

@@ -1,7 +1,8 @@
 #pragma once
-#include "../Object.h"
 #include <map>
 #include <functional>
+
+#include "../Object.h"
 #include "AnimationClip.h"
 namespace SealEngine { class Animator; }
 
@@ -37,9 +38,5 @@ namespace SealEngine {
 		AnimatorController(std::vector<AnimationState> states);
 
 		std::map<std::string, AnimationState> map;
-
-
-
-	private:
 	};
 }

@@ -15,6 +15,7 @@ using State = AnimatorController::AnimationState;
 #include "Parallax.h"
 #include "Obstacle.h"
 #include "ObstacleSpawner.h"
+#include<string>
 
 #pragma region Hector
 const Texture2D AssetManager::Hector_Run = Texture2D("Assets/Hector_Run.png", Texture2D::FilterMode::Nearest, 4, 3);
@@ -39,7 +40,7 @@ const AnimatorController AssetManager::Hector_Controller = AnimatorController({
 	}),
 });
 const GameObject AssetManager::HectorObject = GameObject(
-	"Hector",
+	"Hector", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::Hector_Run[1], false, false),
 		std::make_shared<Animator>(&AssetManager::Hector_Controller),
@@ -74,12 +75,13 @@ const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 	}),
 });;
 const GameObject AssetManager::XwingObject = GameObject(
-	"Xwing",
+	"Xwing", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
 		std::make_shared<Rigidbody2D>(),
-		std::make_shared<CircleCollider2D>(0.25f, Vector2(0, -0.0625)),
+		std::make_shared<CircleCollider2D>(0.25f, false, Vector2(0, -0.0625)),
+		//std::make_shared<BoxCollider2D>(Vector2(0.5f, 0.5f), false, Vector2(0, -0.0625f)),
 		std::make_shared<XwingPlayer>(),
 });
 
@@ -93,7 +95,7 @@ const AnimatorController AssetManager::Projectile_Blue_Controller = AnimatorCont
 	State("Idle", &Projectile_Blue_Idle),
 });
 const GameObject AssetManager::ProjectileObject_Blue = GameObject(
-	"Projectile (Blue)",
+	"Projectile (Blue)", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::Projectile_Blue_Texture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Projectile_Blue_Controller),
@@ -107,7 +109,7 @@ const GameObject AssetManager::ProjectileObject_Blue = GameObject(
 const Texture2D AssetManager::SpaceBackground = Texture2D("Assets/SpaceBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::GalaxyBackground = Texture2D("Assets/GalaxyBackground.png", Texture2D::FilterMode::Nearest);
 const GameObject GalaxyBackgroundObject = GameObject(
-	"Background",
+	"Background", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Parallax>(&AssetManager::GalaxyBackground[0], Vector2::left(), 0.05f),
 });
@@ -126,7 +128,7 @@ const AnimationClip AssetManager::GreenSlime_Idle = AnimationClip({
 	{ GreenSlime[5], 0.15f },
 }, true);
 const AnimatorController AssetManager::GreenSlime_Controller = AnimatorController({
-	State("Idle", &GreenSlime_Idle), 
+	State("Idle", &GreenSlime_Idle),
 	});
 		//{.targetState = "Run", .hasExitTime = false, .condition = [&]() { return false; } },
 #pragma endregion
@@ -171,7 +173,9 @@ const AnimatorController AssetManager::Nario_Controller = AnimatorController({
 	}),
 	});
 
-const GameObject AssetManager::NarioObject = GameObject("Player", std::vector<std::shared_ptr<MonoBehaviour>>{
+const GameObject AssetManager::NarioObject = GameObject(
+	"Player", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::Nario[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Nario_Controller),
 		std::make_shared<Rigidbody2D>(),
@@ -181,7 +185,7 @@ const GameObject AssetManager::NarioObject = GameObject("Player", std::vector<st
 #pragma endregion
 
 #pragma region BigTikeMyson
-const Texture2D AssetManager::BigTikeMyson = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 3);
+const Texture2D AssetManager::BigTikeMyson = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
 const AnimationClip AssetManager::BigTikeMyson_Idle = AnimationClip({
 	{ BigTikeMyson[8], 0.1f },
 	{ BigTikeMyson[9], 0.1f },
@@ -260,11 +264,13 @@ const AnimatorController AssetManager::MiniTikeMyson_Controller = AnimatorContro
 		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
 	}),
 	State("Jump", &MiniTikeMyson_Jump, {
-		{ "Idle", true, 3, [](auto& animator) { return true; } },
+		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
 	}),
 	});
 
-const GameObject AssetManager::MiniTikeMysonObject = GameObject("Player", std::vector<std::shared_ptr<MonoBehaviour>>{
+const GameObject AssetManager::MiniTikeMysonObject = GameObject(
+	"Player", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::MiniTikeMyson[0], false, false),
 		std::make_shared<Animator>(&AssetManager::MiniTikeMyson_Controller),
 		std::make_shared<Rigidbody2D>(),
@@ -291,16 +297,20 @@ const AnimationClip AssetManager::Obstacle_Idle = AnimationClip({
 	{ ObstacleTexture[1], 0.3f },
 	}, true);
 const AnimatorController AssetManager::Obstacle_Controller = AnimatorController({State("Idle", &Obstacle_Idle, {})});
-const GameObject AssetManager::ObstacleObject = GameObject("Obstacle", std::vector<std::shared_ptr<MonoBehaviour>>{
+const GameObject AssetManager::ObstacleObject = GameObject(
+	"Obstacle", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Obstacle_Controller),
 		std::make_shared<Rigidbody2D>(),
-		std::make_shared<BoxCollider2D>(Vector2(2, 1)),
-		std::make_shared<Obstacle>()
+		std::make_shared<BoxCollider2D>(),
+		//std::make_shared<Obstacle>()
 });
 
 //ObstaclesSpawner
-const GameObject AssetManager::ObstacleSpawnerObject = GameObject("ObstacleSpawnerObject", std::vector<std::shared_ptr<MonoBehaviour>>{
+const GameObject AssetManager::ObstacleSpawnerObject = GameObject(
+	"ObstacleSpawnerObject", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<ObstacleSpawner>(),
 });
 #pragma endregion
@@ -318,12 +328,12 @@ const Texture2D AssetManager::Googleplex = Texture2D("Assets/Googleplex.png", Te
 
 #pragma region LandingScene
 const GameObject TitleObject = GameObject(
-	"Title",
+	"Title", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::GameTitle[0], false, false),
 });
 const GameObject LandingEventManagerObject = GameObject(
-	"LandingEventManager",
+	"LandingEventManager", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<LandingEventManager>(),
 });
@@ -338,17 +348,17 @@ Scene Assets_Scenes::LandingScene = Scene({
 #pragma region MenuScene
 const Texture2D MenuText = Texture2D("Assets/MenuText.png", Texture2D::FilterMode::Nearest);
 const GameObject MenuOptionsObject = GameObject(
-	"MenuOptions",
+	"MenuOptions", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::MenuOptions[0], false, false),
 });
 const GameObject MenuTextObject = GameObject(
-	"MenuText",
+	"MenuText", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&MenuText[0], false, false),
 });
 const GameObject MenuEventManagerObject = GameObject(
-	"MenuEventManager",
+	"MenuEventManager", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::GreenSlime[1], false, false),
 		std::make_shared<Animator>(&AssetManager::GreenSlime_Controller),
@@ -366,12 +376,12 @@ Scene Assets_Scenes::MenuScene = Scene({
 #pragma region TutorialScene
 const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
 const GameObject TutorialTextObject = GameObject(
-	"TutorialText",
+	"TutorialText", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&TutorialText[0], false, false),
 });
 const GameObject TutorialEventManagerObject = GameObject(
-	"TutorialEventManager",
+	"TutorialEventManager", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<TutorialEventManager>(),
 });
@@ -385,33 +395,34 @@ Scene Assets_Scenes::TutorialScene = Scene({
 
 #pragma region XwingScene
 const GameObject SpaceBackgroundObject = GameObject(
-	"Background",
+	"Background", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Parallax>(&AssetManager::SpaceBackground[0], Vector2::down(), 0.1f),
 });
 const GameObject GameEventManagerObject = GameObject(
-	"GameEventManager",
+	"GameEventManager", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::PauseScreen[0], false, false),
 		std::make_shared<SpriteRenderer>(&AssetManager::PauseMessage[0], false, false),
 		std::make_shared<GameEventManager>(),
 });
 const GameObject OtherGameEventManagerObject = GameObject(
-	"GameEventManager",
+	"GameEventManager", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&TutorialText[0], false, false),
 		std::make_shared<GameEventManager>(),
 });
 
 const GameObject Ground = GameObject(
-	"Ground",
+	"Ground", "Ground",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<BoxCollider2D>(Vector2(10, 1)),
+	std::make_shared<SpriteRenderer>(&AssetManager::ObstacleTexture[0], false, false),
+	std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
 });
 
 Scene Assets_Scenes::XwingScene = Scene({
 	{&SpaceBackgroundObject, Transform()},
-	//{&Ground, Transform(Vector3(0, -8, 0))},
+	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	{&AssetManager::XwingObject, Transform(Vector3(0, -1, 0))},
 	{&AssetManager::ObstacleSpawnerObject, Transform()},
 	/*{GameObject(
@@ -437,7 +448,7 @@ Scene Assets_Scenes::NarioScene = Scene({
 #pragma region GameScene
 const Texture2D ForestBackgroundTexture = Texture2D("Assets/level_1.png", Texture2D::FilterMode::Linear);
 const GameObject ForestBackgroundObject = GameObject(
-	"Background",
+	"Background", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Parallax>(&ForestBackgroundTexture[0], Vector2::left(), 0.1f),
 });
@@ -447,8 +458,9 @@ const GameObject ForestBackgroundObject = GameObject(
 
 Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
+	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	{&AssetManager::MiniTikeMysonObject, Transform()},
-	//{&AssetManager::ObstacleSpawnerObject, Transform()},
+	{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	});

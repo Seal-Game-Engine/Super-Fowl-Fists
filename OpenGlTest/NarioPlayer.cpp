@@ -13,7 +13,7 @@ void NarioPlayer::Update() {
 
 	float screenWidth = 340.0f;
 	float screenHeight = 340.0f;
-	int x = Input::GetAxisRaw("Horizontal");
+	int x = Input::GetAxisRaw(Input::Axis::Horizontal);
 
 	float gravityDelayTime = .3f;
 	const float gForce = 10.0f;
@@ -35,7 +35,7 @@ void NarioPlayer::Update() {
 	animator->SetInteger("x", x);
 
 	if (Input::GetKeyDown(KeyCode::Space)) {
-		auto obstacles = FindObjectsByType<Obstacle>();
+		auto obstacles = Scene::FindObjectsByType<Obstacle>();
 		for (auto& obstacle : obstacles) Destroy(*obstacle->gameObject);
 	}
 }

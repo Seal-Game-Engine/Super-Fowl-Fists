@@ -12,7 +12,7 @@ void LandingEventManager::Update()
         : Input::GetKeyDown(KeyCode::E) ? -1
         : 0;
 
-    FindFirstObjectByType<Parallax>()->transform()->position += Vector3::forward() * Time::deltaTime() * x;
+    Scene::FindFirstObjectByType<Parallax>()->transform()->position += Vector3::forward() * Time::deltaTime() * x;
 }
 
 LandingEventManager* LandingEventManager::_Clone() const

@@ -13,9 +13,11 @@ namespace SealEngine {
         int attachedColliderCount() { return _attachedColliderCount; }
 
         float mass = 1;
-        float linearDrag = 0;
         float gravityScale = 1;
+        float linearDrag = 0;
         Vector2 velocity = Vector2::zero();
+
+        Rigidbody2D(float mass = 1, float gravityScale = 1);
 
         void Update() override;
         void LateUpdate() override;
@@ -23,7 +25,6 @@ namespace SealEngine {
 
     private:
         int _attachedColliderCount = 0;
-        Vector2 _initialPosition = Vector2::zero();
 
         Rigidbody2D* _Clone() const override { return new Rigidbody2D(*this); }
     };

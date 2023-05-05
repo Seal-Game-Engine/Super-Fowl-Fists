@@ -14,8 +14,8 @@ namespace SealEngine {
     class GameObject : public Object {
     public:
         GameObject();
-        GameObject(const std::string& name);
-        GameObject(const std::string& name, std::vector<std::shared_ptr<MonoBehaviour>> components);
+        GameObject(const std::string& name, const std::string& tag = "Untagged");
+        GameObject(const std::string& name, const std::string& tag, std::vector<std::shared_ptr<MonoBehaviour>> components);
 
         GameObject(const GameObject& obj);
 
