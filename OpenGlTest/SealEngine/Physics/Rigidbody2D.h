@@ -21,7 +21,7 @@ namespace SealEngine {
 
         void Update() override;
         void LateUpdate() override;
-        void OnCollisionEnter2D(Collision2D collision) override;
+        void OnCollisionStay2D(Collision2D collision) override;
 
     private:
         int _attachedColliderCount = 0;

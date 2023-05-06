@@ -1,7 +1,5 @@
 #pragma once
 #include "SealEngine.h"
-#include "NarioPlayer.h"
-#include "Player.h"
 
 using namespace SealEngine;
 
@@ -13,12 +11,11 @@ public:
 	void OnCollisionEnter2D(Collision2D collision) override;
 
 private:
-	float speed = 0.5f;
+	float _speed = 2.0f;
 	
 	Rigidbody2D* rigidbody = nullptr;
 
-	NarioPlayer* narioPlayer = nullptr;
-	Player* player = nullptr;
+	GameObject* player = nullptr;
 
 	Obstacle* _Clone() const override { return new Obstacle(*this); }
 };

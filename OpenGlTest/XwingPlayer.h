@@ -3,11 +3,14 @@
 #include "Player.h"
 using namespace SealEngine;
 
-class XwingPlayer : public Player {
+class XwingPlayer : public MonoBehaviour {
 public:
 	void Awake() override;
 	void Update() override;
 	void OnCollisionEnter2D(Collision2D collision) override {}
+	void OnCollisionStay2D(Collision2D collision) override { transform()->rotation += Vector3::forward() * 5 * Time::deltaTime(); }
+	void OnCollisionExit2D(Collision2D collision) override {}
+
 
 	XwingPlayer() = default;
 
