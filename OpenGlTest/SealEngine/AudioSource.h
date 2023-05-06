@@ -21,11 +21,11 @@ namespace SealEngine {
         std::string clip;
         AudioSource(const std::string& clip); //constructor
         AudioSource() = default; //constructor
-        ~AudioSource(); //destructor
         bool loop = false;
         //bool playOnAwake = true;
                 
         void Awake() override;
+        void OnDestroy() override;
 
     private:
         ISoundEngine* engine = nullptr;

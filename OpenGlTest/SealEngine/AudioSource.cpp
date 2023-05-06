@@ -6,9 +6,11 @@ using namespace SealEngine;
 
 AudioSource::AudioSource(const std::string& clip) :clip(clip) {} //ctr
 
-AudioSource::~AudioSource() { engine->drop(); } //dtr
-
 void AudioSource::Awake() { engine = createIrrKlangDevice(); }
+
+void AudioSource::OnDestroy() {
+    engine->drop();
+}
 
 void AudioSource::Play()
 {
