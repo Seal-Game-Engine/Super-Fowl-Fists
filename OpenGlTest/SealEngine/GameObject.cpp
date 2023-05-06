@@ -44,12 +44,20 @@ GameObject::GameObject(const GameObject& obj)
 
 bool GameObject::activeSelf() const { return _activeSelf; }
 GameObject GameObject::Find(std::string name) { return GameObject(name); }
-GameObject* GameObject::FindWithTag(std::string tag) { return nullptr; }
+
+GameObject* GameObject::FindWithTag(const std::string& tag) { 
+	for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+		if (!gameObject->activeSelf()) continue;
+		if (gameObject->CompareTag(tag)) return gameObject.get();
+	}
+	return nullptr;
+}
+
 std::vector<GameObject*> GameObject::FindGameObjectsWithTag(const std::string& tag) {
 	std::vector<GameObject*> gameObjectsFound{};
-	for (auto& _gameObject : SceneManager::scenes[SceneManager::currentSceneId]->gameObjects) {
-		if (_gameObject->tag == tag)
-			gameObjectsFound.emplace_back(_gameObject.get());
+	for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+		if (gameObject->CompareTag(tag))
+			gameObjectsFound.emplace_back(gameObject.get());
 	}
 	return gameObjectsFound;
 }

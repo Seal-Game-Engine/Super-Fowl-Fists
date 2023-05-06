@@ -24,5 +24,7 @@ void XwingPlayer::Update() {
 		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
 		_nextFire = Time::time() + 0.15f;
 	}
+
+	if (Input::GetKeyDown(KeyCode::T)) transform()->position = Vector2::up() * -1.5f;
 	animator->SetInteger("x", x);
 }

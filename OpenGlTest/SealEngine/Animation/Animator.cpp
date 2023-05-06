@@ -22,6 +22,7 @@ void Animator::SetFloat(const std::string& name, float value) { floatMap[name] =
 void Animator::SetInteger(const std::string& name, int value) { intMap[name] = value; }
 
 void Animator::Play(const std::string& name) {
+	if (animatorController->map.count(name) == 0) return;
 	HandleStateEnter(&animatorController->map.find(name)->second);
 }
 

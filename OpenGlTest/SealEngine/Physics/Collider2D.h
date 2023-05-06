@@ -25,8 +25,10 @@ namespace SealEngine {
 		virtual float circumradius() const = 0;
 		virtual std::vector<Vector2> separationAxes(const std::vector<Vector2>& otherPolygonVertices) = 0;
 		virtual std::vector<Vector2> worldSpaceVertices() { return {}; }
+		bool IsActiveCollision(const Collider2D* otherCollider) const;
+
 
 		Rigidbody2D* _attachedRigidbody = nullptr;
-		std::vector<Collider2D*> _activeCollisions{};
+		std::list<GameObject*> _activeCollisions{};
 	};
 }

@@ -152,16 +152,6 @@ const AnimatorController AssetManager::Boss_Controller = AnimatorController({
 		{ "Close", true, 20 },
 	}),
 	});
-
-const GameObject AssetManager::BossObject = GameObject(
-	"Player", "Untagged",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::BossTexture[0], false, false),
-		std::make_shared<Animator>(&AssetManager::Boss_Controller),
-		std::make_shared<Rigidbody2D>(),
-		std::make_shared<BoxCollider2D>(),
-		std::make_shared<Boss>(),
-});
 #pragma endregion
 
 #pragma region BigTikeMyson
@@ -253,7 +243,7 @@ const AnimatorController AssetManager::MiniTikeMyson_Controller = AnimatorContro
 	});
 
 const GameObject AssetManager::MiniTikeMysonObject = GameObject(
-	"Player", "Untagged",
+	"Player", "Player",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::MiniTikeMyson[0], false, false),
 		std::make_shared<Animator>(&AssetManager::MiniTikeMyson_Controller),
@@ -291,7 +281,7 @@ const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 	}),
 });;
 const GameObject AssetManager::XwingObject = GameObject(
-	"Xwing", "Untagged",
+	"Xwing", "Player",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
 		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
