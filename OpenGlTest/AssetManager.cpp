@@ -20,7 +20,7 @@ using State = AnimatorController::AnimationState;
 #include<string>
 
 #pragma region Sensei
-const Texture2D AssetManager::SenseiTexture = Texture2D("Assets/MasterWu.png", Texture2D::FilterMode::Nearest, 8, 7);
+const Texture2D AssetManager::SenseiTexture = Texture2D("Assets/MasterWu.png", Texture2D::FilterMode::Nearest, 6, 6);
 const AnimationClip AssetManager::Sensei_Idle = AnimationClip({
 	{ SenseiTexture[0], 0.1f },
 	{ SenseiTexture[1], 0.1f },
@@ -50,7 +50,7 @@ const AnimationClip AssetManager::Sensei_CallingReinforcements = AnimationClip({
 	{ SenseiTexture[22], 0.1f },
 	{ SenseiTexture[23], 0.1f },
 	}, true);
-const AnimationClip AssetManager::Sensei_Teleport = AnimationClip({
+const AnimationClip AssetManager::Sensei_TeleportOut = AnimationClip({
 	{ SenseiTexture[24], 0.1f },
 	{ SenseiTexture[25], 0.1f },
 	{ SenseiTexture[26], 0.1f },
@@ -58,6 +58,57 @@ const AnimationClip AssetManager::Sensei_Teleport = AnimationClip({
 	{ SenseiTexture[28], 0.1f },
 	{ SenseiTexture[29], 0.1f },
 	}, true);
+const AnimationClip AssetManager::Sensei_TeleportIn = AnimationClip({
+	{ SenseiTexture[29], 0.1f },
+	{ SenseiTexture[28], 0.1f },
+	{ SenseiTexture[27], 0.1f },
+	{ SenseiTexture[26], 0.1f },
+	{ SenseiTexture[25], 0.1f },
+	{ SenseiTexture[24], 0.1f },
+	}, true);
+const AnimationClip AssetManager::Sensei_Hurt = AnimationClip({
+	{ SenseiTexture[30], 0.1f },
+	}, true);
+const AnimatorController AssetManager::Sensei_Controller = AnimatorController({
+	State("Idle", &Sensei_Idle, {
+		{ "Walking", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); } },
+		{ "Hadoken", false, 1, [](auto& animator) { return animator.GetInteger("move") == 1; } },
+		{ "Call", false, 1, [](auto& animator) { return animator.GetInteger("move") == 2; } },
+		{ "TeleportOut", false, 1, [](auto& animator) { return animator.GetInteger("move") == 3; } },
+	}),
+	State("Walking", &Sensei_Walking, {
+		{ "Idle", true, 1 },
+	}),
+	State("Hadoken", &Sensei_Hadoken, {
+		{ "Idle", true, 1 },
+	}),
+	State("Call", &Sensei_CallsReinforcements, {
+		{ "Calling", true, 1, [](auto& animator) { animator.SetInteger("move", 0); return true; } },
+	}),
+	State("Calling", &Sensei_CallingReinforcements, {
+		{ "Idle", true, 3 },
+	}),
+	State("TeleportOut", &Sensei_TeleportOut, {
+		{ "TeleportIn", true, 1, [](auto& animator) { animator.SetInteger("move", 0); return true; } },
+	}),
+	State("TeleportIn", &Sensei_TeleportIn, {
+		{ "Idle", true, 1 },
+	}),
+	State("Hurt", &Sensei_Hurt, {
+		{ "Idle", true, 1 },
+	}),
+	});
+const GameObject AssetManager::SenseiObject = GameObject(
+	"Boss", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::SenseiTexture[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Sensei_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(),
+		std::make_shared<Boss>(),
+
+});
+#pragma endregion
 
 #pragma region Boss1
 const Texture2D AssetManager::BossTexture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
@@ -217,8 +268,8 @@ const AnimatorController AssetManager::BigTikeMyson_Controller = AnimatorControl
 #pragma endregion
 
 #pragma region MiniTikeMyson
-const Texture2D AssetManager::MiniTikeMyson = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 5);
-//const Texture2D AssetManager::MiniTikeMyson = Texture2D("Assets/Fighter3.png", Texture2D::FilterMode::Nearest, 3, 3);
+//const Texture2D AssetManager::MiniTikeMyson = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 5);
+const Texture2D AssetManager::MiniTikeMyson = Texture2D("Assets/Fighter3.png", Texture2D::FilterMode::Nearest, 3, 3);
 const AnimationClip AssetManager::MiniTikeMyson_Idle = AnimationClip({
 	{ MiniTikeMyson[8], 0.1f },
 	{ MiniTikeMyson[9], 0.1f },
@@ -513,13 +564,11 @@ const GameObject ForestBackgroundObject = GameObject(
 	std::make_shared<Parallax>(&ForestBackgroundTexture[0], Vector2::left(), 0.1f),
 });
 
-
-
-
 Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	{&AssetManager::BossObject, Transform()},
+	{&AssetManager::SenseiObject, Transform()},
 	//{&AssetManager::MiniTikeMysonObject, Transform()},
 	//{&AssetManager::ObstacleSpawnerObject, Transform()},
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},

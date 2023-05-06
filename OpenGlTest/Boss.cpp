@@ -13,9 +13,9 @@ void Boss::Awake() {
 }
 
 void Boss::Update() {
-	//int x = Input::GetAxisRaw(Input::Axis::Horizontal);
-	//Vector2 horizontalMovement = Vector2::right();
-	//rigidbody->velocity = Vector2((float)x * _speed, rigidbody->velocity.y());
+	int x = Input::GetAxisRaw(Input::Axis::Horizontal);
+	Vector2 horizontalMovement = Vector2::right();
+	rigidbody->velocity = Vector2((float)x * _speed, rigidbody->velocity.y());
 
 	//if (_canJump && (Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow))) {
 	//	animator->Play("Jump");
@@ -36,10 +36,15 @@ void Boss::Update() {
 	if (Input::GetKeyDown(KeyCode::W)) {
 		animator->SetInteger("move", 2);
 	}
-
-	//animator->SetBool("isWalking", std::abs(x) > 0);
+	if (Input::GetKeyDown(KeyCode::E)) {
+		animator->SetInteger("move", 3);
+	}
+	if (Input::GetKeyDown(KeyCode::T)) {
+		animator->Play("Hurt");
+	}
+	animator->SetBool("isWalking", std::abs(x) > 0);
 	//animator->SetBool("isJumping", !_canJump);
-	//if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
+	if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
 }
 
 //void Boss::OnCollisionEnter2D(Collision2D collision) {

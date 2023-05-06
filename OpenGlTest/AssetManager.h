@@ -34,7 +34,9 @@ public:
 	static const AnimationClip Sensei_Hadoken;
 	static const AnimationClip Sensei_CallsReinforcements;
 	static const AnimationClip Sensei_CallingReinforcements;
-	static const AnimationClip Sensei_Teleport;
+	static const AnimationClip Sensei_TeleportOut;
+	static const AnimationClip Sensei_TeleportIn;
+	static const AnimationClip Sensei_Hurt;
 	static const AnimatorController Sensei_Controller;
 	static const GameObject SenseiObject;
 
