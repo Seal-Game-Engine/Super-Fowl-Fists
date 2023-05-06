@@ -10,6 +10,7 @@
 #include "SealEngine/Rect.h"
 #include "SealEngine/Sprite.h"
 #include "SealEngine/Texture2D.h"
+#include "SealEngine/AudioSource.h"
 
 #include "SealEngine/IClonable.h"
 #include "SealEngine/Object.h"

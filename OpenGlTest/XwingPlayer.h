@@ -18,6 +18,7 @@ private:
 	Rigidbody2D* rigidbody = nullptr;
 	SpriteRenderer* renderer = nullptr;
 	Animator* animator = nullptr;
+	AudioSource* audioSource = nullptr;
 
 	float _speed = 5.0f;
 	float _nextFire = 0;

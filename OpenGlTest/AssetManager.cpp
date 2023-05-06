@@ -349,6 +349,7 @@ const GameObject AssetManager::XwingObject = GameObject(
 		std::make_shared<CircleCollider2D>(0.25f, false, Vector2(0, -0.0625)),
 		//std::make_shared<BoxCollider2D>(Vector2(0.5f, 0.5f), false, Vector2(0, -0.0625f)),
 		std::make_shared<XwingPlayer>(),
+		std::make_shared<AudioSource>("Assets/faded.wav"),
 });
 
 const Texture2D AssetManager::Projectile_Blue_Texture = Texture2D("Assets/Projectile_Blue.png", Texture2D::FilterMode::Nearest, 3, 1);

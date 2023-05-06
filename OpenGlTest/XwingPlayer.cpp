@@ -7,6 +7,7 @@ void XwingPlayer::Awake() {
 	rigidbody = gameObject->GetComponent<Rigidbody2D>();
 	renderer = gameObject->GetComponent<SpriteRenderer>();
 	animator = gameObject->GetComponent<Animator>();
+	audioSource = gameObject->GetComponent<AudioSource>();
 }
 
 void XwingPlayer::Update() {
@@ -23,8 +24,15 @@ void XwingPlayer::Update() {
 	if (Input::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
 		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
 		_nextFire = Time::time() + 0.15f;
+		audioSource->Play();
 	}
 
 	if (Input::GetKeyDown(KeyCode::T)) transform()->position = Vector2::up() * -1.5f;
 	animator->SetInteger("x", x);
+
+	if (Input::GetKey(KeyCode::P))
+		audioSource->Pause();
+
+	if (Input::GetKey(KeyCode::L))
+		audioSource->Stop();
 }

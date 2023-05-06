@@ -47,6 +47,7 @@
     <ClCompile Include="SealEngine\Physics\CircleCollider2D.cpp" />
     <ClCompile Include="SealEngine\Physics\ContactPoint2D.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="SealEngine\AudioSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="SealEngine\Physics\CircleCollider2D.h" />
     <ClInclude Include="SealEngine\Physics\ContactPoint2D.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="SealEngine\AudioSource.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />
