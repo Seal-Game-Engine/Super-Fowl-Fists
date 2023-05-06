@@ -19,8 +19,11 @@ void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.emplace(scene
 Scene* SceneManager::GetActiveScene() { return scenes[currentSceneId]; }
 
 bool SceneManager::RefreshScene() {
-    if (Input::GetKeyDown(KeyCode::Q))camDist++;
-    else if (Input::GetKeyDown(KeyCode::E))camDist--;
+    float camX = 0, camY = 0;
+
+    if (Input::GetKeyDown(KeyCode::Alpha1))camX--;
+    else if (Input::GetKeyDown(KeyCode::Alpha2))camX++;
+    glTranslatef(-camX, camY, 0);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();

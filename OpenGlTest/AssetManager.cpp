@@ -203,6 +203,15 @@ const AnimatorController AssetManager::Boss_Controller = AnimatorController({
 		{ "Close", true, 20 },
 	}),
 	});
+const GameObject AssetManager::BossObject = GameObject(
+	"Player", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&AssetManager::BossTexture[0], false, false),
+		std::make_shared<Animator>(&AssetManager::Boss_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<BoxCollider2D>(),
+		std::make_shared<Boss>(),
+});
 #pragma endregion
 
 #pragma region BigTikeMyson
@@ -557,7 +566,7 @@ const GameObject ForestBackgroundObject = GameObject(
 Scene Assets_Scenes::GameScene = Scene({
 	{&ForestBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
-	{&AssetManager::BossObject, Transform()},
+	//{&AssetManager::BossObject, Transform()},
 	{&AssetManager::SenseiObject, Transform()},
 	//{&AssetManager::MiniTikeMysonObject, Transform()},
 	//{&AssetManager::ObstacleSpawnerObject, Transform()},
