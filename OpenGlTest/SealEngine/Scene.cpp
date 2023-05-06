@@ -15,7 +15,9 @@ void Scene::Unload(){
     while (!instantiationQueue.empty()) instantiationQueue.pop();
     while (!destroyQueue.empty()) destroyQueue.pop();
     while (!awakeEventQueue.empty()) awakeEventQueue.pop();
-    while (!awakeEventQueue.empty()) awakeEventQueue.pop();
+    while (!startEventQueue.empty()) startEventQueue.pop();
+    for (auto& gameObject : gameObjects)
+        for (auto& component : gameObject->components) component->OnDestroy();
     gameObjects.clear();
 }
 
@@ -37,18 +39,10 @@ void Scene::Refresh() {
         for (auto& component : gameObject->components) { if (component->enabled) component->LateUpdate(); }
     }
 
-    while (!instantiationQueue.empty()) {
-        //awakeEventQueue.emplace(instantiationQueue.front().get());
-        for (auto& component : instantiationQueue.front()->components) component->Awake();
-        startEventQueue.emplace(instantiationQueue.front().get());
-        gameObjects.emplace_back(instantiationQueue.front());
-        instantiationQueue.pop();
-    }
-
     while (!destroyQueue.empty()) {
         for (int i = 0; i < gameObjects.size(); i++) {
             if (*gameObjects[i] == *destroyQueue.front()) {
-                for (auto& component : gameObjects[i]->components)component->OnDestroy();
+                for (auto& component : gameObjects[i]->components) component->OnDestroy();
                 gameObjects[i].reset();
                 gameObjects.erase(gameObjects.begin() + i);
                 goto WhileLoop;
@@ -65,5 +59,13 @@ void Scene::Refresh() {
         }
     WhileLoop:
         destroyQueue.pop();
+    }
+
+    while (!instantiationQueue.empty()) {
+        //awakeEventQueue.emplace(instantiationQueue.front().get());
+        for (auto& component : instantiationQueue.front()->components) component->Awake();
+        startEventQueue.emplace(instantiationQueue.front().get());
+        gameObjects.emplace_back(instantiationQueue.front());
+        instantiationQueue.pop();
     }
 }

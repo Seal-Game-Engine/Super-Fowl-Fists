@@ -1,10 +1,13 @@
 #include "Boss.h"
 #include "Projectile.h"
 #include "AssetManager.h"
-#include "Obstacle.h"
 #include <cmath>
 
 //const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::MiniTikeMyson_Controller, &AssetManager::BigTikeMyson_Controller }; //change to small and big guy controller
+
+void Boss::TakeDamage(float damage)
+{
+}
 
 void Boss::Awake() {
 	renderer = gameObject->GetComponent<SpriteRenderer>();

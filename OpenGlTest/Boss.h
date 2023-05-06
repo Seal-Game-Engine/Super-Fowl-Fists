@@ -1,14 +1,15 @@
 #pragma once
 #include "SealEngine.h"
+#include "IDamageable.h"
 using namespace SealEngine;
 
-class Boss : public MonoBehaviour {
+class Boss : public MonoBehaviour, public IDamageable {
 public:
+	void TakeDamage(float damage) override;
+
 	void Awake() override;
 	void Update() override;
 	//void OnCollisionEnter2D(Collision2D collision) override;
-
-	Boss() = default;
 
 private:
 	SpriteRenderer* renderer = nullptr;

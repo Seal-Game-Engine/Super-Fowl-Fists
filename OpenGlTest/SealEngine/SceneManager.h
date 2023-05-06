@@ -21,11 +21,14 @@ namespace SealEngine {
 
         static void Quit();
 
+        static float aspectRatio() { return width / height; }
+
         static int currentSceneId;
         //static const std::vector<std::unique_ptr<Scene>> scenes;
         static std::vector<Scene*> scenes;
 
         static float camDist;
+        static float width, height;
         //Unity
         //static int sceneCount	The total number of currently loaded Scenes.
         //  sceneCountInBuildSettings	Number of Scenes in Build Settings.

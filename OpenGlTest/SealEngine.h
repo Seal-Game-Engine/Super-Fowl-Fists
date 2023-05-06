@@ -25,6 +25,8 @@
 
 #include "SealEngine/Button.h"
 
+#include "SealEngine/Camera.h"
+
 #include "SealEngine/Animation/AnimationClip.h"
 #include "SealEngine/Animation/AnimatorController.h"
 #include "SealEngine/Animation/Animator.h"

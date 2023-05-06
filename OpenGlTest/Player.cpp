@@ -1,10 +1,13 @@
 #include "Player.h"
 #include "Projectile.h"
 #include "AssetManager.h"
-#include "Obstacle.h"
 #include <cmath>
 
-const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::MiniTikeMyson_Controller, &AssetManager::BigTikeMyson_Controller }; //change to small and big guy controller
+const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::TikeMyson_Controller, &AssetManager::TikeMyson_Controller}; //change to small and big guy controller
+
+void Player::TakeDamage(float damage)
+{
+}
 
 void Player::Awake(){
 	renderer = gameObject->GetComponent<SpriteRenderer>();
@@ -41,19 +44,12 @@ void Player::Update() {
 
 void Player::OnCollisionEnter2D(Collision2D collision) {
 	if (collision.gameObject()->CompareTag("Ground")) _canJump = true;
-	if (collision.gameObject()->CompareTag("Ground")) animator->Play("Punch");
-	//Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
 }
 
 void Player::OnCollisionStay2D(Collision2D collision) {
-	if (collision.gameObject()->CompareTag("Ground")) {
-		transform()->rotation += Vector3::forward() * 5 * Time::deltaTime();
-	}
+	
 }
 
 void Player::OnCollisionExit2D(Collision2D collision){
-	if (collision.gameObject()->CompareTag("Ground")) {
-		powerState = (PowerState)(((int)powerState + 1) % 2);
-		animator->SetAnimatorController(animatorControllers[(int)powerState]);
-	}
+
 }

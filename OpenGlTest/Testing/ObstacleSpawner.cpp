@@ -1,5 +1,5 @@
 #include "ObstacleSpawner.h"
-#include "AssetManager.h"
+#include "../AssetManager.h"
 
 void ObstacleSpawner::Update() {
 	if (Time::time() >= nextSpawnTime) {

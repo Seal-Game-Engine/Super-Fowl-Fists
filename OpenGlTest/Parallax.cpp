@@ -1,6 +1,8 @@
 #include "Parallax.h"
 
-void Parallax::Update() {
+void Parallax::LateUpdate() {
+    if (!Camera::mainCamera) return;
+
     rect.SetMinVertex(
         rect.minVertex().x() - direction.x() * speed * Time::deltaTime(),
         rect.minVertex().y() + direction.y() * speed * Time::deltaTime()

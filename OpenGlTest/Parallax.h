@@ -9,7 +9,7 @@ class Parallax:public MonoBehaviour{
         float speed = 0.1f;
         Vector2 direction = Vector2::down();
 
-        void Update() override;
+        void LateUpdate() override;
 
         Parallax() = default;
         Parallax(const Sprite* sprite, Vector2 direction, float speed);
@@ -19,5 +19,3 @@ class Parallax:public MonoBehaviour{
 
         Parallax* _Clone() const override;
 };
-
-

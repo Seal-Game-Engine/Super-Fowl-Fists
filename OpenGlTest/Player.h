@@ -1,9 +1,12 @@
 #pragma once
 #include "SealEngine.h"
+#include "IDamageable.h"
 using namespace SealEngine;
 
-class Player : public MonoBehaviour {
+class Player : public MonoBehaviour, public IDamageable {
 public:
+	void TakeDamage(float damage) override;
+
 	void Awake() override;
 	void Update() override;
 	void OnCollisionEnter2D(Collision2D collision) override;
@@ -28,4 +31,3 @@ private:
 
 	Player* _Clone() const override { return new Player(*this); }
 };
-

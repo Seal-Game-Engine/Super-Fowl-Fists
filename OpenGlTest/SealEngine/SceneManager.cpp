@@ -1,13 +1,14 @@
-#include "../GLLight.h"
 #include "../SealEngine.h"
-//#include "CheckCollision.h"
 //#include "Font.h"
 #include "../AssetManager.h"
 #include "../Assets_Scenes.h"
 #include "Scene.h"
+#include "Camera.h"
 using namespace SealEngine::InputSystem;
 
 int SceneManager::currentSceneId = 0;
+float SceneManager::width = 0;
+float SceneManager::height = 0;
 float SceneManager::camDist = -6;
 bool SceneManager::_quitApplication = false;
 //std::vector<std::unique_ptr<Scene>> SceneManager::scenes = std::vector<std::unique_ptr<Scene>>{};
@@ -26,13 +27,28 @@ bool SceneManager::RefreshScene() {
     glTranslatef(-camX, camY, 0);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if (Camera::mainCamera) {
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        switch (Camera::mainCamera->projection){
+        case Camera::Projection::Perspective:
+            break;
+        case Camera::Projection::Orthographic:
+            gluOrtho2D(-Camera::mainCamera->size * aspectRatio(), Camera::mainCamera->size * aspectRatio(), -Camera::mainCamera->size, Camera::mainCamera->size);
+            break;
+        default:
+            break;
+        }
+
+        Vector3 position = Camera::mainCamera->transform()->position;
+        glTranslatef(-position.x(), -position.y(), -position.z());
+    }
+
+    glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    {//gluLookAt(0, 0, -100,               0, 0, 0,               0, 1, 0);
-        //glTranslatef(0, 0, camDist);
-
-        //glLoadIdentity();
+    {
         if (scenes.size() > currentSceneId) scenes[currentSceneId]->Refresh();
-
         //Font::RenderText("Hello World", Vector2(-10,-10), 1);
     }
     glPopMatrix();
@@ -61,13 +77,7 @@ bool SceneManager::InitGl() {
     //glEnable(GL_DEPTH_TEST);
 
     //ResizeGl(0, 0);
-    glMatrixMode(GL_PROJECTION);
-    //glLoadIdentity();
-    //glOrtho(0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), 0, -100, 100);
-    //gluOrtho2D(0, 100, 100, 0);
-    //gluPerspective(45.0, width / height, 0.1, 1000);
-    //glMatrixMode(GL_MODELVIEW);
-
+   
     //---
     //glDepthFunc(GL_LEQUAL);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -89,7 +99,7 @@ bool SceneManager::InitGl() {
     scenes.emplace_back(&Assets_Scenes::MenuScene);
     scenes.emplace_back(&Assets_Scenes::TutorialScene);
     scenes.emplace_back(&Assets_Scenes::GameScene);
-    scenes.emplace_back(&Assets_Scenes::XwingScene);
+    scenes.emplace_back(&Assets_Scenes::TestingScene);
     scenes.emplace_back(&Assets_Scenes::XwingScene);
     LoadScene(0);
     return true;
@@ -98,20 +108,8 @@ bool SceneManager::InitGl() {
 void SceneManager::ResizeGl(GLfloat width, GLfloat height) {
     glViewport(0, 0, width, height);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    float scale = 3;
-    float aspectRatio = (float)width / height;
-    //glOrtho(-scale * aspectRatio, scale * aspectRatio, -scale, scale, 0, 100);
-    //gluPerspective(45.0, width / height, 0, 1000);
-    gluOrtho2D(-scale * aspectRatio, scale * aspectRatio, -scale, scale);
-
-    //glMatrixMode(GL_MODELVIEW);
-    //glLoadIdentity();
-
-    //glOrtho(0, width, 0, height, 1, -1); // Origin in lower-left corner
-    //glOrtho(0, width, height, 0, 1, -1); // Origin in upper-left corner
+    this->width = (float)width;
+    this->height = (float)height;
 }
 
 void SceneManager::Quit() { _quitApplication = true; }

@@ -1,5 +1,5 @@
 #include "Obstacle.h"
-#include "Projectile.h"
+#include "../Projectile.h"
 
 void Obstacle::Awake() {
 	rigidbody = gameObject->GetComponent<Rigidbody2D>();

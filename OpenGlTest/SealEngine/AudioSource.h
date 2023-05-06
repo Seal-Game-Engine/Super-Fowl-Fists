@@ -16,6 +16,7 @@ namespace SealEngine {
 
         void Play();
         void Pause();
+        void UnPause();
         void Stop();
 
         std::string clip;

@@ -5,22 +5,16 @@ using namespace SealEngine;
 
 class AssetManager {
 public:
-	static const Texture2D Hector_Run;
-	static const AnimationClip Hector_Idle;
-	static const AnimationClip Hector_IdleN;
-	static const AnimatorController Hector_Controller;
-	static const GameObject HectorObject;
 
-	static const Texture2D XwingTexture;
-	static const AnimationClip Xwing_Idle;
-	static const AnimationClip Xwing_Left;
-	static const AnimationClip Xwing_Right;
-	static const AnimatorController Xwing_Controller;
-	static const GameObject XwingObject;
+	static const GameObject MainCamera;
 
-	static const Texture2D Projectile_Blue_Texture;
-	static const AnimationClip Projectile_Blue_Idle;
-	static const AnimatorController Projectile_Blue_Controller;
+#pragma region PlayerCharacters
+	static const Texture2D MiniTikeMysonTexture;
+	static const Texture2D BigTikeMysonTexture;
+	static const AnimatorController TikeMyson_Controller;
+	static const GameObject TikeMysonObject;
+#pragma endregion
+
 	static const GameObject ProjectileObject_Blue;
 
 	static const Texture2D GreenSlime;
@@ -53,29 +47,9 @@ public:
 	static const AnimatorController Boss_Controller;
 	static const GameObject BossObject;
 
-	//Big TikeMyson
-	static const Texture2D BigTikeMyson;
-	static const AnimationClip BigTikeMyson_Idle;
-	static const AnimationClip BigTikeMyson_Walk;
-	static const AnimationClip BigTikeMyson_Jump;
-	static const AnimationClip BigTikeMyson_Punch;
-	static const AnimatorController BigTikeMyson_Controller;
-	static const GameObject BigTikeMysonObject;
 
-	//Mini TikeMyson
-	static const Texture2D MiniTikeMyson;
-	static const AnimationClip MiniTikeMyson_Idle;
-	static const AnimationClip MiniTikeMyson_Walk;
-	static const AnimationClip MiniTikeMyson_Jump;
-	static const AnimationClip MiniTikeMyson_Punch;
-	static const AnimatorController MiniTikeMyson_Controller;
-	static const GameObject MiniTikeMysonObject;
 
-	//Obstacle
-	static const Texture2D ObstacleTexture;
-	static const AnimationClip Obstacle_Idle;
-	static const AnimatorController Obstacle_Controller;
-	static const GameObject ObstacleObject;
+
 	
 	//Boss
 	static const Texture2D BossTexture;
@@ -98,4 +72,20 @@ public:
 
 	static const Texture2D SkyBackground;
 	static const Texture2D MountainBackground;
+
+#pragma region Testing
+	static const Texture2D XwingTexture;
+	static const AnimatorController Xwing_Controller;
+	static const GameObject XwingObject;
+
+	static const Texture2D Projectile_Blue_Texture;
+	static const AnimationClip Projectile_Blue_Idle;
+	static const AnimatorController Projectile_Blue_Controller;
+
+	//Obstacle
+	static const Texture2D ObstacleTexture;
+	static const AnimationClip Obstacle_Idle;
+	static const AnimatorController Obstacle_Controller;
+	static const GameObject ObstacleObject;
+#pragma endregion
 };

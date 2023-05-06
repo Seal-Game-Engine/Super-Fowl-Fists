@@ -9,15 +9,122 @@
 using State = AnimatorController::AnimationState;
 
 #include "Player.h"
-//#include "Boss.h"
-#include "XwingPlayer.h"
-#include "NarioPlayer.h"
+#include "TikeMyson_Player.h"
 #include "Projectile.h"
 #include "Parallax.h"
-#include "Obstacle.h"
-#include "ObstacleSpawner.h"
 #include "Boss.h"
-#include<string>
+#include <string>
+
+#include "Testing/XwingPlayer.h"
+#include "Testing/Obstacle.h"
+#include "Testing/ObstacleSpawner.h"
+
+const GameObject AssetManager::MainCamera = GameObject(
+	"Main Camera", "MainCamera",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
+});
+
+#pragma region PlayerCharacters
+#pragma region TikeMyson
+const Texture2D AssetManager::MiniTikeMysonTexture = Texture2D("Assets/TikeMyson_Mini.png", Texture2D::FilterMode::Nearest, 3, 6);
+const AnimationClip MiniTikeMyson_Idle = AnimationClip({
+	{ AssetManager::MiniTikeMysonTexture[0], 0.1f },
+	{ AssetManager::MiniTikeMysonTexture[1], 0.1f },
+	{ AssetManager::MiniTikeMysonTexture[2], 0.1f },
+	}, true);
+
+const AnimationClip MiniTikeMyson_Walk = AnimationClip({
+	{ AssetManager::MiniTikeMysonTexture[3], 0.1f },
+	{ AssetManager::MiniTikeMysonTexture[4], 0.1f },
+	{ AssetManager::MiniTikeMysonTexture[3], 0.1f },
+	{ AssetManager::MiniTikeMysonTexture[5], 0.1f },
+	}, true);
+const AnimationClip MiniTikeMyson_Jump = AnimationClip({
+	{ AssetManager::MiniTikeMysonTexture[6], 0.1f },
+	{ AssetManager::MiniTikeMysonTexture[7], 0.1f },
+	{ AssetManager::MiniTikeMysonTexture[8], 0.1f }
+	}, false);
+
+const Texture2D AssetManager::BigTikeMysonTexture = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
+const AnimationClip BigTikeMyson_Idle = AnimationClip({
+	{ AssetManager::BigTikeMysonTexture[8], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[9], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[10], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[11], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[12], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[13], 0.1f },
+	}, true);
+const AnimationClip BigTikeMyson_Walk = AnimationClip({
+	{ AssetManager::BigTikeMysonTexture[0], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[1], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[2], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[3], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[4], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[5], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[6], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[7], 0.1f },
+	}, true);
+const AnimationClip BigTikeMyson_Jump = AnimationClip({
+	{ AssetManager::BigTikeMysonTexture[9], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[10], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[11], 0.1f }
+	}, false);
+const AnimationClip BigTikeMyson_Punch = AnimationClip({
+	{ AssetManager::BigTikeMysonTexture[16], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[17], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[18], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[19], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[20], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[21], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[22], 0.1f },
+	{ AssetManager::BigTikeMysonTexture[23], 0.1f },
+	}, false);
+
+const AnimatorController AssetManager::TikeMyson_Controller = AnimatorController({
+	State("Mini_Idle", &MiniTikeMyson_Idle, {
+		{ "Mini_Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
+	}),
+	State("Mini_Walk", &MiniTikeMyson_Walk, {
+		{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
+	}),
+	State("Mini_Jump", &MiniTikeMyson_Jump, {
+		{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
+	}),
+
+	State("Big_Idle", &BigTikeMyson_Idle, {
+		{ "Big_Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
+	}),
+	State("Big_Walk", &BigTikeMyson_Walk, {
+		{ "Big_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
+	}),
+	State("Big_Jump", &BigTikeMyson_Jump, {
+		{ "Big_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
+	}),
+	State("Big_Punch", &BigTikeMyson_Punch, {
+		{ "Big_Idle", true, 1 },
+	}),
+	});
+
+const GameObject AssetManager::TikeMysonObject = GameObject(
+	"Tike Myson", "Player",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&MiniTikeMysonTexture[0], false, false),
+		std::make_shared<Animator>(&TikeMyson_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(),
+		std::make_shared<TikeMyson_Player>(),
+});
+#pragma endregion
+
+#pragma region Chicken
+
+#pragma endregion
+
+
+#pragma endregion
+
+
 
 #pragma region Sensei
 const Texture2D AssetManager::SenseiTexture = Texture2D("Assets/MasterWu.png", Texture2D::FilterMode::Nearest, 6, 6);
@@ -203,6 +310,7 @@ const AnimatorController AssetManager::Boss_Controller = AnimatorController({
 		{ "Close", true, 20 },
 	}),
 	});
+
 const GameObject AssetManager::BossObject = GameObject(
 	"Player", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
@@ -214,119 +322,21 @@ const GameObject AssetManager::BossObject = GameObject(
 });
 #pragma endregion
 
-#pragma region BigTikeMyson
-const Texture2D AssetManager::BigTikeMyson = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
-const AnimationClip AssetManager::BigTikeMyson_Idle = AnimationClip({
-	{ BigTikeMyson[8], 0.1f },
-	{ BigTikeMyson[9], 0.1f },
-	{ BigTikeMyson[10], 0.1f },
-	{ BigTikeMyson[11], 0.1f },
-	{ BigTikeMyson[12], 0.1f },
-	{ BigTikeMyson[13], 0.1f },
-	}, true);
-const AnimationClip AssetManager::BigTikeMyson_Walk = AnimationClip({
-	{ BigTikeMyson[0], 0.1f },
-	{ BigTikeMyson[1], 0.1f },
-	{ BigTikeMyson[2], 0.1f },
-	{ BigTikeMyson[3], 0.1f },
-	{ BigTikeMyson[4], 0.1f },
-	{ BigTikeMyson[5], 0.1f },
-	{ BigTikeMyson[6], 0.1f },
-	{ BigTikeMyson[7], 0.1f },
-	}, true);
-const AnimationClip AssetManager::BigTikeMyson_Jump = AnimationClip({
-	{ BigTikeMyson[9], 0.1f },
-	{ BigTikeMyson[10], 0.1f },
-	{ BigTikeMyson[11], 0.1f }
-	}, false);
-const AnimationClip AssetManager::BigTikeMyson_Punch = AnimationClip({
-	{ BigTikeMyson[16], 0.1f },
-	{ BigTikeMyson[17], 0.1f },
-	{ BigTikeMyson[18], 0.1f },
-	{ BigTikeMyson[19], 0.1f },
-	{ BigTikeMyson[20], 0.1f },
-	{ BigTikeMyson[21], 0.1f },
-	{ BigTikeMyson[22], 0.1f },
-	{ BigTikeMyson[23], 0.1f },
-	}, false);
-
-const AnimatorController AssetManager::BigTikeMyson_Controller = AnimatorController({
-	State("Idle", &BigTikeMyson_Idle, {
-		{ "Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
-	}),
-	State("Walk", &BigTikeMyson_Walk, {
-		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
-	}),
-	State("Jump", &BigTikeMyson_Jump, {
-		{ "Idle", true, 3 },
-	}),
-	State("Punch", &BigTikeMyson_Punch, {
-		{ "Idle", true, 1 },
-	}),
-	});
-#pragma endregion
-
-#pragma region MiniTikeMyson
-//const Texture2D AssetManager::MiniTikeMyson = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 5);
-const Texture2D AssetManager::MiniTikeMyson = Texture2D("Assets/Fighter3.png", Texture2D::FilterMode::Nearest, 3, 3);
-const AnimationClip AssetManager::MiniTikeMyson_Idle = AnimationClip({
-	{ MiniTikeMyson[8], 0.1f },
-	{ MiniTikeMyson[9], 0.1f },
-	{ MiniTikeMyson[10], 0.1f },
-	{ MiniTikeMyson[11], 0.1f },
-	{ MiniTikeMyson[12], 0.1f },
-	{ MiniTikeMyson[13], 0.1f },
-
-	}, true);
-const AnimationClip AssetManager::MiniTikeMyson_Walk = AnimationClip({
-	{ MiniTikeMyson[3], 0.1f },
-	{ MiniTikeMyson[4], 0.1f },
-	{ MiniTikeMyson[3], 0.1f },
-	{ MiniTikeMyson[5], 0.1f },
-	}, true);
-const AnimationClip AssetManager::MiniTikeMyson_Jump = AnimationClip({
-	{ MiniTikeMyson[6], 0.1f },
-	{ MiniTikeMyson[7], 0.1f },
-	{ MiniTikeMyson[8], 0.1f }
-	}, false);
-
-const AnimatorController AssetManager::MiniTikeMyson_Controller = AnimatorController({
-	State("Idle", &MiniTikeMyson_Idle, {
-		{ "Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
-	}),
-	State("Walk", &MiniTikeMyson_Walk, {
-		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
-	}),
-	State("Jump", &MiniTikeMyson_Jump, {
-		{ "Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
-	}),
-	});
-
-const GameObject AssetManager::MiniTikeMysonObject = GameObject(
-	"Player", "Player",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::MiniTikeMyson[0], false, false),
-		std::make_shared<Animator>(&AssetManager::MiniTikeMyson_Controller),
-		std::make_shared<Rigidbody2D>(),
-		std::make_shared<CircleCollider2D>(),
-		std::make_shared<Player>(),
-});
-#pragma endregion
 
 #pragma region Testing
 #pragma region Xwing
 const Texture2D AssetManager::XwingTexture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
-const AnimationClip AssetManager::Xwing_Idle = AnimationClip({
-	{ XwingTexture[0], 0.05f },
-	{ XwingTexture[3], 0.05f },
+const AnimationClip Xwing_Idle = AnimationClip({
+	{ AssetManager::XwingTexture[0], 0.05f },
+	{ AssetManager::XwingTexture[3], 0.05f },
 }, true);
-const AnimationClip AssetManager::Xwing_Left = AnimationClip({
-	{ XwingTexture[1], 0.05f },
-	{ XwingTexture[4], 0.05f },
+const AnimationClip Xwing_Left = AnimationClip({
+	{ AssetManager::XwingTexture[1], 0.05f },
+	{ AssetManager::XwingTexture[4], 0.05f },
 }, true);
-const AnimationClip AssetManager::Xwing_Right = AnimationClip({
-	{ XwingTexture[2], 0.05f },
-	{ XwingTexture[5], 0.05f },
+const AnimationClip Xwing_Right = AnimationClip({
+	{ AssetManager::XwingTexture[2], 0.05f },
+	{ AssetManager::XwingTexture[5], 0.05f },
 }, true);
 const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 	State("Idle", &Xwing_Idle, {
@@ -343,8 +353,8 @@ const AnimatorController AssetManager::Xwing_Controller = AnimatorController({
 const GameObject AssetManager::XwingObject = GameObject(
 	"Xwing", "Player",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&AssetManager::XwingTexture[0], false, false),
-		std::make_shared<Animator>(&AssetManager::Xwing_Controller),
+	std::make_shared<SpriteRenderer>(&XwingTexture[0], false, false),
+		std::make_shared<Animator>(&Xwing_Controller),
 		std::make_shared<Rigidbody2D>(),
 		std::make_shared<CircleCollider2D>(0.25f, false, Vector2(0, -0.0625)),
 		//std::make_shared<BoxCollider2D>(Vector2(0.5f, 0.5f), false, Vector2(0, -0.0625f)),
@@ -458,6 +468,7 @@ const GameObject LandingEventManagerObject = GameObject(
 });
 
 Scene Assets_Scenes::LandingScene = Scene({
+	{&AssetManager::MainCamera, Transform()},
 	{&GalaxyBackgroundObject, Transform()},
 	{&TitleObject, Transform()},
 	{&LandingEventManagerObject, Transform()},
@@ -485,6 +496,7 @@ const GameObject MenuEventManagerObject = GameObject(
 });
 
 Scene Assets_Scenes::MenuScene = Scene({
+	{&AssetManager::MainCamera, Transform()},
 	{&GalaxyBackgroundObject, Transform()},
 	{&MenuOptionsObject, Transform(Vector3(0, 0.05f, 0))},
 	{&MenuTextObject, Transform(Vector3(-1.5f, -3, 0))},
@@ -505,6 +517,7 @@ const GameObject TutorialEventManagerObject = GameObject(
 	std::make_shared<TutorialEventManager>(),
 });
 Scene Assets_Scenes::TutorialScene = Scene({
+	{&AssetManager::MainCamera, Transform()},
 	{&GalaxyBackgroundObject, Transform()},
 	{&TutorialTextObject, Transform()},
 	{&TutorialEventManagerObject, Transform()},
@@ -540,6 +553,7 @@ const GameObject Ground = GameObject(
 });
 
 Scene Assets_Scenes::XwingScene = Scene({
+	{&AssetManager::MainCamera, Transform()},
 	{&SpaceBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	{&AssetManager::XwingObject, Transform(Vector3(0, -1, 0))},
@@ -564,7 +578,23 @@ const GameObject ForestBackgroundObject = GameObject(
 	std::make_shared<Parallax>(&ForestBackgroundTexture[0], Vector2::left(), 0.1f),
 });
 
+
+
+
 Scene Assets_Scenes::GameScene = Scene({
+	{&AssetManager::MainCamera, Transform()},
+	{&ForestBackgroundObject, Transform()},
+	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
+	{&AssetManager::BossObject, Transform()},
+	{&AssetManager::SenseiObject, Transform()},
+	//{&AssetManager::MiniTikeMysonObject, Transform()},
+	//{&AssetManager::ObstacleSpawnerObject, Transform()},
+	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
+	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
+	});
+
+Scene Assets_Scenes::TestingScene = Scene({
+	{&AssetManager::MainCamera, Transform()},
 	{&ForestBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
 	//{&AssetManager::BossObject, Transform()},

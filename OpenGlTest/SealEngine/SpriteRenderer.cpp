@@ -2,6 +2,7 @@
 #include "SpriteRenderer.h"
 #include "Texture2D.h"
 #include "Transform.h"
+#include "Camera.h"
 #include <array>
 using namespace SealEngine;
 
@@ -14,6 +15,8 @@ void SpriteRenderer::Update() {
 }
 
 void SpriteRenderer::LateUpdate() {
+	if (!Camera::mainCamera) return;
+
 	glPushMatrix();
 	{
 		glTranslatef(transform()->position.x(), transform()->position.y(), transform()->position.z());

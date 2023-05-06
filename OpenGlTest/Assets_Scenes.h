@@ -10,7 +10,7 @@ public:
 	static Scene LandingScene;
 	static Scene MenuScene;
 	static Scene TutorialScene;
-	static Scene NarioScene;
+	static Scene TestingScene;
 	static Scene XwingScene;
 	static Scene GameScene;
 };

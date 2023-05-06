@@ -1,6 +1,6 @@
 #include "XwingPlayer.h"
-#include "Projectile.h"
-#include "AssetManager.h"
+#include "../Projectile.h"
+#include "../AssetManager.h"
 #include <cmath>
 
 void XwingPlayer::Awake() {
@@ -30,9 +30,15 @@ void XwingPlayer::Update() {
 	if (Input::GetKeyDown(KeyCode::T)) transform()->position = Vector2::up() * -1.5f;
 	animator->SetInteger("x", x);
 
-	if (Input::GetKey(KeyCode::P))
+	if (Input::GetKeyDown(KeyCode::P))
 		audioSource->Pause();
+	if (Input::GetKeyDown(KeyCode::O))
+		audioSource->UnPause();
 
-	if (Input::GetKey(KeyCode::L))
+	if (Input::GetKeyDown(KeyCode::L))
 		audioSource->Stop();
+}
+
+void XwingPlayer::LateUpdate() {
+	Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, transform()->position, _speed * 0.75f * Time::deltaTime());
 }

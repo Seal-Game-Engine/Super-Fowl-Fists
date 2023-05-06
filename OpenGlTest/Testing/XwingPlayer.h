@@ -1,14 +1,14 @@
 #pragma once
-#include "SealEngine.h"
-#include "Player.h"
+#include "../SealEngine.h"
 using namespace SealEngine;
 
 class XwingPlayer : public MonoBehaviour {
 public:
 	void Awake() override;
 	void Update() override;
+	void LateUpdate() override;
 	void OnCollisionEnter2D(Collision2D collision) override {}
-	void OnCollisionStay2D(Collision2D collision) override { transform()->rotation += Vector3::forward() * 5 * Time::deltaTime(); }
+	void OnCollisionStay2D(Collision2D collision) override {}
 	void OnCollisionExit2D(Collision2D collision) override {}
 
 
