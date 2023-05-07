@@ -59,7 +59,7 @@ public:
 
 	static const Texture2D Font;
 
-	static const Texture2D GameTitle;
+	static const Texture2D LandingScene_Title_Texture;
 	static const Texture2D MenuOptions;
 	static const Texture2D PauseScreen;
 	static const Texture2D PauseMessage;
