@@ -11,4 +11,5 @@
 	//#include <glut/glut.h>
 	#include <GL/glut.h>
 	#include <SOIL.h>
+	#include <irrKlang_Win32/irrKlang.h>
 #endif

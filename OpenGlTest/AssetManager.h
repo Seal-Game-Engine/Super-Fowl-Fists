@@ -48,13 +48,6 @@ public:
 	static const AnimatorController Boss_Controller;
 	static const GameObject BossObject;
 
-
-
-
-	
-	//Boss
-	static const Texture2D BossTexture;
-
 	//Spawner
 	static const GameObject ObstacleSpawnerObject;
 
