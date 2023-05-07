@@ -12,10 +12,10 @@ void Parallax::LateUpdate() {
         rect.maxVertex().x() - direction.x() * speed * Time::deltaTime(),
         rect.maxVertex().y() + direction.y() * speed * Time::deltaTime()
     );
-    float height =3;
-    float width = (float)sprite->texture->width() / sprite->texture->height() * height;
+    
+    float height = 3;
     //float height = (float)ApplicationManager::height / 200;
-    //float width = (float)sprite->texture->width() / sprite->texture->height() * height;
+    float width = (float)sprite->texture->width() / sprite->texture->height() * height;
 
     glPushMatrix();
     {

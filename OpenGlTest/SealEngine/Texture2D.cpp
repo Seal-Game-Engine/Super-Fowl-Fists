@@ -4,7 +4,7 @@ using namespace SealEngine;
 
 std::queue<Texture2D::TextureInitializer> Texture2D::uninitializedTextures{};
 
-Texture2D::Texture2D(const std::string textureSource, const FilterMode filterMode, int columns, int rows) {
+Texture2D::Texture2D(const std::string textureSource, const FilterMode filterMode, int columns, int rows, int pixelsPerUnit) {
 	sprites.reserve((size_t)columns * rows);
 
 	//todo: figure out pixels per unit
@@ -15,7 +15,7 @@ Texture2D::Texture2D(const std::string textureSource, const FilterMode filterMod
 
 	for (int rowId = 0; rowId < rows; rowId++)
 		for (int columnId = 0; columnId < columns; columnId++)
-			sprites.emplace_back(*this, Rect(columnId * spriteWidth, rowId * spriteHeight, spriteWidth, spriteHeight), Vector2(0, 0), 32);
+			sprites.emplace_back(*this, Rect(columnId * spriteWidth, rowId * spriteHeight, spriteWidth, spriteHeight), Vector2(0, 0), pixelsPerUnit);
 
 	uninitializedTextures.push({ *this, textureSource, filterMode });
 }

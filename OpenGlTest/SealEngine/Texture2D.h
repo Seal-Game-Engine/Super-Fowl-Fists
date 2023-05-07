@@ -17,7 +17,7 @@ namespace SealEngine {
 
 		static void LoadUninitializedTextures();
 
-		Texture2D(const std::string textureSource, const FilterMode filterMode, int columns = 1, int rows = 1);
+		Texture2D(const std::string textureSource, const FilterMode filterMode, int columns = 1, int rows = 1, int pixelsPerUnit = 32);
 
 		const Sprite& operator[](int) const;
 
