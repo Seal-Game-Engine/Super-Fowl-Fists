@@ -2,7 +2,7 @@
 #include <map>
 
 #include "../MonoBehaviour.h"
-#include "../SpriteRenderer.h"
+#include "../IRenderer.h"
 #include "AnimatorController.h"
 
 namespace SealEngine {
@@ -24,7 +24,7 @@ namespace SealEngine {
 		void Play(const std::string& name);
 
 		const AnimatorController* animatorController = nullptr;
-		SpriteRenderer* renderer = nullptr;
+		IRenderer* renderer = nullptr;
 
 		Animator() = default;
 		Animator(const AnimatorController* animatorController);

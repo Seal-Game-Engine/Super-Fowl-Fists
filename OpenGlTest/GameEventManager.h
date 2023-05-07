@@ -2,10 +2,11 @@
 #include "SealEngine.h"
 #include <vector>
 using namespace SealEngine;
+using namespace SealEngine::Ui;
 
 class GameEventManager : public MonoBehaviour{
 public:
-	std::vector<SpriteRenderer*> pausePanels{};
+	std::vector<Image*> pausePanels{};
 
 	void Awake() override;
 	void Update() override;

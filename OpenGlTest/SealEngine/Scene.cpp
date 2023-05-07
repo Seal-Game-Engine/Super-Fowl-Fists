@@ -14,23 +14,23 @@ void Scene::Load() {
 void Scene::Unload(){
     while (!instantiationQueue.empty()) instantiationQueue.pop();
     while (!destroyQueue.empty()) destroyQueue.pop();
-    while (!awakeEventQueue.empty()) awakeEventQueue.pop();
-    while (!startEventQueue.empty()) startEventQueue.pop();
+    while (!_awakeEventQueue.empty()) _awakeEventQueue.pop();
+    while (!_startEventQueue.empty()) _startEventQueue.pop();
     for (auto& gameObject : gameObjects)
         for (auto& component : gameObject->components) component->OnDestroy();
     gameObjects.clear();
+    _uiElements.clear();
 }
 
 void Scene::Refresh() {
-    while (!awakeEventQueue.empty()) {
-        for (auto& component : awakeEventQueue.front()->components) component->Awake();
-        awakeEventQueue.pop();
+    while (!_awakeEventQueue.empty()) {
+        for (auto& component : _awakeEventQueue.front()->components) component->Awake();
+        _awakeEventQueue.pop();
     }
-    while (!startEventQueue.empty()) {
-        for (auto& component : startEventQueue.front()->components) component->Start();
-        startEventQueue.pop();
+    while (!_startEventQueue.empty()) {
+        for (auto& component : _startEventQueue.front()->components) component->Start();
+        _startEventQueue.pop();
     }
-
 
     for (auto& gameObject : gameObjects) {
         if (!gameObject->activeSelf()) continue;
@@ -43,6 +43,7 @@ void Scene::Refresh() {
         for (int i = 0; i < gameObjects.size(); i++) {
             if (*gameObjects[i] == *destroyQueue.front()) {
                 for (auto& component : gameObjects[i]->components) component->OnDestroy();
+                for (auto& uiElement : gameObjects[i]->GetComponents<Ui::UiElement>()) _uiElements.remove(uiElement);
                 gameObjects[i].reset();
                 gameObjects.erase(gameObjects.begin() + i);
                 goto WhileLoop;
@@ -51,21 +52,28 @@ void Scene::Refresh() {
             for (int j = 0; j < gameObjects[i]->components.size(); j++) {
                 if (*gameObjects[i]->components[j] == *destroyQueue.front()) {
                     gameObjects[i]->components[j]->OnDestroy();
+                    if (auto uiElement = dynamic_cast<Ui::UiElement*>(gameObjects[i]->components[j].get())) _uiElements.remove(uiElement);
                     gameObjects[i]->components[j].reset();
                     gameObjects[i]->components.erase(gameObjects[i]->components.begin() + j);
                     goto WhileLoop;
                 }
             }
+
         }
     WhileLoop:
         destroyQueue.pop();
     }
 
     while (!instantiationQueue.empty()) {
-        //awakeEventQueue.emplace(instantiationQueue.front().get());
-        for (auto& component : instantiationQueue.front()->components) component->Awake();
-        startEventQueue.emplace(instantiationQueue.front().get());
+        _awakeEventQueue.emplace(instantiationQueue.front().get());
+        _startEventQueue.emplace(instantiationQueue.front().get());
         gameObjects.emplace_back(instantiationQueue.front());
+        auto uiElements = instantiationQueue.front()->GetComponents<Ui::UiElement>();
+        _uiElements.insert(_uiElements.end(), uiElements.begin(), uiElements.end());
         instantiationQueue.pop();
     }
+}
+
+void Scene::RefreshGui(){
+    for (auto& uiElement : _uiElements) if (uiElement->gameObject->activeSelf() && uiElement->enabled) uiElement->OnGui();
 }

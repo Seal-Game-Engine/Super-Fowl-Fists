@@ -2,6 +2,7 @@
 #include <memory>
 #include "SealEngine.h"
 using namespace SealEngine;
+using namespace SealEngine::Ui;
 
 class AssetManager {
 public:

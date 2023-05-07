@@ -1,9 +1,9 @@
 #pragma once
 #include "MonoBehaviour.h"
-#include "Sprite.h"
+#include "IRenderer.h"
 
 namespace SealEngine {
-	class SpriteRenderer : public MonoBehaviour {
+	class SpriteRenderer : public MonoBehaviour, public IRenderer {
 	public:
 		//adaptiveModeThreshold	The current threshold for Sprite Renderer tiling.
 			//color	Rendering color for the Sprite graphic.
@@ -11,7 +11,6 @@ namespace SealEngine {
 		bool flipX = false, flipY = false;
 		//maskInteraction	Specifies how the sprite interacts with the masks.
 		//size	Property to set or get the size to render when the SpriteRenderer.drawMode is set to SpriteDrawMode.Sliced or SpriteDrawMode.Tiled.
-		const Sprite* sprite = nullptr;
 		
 		//spriteSortPoint	Determines the position of the Sprite used for sorting the SpriteRenderer.
 		//tileMode
@@ -45,7 +44,6 @@ namespace SealEngine {
 			worldToLocalMatrix*/
 		SpriteRenderer() = default;
 		SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY);
-		SpriteRenderer(const SpriteRenderer& obj);
 
 		void Update() override;
 		void LateUpdate() override;

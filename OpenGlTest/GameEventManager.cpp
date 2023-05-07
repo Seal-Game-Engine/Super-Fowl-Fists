@@ -2,7 +2,7 @@
 using namespace InputSystem;
 
 void GameEventManager::Awake(){
-	pausePanels = gameObject->GetComponents<SpriteRenderer>();
+	pausePanels = gameObject->GetComponents<Image>();
 	for(auto& panel : pausePanels) panel->enabled = false;
 }
 

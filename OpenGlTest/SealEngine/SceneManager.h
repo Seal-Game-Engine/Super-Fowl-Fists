@@ -23,9 +23,7 @@ namespace SealEngine {
 
         static float aspectRatio() { return width / height; }
 
-        static int currentSceneId;
         //static const std::vector<std::unique_ptr<Scene>> scenes;
-        static std::vector<Scene*> scenes;
 
         static float camDist;
         static float width, height;
@@ -47,6 +45,8 @@ namespace SealEngine {
         //sceneLoaded	Add a delegate to this to get notifications when a Scene has loaded.
         //sceneUnloaded
     private:
+        static std::vector<Scene*> scenes;
+        static int currentSceneId;
         static std::queue<int> sceneLoadQuery;
         static bool _quitApplication;
     };

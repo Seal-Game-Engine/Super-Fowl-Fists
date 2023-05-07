@@ -46,7 +46,7 @@ Object* Object::Instantiate(const Object& obj, const Vector3& position, Transfor
 }
 
 void Object::Destroy(Object& object, float delayDuration) {
-	SceneManager::scenes[SceneManager::currentSceneId]->destroyQueue.emplace(&object);
+	SceneManager::GetActiveScene()->destroyQueue.emplace(&object);
 }
 
 void Object::DestroyImmediate(Object object, bool allowDestroyingAssets) {

@@ -46,17 +46,17 @@ namespace SealEngine {
             return component.get();
         }
 
-        template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+        template<class T>
         T* GetComponent() {
             T* component = nullptr;
             for (auto& _component : components) if (component = dynamic_cast<T*>(_component.get())) return component;
             return nullptr;
         }
 
-        template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+        template<class T>
         bool TryGetComponent(T*& component) { return GetComponent<T>() != nullptr; }
 
-        template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+        template<class T>
         std::vector<T*> GetComponents() {
             std::vector<T*> targetComponents{};
             for (auto& _component : components) if (auto component = dynamic_cast<T*>(_component.get())) targetComponents.emplace_back(component);
@@ -64,24 +64,24 @@ namespace SealEngine {
         }
 
 #pragma region Todo Functions
-        template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+        template<class T>
         T GetComponentInParent(bool includeInactive = false) {
             return T();
         }
 
 
-        template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+        template<class T>
         T GetComponentInChild(bool includeInactive = false) {
             return T();
         }
 
-        template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+        template<class T>
         std::vector<T> GetComponentsInParent(bool includeInactive = false) {
             return std::vector<T>();
 
         }
 
-        template<class T, typename std::enable_if_t<std::is_base_of<MonoBehaviour, T>::value, bool> = true>
+        template<class T>
         std::vector<T> GetComponentsInChild(bool includeInactive = false) {
             return std::vector<T>();
         }

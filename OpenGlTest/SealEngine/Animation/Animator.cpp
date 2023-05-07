@@ -30,11 +30,11 @@ Animator::Animator(const AnimatorController* animatorController) {
 	SetAnimatorController(animatorController);
 }
 
-void Animator::Awake() { renderer = gameObject->GetComponent<SpriteRenderer>(); }
+void Animator::Awake() { renderer = gameObject->GetComponent<IRenderer>(); }
 
 void Animator::Update() {
 	if (!animatorController) return;
-	if (!renderer)renderer = gameObject->GetComponent<SpriteRenderer>();
+	if (!renderer)renderer = gameObject->GetComponent<IRenderer>();
 
 	float clipElapsedTime = (Time::time() - clipBeginTime) / currentState->clip->length();
 

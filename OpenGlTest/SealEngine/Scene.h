@@ -5,6 +5,7 @@
 #include <tuple>
 #include "Transform.h"
 #include "GameObject.h"
+#include "Ui/UiElement.h"
 
 namespace SealEngine {
     class Object;
@@ -22,7 +23,7 @@ namespace SealEngine {
     public:
 		enum class FindObjectsInactive { Exclude, Include };
 
-		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		template<class T>
 		static T* FindFirstObjectByType(FindObjectsInactive findObjectsInactive = FindObjectsInactive::Exclude) {
 			T* target = nullptr;
 
@@ -38,7 +39,7 @@ namespace SealEngine {
 			return nullptr;
 		}
 
-		template<class T, typename std::enable_if_t<std::is_base_of<Object, T>::value, bool> = true>
+		template<class T>
 		static std::vector<T*> FindObjectsByType(FindObjectsInactive findObjectsInactive = FindObjectsInactive::Exclude) {
 			std::vector<T*> targets{};
 
@@ -58,6 +59,7 @@ namespace SealEngine {
         void Load();
         void Unload();
         void Refresh();
+		void RefreshGui();
 
         std::vector<std::shared_ptr<GameObject>> gameObjects{};
         std::queue<std::shared_ptr<GameObject>> instantiationQueue{};
@@ -66,7 +68,8 @@ namespace SealEngine {
     private:
         std::vector<GameObjectInitializer> _gameObjects{};
 
-        std::queue<GameObject*> awakeEventQueue{};
-        std::queue<GameObject*> startEventQueue{};
+        std::queue<GameObject*> _awakeEventQueue{};
+        std::queue<GameObject*> _startEventQueue{};
+		std::list<Ui::UiElement*> _uiElements{};
     };
 }

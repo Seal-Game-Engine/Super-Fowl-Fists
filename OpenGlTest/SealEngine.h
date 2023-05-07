@@ -12,7 +12,7 @@
 #include "SealEngine/Texture2D.h"
 #include "SealEngine/AudioSource.h"
 
-#include "SealEngine/IClonable.h"
+//#include "SealEngine/IClonable.h"
 #include "SealEngine/Object.h"
 #include "SealEngine/GameObject.h"
 #include "SealEngine/MonoBehaviour.h"
@@ -40,3 +40,5 @@
 #include "SealEngine/Physics/CircleCollider2D.h"
 #include "SealEngine/Physics/BoxCollider2D.h"
 #include "SealEngine/Physics/Rigidbody2D.h"
+
+#include "SealEngine/Ui/Image.h"

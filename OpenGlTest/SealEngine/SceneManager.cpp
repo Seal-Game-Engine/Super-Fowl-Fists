@@ -20,38 +20,44 @@ void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.emplace(scene
 Scene* SceneManager::GetActiveScene() { return scenes[currentSceneId]; }
 
 bool SceneManager::RefreshScene() {
-    float camX = 0, camY = 0;
-
-    if (Input::GetKeyDown(KeyCode::Alpha1))camX--;
-    else if (Input::GetKeyDown(KeyCode::Alpha2))camX++;
-    glTranslatef(-camX, camY, 0);
+    bool hasCamera = false;
+    Transform* camera = nullptr;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (Camera::mainCamera) {
+        hasCamera = true;
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        switch (Camera::mainCamera->projection){
+        switch (Camera::mainCamera->projection) {
         case Camera::Projection::Perspective:
             break;
         case Camera::Projection::Orthographic:
             gluOrtho2D(-Camera::mainCamera->size * aspectRatio(), Camera::mainCamera->size * aspectRatio(), -Camera::mainCamera->size, Camera::mainCamera->size);
             break;
-        default:
-            break;
         }
 
-        Vector3 position = Camera::mainCamera->transform()->position;
-        glTranslatef(-position.x(), -position.y(), -position.z());
+        camera = Camera::mainCamera->transform();
+        glTranslatef(-camera->position.x(), -camera->position.y(), -camera->position.z());
+        glRotatef(-camera->rotation.x(), 1, 0, 0);
+        glRotatef(-camera->rotation.y(), 0, 1, 0);
+        glRotatef(-camera->rotation.z(), 0, 0, 1);
     }
 
     glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    {
-        if (scenes.size() > currentSceneId) scenes[currentSceneId]->Refresh();
-        //Font::RenderText("Hello World", Vector2(-10,-10), 1);
+    GetActiveScene()->Refresh();
+
+    if (hasCamera) {
+        glMatrixMode(GL_PROJECTION);
+        glTranslatef(camera->position.x(), camera->position.y(), camera->position.z());
+        glRotatef(camera->rotation.x(), 1, 0, 0);
+        glRotatef(camera->rotation.y(), 0, 1, 0);
+        glRotatef(camera->rotation.z(), 0, 0, 1);
     }
-    glPopMatrix();
+
+    glMatrixMode(GL_MODELVIEW);
+    GetActiveScene()->RefreshGui();
+
     glFinish();
 
     while (!sceneLoadQuery.empty()) {
@@ -73,15 +79,16 @@ bool SceneManager::InitGl() {
 #endif
 
     glClearDepth(1.0f);
+    //glDepthFunc(GL_LEQUAL);
 
     //glEnable(GL_DEPTH_TEST);
+    //glDisable(GL_DEPTH_TEST);
 
     //ResizeGl(0, 0);
    
-    //---
-    //glDepthFunc(GL_LEQUAL);
+
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-    //glDisable(GL_DEPTH_TEST);
+
     //glDisable(GL_LIGHTING);
     //glEnable(GL_LIGHTING);
     //glEnable(GL_LIGHT0);
