@@ -27,8 +27,6 @@ void Button::Update() {
 		mousePosition.y() >= buttonRect.minVertex().y() &&
 		mousePosition.y() <= buttonRect.maxVertex().y();
 
-	_image->sprite = &AssetManager::Font[(_isSelected ? (int)'X' : 0)];
-
 	if (Input::GetKeyDown(KeyCode::MouseLeft) && _isSelected) onClick();
 }
 

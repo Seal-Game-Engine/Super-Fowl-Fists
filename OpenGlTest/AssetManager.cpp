@@ -479,15 +479,31 @@ Scene Assets_Scenes::LandingScene = Scene({
 
 #pragma region MenuScene
 const Texture2D MenuText = Texture2D("Assets/MenuText.png", Texture2D::FilterMode::Nearest);
+const Texture2D MenuImage = Texture2D("Assets/Menu.png", Texture2D::FilterMode::Nearest, 2);
+const Texture2D Button_1P = Texture2D("Assets/Button_1Player.png", Texture2D::FilterMode::Nearest, 4);
+const Texture2D Button_2P = Texture2D("Assets/Button_2Player.png", Texture2D::FilterMode::Nearest, 4);
+
 const GameObject MenuOptionsObject = GameObject(
 	"MenuOptions", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<Image>(&AssetManager::MenuOptions[0]),
+	//std::make_shared<Image>(&AssetManager::MenuOptions[0]),
+		std::make_shared<SpriteRenderer>(&MenuImage[0], false, false),
 });
-const GameObject MenuTextObject = GameObject(
+const GameObject SinglePlayerButtonObject = GameObject(
 	"MenuText", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<Image>(&MenuText[0]),
+	std::make_shared<Image>(&Button_1P[0]),
+		std::make_shared<Button>([=]() {
+		//SceneManager::LoadScene(3);
+			}),
+});
+const GameObject TwoPlayerButtonObject = GameObject(
+	"MenuText", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Image>(&Button_2P[0]),
+		std::make_shared<Button>([=]() {
+		SceneManager::LoadScene(5);
+			}),
 });
 const GameObject MenuEventManagerObject = GameObject(
 	"MenuEventManager", "Untagged",
@@ -499,13 +515,14 @@ const GameObject MenuEventManagerObject = GameObject(
 
 Scene Assets_Scenes::MenuScene = Scene({
 #pragma region Ui
-	{&MenuOptionsObject, Transform(Vector3(0, 0.05f, 0))},
-	{&MenuTextObject, Transform(Vector3(-1.5f, -3, 0))},
+	{&MenuOptionsObject, Transform(Vector3(0, 0.05f, 0), Vector3::zero(), Vector3(0.18f, 0.18f, 1))},
+	{&SinglePlayerButtonObject, Transform(Vector3(0, 0, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+	{&TwoPlayerButtonObject, Transform(Vector3(0, -1, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
 	{&MenuEventManagerObject, Transform()},
 #pragma endregion
 
 	{&AssetManager::MainCamera, Transform()},
-	{&GalaxyBackgroundObject, Transform()},
+	//{&GalaxyBackgroundObject, Transform()},
 	});
 #pragma endregion
 
