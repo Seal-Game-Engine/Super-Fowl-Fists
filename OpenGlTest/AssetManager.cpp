@@ -514,9 +514,9 @@ const GameObject ButtonTest = GameObject(
 	"Button", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Image>(&AssetManager::Font[0]),
-		std::make_shared<Button>([] {
+		/*std::make_shared<Button>([] {
 		SceneManager::LoadScene(1);
-			}),
+			}),*/
 });
 
 Scene Assets_Scenes::XwingScene = Scene({

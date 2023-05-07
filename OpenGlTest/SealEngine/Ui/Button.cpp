@@ -8,7 +8,7 @@ using namespace SealEngine::Ui;
 
 #include "../../AssetManager.h"
 
-Button::Button(std::function<void()> onClick, std::function<void()> onSelected, std::function<void()> onDeselected) 
+Button::Button(std::function<void(Button*)> onClick, std::function<void(Button*)> onSelected, std::function<void(Button*)> onDeselected)
 	:onClick(onClick), onSelected(onSelected), onDeselected(onDeselected) {}
 
 void Button::Awake() {
@@ -30,10 +30,10 @@ void Button::Update() {
 		mousePosition.y() >= buttonRect.minVertex().y() &&
 		mousePosition.y() <= buttonRect.maxVertex().y();
 
-	if (!_isSelected && mouseIsHovering) { _isSelected = true; onSelected(); }
-	else if (_isSelected && !mouseIsHovering) { _isSelected = false; onDeselected(); }
+	if (!_isSelected && mouseIsHovering) { _isSelected = true; onSelected(this); }
+	else if (_isSelected && !mouseIsHovering) { _isSelected = false; onDeselected(this); }
 
-	if (Input::GetKeyDown(KeyCode::MouseLeft) && _isSelected) onClick();
+	if (Input::GetKeyDown(KeyCode::MouseLeft) && _isSelected) onClick(this);
 }
 
 void Button::OnGui() {}

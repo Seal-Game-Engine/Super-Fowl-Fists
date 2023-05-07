@@ -7,11 +7,11 @@ namespace SealEngine {
 	namespace Ui {
 		class Button : public UiElement {
 		public:
-			std::function<void()> onClick = {};
-			std::function<void()> onSelected = {};
-			std::function<void()> onDeselected = {};
+			std::function<void(Button*)> onClick = [](Button*){};
+			std::function<void(Button*)> onSelected = [](Button*) {};
+			std::function<void(Button*)> onDeselected = [](Button*) {};
 
-			Button(std::function<void()> onClick = {}, std::function<void()> onSelected = {}, std::function<void()> onDeselected = {});
+			Button(std::function<void(Button*)> onClick = [](Button*){}, std::function<void(Button*)> onSelected = [](Button*){}, std::function<void(Button*)> onDeselected = [](Button*){});
 
 			void Awake() override;
 			void Update() override;
