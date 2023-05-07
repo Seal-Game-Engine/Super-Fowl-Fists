@@ -15,7 +15,7 @@ class Parallax:public MonoBehaviour{
         Parallax(const Sprite* sprite, Vector2 direction, float speed);
 
     private:
-        Rect rect = Rect(0, 0, 1, 1);
+        Rect _rect = Rect(0, 0, 1, 1);
 
         Parallax* _Clone() const override;
 };

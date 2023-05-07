@@ -174,6 +174,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Assets_Scenes.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="SealEngine\Ui\Panel.cpp" />
     <ClCompile Include="SealEngine\IRenderer.cpp" />
     <ClCompile Include="SealEngine\Ui\Image.cpp" />
     <ClCompile Include="SealEngine\AudioSource.cpp" />
@@ -228,6 +229,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="Assets_Scenes.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="IDamageable.h" />
+    <ClInclude Include="SealEngine\Ui\Panel.h" />
     <ClInclude Include="SealEngine\IRenderer.h" />
     <ClInclude Include="SealEngine\Ui\Image.h" />
     <ClInclude Include="SealEngine\AudioSource.h" />

@@ -487,7 +487,7 @@ const GameObject MenuOptionsObject = GameObject(
 	"MenuOptions", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	//std::make_shared<Image>(&AssetManager::MenuOptions[0]),
-	std::make_shared<SpriteRenderer>(&MenuImage[0], false, false),
+	std::make_shared<Panel>(&MenuImage[0]),
 });
 const GameObject SinglePlayerButtonObject = GameObject(
 	"MenuText", "Untagged",
@@ -517,7 +517,7 @@ const GameObject MenuEventManagerObject = GameObject(
 
 Scene Assets_Scenes::MenuScene = Scene({
 #pragma region Ui
-	{&MenuOptionsObject, Transform(Vector3(0, 0.05f, 0), Vector3::zero(), Vector3(0.18f, 0.18f, 1))},
+	{&MenuOptionsObject, Transform()},
 	{&SinglePlayerButtonObject, Transform(Vector3(0, 0, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
 	{&TwoPlayerButtonObject, Transform(Vector3(0, -1, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
 	{&MenuEventManagerObject, Transform()},
