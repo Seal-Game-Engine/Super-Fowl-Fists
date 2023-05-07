@@ -1,6 +1,6 @@
 #pragma once
 #include "UiElement.h"
-#include "Image.h"
+#include "../IRenderer.h"
 #include <functional>
 
 namespace SealEngine {
@@ -18,7 +18,7 @@ namespace SealEngine {
 		private:
 			bool _isSelected = false;
 
-			Image* _image = nullptr;
+			IRenderer* _image = nullptr;
 
 			Button* _Clone() const override { return new Button(*this); }
 		};

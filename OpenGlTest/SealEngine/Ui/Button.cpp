@@ -11,11 +11,11 @@ using namespace SealEngine::Ui;
 Button::Button(std::function<void()> onClickAction) :onClick(onClickAction) {}
 
 void Button::Awake() {
-	_image = gameObject->GetComponent<Image>();
+	_image = gameObject->GetComponent<IRenderer>();
 }
 
 void Button::Update() {
-	if (!_image) _image = gameObject->GetComponent<Image>();
+	if (!_image) _image = gameObject->GetComponent<IRenderer>();
 	if (!_image) return;
 
 	Rect buttonRect = _image->sprite->textureRect();
