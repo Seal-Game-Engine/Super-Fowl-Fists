@@ -124,8 +124,7 @@ const GameObject AssetManager::TikeMysonObject = GameObject(
 
 #pragma endregion
 
-
-
+#pragma region Enemies
 #pragma region Sensei
 const Texture2D AssetManager::SenseiTexture = Texture2D("Assets/MasterWu.png", Texture2D::FilterMode::Nearest, 6, 6);
 const AnimationClip AssetManager::Sensei_Idle = AnimationClip({
@@ -321,7 +320,7 @@ const GameObject AssetManager::BossObject = GameObject(
 		std::make_shared<Boss>(),
 });
 #pragma endregion
-
+#pragma endregion
 
 #pragma region Testing
 #pragma region Xwing
@@ -424,7 +423,8 @@ const GameObject GalaxyBackgroundObject = GameObject(
 #pragma endregion
 
 #pragma region Menu
-const Texture2D AssetManager::GameTitle = Texture2D("Assets/GameTitle.png", Texture2D::FilterMode::Nearest);
+//const Texture2D AssetManager::GameTitle = Texture2D("Assets/GameTitle.png", Texture2D::FilterMode::Nearest);
+const Texture2D AssetManager::GameTitle = Texture2D("Assets/SuperFowlFists.png", Texture2D::FilterMode::Nearest, 2, 1);
 const Texture2D AssetManager::MenuOptions = Texture2D("Assets/MenuOptions.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::PauseMessage = Texture2D("Assets/PauseMessage.png", Texture2D::FilterMode::Nearest);
@@ -449,6 +449,7 @@ const Texture2D AssetManager::SkyBackground = Texture2D("Assets/SkyBackground.pn
 const Texture2D AssetManager::MountainBackground = Texture2D("Assets/MountainBackground.png", Texture2D::FilterMode::Nearest);
 const Texture2D AssetManager::Googleplex = Texture2D("Assets/Googleplex.png", Texture2D::FilterMode::Linear);
 const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::FilterMode::Nearest);
+const Texture2D TitleScreen = Texture2D("Assets/BlocksParallax.png", Texture2D::FilterMode::Nearest);
 
 #pragma endregion
 
@@ -458,8 +459,8 @@ const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::Filter
 const GameObject TitleObject = GameObject(
 	"Title", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<Parallax>(&BossScene[0], Vector2::zero(), 0),
-		std::make_shared<Image>(&AssetManager::GameTitle[0]),
+	std::make_shared<Parallax>(&TitleScreen[0], Vector2::left(), 0.01),
+	std::make_shared<Image>(&AssetManager::GameTitle[0]),
 });
 const GameObject LandingEventManagerObject = GameObject(
 	"LandingEventManager", "Untagged",
@@ -482,6 +483,9 @@ const Texture2D MenuText = Texture2D("Assets/MenuText.png", Texture2D::FilterMod
 const Texture2D MenuImage = Texture2D("Assets/Menu.png", Texture2D::FilterMode::Nearest, 2);
 const Texture2D Button_1P = Texture2D("Assets/Button_1Player.png", Texture2D::FilterMode::Nearest, 4);
 const Texture2D Button_2P = Texture2D("Assets/Button_2Player.png", Texture2D::FilterMode::Nearest, 4);
+const Texture2D Button_Help = Texture2D("Assets/Button_Help.png", Texture2D::FilterMode::Nearest, 4);
+const Texture2D Button_Credits = Texture2D("Assets/Button_Credit.png", Texture2D::FilterMode::Nearest, 4);
+const Texture2D Button_Quit = Texture2D("Assets/Button_Quit.png", Texture2D::FilterMode::Nearest, 4);
 
 const GameObject MenuOptionsObject = GameObject(
 	"MenuOptions", "Untagged",
@@ -498,11 +502,37 @@ const GameObject SinglePlayerButtonObject = GameObject(
 			}),
 });
 
-auto hi = []() {};
 const GameObject TwoPlayerButtonObject = GameObject(
 	"MenuText", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Image>(&Button_2P[0]),
+		std::make_shared<Button>([] {
+		SceneManager::LoadScene(5);
+			}),
+});
+
+const GameObject HelpButtonObject = GameObject(
+	"MenuText", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Image>(&Button_Help[0]),
+		std::make_shared<Button>([] {
+		SceneManager::LoadScene(5);
+			}),
+});
+
+const GameObject CreditsButtonObject = GameObject(
+	"MenuText", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Image>(&Button_Credits[0]),
+		std::make_shared<Button>([] {
+		SceneManager::LoadScene(5);
+			}),
+});
+
+const GameObject QuitButtonObject = GameObject(
+	"MenuText", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Image>(&Button_Quit[0]),
 		std::make_shared<Button>([] {
 		SceneManager::LoadScene(5);
 			}),
@@ -520,6 +550,9 @@ Scene Assets_Scenes::MenuScene = Scene({
 	{&MenuOptionsObject, Transform()},
 	{&SinglePlayerButtonObject, Transform(Vector3(0, 0, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
 	{&TwoPlayerButtonObject, Transform(Vector3(0, -1, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+	{&HelpButtonObject, Transform(Vector3(-1.3, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+	{&CreditsButtonObject, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+	{&QuitButtonObject, Transform(Vector3(1.3, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
 	{&MenuEventManagerObject, Transform()},
 #pragma endregion
 
