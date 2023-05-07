@@ -19,6 +19,7 @@ void Button::Update() {
 	if (!_image) return;
 
 	Rect buttonRect = _image->sprite->textureRect();
+	buttonRect.SetSize(buttonRect.size().x() * transform()->scale.x(), buttonRect.size().y() * transform()->scale.y());
 	buttonRect.SetCenter(transform()->position.x(), transform()->position.y());
 	Vector2 mousePosition = Camera::mainCamera->ScreenToWorldPoint(InputSystem::Input::mousePosition());
 	_isSelected =

@@ -487,21 +487,23 @@ const GameObject MenuOptionsObject = GameObject(
 	"MenuOptions", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	//std::make_shared<Image>(&AssetManager::MenuOptions[0]),
-		std::make_shared<SpriteRenderer>(&MenuImage[0], false, false),
+	std::make_shared<SpriteRenderer>(&MenuImage[0], false, false),
 });
 const GameObject SinglePlayerButtonObject = GameObject(
 	"MenuText", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Image>(&Button_1P[0]),
-		std::make_shared<Button>([=]() {
-		//SceneManager::LoadScene(3);
+		std::make_shared<Button>([] {
+		SceneManager::LoadScene(3);
 			}),
 });
+
+auto hi = []() {};
 const GameObject TwoPlayerButtonObject = GameObject(
 	"MenuText", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Image>(&Button_2P[0]),
-		std::make_shared<Button>([=]() {
+		std::make_shared<Button>([] {
 		SceneManager::LoadScene(5);
 			}),
 });
@@ -581,7 +583,7 @@ const GameObject ButtonTest = GameObject(
 	"Button", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Image>(&AssetManager::Font[0]),
-		std::make_shared<Button>([&](){
+		std::make_shared<Button>([] {
 		SceneManager::LoadScene(1);
 			}),
 });
