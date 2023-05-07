@@ -8,8 +8,10 @@ namespace SealEngine {
 		class Button : public UiElement {
 		public:
 			std::function<void()> onClick = {};
+			std::function<void()> onSelected = {};
+			std::function<void()> onDeselected = {};
 
-			Button(std::function<void()> onClickAction = {});
+			Button(std::function<void()> onClick = {}, std::function<void()> onSelected = {}, std::function<void()> onDeselected = {});
 
 			void Awake() override;
 			void Update() override;

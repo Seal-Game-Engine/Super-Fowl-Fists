@@ -8,7 +8,8 @@ using namespace SealEngine::Ui;
 
 #include "../../AssetManager.h"
 
-Button::Button(std::function<void()> onClickAction) :onClick(onClickAction) {}
+Button::Button(std::function<void()> onClick, std::function<void()> onSelected, std::function<void()> onDeselected) 
+	:onClick(onClick), onSelected(onSelected), onDeselected(onDeselected) {}
 
 void Button::Awake() {
 	_image = gameObject->GetComponent<IRenderer>();
@@ -22,11 +23,15 @@ void Button::Update() {
 	buttonRect.SetSize(buttonRect.size().x() * transform()->scale.x(), buttonRect.size().y() * transform()->scale.y());
 	buttonRect.SetCenter(transform()->position.x(), transform()->position.y());
 	Vector2 mousePosition = Camera::mainCamera->ScreenToWorldPoint(InputSystem::Input::mousePosition());
-	_isSelected =
+
+	bool mouseIsHovering =
 		mousePosition.x() >= buttonRect.minVertex().x() &&
 		mousePosition.x() <= buttonRect.maxVertex().x() &&
 		mousePosition.y() >= buttonRect.minVertex().y() &&
 		mousePosition.y() <= buttonRect.maxVertex().y();
+
+	if (!_isSelected && mouseIsHovering) { _isSelected = true; onSelected(); }
+	else if (_isSelected && !mouseIsHovering) { _isSelected = false; onDeselected(); }
 
 	if (Input::GetKeyDown(KeyCode::MouseLeft) && _isSelected) onClick();
 }
