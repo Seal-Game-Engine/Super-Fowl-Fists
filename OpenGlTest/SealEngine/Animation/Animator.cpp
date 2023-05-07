@@ -13,13 +13,13 @@ void Animator::SetAnimatorController(const AnimatorController* animatorControlle
 	HandleStateEnter(&animatorController->states[0]);
 }
 
-bool Animator::GetBool(const std::string& name) { return boolMap[name]; }
-float Animator::GetFloat(const std::string& name) { return floatMap[name]; }
-int Animator::GetInteger(const std::string& name) { return intMap[name]; }
+bool Animator::GetBool(const std::string& name) { return _boolMap[name]; }
+float Animator::GetFloat(const std::string& name) { return _floatMap[name]; }
+int Animator::GetInteger(const std::string& name) { return _intMap[name]; }
 
-void Animator::SetBool(const std::string& name, bool value) { boolMap[name] = value; }
-void Animator::SetFloat(const std::string& name, float value) { floatMap[name] = value; }
-void Animator::SetInteger(const std::string& name, int value) { intMap[name] = value; }
+void Animator::SetBool(const std::string& name, bool value) { _boolMap[name] = value; }
+void Animator::SetFloat(const std::string& name, float value) { _floatMap[name] = value; }
+void Animator::SetInteger(const std::string& name, int value) { _intMap[name] = value; }
 
 void Animator::Play(const std::string& name) {
 	if (animatorController->map.count(name) == 0) return;
@@ -30,36 +30,36 @@ Animator::Animator(const AnimatorController* animatorController) {
 	SetAnimatorController(animatorController);
 }
 
-void Animator::Awake() { renderer = gameObject->GetComponent<IRenderer>(); }
+void Animator::Awake() { _renderer = gameObject->GetComponent<IRenderer>(); }
 
 void Animator::Update() {
 	if (!animatorController) return;
-	if (!renderer)renderer = gameObject->GetComponent<IRenderer>();
+	if (!_renderer) _renderer = gameObject->GetComponent<IRenderer>();
 
-	float clipElapsedTime = (Time::time() - clipBeginTime) / currentState->clip->length();
+	float clipElapsedTime = (Time::time() - _clipBeginTime) / _currentState->clip->length();
 
-	for (auto& transition : currentState->transitions) {
+	for (auto& transition : _currentState->transitions) {
 		if (Time::timeScale > 0 && (!transition.hasExitTime || transition.hasExitTime && clipElapsedTime >= transition.exitTime) && transition.condition(*this)) {
 			HandleStateExit(transition);
 			break;
 		}
 	}
 
-	if (Time::time() >= nextFrameTime) {
-		if (++currentFrame == currentState->clip->frames.size()) currentFrame = currentState->clip->loopTime ? 0 : (int)currentState->clip->frames.size() - 1;
+	if (Time::time() >= _nextFrameTime) {
+		if (++_currentFrame == _currentState->clip->frames.size()) _currentFrame = _currentState->clip->loopTime ? 0 : (int)_currentState->clip->frames.size() - 1;
 
-		if (renderer) renderer->sprite = &currentState->clip->frames[currentFrame].sprite;
-		nextFrameTime = Time::time() + currentState->clip->frames[currentFrame].duration;
+		if (_renderer) _renderer->sprite = &_currentState->clip->frames[_currentFrame].sprite;
+		_nextFrameTime = Time::time() + _currentState->clip->frames[_currentFrame].duration;
 	}
 }
 
 void Animator::HandleStateEnter(const AnimatorController::AnimationState* state) {
-	currentState = state;
-	currentFrame = 0;
-	clipBeginTime = Time::time();
+	_currentState = state;
+	_currentFrame = 0;
+	_clipBeginTime = Time::time();
 
-	if (renderer) renderer->sprite = &currentState->clip->frames[currentFrame].sprite;
-	nextFrameTime = Time::time() + currentState->clip->frames[currentFrame].duration;
+	if (_renderer) _renderer->sprite = &_currentState->clip->frames[_currentFrame].sprite;
+	_nextFrameTime = Time::time() + _currentState->clip->frames[_currentFrame].duration;
 }
 
 void Animator::HandleStateExit(const AnimatorController::AnimationState::Transition& transition) {

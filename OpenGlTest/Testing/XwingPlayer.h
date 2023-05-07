@@ -4,6 +4,8 @@ using namespace SealEngine;
 
 class XwingPlayer : public MonoBehaviour {
 public:
+	void FireProjectile();
+
 	void Awake() override;
 	void Update() override;
 	void LateUpdate() override;

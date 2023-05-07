@@ -43,8 +43,14 @@ GameObject::GameObject(const GameObject& obj)
 }
 
 bool GameObject::activeSelf() const { return _activeSelf; }
-GameObject GameObject::Find(std::string name) { return GameObject(name); }
 
+GameObject* GameObject::Find(const std::string& name) {
+	for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+		if (!gameObject->activeSelf()) continue;
+		if (gameObject->name == name) return gameObject.get();
+	}
+	return nullptr; 
+}
 GameObject* GameObject::FindWithTag(const std::string& tag) { 
 	for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
 		if (!gameObject->activeSelf()) continue;

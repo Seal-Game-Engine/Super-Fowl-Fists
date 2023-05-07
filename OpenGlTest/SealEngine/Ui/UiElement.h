@@ -5,7 +5,8 @@ namespace SealEngine {
 	namespace Ui {
 		class UiElement : public MonoBehaviour {
 		public:
-			virtual void OnGui() = 0;
+			virtual void OnGui() {};
+
 		};
 	}
 }

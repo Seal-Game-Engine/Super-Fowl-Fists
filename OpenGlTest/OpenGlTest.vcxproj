@@ -184,7 +184,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="SealEngine\Physics\BoxCollider2D.cpp" />
     <ClCompile Include="SealEngine\Physics\Collision2D.cpp" />
     <ClCompile Include="SealEngine\Physics\Rigidbody2D.cpp" />
-    <ClCompile Include="SealEngine\Button.cpp" />
+    <ClCompile Include="SealEngine\Ui\Button.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameEventManager.cpp" />
@@ -237,7 +237,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="SealEngine\Physics\BoxCollider2D.h" />
     <ClInclude Include="SealEngine\Physics\Collision2D.h" />
     <ClInclude Include="SealEngine\Physics\Rigidbody2D.h" />
-    <ClInclude Include="SealEngine\Button.h" />
+    <ClInclude Include="SealEngine\Ui\Button.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameEventManager.h" />

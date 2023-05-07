@@ -6,6 +6,9 @@ namespace SealEngine {
     public:
         static Camera* mainCamera;
 
+        Vector3 ScreenToViewportPoint(Vector2 position);
+        Vector3 ScreenToWorldPoint(Vector2 position);
+
         enum class Projection { Perspective, Orthographic };
         Projection projection = Projection::Orthographic;
         float size = 3;

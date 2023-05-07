@@ -9,7 +9,7 @@ namespace SealEngine {
     namespace InputSystem {
         class Input : public IMessageHandler {
         public:
-            bool TryHandleMessage(const UINT, const WPARAM, const LPARAM) override;
+            bool TryHandleMessage(const HWND, const UINT, const WPARAM, const LPARAM) override;
             void ResetOnNextFrame() override;
 
             static bool GetKeyDown(const KeyCode);
@@ -20,22 +20,13 @@ namespace SealEngine {
             static float GetAxisRaw(const Axis axis);
 
             static bool anyKeyDown();
+            static Vector2 mousePosition();
 
-            void mouseButtonDown(const WPARAM, double, double);
-            void mouseButtonUp();
             void mouseWheel(const WPARAM, const double);
-
-            static Vector2 GetMousePosition();
-
-            static float prev_MouseX;
-            static float prev_MouseY;
-
-            bool Mouse_Translate;
-            bool Mouse_Rotate;
 
         private:
             static UINT _uMessage;
-            static KeyCode _wParam;
+            static WPARAM _wParam;
             static LPARAM _lParam;
 
             static bool keysHold[256];

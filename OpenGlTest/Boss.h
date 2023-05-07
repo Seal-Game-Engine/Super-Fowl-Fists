@@ -12,7 +12,7 @@ public:
 	//void OnCollisionEnter2D(Collision2D collision) override;
 
 private:
-	SpriteRenderer* renderer = nullptr;
+	SpriteRenderer* _renderer = nullptr;
 	Animator* animator = nullptr;
 	Rigidbody2D* rigidbody = nullptr;
 

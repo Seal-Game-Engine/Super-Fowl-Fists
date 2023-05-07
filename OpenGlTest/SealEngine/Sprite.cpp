@@ -4,18 +4,16 @@
 using namespace SealEngine;
 
 Sprite::Sprite(const Texture2D& texture, const Rect& rect, const Vector2& pivot, float pixelsPerUnit)
-    : texture(&texture), rect(rect), pivot(pivot), _pixelsPerUnit(pixelsPerUnit) {}
+    : texture(&texture), _rect(rect), pivot(pivot), _pixelsPerUnit(pixelsPerUnit) {}
 
 void Sprite::LoadVertices(){
-	float halfWidth = texture->width() * rect.size().x() / pixelsPerUnit() / 2;
-	float halfHeight = texture->height() * rect.size().y() / pixelsPerUnit() / 2;
+	_textureRect = Rect(0, 0, texture->width() * rect().size().x() / pixelsPerUnit(), texture->height() * rect().size().y() / pixelsPerUnit());
+	_textureRect.SetCenter(pivot.x(), pivot.y());
 
-	Vector2 worldPointPivot = Vector2(halfWidth * pivot.x(), halfHeight * pivot.y());
-
-	_vertices[0].Set(-worldPointPivot.x() - halfWidth, -worldPointPivot.y() + halfHeight);
-	_vertices[1].Set(-worldPointPivot.x() + halfWidth, -worldPointPivot.y() + halfHeight);
-	_vertices[2].Set(-worldPointPivot.x() + halfWidth, -worldPointPivot.y() - halfHeight);
-	_vertices[3].Set(-worldPointPivot.x() - halfWidth, -worldPointPivot.y() - halfHeight);
+	_vertices[0].Set(textureRect().minVertex().x(), textureRect().maxVertex().y());
+	_vertices[1].Set(textureRect().maxVertex().x(), textureRect().maxVertex().y());
+	_vertices[2].Set(textureRect().maxVertex().x(), textureRect().minVertex().y());
+	_vertices[3].Set(textureRect().minVertex().x(), textureRect().minVertex().y());
 }
 
 float Sprite::pixelsPerUnit() const { return _pixelsPerUnit; }

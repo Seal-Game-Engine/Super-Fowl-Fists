@@ -24,7 +24,6 @@ namespace SealEngine {
 		void Play(const std::string& name);
 
 		const AnimatorController* animatorController = nullptr;
-		IRenderer* renderer = nullptr;
 
 		Animator() = default;
 		Animator(const AnimatorController* animatorController);
@@ -36,18 +35,18 @@ namespace SealEngine {
 		void Update() override;
 
 	private:
-		const AnimatorController::AnimationState* currentState = nullptr;
-		int currentFrame = 0;
-		float nextFrameTime = 0;
-		float clipBeginTime = 0;
-
+		const AnimatorController::AnimationState* _currentState = nullptr;
+		IRenderer* _renderer = nullptr;
+		int _currentFrame = 0;
+		float _nextFrameTime = 0;
+		float _clipBeginTime = 0;
 
 		void HandleStateEnter(const AnimatorController::AnimationState* state);
 		void HandleStateExit(const AnimatorController::AnimationState::Transition& transition);
 
-		std::map<std::string, int> intMap;
-		std::map<std::string, bool> boolMap;
-		std::map<std::string, float> floatMap;
+		std::map<std::string, int> _intMap;
+		std::map<std::string, bool> _boolMap;
+		std::map<std::string, float> _floatMap;
 
 		Animator* _Clone() const override { return new Animator(*this); }
 	};

@@ -16,10 +16,10 @@ namespace SealEngine {
 		//packingRotation	If Sprite is packed(see Sprite.packed), returns its SpritePackingRotation.
 		Vector2 pivot; //	Location of the Sprite's center point in the Rect on the original Texture, specified in pixels.
 		float pixelsPerUnit() const;//	The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
-		Rect rect;	//Location of the Sprite on the original Texture, specified in pixels.
+		Rect rect() const { return _rect; }	//Location of the Sprite on the original Texture, specified in pixels.
 		//spriteAtlasTextureScale	The Variant scale of texture used by the Sprite.This is useful to check when a Variant SpriteAtlas is being used by Sprites.
 		const Texture2D* texture = nullptr;
-		//Rect textureRect;
+		Rect textureRect() const { return _textureRect; }
 		Vector2 textureRectOffset = Vector2(0, 0);
 		//uv	The base texture coordinates of the sprite mesh.
 		std::array<Vector2, 4> vertices() const;
@@ -29,6 +29,8 @@ namespace SealEngine {
 
 	private:
 		float _pixelsPerUnit = 16;
+		Rect _rect = Rect(0, 0, 1, 1);
+		Rect _textureRect = Rect(0, 0, 1, 1);
 		std::array<Vector2, 4> _vertices{ Vector2::zero(), Vector2::zero(), Vector2::zero(), Vector2::zero() };
 	};
 }

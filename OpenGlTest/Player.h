@@ -16,18 +16,16 @@ public:
 	Player() = default;
 
 private:
-	SpriteRenderer* renderer = nullptr;
-	Animator* animator = nullptr;
-	Rigidbody2D* rigidbody = nullptr;
+	SpriteRenderer* _renderer = nullptr;
+	Animator* _animator = nullptr;
+	Rigidbody2D* _rigidbody = nullptr;
 
 	float _speed = 4.0f;
 	bool _canJump = true;
 	float _nextFire = 0;
 
 	enum class PowerState : int { Small, Buff };
-	PowerState powerState = PowerState::Small;
-
-	static const std::array<const AnimatorController*, 2> animatorControllers;
+	PowerState _powerState = PowerState::Small;
 
 	Player* _Clone() const override { return new Player(*this); }
 };

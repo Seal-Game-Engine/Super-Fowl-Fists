@@ -23,8 +23,6 @@
 #include "SealEngine/KeyCode.h"
 #include "SealEngine/Input.h"
 
-#include "SealEngine/Button.h"
-
 #include "SealEngine/Camera.h"
 
 #include "SealEngine/Animation/AnimationClip.h"
@@ -42,3 +40,4 @@
 #include "SealEngine/Physics/Rigidbody2D.h"
 
 #include "SealEngine/Ui/Image.h"
+#include "SealEngine/Ui/Button.h"

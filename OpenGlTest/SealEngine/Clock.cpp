@@ -21,14 +21,14 @@ double Time::unscaledTimeAsDouble() { return _unscaledTime; }
 float Time::unscaledDeltaTime() { return _unscaledDeltaTime; }
 
 void Time::OnNextFrame(){
-	auto currentFrame = steady_clock::now();
+	auto _currentFrame = steady_clock::now();
 
-	_unscaledDeltaTime = duration_cast<duration<float>>(currentFrame - _previousFrame).count();
+	_unscaledDeltaTime = duration_cast<duration<float>>(_currentFrame - _previousFrame).count();
 	_unscaledTime += _unscaledDeltaTime;
 
 	_deltaTime = _unscaledDeltaTime * timeScale;
 	_time += _deltaTime;
 
-	_previousFrame = currentFrame;
+	_previousFrame = _currentFrame;
 }
 

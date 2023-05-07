@@ -11,8 +11,8 @@ void XwingPlayer::Awake() {
 }
 
 void XwingPlayer::Update() {
-	int x = Input::GetAxisRaw(Input::Axis::Horizontal);
-	int y = Input::GetAxisRaw(Input::Axis::Vertical);
+	float x = Input::GetAxisRaw(Input::Axis::Horizontal);
+	float y = Input::GetAxisRaw(Input::Axis::Vertical);
 
 	Vector2 horizontalMovement = Vector2::right() * (float)x * _speed;
 	Vector2 verticalMovement = Vector2::up() * (float)y * _speed;
@@ -22,13 +22,14 @@ void XwingPlayer::Update() {
 	else rigidbody->velocity = Vector2::zero();
 
 	if (Input::GetKey(KeyCode::Space) && Time::time() >= _nextFire) {
-		Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
-		_nextFire = Time::time() + 0.15f;
-		audioSource->Play();
+		FireProjectile();
 	}
 
 	if (Input::GetKeyDown(KeyCode::T)) transform()->position = Vector2::up() * -1.5f;
-	animator->SetInteger("x", x);
+	animator->SetInteger("x", (int)x);
+
+	if(Input::GetKeyDown(KeyCode::MouseRight))
+		audioSource->Play();
 
 	if (Input::GetKeyDown(KeyCode::P))
 		audioSource->Pause();
@@ -37,6 +38,11 @@ void XwingPlayer::Update() {
 
 	if (Input::GetKeyDown(KeyCode::L))
 		audioSource->Stop();
+}
+
+void XwingPlayer::FireProjectile() {
+	Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
+	_nextFire = Time::time() + 0.15f;
 }
 
 void XwingPlayer::LateUpdate() {

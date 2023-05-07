@@ -560,16 +560,20 @@ const GameObject Ground = GameObject(
 		std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
 });
 
+const GameObject ButtonTest = GameObject(
+	"Button", "Untagged",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Image>(&AssetManager::Font[0]),
+		std::make_shared<Button>([&](){
+		SceneManager::LoadScene(1);
+			}),
+});
+
 Scene Assets_Scenes::XwingScene = Scene({
 #pragma region Ui
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
-	/*{GameObject(
-		"Button",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&AssetManager::GreenSlime[1], false, false),
-			std::make_shared<Button>(),
-	}), Transform()},*/
+	{&ButtonTest, Transform(Vector2(-3, 2))},
 #pragma endregion
 
 	{&AssetManager::MainCamera, Transform()},

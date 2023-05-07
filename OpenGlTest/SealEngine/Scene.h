@@ -58,8 +58,9 @@ namespace SealEngine {
         Scene(std::vector<GameObjectInitializer> gameObjects);
         void Load();
         void Unload();
-        void Refresh();
+        void RefreshWorld();
 		void RefreshGui();
+		void RefreshHierarchy();
 
         std::vector<std::shared_ptr<GameObject>> gameObjects{};
         std::queue<std::shared_ptr<GameObject>> instantiationQueue{};

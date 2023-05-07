@@ -31,7 +31,7 @@ namespace SealEngine {
         Transform* transform = nullptr;
 
         // Identifier
-        static GameObject Find(std::string name);
+        static GameObject* Find(const std::string& name);
         static GameObject* FindWithTag(const std::string& tag);
         static std::vector<GameObject*> FindGameObjectsWithTag(const std::string& tag);
         bool CompareTag(std::string tag);  // done

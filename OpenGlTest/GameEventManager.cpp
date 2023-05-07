@@ -18,7 +18,7 @@ void GameEventManager::Update() {
 void GameEventManager::TogglePause(){
 	_isPaused = !_isPaused;
 	for (auto& panel : pausePanels) panel->enabled = _isPaused;
-	Time::timeScale = _isPaused ? 0 : 1;
+	Time::timeScale = _isPaused ? 0.0f : 1.0f;
 }
 
 GameEventManager* GameEventManager::_Clone() const { return new GameEventManager(*this); }

@@ -25,7 +25,7 @@ std::vector<std::unique_ptr<IMessageHandler>> ApplicationManager::messageHandler
 
 // Handle For This Window, Message For This Window, Additional Message Information, Additional Message Information
 LRESULT CALLBACK ApplicationManager::WndProc(HWND hWindow, UINT message, WPARAM wParam, LPARAM lParam) {
-	for (auto& messageHandler : messageHandlers) messageHandler->TryHandleMessage(message, wParam, lParam);
+	for (auto& messageHandler : messageHandlers) messageHandler->TryHandleMessage(hWindow, message, wParam, lParam);
 
 	switch (message) {
 		case WM_ACTIVATE:
@@ -52,9 +52,9 @@ LRESULT CALLBACK ApplicationManager::WndProc(HWND hWindow, UINT message, WPARAM 
 			break;
 
 		default:
-			return DefWindowProc(hWindow, message, wParam, lParam);
+			break;
 	}
-	return 0;
+	return DefWindowProc(hWindow, message, wParam, lParam);
 }
 
 void ApplicationManager::DestroyGlWindow() {
@@ -263,7 +263,7 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 	if (!SetupWindow(colorBits, true)) return 1;
 
 	//Scene = std::unique_ptr<SceneManager>(new SceneManager);
-	sceneManager->ResizeGl(width, height);
+	sceneManager->ResizeGl((GLfloat)width, (GLfloat)height);
 	if (!sceneManager->InitGl()) {
 		MessageBoxW(NULL, L"Initialization Failed", L"ERROR", MB_OK | MB_ICONEXCLAMATION);
 		return false;
@@ -274,13 +274,13 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 	MSG msg;
 	while (true) {
 		for (auto& messageHandler : messageHandlers) messageHandler->ResetOnNextFrame();
+		Time::OnNextFrame();
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			//if (msg.message == WM_QUIT) break;
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		Time::OnNextFrame();
 		if(sceneManager->RefreshScene()) break;
 	}
 

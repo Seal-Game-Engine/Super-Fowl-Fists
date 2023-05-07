@@ -45,7 +45,7 @@ bool SceneManager::RefreshScene() {
     }
 
     glMatrixMode(GL_MODELVIEW);
-    GetActiveScene()->Refresh();
+    GetActiveScene()->RefreshWorld();
 
     if (hasCamera) {
         glMatrixMode(GL_PROJECTION);
@@ -59,6 +59,8 @@ bool SceneManager::RefreshScene() {
     GetActiveScene()->RefreshGui();
 
     glFinish();
+
+    GetActiveScene()->RefreshHierarchy();
 
     while (!sceneLoadQuery.empty()) {
         if (scenes.size() > sceneLoadQuery.front()) {

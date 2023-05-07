@@ -10,7 +10,7 @@ void Boss::TakeDamage(float damage)
 }
 
 void Boss::Awake() {
-	renderer = gameObject->GetComponent<SpriteRenderer>();
+	_renderer = gameObject->GetComponent<SpriteRenderer>();
 	animator = gameObject->GetComponent<Animator>();
 	rigidbody = gameObject->GetComponent<Rigidbody2D>();
 }

@@ -22,7 +22,7 @@ void Scene::Unload(){
     _uiElements.clear();
 }
 
-void Scene::Refresh() {
+void Scene::RefreshWorld() {
     while (!_awakeEventQueue.empty()) {
         for (auto& component : _awakeEventQueue.front()->components) component->Awake();
         _awakeEventQueue.pop();
@@ -37,8 +37,14 @@ void Scene::Refresh() {
         for (auto& component : gameObject->components) { if (component->enabled)component->RunCoroutines(); }
         for (auto& component : gameObject->components) { if (component->enabled) component->Update(); }
         for (auto& component : gameObject->components) { if (component->enabled) component->LateUpdate(); }
-    }
+    }    
+}
 
+void Scene::RefreshGui(){
+    for (auto& uiElement : _uiElements) if (uiElement->gameObject->activeSelf() && uiElement->enabled) uiElement->OnGui();
+}
+
+void Scene::RefreshHierarchy() {
     while (!destroyQueue.empty()) {
         for (int i = 0; i < gameObjects.size(); i++) {
             if (*gameObjects[i] == *destroyQueue.front()) {
@@ -72,8 +78,4 @@ void Scene::Refresh() {
         _uiElements.insert(_uiElements.end(), uiElements.begin(), uiElements.end());
         instantiationQueue.pop();
     }
-}
-
-void Scene::RefreshGui(){
-    for (auto& uiElement : _uiElements) if (uiElement->gameObject->activeSelf() && uiElement->enabled) uiElement->OnGui();
 }

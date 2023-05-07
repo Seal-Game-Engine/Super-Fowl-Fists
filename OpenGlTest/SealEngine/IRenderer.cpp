@@ -24,21 +24,21 @@ void IRenderer::Render(Transform* transform) const{
 		//Rendering
 		glBegin(GL_QUADS);
 		{
-			Rect rect = sprite->rect;
-			std::array<Vector2, 4> vertices = sprite->vertices();
+			const Rect rect = sprite->rect();
+			const Rect textureRect = sprite->textureRect();
 
 			// Vertex3f for 3D
 			glTexCoord2f(rect.minVertex().x(), rect.minVertex().y());
-			glVertex2f(vertices[0].x(), vertices[0].y());
+			glVertex2f(textureRect.minVertex().x(), textureRect.maxVertex().y());
 
 			glTexCoord2f(rect.maxVertex().x(), rect.minVertex().y());
-			glVertex2f(vertices[1].x(), vertices[1].y());
+			glVertex2f(textureRect.maxVertex().x(), textureRect.maxVertex().y());
 
 			glTexCoord2f(rect.maxVertex().x(), rect.maxVertex().y());
-			glVertex2f(vertices[2].x(), vertices[2].y());
+			glVertex2f(textureRect.maxVertex().x(), textureRect.minVertex().y());
 
 			glTexCoord2f(rect.minVertex().x(), rect.maxVertex().y());
-			glVertex2f(vertices[3].x(), vertices[3].y());
+			glVertex2f(textureRect.minVertex().x(), textureRect.minVertex().y());
 		}
 		glEnd();
 
