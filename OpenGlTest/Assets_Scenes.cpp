@@ -107,6 +107,7 @@ using State = AnimatorController::AnimationState;
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&Button_2P_Texture[0]),
+			std::make_shared<Animator>(&Button_2P_Controller),
 			std::make_shared<Button>([] {
 			SceneManager::LoadScene(5);
 				}),
@@ -137,6 +138,7 @@ using State = AnimatorController::AnimationState;
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&Button_Help_Texture[0]),
+			std::make_shared<Animator>(&Button_Help_Controller),
 			std::make_shared<Button>([] {
 			SceneManager::LoadScene(5);
 				}),
@@ -158,7 +160,7 @@ using State = AnimatorController::AnimationState;
 		State("Deselected", &Button_Credits_Deselected_Clip, {
 			{ "Selected", false, 1, [](auto& animator) { return animator.GetBool("selected"); }},
 		}),
-		State("Selected", &Button_1P_Selected_Clip, {
+		State("Selected", &Button_Credits_Selected_Clip, {
 			{ "Deselected", true, 1, [](auto& animator) { return !animator.GetBool("selected"); }},
 		}),
 		});
@@ -167,42 +169,41 @@ using State = AnimatorController::AnimationState;
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&Button_Credits_Texture[0]),
+			std::make_shared<Animator>(&Button_Credits_Controller),
 			std::make_shared<Button>([] {
 			SceneManager::LoadScene(5);
 				}),
 	});
 	#pragma endregion
 	#pragma region Button_Quit
-	const Texture2D Button_Quit = Texture2D("Assets/Button_Quit.png", Texture2D::FilterMode::Nearest, 4);
-	const AnimationClip Button_1P_Deselected_Clip = AnimationClip({
-	{ Button_1P_Texture[0], 0.1f },
-	{ Button_1P_Texture[1], 0.1f },
+	const Texture2D Button_Quit_Texture = Texture2D("Assets/Button_Quit.png", Texture2D::FilterMode::Nearest, 4);
+	const AnimationClip Button_Quit_Deselected_Clip = AnimationClip({
+	{ Button_Quit_Texture[0], 0.1f },
+	{ Button_Quit_Texture[1], 0.1f },
 		}, true);
-	const AnimationClip Button_1P_Selected_Clip = AnimationClip({
-		{ Button_1P_Texture[2], 0.1f },
-		{ Button_1P_Texture[3], 0.1f },
+	const AnimationClip Button_Quit_Selected_Clip = AnimationClip({
+		{ Button_Quit_Texture[2], 0.1f },
+		{ Button_Quit_Texture[3], 0.1f },
 		}, true);
 
-	const AnimatorController Button_1P_Controller = AnimatorController({
-		State("Deselected", &Button_1P_Deselected_Clip, {
+	const AnimatorController Button_Quit_Controller = AnimatorController({
+		State("Deselected", &Button_Quit_Deselected_Clip, {
 			{ "Selected", false, 1, [](auto& animator) { return animator.GetBool("selected"); }},
 		}),
-		State("Selected", &Button_1P_Selected_Clip, {
+		State("Selected", &Button_Quit_Selected_Clip, {
 			{ "Deselected", true, 1, [](auto& animator) { return !animator.GetBool("selected"); }},
 		}),
 		});
 	const GameObject Button_Quit_Object = GameObject(
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Image>(&Button_Quit[0]),
+		std::make_shared<Image>(&Button_Quit_Texture[0]),
+			std::make_shared<Animator>(&Button_Quit_Controller),
 			std::make_shared<Button>([] {
 			SceneManager::LoadScene(5);
 				}),
 	});
 	#pragma endregion
-
-
-
 
 	const GameObject MenuOptions_Object = GameObject(
 		"MenuOptions", "Untagged",
