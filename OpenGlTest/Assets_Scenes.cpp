@@ -48,40 +48,32 @@ using State = AnimatorController::AnimationState;
 
 #pragma region MenuScene
 	//const Texture2D MenuText = Texture2D("Assets/MenuText.png", Texture2D::FilterMode::Nearest);
-	const Texture2D MenuImage = Texture2D("Assets/Menu.png", Texture2D::FilterMode::Nearest, 2);
-	const Texture2D Button_1P = Texture2D("Assets/Button_1Player.png", Texture2D::FilterMode::Nearest, 4);
-	const AnimationClip Button_1P_Idle = AnimationClip({
-		{ Button_1P[0], 0.1f },
-		{ Button_1P[1], 0.1f },
+	const Texture2D Menu_Image_Texture = Texture2D("Assets/Menu.png", Texture2D::FilterMode::Nearest, 2);
+	#pragma region Button_1P
+	const Texture2D Button_1P_Texture = Texture2D("Assets/Button_1Player.png", Texture2D::FilterMode::Nearest, 4);
+
+	const AnimationClip Button_1P_Deselected_Clip = AnimationClip({
+		{ Button_1P_Texture[0], 0.1f },
+		{ Button_1P_Texture[1], 0.1f },
 		}, true);
-	const AnimationClip Button_1P_Selected = AnimationClip({
-		{ Button_1P[2], 0.1f },
-		{ Button_1P[3], 0.1f },
+	const AnimationClip Button_1P_Selected_Clip = AnimationClip({
+		{ Button_1P_Texture[2], 0.1f },
+		{ Button_1P_Texture[3], 0.1f },
 		}, true);
 
 	const AnimatorController Button_1P_Controller = AnimatorController({
-		State("Deselected", &Button_1P_Idle, {
+		State("Deselected", &Button_1P_Deselected_Clip, {
 			{ "Selected", false, 1, [](auto& animator) { return animator.GetBool("selected"); }},
 		}),
-		State("Selected", &Button_1P_Selected, {
+		State("Selected", &Button_1P_Selected_Clip, {
 			{ "Deselected", true, 1, [](auto& animator) { return !animator.GetBool("selected"); }},
 		}),
 		});
-	const Texture2D Button_2P = Texture2D("Assets/Button_2Player.png", Texture2D::FilterMode::Nearest, 4);
-	const Texture2D Button_Help = Texture2D("Assets/Button_Help.png", Texture2D::FilterMode::Nearest, 4);
-	const Texture2D Button_Credits = Texture2D("Assets/Button_Credit.png", Texture2D::FilterMode::Nearest, 4);
-	const Texture2D Button_Quit = Texture2D("Assets/Button_Quit.png", Texture2D::FilterMode::Nearest, 4);
 
-	const GameObject MenuOptionsObject = GameObject(
-		"MenuOptions", "Untagged",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
-		//std::make_shared<Image>(&AssetManager::MenuOptions[0]),
-		std::make_shared<Panel>(&MenuImage[0]),
-	});
-	const GameObject SinglePlayerButtonObject = GameObject(
+	const GameObject Button_1P_Object = GameObject(
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Image>(&Button_1P[0]),
+		std::make_shared<Image>(&Button_1P_Texture[0]),
 			std::make_shared<Animator>(&Button_1P_Controller),
 			std::make_shared<Button>(
 				[] { SceneManager::LoadScene(3); },
@@ -89,35 +81,117 @@ using State = AnimatorController::AnimationState;
 				//[] { SceneManager::LoadScene(3); }
 				),
 	});
+	#pragma endregion
+	#pragma region Button_2P
+	const Texture2D Button_2P_Texture = Texture2D("Assets/Button_2Player.png", Texture2D::FilterMode::Nearest, 4);
 
-	const GameObject TwoPlayerButtonObject = GameObject(
+	const AnimationClip Button_2P_Deselected_Clip = AnimationClip({
+	{ Button_2P_Texture[0], 0.1f },
+	{ Button_2P_Texture[1], 0.1f },
+		}, true);
+	const AnimationClip Button_2P_Selected_Clip = AnimationClip({
+		{ Button_1P_Texture[2], 0.1f },
+		{ Button_1P_Texture[3], 0.1f },
+		}, true);
+
+	const AnimatorController Button_2P_Controller = AnimatorController({
+		State("Deselected", &Button_2P_Deselected_Clip, {
+			{ "Selected", false, 1, [](auto& animator) { return animator.GetBool("selected"); }},
+		}),
+		State("Selected", &Button_2P_Selected_Clip, {
+			{ "Deselected", true, 1, [](auto& animator) { return !animator.GetBool("selected"); }},
+		}),
+		});
+
+	const GameObject Button_2P_Object = GameObject(
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Image>(&Button_2P[0]),
+		std::make_shared<Image>(&Button_2P_Texture[0]),
 			std::make_shared<Button>([] {
 			SceneManager::LoadScene(5);
 				}),
 	});
+	#pragma endregion
+	#pragma region Button_Help
+	const Texture2D Button_Help_Texture = Texture2D("Assets/Button_Help.png", Texture2D::FilterMode::Nearest, 4);
 
-	const GameObject HelpButtonObject = GameObject(
+	const AnimationClip Button_Help_Deselected_Clip = AnimationClip({
+	{ Button_Help_Texture[0], 0.1f },
+	{ Button_Help_Texture[1], 0.1f },
+		}, true);
+	const AnimationClip Button_Help_Selected_Clip = AnimationClip({
+		{ Button_Help_Texture[2], 0.1f },
+		{ Button_Help_Texture[3], 0.1f },
+		}, true);
+
+	const AnimatorController Button_Help_Controller = AnimatorController({
+		State("Deselected", &Button_Help_Deselected_Clip, {
+			{ "Selected", false, 1, [](auto& animator) { return animator.GetBool("selected"); }},
+		}),
+		State("Selected", &Button_Help_Selected_Clip, {
+			{ "Deselected", true, 1, [](auto& animator) { return !animator.GetBool("selected"); }},
+		}),
+		});
+
+	const GameObject Button_Help_Object = GameObject(
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Image>(&Button_Help[0]),
+		std::make_shared<Image>(&Button_Help_Texture[0]),
 			std::make_shared<Button>([] {
 			SceneManager::LoadScene(5);
 				}),
 	});
+	#pragma endregion
+	#pragma region Button_Credits
+	const Texture2D Button_Credits_Texture = Texture2D("Assets/Button_Credit.png", Texture2D::FilterMode::Nearest, 4);
 
-	const GameObject CreditsButtonObject = GameObject(
+	const AnimationClip Button_Credits_Deselected_Clip = AnimationClip({
+		{ Button_Credits_Texture[0], 0.1f },
+		{ Button_Credits_Texture[1], 0.1f },
+		}, true);
+	const AnimationClip Button_Credits_Selected_Clip = AnimationClip({
+		{ Button_Credits_Texture[2], 0.1f },
+		{ Button_Credits_Texture[3], 0.1f },
+		}, true);
+
+	const AnimatorController Button_Credits_Controller = AnimatorController({
+		State("Deselected", &Button_Credits_Deselected_Clip, {
+			{ "Selected", false, 1, [](auto& animator) { return animator.GetBool("selected"); }},
+		}),
+		State("Selected", &Button_1P_Selected_Clip, {
+			{ "Deselected", true, 1, [](auto& animator) { return !animator.GetBool("selected"); }},
+		}),
+		});
+
+	const GameObject Button_Credits_Object = GameObject(
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Image>(&Button_Credits[0]),
+		std::make_shared<Image>(&Button_Credits_Texture[0]),
 			std::make_shared<Button>([] {
 			SceneManager::LoadScene(5);
 				}),
 	});
+	#pragma endregion
+	#pragma region Button_Quit
+	const Texture2D Button_Quit = Texture2D("Assets/Button_Quit.png", Texture2D::FilterMode::Nearest, 4);
+	const AnimationClip Button_1P_Deselected_Clip = AnimationClip({
+	{ Button_1P_Texture[0], 0.1f },
+	{ Button_1P_Texture[1], 0.1f },
+		}, true);
+	const AnimationClip Button_1P_Selected_Clip = AnimationClip({
+		{ Button_1P_Texture[2], 0.1f },
+		{ Button_1P_Texture[3], 0.1f },
+		}, true);
 
-	const GameObject QuitButtonObject = GameObject(
+	const AnimatorController Button_1P_Controller = AnimatorController({
+		State("Deselected", &Button_1P_Deselected_Clip, {
+			{ "Selected", false, 1, [](auto& animator) { return animator.GetBool("selected"); }},
+		}),
+		State("Selected", &Button_1P_Selected_Clip, {
+			{ "Deselected", true, 1, [](auto& animator) { return !animator.GetBool("selected"); }},
+		}),
+		});
+	const GameObject Button_Quit_Object = GameObject(
 		"MenuText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&Button_Quit[0]),
@@ -125,7 +199,19 @@ using State = AnimatorController::AnimationState;
 			SceneManager::LoadScene(5);
 				}),
 	});
-	const GameObject MenuEventManagerObject = GameObject(
+	#pragma endregion
+
+
+
+
+	const GameObject MenuOptions_Object = GameObject(
+		"MenuOptions", "Untagged",
+		std::vector<std::shared_ptr<MonoBehaviour>>{
+		//std::make_shared<Image>(&AssetManager::MenuOptions[0]),
+		std::make_shared<Panel>(&Menu_Image_Texture[0]),
+	});
+
+	const GameObject MenuEventManager_Object = GameObject(
 		"MenuEventManager", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&AssetManager::GreenSlime[1]),
@@ -135,13 +221,13 @@ using State = AnimatorController::AnimationState;
 
 	Scene Assets_Scenes::MenuScene = Scene({
 	#pragma region Ui
-		{&MenuOptionsObject, Transform()},
-		{&SinglePlayerButtonObject, Transform(Vector3(0, 0, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
-		{&TwoPlayerButtonObject, Transform(Vector3(0, -1, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
-		{&HelpButtonObject, Transform(Vector3(-1.3, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
-		{&CreditsButtonObject, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
-		{&QuitButtonObject, Transform(Vector3(1.3, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
-		{&MenuEventManagerObject, Transform()},
+		{&MenuOptions_Object, Transform()},
+		{&Button_1P_Object, Transform(Vector3(0, 0, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+		{&Button_2P_Object, Transform(Vector3(0, -1, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+		{&Button_Help_Object, Transform(Vector3(-1.3, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+		{&Button_Credits_Object, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+		{&Button_Quit_Object, Transform(Vector3(1.3, -2, 0), Vector3::zero(), Vector3(0.14f, 0.14f, 1))},
+		{&MenuEventManager_Object, Transform()},
 	#pragma endregion
 
 		{&AssetManager::MainCamera, Transform()},
