@@ -238,8 +238,8 @@ using State = AnimatorController::AnimationState;
 	Scene Assets_Scenes::MenuScene = Scene({
 		#pragma region Ui
 		{&Menu_Image_Object, Transform()},
-		{&Button_1P_Object, Transform(Vector2(0, -0.3))},
-		{&Button_2P_Object, Transform(Vector2(0, -1))},
+		{&Button_1P_Object, Transform(Vector2(0, -0.5))},
+		{&Button_2P_Object, Transform(Vector2(0, -1.3))},
 		{&Button_Help_Object, Transform(Vector2(-1.3, -2))},
 		{&Button_Credits_Object, Transform(Vector2(0, -2))},
 		{&Button_Quit_Object, Transform(Vector2(1.3, -2))},
