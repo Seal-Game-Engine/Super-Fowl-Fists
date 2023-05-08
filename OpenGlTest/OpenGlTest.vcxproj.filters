@@ -53,6 +53,7 @@
     <ClCompile Include="Testing\XwingPlayer.cpp" />
     <ClCompile Include="SealEngine\Ui\UiElement.cpp" />
     <ClCompile Include="SealEngine\Ui\Panel.cpp" />
+    <ClCompile Include="SealEngine\FontRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -108,6 +109,7 @@
     <ClInclude Include="Testing\XwingPlayer.h" />
     <ClInclude Include="SealEngine\Ui\UiElement.h" />
     <ClInclude Include="SealEngine\Ui\Panel.h" />
+    <ClInclude Include="SealEngine\FontRender.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />
