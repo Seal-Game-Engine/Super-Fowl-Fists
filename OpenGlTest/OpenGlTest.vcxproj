@@ -172,7 +172,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
-    <ClCompile Include="Assets_Scenes.cpp" />
+    <ClCompile Include="GlobalMenuScene.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="SealEngine\Ui\Panel.cpp" />
     <ClCompile Include="SealEngine\IRenderer.cpp" />
@@ -223,10 +223,11 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="TutorialEventManager.cpp" />
     <ClCompile Include="Testing\XwingPlayer.cpp" />
     <ClCompile Include="SealEngine\Ui\UiElement.cpp" />
+    <ClCompile Include="Testing\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="Assets_Scenes.h" />
+    <ClInclude Include="GlobalMenuScene.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="IDamageable.h" />
     <ClInclude Include="SealEngine\Ui\Panel.h" />
@@ -245,6 +246,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="GameEventManager.h" />
     <ClInclude Include="LandingEventManager.h" />
     <ClInclude Include="MenuEventManager.h" />
+    <ClInclude Include="Testing\TestScene.h" />
     <ClInclude Include="Testing\Obstacle.h" />
     <ClInclude Include="Testing\ObstacleSpawner.h" />
     <ClInclude Include="Player.h" />

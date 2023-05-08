@@ -1,7 +1,7 @@
 #include "../SealEngine.h"
 //#include "Font.h"
 #include "../AssetManager.h"
-#include "../Assets_Scenes.h"
+#include "../GlobalMenuScene.h"
 #include "Scene.h"
 #include "Camera.h"
 using namespace SealEngine::InputSystem;

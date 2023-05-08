@@ -7,7 +7,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Projectile.cpp" />
-    <ClCompile Include="Assets_Scenes.cpp" />
+    <ClCompile Include="GlobalMenuScene.cpp" />
     <ClCompile Include="GameEventManager.cpp" />
     <ClCompile Include="LandingEventManager.cpp" />
     <ClCompile Include="MenuEventManager.cpp" />
@@ -53,6 +53,7 @@
     <ClCompile Include="Testing\XwingPlayer.cpp" />
     <ClCompile Include="SealEngine\Ui\UiElement.cpp" />
     <ClCompile Include="SealEngine\Ui\Panel.cpp" />
+    <ClCompile Include="Testing\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -62,7 +63,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="SealEngine\SealPackages.h" />
-    <ClInclude Include="Assets_Scenes.h" />
+    <ClInclude Include="GlobalMenuScene.h" />
     <ClInclude Include="GameEventManager.h" />
     <ClInclude Include="LandingEventManager.h" />
     <ClInclude Include="MenuEventManager.h" />
@@ -108,6 +109,7 @@
     <ClInclude Include="Testing\XwingPlayer.h" />
     <ClInclude Include="SealEngine\Ui\UiElement.h" />
     <ClInclude Include="SealEngine\Ui\Panel.h" />
+    <ClInclude Include="Testing\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />

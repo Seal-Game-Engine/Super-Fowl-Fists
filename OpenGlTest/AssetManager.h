@@ -15,25 +15,20 @@ public:
 	static const AnimatorController TikeMyson_Controller;
 	static const GameObject TikeMysonObject;
 #pragma endregion
-
 	static const GameObject ProjectileObject_Blue;
 
-	static const Texture2D GreenSlime;
-	static const AnimationClip GreenSlime_Idle;
-	static const AnimatorController GreenSlime_Controller;
-
 	//Sensei
-	static const Texture2D SenseiTexture;
-	static const AnimationClip Sensei_Idle;
-	static const AnimationClip Sensei_Walking;
-	static const AnimationClip Sensei_Hadoken;
-	static const AnimationClip Sensei_CallsReinforcements;
-	static const AnimationClip Sensei_CallingReinforcements;
-	static const AnimationClip Sensei_TeleportOut;
-	static const AnimationClip Sensei_TeleportIn;
-	static const AnimationClip Sensei_Hurt;
+	static const Texture2D Sensei_Texture;
+	static const AnimationClip Sensei_Idle_Clip;
+	static const AnimationClip Sensei_Walking_Clip;
+	static const AnimationClip Sensei_Hadoken_Clip;
+	static const AnimationClip Sensei_CallsReinforcements_Clip;
+	static const AnimationClip Sensei_CallingReinforcements_Clip;
+	static const AnimationClip Sensei_TeleportOut_Clip;
+	static const AnimationClip Sensei_TeleportIn_Clip;
+	static const AnimationClip Sensei_Hurt_Clip;
 	static const AnimatorController Sensei_Controller;
-	static const GameObject SenseiObject;
+	static const GameObject Sensei_Object;
 
 	//Boss
 	static const Texture2D BossTexture;
@@ -49,12 +44,12 @@ public:
 	static const GameObject BossObject;
 
 	//Spawner
-	static const GameObject ObstacleSpawnerObject;
+	static const GameObject ObstacleSpawner_Object;
 
 	//Misc
-	static const Texture2D Googleplex;
+	static const Texture2D Googleplex_Texture;
 
-	static const Texture2D SpaceBackground;
+	static const Texture2D SpaceBackground_Texture;
 	static const Texture2D GalaxyBackground;
 
 	static const Texture2D Font;
@@ -68,18 +63,15 @@ public:
 	static const Texture2D MountainBackground;
 
 #pragma region Testing
-	static const Texture2D XwingTexture;
-	static const AnimatorController Xwing_Controller;
-	static const GameObject XwingObject;
+	//Obstacle
+	static const Texture2D Obstacle_Texture;
+	static const AnimationClip Obstacle_Idle_Clip;
+	static const AnimatorController Obstacle_Controller;
+	//static const GameObject Obstacle_Object;
+
 
 	static const Texture2D Projectile_Blue_Texture;
-	static const AnimationClip Projectile_Blue_Idle;
+	static const AnimationClip Projectile_Blue_Idle_Clip;
 	static const AnimatorController Projectile_Blue_Controller;
-
-	//Obstacle
-	static const Texture2D ObstacleTexture;
-	static const AnimationClip Obstacle_Idle;
-	static const AnimatorController Obstacle_Controller;
-	static const GameObject ObstacleObject;
 #pragma endregion
 };

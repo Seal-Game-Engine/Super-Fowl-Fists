@@ -1,5 +1,5 @@
 #include "AssetManager.h"
-#include "Assets_Scenes.h"
+#include "GlobalMenuScene.h"
 #include "Parallax.h"
 #include "GameEventManager.h"
 #include "MenuEventManager.h"
@@ -10,23 +10,49 @@ using State = AnimatorController::AnimationState;
 
 	#pragma region LandingScene Assets
 	const Texture2D LandingScene_Parallax_Texture = Texture2D("Assets/BlocksParallax.png", Texture2D::FilterMode::Nearest);
-	const Texture2D LandingScene_Title_Texture = Texture2D("Assets/SuperFowlFists.png", Texture2D::FilterMode::Nearest, 2, 1, 96);
 
-	const AnimationClip Title_Idle_Clip = AnimationClip({
-		{ LandingScene_Title_Texture[0], 0.1f },
-		{ LandingScene_Title_Texture[1], 0.1f },
-		}, true);
-	const AnimatorController Title_Controller = AnimatorController({
-		State("Idle", &Title_Idle_Clip),
+		#pragma region Title
+		const Texture2D LandingScene_Title_Texture = Texture2D("Assets/SuperFowlFists.png", Texture2D::FilterMode::Nearest, 2, 1, 96);
+		const AnimationClip Title_Idle_Clip = AnimationClip({
+			{ LandingScene_Title_Texture[0], 0.1f },
+			{ LandingScene_Title_Texture[1], 0.1f },
+			}, true);
+		const AnimatorController Title_Controller = AnimatorController({
+			State("Idle", &Title_Idle_Clip),
+			});
+		const GameObject TitleObject = GameObject(
+			"Title", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<Parallax>(&LandingScene_Parallax_Texture[0], Vector2::left(), 0.01),
+				std::make_shared<Image>(&LandingScene_Title_Texture[0]),
+				std::make_shared<Animator>(&Title_Controller),
 		});
+		#pragma endregion
+		#pragma region PressEnter
+		const Texture2D LandingScene_Enter_Texture = Texture2D("Assets/PressEnter.png", Texture2D::FilterMode::Nearest, 2);
+		const AnimationClip Enter_Idle_Clip = AnimationClip({
+		{ LandingScene_Enter_Texture[0], 0.1f },
+		{ LandingScene_Enter_Texture[1], 0.1f },
+			}, true);
+		const AnimatorController Enter_Controller = AnimatorController({
+			State("Idle", &Enter_Idle_Clip),
+			});
+		const GameObject EnterObject = GameObject(
+			"Title", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+				std::make_shared<Image>(&LandingScene_Enter_Texture[0]),
+				std::make_shared<Animator>(&Enter_Controller),
+		});
+		#pragma endregion
+		#pragma region SealEngine c
+		const Texture2D SealEngineC_Texture = Texture2D("Assets/SealEngine.png", Texture2D::FilterMode::Nearest, 1,1,208);
+		const GameObject SealEngineCObject = GameObject(
+			"Title", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<Image>(&SealEngineC_Texture[0]),
+		});
+		#pragma endregion
 
-	const GameObject TitleObject = GameObject(
-		"Title", "Untagged",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Parallax>(&LandingScene_Parallax_Texture[0], Vector2::left(), 0.01),
-			std::make_shared<Image>(&LandingScene_Title_Texture[0]),
-			std::make_shared<Animator>(&Title_Controller),
-	});
 	const GameObject LandingEventManagerObject = GameObject(
 		"LandingEventManager", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
@@ -38,6 +64,9 @@ using State = AnimatorController::AnimationState;
 		#pragma region Ui
 		{&TitleObject, Transform(Vector2(0, 0.5f))},
 		{&LandingEventManagerObject, Transform()},
+		{&EnterObject, Transform(Vector2(0, -2.0f))},
+		{&SealEngineCObject, Transform(Vector2(0, -2.5f))},
+
 		#pragma endregion
 		{&AssetManager::MainCamera, Transform()},
 		});
@@ -123,7 +152,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Image>(&Button_2P_Texture[0]),
 				std::make_shared<Animator>(&Button_2P_Controller),
 				std::make_shared<Button>(
-					[](auto) { SceneManager::LoadScene(3); },
+					[](auto) { SceneManager::LoadScene(5); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
