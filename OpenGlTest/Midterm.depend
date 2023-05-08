@@ -192,7 +192,7 @@
 	"Transform.h"
 	"Player.h"
 
-1683500371 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
+1683502629 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\assetmanager.cpp
 	"AssetManager.h"
 	"Assets_Scenes.h"
 	"Parallax.h"
@@ -1090,7 +1090,7 @@
 	"UiElement.h"
 	"../IRenderer.h"
 
-1683500810 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\ui\button.h
+1683502629 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\ui\button.h
 	"UiElement.h"
 	"../IRenderer.h"
 	<functional>
@@ -1224,7 +1224,7 @@
 	"Camera.h"
 	<array>
 
-1683499984 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\ui\button.cpp
+1683502629 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\ui\button.cpp
 	"Button.h"
 	"../SceneManager.h"
 	"../GameObject.h"

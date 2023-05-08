@@ -91,8 +91,8 @@ using State = AnimatorController::AnimationState;
 				std::make_shared<Animator>(&Button_1P_Controller),
 				std::make_shared<Button>(
 					[](auto) { SceneManager::LoadScene(3); },
-					[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", true); },
-					[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", false); }
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
 		});
 		#pragma endregion
@@ -124,8 +124,8 @@ using State = AnimatorController::AnimationState;
 				std::make_shared<Animator>(&Button_2P_Controller),
 				std::make_shared<Button>(
 					[](auto) { SceneManager::LoadScene(3); },
-					[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", true); },
-					[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", false); }
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
 		});
 		#pragma endregion
@@ -157,8 +157,8 @@ using State = AnimatorController::AnimationState;
 				std::make_shared<Animator>(&Button_Help_Controller),
 				std::make_shared<Button>(
 					[](auto) { SceneManager::LoadScene(3); },
-					[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", true); },
-					[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", false); }
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
 		});
 		#pragma endregion
@@ -190,8 +190,8 @@ using State = AnimatorController::AnimationState;
 					std::make_shared<Animator>(&Button_Credits_Controller),
 					std::make_shared<Button>(
 						[](auto) { SceneManager::LoadScene(3); },
-						[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", true); },
-						[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", false); }
+						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),
 			});
 			#pragma endregion
@@ -221,8 +221,8 @@ using State = AnimatorController::AnimationState;
 					std::make_shared<Animator>(&Button_Quit_Controller),
 					std::make_shared<Button>(
 						[](auto) { SceneManager::LoadScene(3); },
-						[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", true); },
-						[](auto button) { button->gameObject->GetComponent<Animator>()->SetBool("selected", false); }
+						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),
 			});
 			#pragma endregion
