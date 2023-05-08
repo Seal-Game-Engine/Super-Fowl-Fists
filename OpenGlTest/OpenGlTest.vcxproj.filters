@@ -54,6 +54,7 @@
     <ClCompile Include="SealEngine\Ui\UiElement.cpp" />
     <ClCompile Include="SealEngine\Ui\Panel.cpp" />
     <ClCompile Include="Testing\TestScene.cpp" />
+    <ClCompile Include="SealEngine\FontRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="SealEngine\Ui\UiElement.h" />
     <ClInclude Include="SealEngine\Ui\Panel.h" />
     <ClInclude Include="Testing\TestScene.h" />
+    <ClInclude Include="SealEngine\FontRender.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\font.png" />
