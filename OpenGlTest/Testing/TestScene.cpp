@@ -12,27 +12,33 @@ using namespace SealEngine;
 using namespace SealEngine::Ui;
 using State = AnimatorController::AnimationState;
 
+const GameObject MainCamera = GameObject(
+	"Main Camera", "MainCamera",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
+});
+
 const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
 const Texture2D Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3, 1);
 
 #pragma region Xwing
 	#pragma region Ship
-	const Texture2D Xwing_Texture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
+	const Texture2D TestScene::Xwing_Texture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
 	#pragma region Clips
 	const AnimationClip Xwing_Idle = AnimationClip({
-		{ Xwing_Texture[0], 0.05f },
-		{ Xwing_Texture[3], 0.05f },
+		{ TestScene::Xwing_Texture[0], 0.05f },
+		{ TestScene::Xwing_Texture[3], 0.05f },
 		}, true);
 	const AnimationClip Xwing_Left = AnimationClip({
-		{ Xwing_Texture[1], 0.05f },
-		{ Xwing_Texture[4], 0.05f },
+		{ TestScene::Xwing_Texture[1], 0.05f },
+		{ TestScene::Xwing_Texture[4], 0.05f },
 		}, true);
 	const AnimationClip Xwing_Right = AnimationClip({
-		{ Xwing_Texture[2], 0.05f },
-		{ Xwing_Texture[5], 0.05f },
+		{ TestScene::Xwing_Texture[2], 0.05f },
+		{ TestScene::Xwing_Texture[5], 0.05f },
 		}, true);
 	#pragma endregion
-	const AnimatorController Xwing_Controller = AnimatorController({
+	const AnimatorController TestScene::Xwing_Controller = AnimatorController({
 		State("Idle", &Xwing_Idle, {
 			{ "Left", false, 1, [](auto& animator) { return animator.GetInteger("x") < 0; } },
 			{ "Right", false, 1, [](auto& animator) { return animator.GetInteger("x") > 0; } },
@@ -44,7 +50,7 @@ const Texture2D Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::F
 			{ "Idle", false, 1, [](auto& animator) { return animator.GetInteger("x") <= 0; } },
 		}),
 		});;
-	const GameObject Xwing_Object = GameObject(
+	const GameObject TestScene::Xwing_Object = GameObject(
 		"Xwing", "Player",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Xwing_Texture[0], false, false),
@@ -126,17 +132,17 @@ const GameObject ButtonTest = GameObject(
 			}),*/
 });
 
-Scene Assets_Scenes::XwingScene = Scene({
+Scene TestScene::TestingScene = Scene({
 #pragma region Ui
 	{&GameEventManagerObject, Transform(Vector3(2, 0, 0))},
 	{&OtherGameEventManagerObject, Transform(Vector3(-1, 0, 0))},
 	{&ButtonTest, Transform(Vector2(-3, 2))},
 #pragma endregion
 
-	{&AssetManager::MainCamera, Transform()},
+	{&MainCamera, Transform()},
 	{&SpaceBackgroundObject, Transform()},
 	{&Ground, Transform(Vector3(0, -2, 0), Vector3::zero(), Vector3(50, 1, 1))},
-	{&Xwing_Object, Transform(Vector3(0, -1, 0))},
+	{&TestScene::Xwing_Object, Transform(Vector3(0, -1, 0))},
 	//{&ObstacleSpawner_Object, Transform()},
 	});
 #pragma endregion

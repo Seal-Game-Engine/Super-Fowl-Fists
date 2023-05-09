@@ -1,5 +1,5 @@
 #include "ObstacleSpawner.h"
-#include "../AssetManager.h"
+#include "../Prefab.h"
 #include "../Testing/TestScene.h"
 
 void ObstacleSpawner::Update() {

@@ -1,9 +1,12 @@
 #include "../SealEngine.h"
 //#include "Font.h"
-#include "../AssetManager.h"
+#include "../Prefab.h"
 #include "../GlobalMenuScene.h"
+#include "../GlobalGameScene.h"
+#include "../Testing/TestScene.h"
 #include "Scene.h"
 #include "Camera.h"
+
 using namespace SealEngine::InputSystem;
 
 int SceneManager::currentSceneId = 0;
@@ -112,12 +115,13 @@ bool SceneManager::InitGl() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Texture2D::LoadUninitializedTextures();
 
-    scenes.emplace_back(&Assets_Scenes::LandingScene);
-    scenes.emplace_back(&Assets_Scenes::MenuScene);
-    scenes.emplace_back(&Assets_Scenes::TutorialScene);
-    scenes.emplace_back(&Assets_Scenes::GameScene);
-    scenes.emplace_back(&Assets_Scenes::TestingScene);
-    scenes.emplace_back(&Assets_Scenes::XwingScene);
+    scenes.emplace_back(&GlobalMenuScene::LandingScene);    //Scene 0 
+    scenes.emplace_back(&GlobalMenuScene::MenuScene);       //Scene 1
+    scenes.emplace_back(&GlobalMenuScene::CreditScene);     //Scene 2
+    scenes.emplace_back(&GlobalGameScene::TutorialScene);   //Scene 3
+    scenes.emplace_back(&GlobalGameScene::Lv0Scene);      //Scene 4
+    scenes.emplace_back(&GlobalGameScene::Lv1Scene);      //Scene 5
+    scenes.emplace_back(&TestScene::TestingScene);          //Scene 6
     LoadScene(0);
     return true;
 }

@@ -1,6 +1,6 @@
 #include "Boss.h"
 #include "Projectile.h"
-#include "AssetManager.h"
+#include "Prefab.h"
 #include <cmath>
 
 //const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::MiniTikeMyson_Controller, &AssetManager::BigTikeMyson_Controller }; //change to small and big guy controller

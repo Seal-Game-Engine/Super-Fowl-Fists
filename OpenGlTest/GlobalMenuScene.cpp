@@ -1,17 +1,24 @@
-#include "AssetManager.h"
+
 #include "GlobalMenuScene.h"
 #include "Parallax.h"
 #include "GameEventManager.h"
 #include "MenuEventManager.h"
 #include "LandingEventManager.h"
+#include "CreditEventManager.h"
 using State = AnimatorController::AnimationState;
+
+const GameObject MainCamera = GameObject(
+	"Main Camera", "MainCamera",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
+});
 
 #pragma region LandingScene
 
 	#pragma region LandingScene Assets
-	const Texture2D LandingScene_Parallax_Texture = Texture2D("Assets/BlocksParallax.png", Texture2D::FilterMode::Nearest);
 
 		#pragma region Title
+		const Texture2D LandingScene_Parallax_Texture = Texture2D("Assets/BlocksParallax.png", Texture2D::FilterMode::Nearest);
 		const Texture2D LandingScene_Title_Texture = Texture2D("Assets/SuperFowlFists.png", Texture2D::FilterMode::Nearest, 2, 1, 96);
 		const AnimationClip Title_Idle_Clip = AnimationClip({
 			{ LandingScene_Title_Texture[0], 0.1f },
@@ -52,15 +59,17 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Image>(&SealEngineC_Texture[0]),
 		});
 		#pragma endregion
+		#pragma region TitleInteractions
+		const GameObject LandingEventManagerObject = GameObject(
+			"LandingEventManager", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<LandingEventManager>(),
+		});
+		#pragma endregion
 
-	const GameObject LandingEventManagerObject = GameObject(
-		"LandingEventManager", "Untagged",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<LandingEventManager>(),
-	});
 	#pragma endregion
 	#pragma region LandingSceneProperties
-	Scene Assets_Scenes::LandingScene = Scene({
+	Scene GlobalMenuScene::LandingScene = Scene({
 		#pragma region Ui
 		{&TitleObject, Transform(Vector2(0, 0.5f))},
 		{&LandingEventManagerObject, Transform()},
@@ -68,7 +77,7 @@ using State = AnimatorController::AnimationState;
 		{&SealEngineCObject, Transform(Vector2(0, -2.5f))},
 
 		#pragma endregion
-		{&AssetManager::MainCamera, Transform()},
+		{&MainCamera, Transform()},
 		});
 	#pragma endregion
 
@@ -119,7 +128,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Image>(&Button_1P_Texture[0]),
 				std::make_shared<Animator>(&Button_1P_Controller),
 				std::make_shared<Button>(
-					[](auto) { SceneManager::LoadScene(3); },
+					[](auto) { SceneManager::LoadScene(4); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
@@ -185,7 +194,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Image>(&Button_Help_Texture[0]),
 				std::make_shared<Animator>(&Button_Help_Controller),
 				std::make_shared<Button>(
-					[](auto) { SceneManager::LoadScene(3); },
+					[](auto) { SceneManager::LoadScene(6); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
@@ -218,7 +227,7 @@ using State = AnimatorController::AnimationState;
 				std::make_shared<Image>(&Button_Credits_Texture[0]),
 					std::make_shared<Animator>(&Button_Credits_Controller),
 					std::make_shared<Button>(
-						[](auto) { SceneManager::LoadScene(3); },
+						[](auto) { SceneManager::LoadScene(2); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),
@@ -264,7 +273,7 @@ using State = AnimatorController::AnimationState;
 		#pragma endregion
 	#pragma endregion
 	#pragma region MenuScene Properties
-	Scene Assets_Scenes::MenuScene = Scene({
+	Scene GlobalMenuScene::MenuScene = Scene({
 		#pragma region Ui
 		{&Menu_Image_Object, Transform()},
 		{&Button_1P_Object, Transform(Vector2(0, -0.5))},
@@ -275,8 +284,43 @@ using State = AnimatorController::AnimationState;
 		{&MenuEventManager_Object, Transform()},
 		{&TitleObject, Transform(Vector3(0, 1.5f, 0), Vector3::zero(), Vector3(0.75f, 0.75f, 1))},
 	#pragma endregion
-		{&AssetManager::MainCamera, Transform()},
+		{&MainCamera, Transform()},
 		});
 	#pragma endregion
 
+#pragma endregion
+
+#pragma region CreditScene
+	#pragma region CreditScene Assets
+		#pragma region Credit
+			const Texture2D Credit_Image_Texture = Texture2D("Assets/Game_Credit.png", Texture2D::FilterMode::Nearest);
+			const AnimationClip Credit_Image_Idle_Clip = AnimationClip({
+				{ Credit_Image_Texture[0], 0.1f },
+				//{ Credit_Image_Texture[1], 0.1f },
+				}, true);
+			const AnimatorController Credit_Image_Controller = AnimatorController({ State("Idle", &Credit_Image_Idle_Clip) });
+			const GameObject Credit_Image_Object = GameObject(
+				"MenuOptions", "Untagged",
+				std::vector<std::shared_ptr<MonoBehaviour>>{
+				std::make_shared<Panel>(&Credit_Image_Texture[0]),
+					std::make_shared<Animator>(&Credit_Image_Controller)
+			});
+		#pragma endregion
+		#pragma region CreditInteractions
+				const GameObject CreditSceneManager_Object = GameObject(
+					"MenuEventManager", "Untagged",
+					std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<CreditEventManager>(),
+				});
+			#pragma endregion
+	#pragma endregion
+	#pragma region CreditScene Properties
+				Scene GlobalMenuScene::CreditScene = Scene({
+					#pragma region Ui
+					{&Credit_Image_Object, Transform()},
+					{&CreditSceneManager_Object, Transform()},
+				#pragma endregion
+					{&MainCamera, Transform()},
+					});
+	#pragma endregion
 #pragma endregion

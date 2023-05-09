@@ -6,7 +6,7 @@
 using namespace SealEngine;
 using namespace SealEngine::Ui;
 
-#include "../../AssetManager.h"
+#include "../../Prefab.h"
 
 Button::Button(std::function<void(Button*)> onClick, std::function<void(Button*)> onSelected, std::function<void(Button*)> onDeselected)
 	:onClick(onClick), onSelected(onSelected), onDeselected(onDeselected) {}

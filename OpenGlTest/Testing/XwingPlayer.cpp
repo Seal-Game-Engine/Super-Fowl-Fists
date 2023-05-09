@@ -1,6 +1,6 @@
 #include "XwingPlayer.h"
 #include "../Projectile.h"
-#include "../AssetManager.h"
+#include "../Prefab.h"
 #include <cmath>
 
 void XwingPlayer::Awake() {
@@ -41,7 +41,7 @@ void XwingPlayer::Update() {
 }
 
 void XwingPlayer::FireProjectile() {
-	Instantiate(AssetManager::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
+	Instantiate(Prefab::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
 	_nextFire = Time::time() + 0.15f;
 }
 

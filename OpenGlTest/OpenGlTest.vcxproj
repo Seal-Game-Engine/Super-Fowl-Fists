@@ -171,7 +171,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Prefab.cpp" />
+    <ClCompile Include="CreditEventManager.cpp" />
+    <ClCompile Include="GlobalGameScene.cpp" />
     <ClCompile Include="GlobalMenuScene.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="SealEngine\FontRender.cpp" />
@@ -227,7 +229,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="Testing\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Prefab.h" />
+    <ClInclude Include="CreditEventManager.h" />
+    <ClInclude Include="GlobalGameScene.h" />
     <ClInclude Include="GlobalMenuScene.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="SealEngine\FontRender.h" />
