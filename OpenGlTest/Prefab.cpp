@@ -10,6 +10,7 @@ using State = AnimatorController::AnimationState;
 
 #include "Player.h"
 #include "Projectile.h"
+#include "Hitbox.h"
 #include "TikeMyson_Player.h"
 #include "Parallax.h"
 #include "Boss.h"
@@ -334,7 +335,8 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Animator>(&Projectile_Blue_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(0.125f),
-			std::make_shared<Projectile>(),
+			std::make_shared<Projectile>(8, 1.5f),
+			std::make_shared<Hitbox>(),
 	});
 	#pragma endregion
 

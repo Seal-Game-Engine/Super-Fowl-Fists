@@ -152,6 +152,8 @@
 		<Unit filename="SealEngine/Ui/Button.h" />
 		<Unit filename="SealEngine/Ui/Image.cpp" />
 		<Unit filename="SealEngine/Ui/Image.h" />
+		<Unit filename="SealEngine/Ui/Panel.cpp" />
+		<Unit filename="SealEngine/Ui/Panel.h" />
 		<Unit filename="SealEngine/Ui/UiElement.cpp" />
 		<Unit filename="SealEngine/Ui/UiElement.h" />
 		<Unit filename="SealEngine/Vector2.cpp" />

@@ -3,8 +3,37 @@
 #include "Prefab.h"
 #include <cmath>
 
-void Player::TakeDamage(float damage)
-{
+//void Player::TakeDamage(float damage)
+//{
+//}
+
+Player::InputData Player::GetInputData(ControlScheme controlScheme) {
+	switch (controlScheme) {
+	case ControlScheme::Solo:
+		return InputData{
+			Input::GetAxisRaw(Input::Axis::Horizontal),
+			Input::GetAxisRaw(Input::Axis::Vertical),
+			(
+				Input::GetKeyUp(KeyCode::W) || Input::GetKeyUp(KeyCode::A) || Input::GetKeyUp(KeyCode::S) || Input::GetKeyUp(KeyCode::D) ||
+				Input::GetKeyUp(KeyCode::UpArrow) || Input::GetKeyUp(KeyCode::DownArrow) || Input::GetKeyUp(KeyCode::LeftArrow) || Input::GetKeyUp(KeyCode::RightArrow)
+			),
+
+		};
+	case ControlScheme::Player1:
+		return InputData{
+			(float)(Input::GetKey(KeyCode::A) ? -1 : 0) + (Input::GetKey(KeyCode::D) ? 1 : 0),
+			(float)(Input::GetKey(KeyCode::W) ? 1 : 0) + (Input::GetKey(KeyCode::S) ? -1 : 0),
+			Input::GetKeyUp(KeyCode::W) || Input::GetKeyUp(KeyCode::A) || Input::GetKeyUp(KeyCode::S) || Input::GetKeyUp(KeyCode::D),
+
+		};
+	case ControlScheme::Player2:
+		return InputData{
+			(float)(Input::GetKey(KeyCode::LeftArrow) ? -1 : 0) + (Input::GetKey(KeyCode::RightArrow) ? 1 : 0),
+			(float)(Input::GetKey(KeyCode::UpArrow) ? 1 : 0) + (Input::GetKey(KeyCode::DownArrow) ? -1 : 0),
+			Input::GetKeyUp(KeyCode::UpArrow) || Input::GetKeyUp(KeyCode::DownArrow) || Input::GetKeyUp(KeyCode::LeftArrow) || Input::GetKeyUp(KeyCode::RightArrow),
+
+		};
+	}
 }
 
 void Player::Awake(){

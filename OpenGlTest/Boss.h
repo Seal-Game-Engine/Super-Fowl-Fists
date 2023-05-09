@@ -1,11 +1,11 @@
 #pragma once
 #include "SealEngine.h"
-#include "IDamageable.h"
+#include "Entity.h"
 using namespace SealEngine;
 
-class Boss : public MonoBehaviour, public IDamageable {
+class Boss : public Entity {
 public:
-	void TakeDamage(float damage) override;
+	//void TakeDamage(float damage) override;
 
 	void Awake() override;
 	void Update() override;

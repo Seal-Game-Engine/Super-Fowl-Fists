@@ -4,9 +4,10 @@
 #include "../GlobalMenuScene.h"
 #include "TestScene.h"
 
-#include "../Testing/XwingPlayer.h"
-#include "../Testing/Obstacle.h"
-#include "../Testing/ObstacleSpawner.h"
+#include "../Hitbox.h"
+#include "XwingPlayer.h"
+#include "Obstacle.h"
+#include "ObstacleSpawner.h"
 
 using namespace SealEngine;
 using namespace SealEngine::Ui;

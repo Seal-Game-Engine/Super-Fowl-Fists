@@ -1,8 +1,9 @@
 #pragma once
 #include "../SealEngine.h"
 using namespace SealEngine;
+#include "../Entity.h"
 
-class XwingPlayer : public MonoBehaviour {
+class XwingPlayer : public Entity {
 public:
 	void FireProjectile();
 

@@ -1,14 +1,23 @@
 #pragma once
-#include "SealEngine.h"
-#include "IDamageable.h"
 #include <functional>
+#include "SealEngine.h"
 using namespace SealEngine;
+#include "Entity.h"
 
-class Player : public MonoBehaviour, public IDamageable {
+
+class Player : public Entity {
 public:
+	struct InputData {
+		float x = 0;
+		float y = 0;
+		bool anyMovementUp = false;
+
+		bool attackDown = false;
+	};
 	enum class ControlScheme { Solo, Player1, Player2 };
 
-	void TakeDamage(float damage) override;
+	InputData GetInputData(ControlScheme controlScheme);
+	//void TakeDamage(DamageData data, Vector2 knockbackDirection) override;
 
 	void Awake() override;
 	void Update() override;

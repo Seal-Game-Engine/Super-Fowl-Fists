@@ -1,6 +1,7 @@
 
 #include "GlobalMenuScene.h"
 #include "Parallax.h"
+#include "GameplayData.h"
 #include "EventManagers/GameEventManager.h"
 #include "EventManagers/MenuEventManager.h"
 #include "EventManagers/LandingEventManager.h"
@@ -128,7 +129,7 @@ const GameObject MainCamera = GameObject(
 			std::make_shared<Image>(&Button_1P_Texture[0]),
 				std::make_shared<Animator>(&Button_1P_Controller),
 				std::make_shared<Button>(
-					[](auto) { SceneManager::LoadScene(4); },
+					[](auto) { GameplayData::playerCount = 1; SceneManager::LoadScene(4); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
@@ -161,7 +162,7 @@ const GameObject MainCamera = GameObject(
 			std::make_shared<Image>(&Button_2P_Texture[0]),
 				std::make_shared<Animator>(&Button_2P_Controller),
 				std::make_shared<Button>(
-					[](auto) { SceneManager::LoadScene(5); },
+					[](auto) { GameplayData::playerCount = 2; SceneManager::LoadScene(5); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),

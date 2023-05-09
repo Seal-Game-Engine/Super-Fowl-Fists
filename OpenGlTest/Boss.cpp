@@ -5,9 +5,7 @@
 
 //const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::MiniTikeMyson_Controller, &AssetManager::BigTikeMyson_Controller }; //change to small and big guy controller
 
-void Boss::TakeDamage(float damage)
-{
-}
+
 
 void Boss::Awake() {
 	_renderer = gameObject->GetComponent<SpriteRenderer>();
