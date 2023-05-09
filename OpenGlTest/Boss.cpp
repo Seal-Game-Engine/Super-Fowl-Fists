@@ -1,6 +1,7 @@
 #include "Boss.h"
-#include "Projectile.h"
 #include "Prefab.h"
+#include "Projectile.h"
+#include "Hitbox.h"
 #include <cmath>
 
 //const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::MiniTikeMyson_Controller, &AssetManager::BigTikeMyson_Controller }; //change to small and big guy controller
@@ -71,6 +72,7 @@ void Boss::BombAttack(){
 	if (Time::time() >= _nextBombTime) {
 		GameObject* bomb = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + Vector2(transform()->scale.x(), -0.125) * 1);
 		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), 0), gameObject);
+		bomb->GetComponent<Hitbox>()->data.entity = this;
 
 		_nextBombTime = Time::time() + _bombAttackCooldown;
 	}

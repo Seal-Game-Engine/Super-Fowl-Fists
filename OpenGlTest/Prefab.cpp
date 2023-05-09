@@ -50,7 +50,7 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::MiniTikeMyson_Texture[17], 0.1f }
 			}, false);
 	#pragma endregion
-	const Texture2D Prefab::BigTikeMyson_Texture = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
+	const Texture2D Prefab::BigTikeMyson_Texture = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 6);
 	#pragma region Clips
 		const AnimationClip BigTikeMyson_Idle = AnimationClip({
 			{ Prefab::BigTikeMyson_Texture[8], 0.1f },
@@ -108,7 +108,7 @@ using State = AnimatorController::AnimationState;
 			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
 		}),
 		State("Mini_Attack", &MiniTikeMyson_Attack, {
-			{ "Mini_Idle", false, 1}
+			{ "Mini_Idle", true, 1}
 		}),
 		State("Mini_Hurt", &MiniTikeMyson_Hurt, {
 			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },

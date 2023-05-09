@@ -39,12 +39,13 @@ private:
 	CircleCollider2D* _collider = nullptr;
 	AudioSource* _audioSource = nullptr;
 
+	float _maxVerticalVelocity = 6;
 	float _speed = 4.0f;
 	bool _canJump = true;
 	float _nextFire = 0;
 
-	enum class PowerState : int { Small, Buff };
-	PowerState _powerState = PowerState::Small;
+	enum class PowerState : int { Mini, Big };
+	PowerState _powerState = PowerState::Mini;
 
 	Player* _Clone() const override { return new Player(*this); }
 };

@@ -33,7 +33,6 @@ private:
 	const float _bombAttackDuration = 3;
 	const float _bombAttackCooldown = 0.5f;
 	float _nextBombTime = 0;
-	//static const std::array<const AnimatorController*, 2> animatorControllers;
 
 	Boss* _Clone() const override { return new Boss(*this); }
 };

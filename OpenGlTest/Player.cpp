@@ -15,8 +15,8 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 			Input::GetKeyUp(KeyCode::A) || Input::GetKeyUp(KeyCode::D) || Input::GetKeyUp(KeyCode::LeftArrow) || Input::GetKeyUp(KeyCode::RightArrow),
 
 			Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow),
-			//Input::GetAxisRaw(Input::Axis::Vertical),
 
+			Input::GetKeyDown(KeyCode::H) || Input::GetKeyDown(KeyCode::Comma)
 		};
 	case ControlScheme::Player1:
 		return InputData{
@@ -25,6 +25,7 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 
 			Input::GetKeyDown(KeyCode::W),
 
+			Input::GetKeyDown(KeyCode::H)
 		};
 	case ControlScheme::Player2:
 		return InputData{
@@ -32,6 +33,8 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 			Input::GetKeyUp(KeyCode::LeftArrow) || Input::GetKeyUp(KeyCode::RightArrow),
 
 			Input::GetKeyDown(KeyCode::UpArrow),
+
+			Input::GetKeyDown(KeyCode::Comma)
 		};
 	}
 }
@@ -54,21 +57,36 @@ void Player::Update() {
 	else _rigidbody->velocity = Vector2(inputData.horizontal * _speed, _rigidbody->velocity.y());
 
 	if (_canJump && inputData.jumpDown) { 
-		_animator->Play("Mini_Jump");
+		switch (_powerState) {
+		case PowerState::Mini: _animator->Play("Mini_Jump"); break;
+		case PowerState::Big: _animator->Play("Big_Jump"); break;
+		}
 		_rigidbody->AddForce(Vector2::up() * 5.0f, Rigidbody2D::ForceMode2D::Impulse);
 		_canJump = false;
 	}
-	if(_rigidbody->velocity.y() > 6) _rigidbody->velocity = Vector2(_rigidbody->velocity.x(), 6);
+	if(_rigidbody->velocity.y() > _maxVerticalVelocity) _rigidbody->velocity = Vector2(_rigidbody->velocity.x(), _maxVerticalVelocity);
 
 	if (Input::GetKeyDown(KeyCode::Space)) {
-		InvokeRepeating([&]() {
-			_powerState = (PowerState)(((int)_powerState + 1) % 2);
-			//_animator->SetAnimatorController(animatorControllers[(int)_powerState]);
-			}, 1, 1);
+		_powerState = (PowerState)(((int)_powerState + 1) % 2);
+		switch (_powerState) {
+		case PowerState::Mini: 
+			_animator->Play("Mini_Idle"); 
+			_collider->radius = miniColliderRadius;
+			_maxVerticalVelocity = 6;
+			break;
+		case PowerState::Big:
+			_animator->Play("Big_Idle"); 
+			_collider->radius = bigColliderRadius;
+			_maxVerticalVelocity = 5;
+			break;
+		}
 	}
 
-	if (Input::GetKeyDown(KeyCode::H)) {
-		_animator->Play("Punch");
+	if (inputData.attackDown) {
+		switch (_powerState) {
+		case PowerState::Mini: _animator->Play("Mini_Attack"); break;
+		case PowerState::Big: _animator->Play("Big_Punch"); break;
+		}
 	}
 
 	_animator->SetBool("isWalking", std::abs(inputData.horizontal) > 0);
