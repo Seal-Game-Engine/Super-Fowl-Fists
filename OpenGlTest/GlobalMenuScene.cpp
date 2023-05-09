@@ -6,13 +6,54 @@
 #include "EventManagers/MenuEventManager.h"
 #include "EventManagers/LandingEventManager.h"
 #include "EventManagers/CreditEventManager.h"
+#include "EventManagers/SealLogoEventManager.h"
 using State = AnimatorController::AnimationState;
-
+#pragma region Shared Assets
 const GameObject MainCamera = GameObject(
 	"Main Camera", "MainCamera",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
 });
+#pragma endregion
+#pragma region SealLogoScene
+	#pragma region SealLogoScene Asset
+		const Texture2D SealLogoScene_Parallax_Texture = Texture2D("Assets/BlocksParallax.png", Texture2D::FilterMode::Nearest);
+		const Texture2D SealLogo_Texture = Texture2D("Assets/SealEngineLogo.png", Texture2D::FilterMode::Nearest, 4, 1,  120);
+		const AnimationClip SealLogo_Idle_Clip = AnimationClip({
+		{ SealLogo_Texture[0], 0.1f },
+		{ SealLogo_Texture[1], 0.1f },
+		{ SealLogo_Texture[2], 0.1f },
+		{ SealLogo_Texture[3], 0.1f },
+				}, true);
+		const AnimatorController SealLogoScene_Controller = AnimatorController({
+			State("Idle", &SealLogo_Idle_Clip),
+			});
+		const GameObject SealLogoScene_Object = GameObject(
+			"Title", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<Parallax>(&SealLogoScene_Parallax_Texture[0], Vector2::left(), 0.01),
+				std::make_shared<Image>(&SealLogo_Texture[0]),
+				std::make_shared<Animator>(&SealLogoScene_Controller),
+		});
+	#pragma region SealLogoInteractions
+		const GameObject SealLogoEventManager_Object = GameObject(
+			"LandingEventManager", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<SealLogoEventManager>(),
+		});
+	#pragma endregion
+	#pragma endregion
+	#pragma region SealLogoScene Properties
+		Scene GlobalMenuScene::SealLogoScene = Scene({
+		#pragma region Ui
+		{&SealLogoScene_Object, Transform(Vector2(0, 0.5f))},
+		{&SealLogoEventManager_Object, Transform()},
+		//{&SealEngineCObject, Transform(Vector2(0, -2.5f))},
+		#pragma endregion
+		{&MainCamera, Transform()},
+			});
+	#pragma endregion
+#pragma endregion
 
 #pragma region LandingScene
 
@@ -45,7 +86,7 @@ const GameObject MainCamera = GameObject(
 		const AnimatorController Enter_Controller = AnimatorController({
 			State("Idle", &Enter_Idle_Clip),
 			});
-		const GameObject EnterObject = GameObject(
+		const GameObject Enter_Object = GameObject(
 			"Title", "Untagged",
 			std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Image>(&LandingScene_Enter_Texture[0]),
@@ -74,7 +115,7 @@ const GameObject MainCamera = GameObject(
 		#pragma region Ui
 		{&TitleObject, Transform(Vector2(0, 0.5f))},
 		{&LandingEventManagerObject, Transform()},
-		{&EnterObject, Transform(Vector2(0, -2.0f))},
+		{&Enter_Object, Transform(Vector2(0, -2.0f))},
 		{&SealEngineCObject, Transform(Vector2(0, -2.5f))},
 
 		#pragma endregion
@@ -259,7 +300,7 @@ const GameObject MainCamera = GameObject(
 				std::make_shared<Image>(&Button_Quit_Texture[0]),
 					std::make_shared<Animator>(&Button_Quit_Controller),
 					std::make_shared<Button>(
-						[](auto) { SceneManager::LoadScene(3); },
+						[](auto) { SceneManager::Quit(); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),

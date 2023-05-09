@@ -18,59 +18,83 @@ using State = AnimatorController::AnimationState;
 
 #pragma region PlayerCharacters
 	#pragma region TikeMyson
-	const Texture2D Prefab::MiniTikeMysonTexture = Texture2D("Assets/TikeMyson_Mini.png", Texture2D::FilterMode::Nearest, 3, 6);
+	const Texture2D Prefab::MiniTikeMyson_Texture = Texture2D("Assets/TikeMyson_Mini.png", Texture2D::FilterMode::Nearest, 3, 6);
 	#pragma region Clips
 		const AnimationClip MiniTikeMyson_Idle = AnimationClip({
-			{ Prefab::MiniTikeMysonTexture[0], 0.1f },
-			{ Prefab::MiniTikeMysonTexture[1], 0.1f },
-			{ Prefab::MiniTikeMysonTexture[2], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[0], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[1], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[2], 0.1f },
 			}, true);
 		const AnimationClip MiniTikeMyson_Walk = AnimationClip({
-			{ Prefab::MiniTikeMysonTexture[3], 0.1f },
-			{ Prefab::MiniTikeMysonTexture[4], 0.1f },
-			{ Prefab::MiniTikeMysonTexture[3], 0.1f },
-			{ Prefab::MiniTikeMysonTexture[5], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[3], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[4], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[3], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[5], 0.1f },
 			}, true);
 		const AnimationClip MiniTikeMyson_Jump = AnimationClip({
-			{ Prefab::MiniTikeMysonTexture[6], 0.1f },
-			{ Prefab::MiniTikeMysonTexture[7], 0.1f },
-			{ Prefab::MiniTikeMysonTexture[8], 0.1f }
+			{ Prefab::MiniTikeMyson_Texture[6], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[7], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[8], 0.1f }
+			}, false);
+		const AnimationClip MiniTikeMyson_Attack = AnimationClip({
+			{ Prefab::MiniTikeMyson_Texture[9], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[10], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[11], 0.1f }
+			}, false);
+		const AnimationClip MiniTikeMyson_Hurt = AnimationClip({
+			{ Prefab::MiniTikeMyson_Texture[12], 0.1f }
+			}, false);
+		const AnimationClip MiniTikeMyson_Die = AnimationClip({
+			{ Prefab::MiniTikeMyson_Texture[15], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[16], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[17], 0.1f }
 			}, false);
 	#pragma endregion
-	const Texture2D Prefab::BigTikeMysonTexture = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
+	const Texture2D Prefab::BigTikeMyson_Texture = Texture2D("Assets/TikeMyson_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
 	#pragma region Clips
 		const AnimationClip BigTikeMyson_Idle = AnimationClip({
-			{ Prefab::BigTikeMysonTexture[8], 0.1f },
-			{ Prefab::BigTikeMysonTexture[9], 0.1f },
-			{ Prefab::BigTikeMysonTexture[10], 0.1f },
-			{ Prefab::BigTikeMysonTexture[11], 0.1f },
-			{ Prefab::BigTikeMysonTexture[12], 0.1f },
-			{ Prefab::BigTikeMysonTexture[13], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[8], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[9], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[10], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[11], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[12], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[13], 0.1f },
 			}, true);
 		const AnimationClip BigTikeMyson_Walk = AnimationClip({
-			{ Prefab::BigTikeMysonTexture[0], 0.1f },
-			{ Prefab::BigTikeMysonTexture[1], 0.1f },
-			{ Prefab::BigTikeMysonTexture[2], 0.1f },
-			{ Prefab::BigTikeMysonTexture[3], 0.1f },
-			{ Prefab::BigTikeMysonTexture[4], 0.1f },
-			{ Prefab::BigTikeMysonTexture[5], 0.1f },
-			{ Prefab::BigTikeMysonTexture[6], 0.1f },
-			{ Prefab::BigTikeMysonTexture[7], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[0], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[1], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[2], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[3], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[4], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[5], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[6], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[7], 0.1f },
 			}, true);
 		const AnimationClip BigTikeMyson_Jump = AnimationClip({
-			{ Prefab::BigTikeMysonTexture[9], 0.1f },
-			{ Prefab::BigTikeMysonTexture[10], 0.1f },
-			{ Prefab::BigTikeMysonTexture[11], 0.1f }
+			{ Prefab::BigTikeMyson_Texture[24], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[25], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[26], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[27], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[28], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[29], 0.1f }
+			}, false);
+		const AnimationClip BigTikeMyson_Power = AnimationClip({
+			{ Prefab::BigTikeMyson_Texture[16], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[17], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[18], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[19], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[20], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[21], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[22], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[23], 0.1f },
 			}, false);
 		const AnimationClip BigTikeMyson_Punch = AnimationClip({
-			{ Prefab::BigTikeMysonTexture[16], 0.1f },
-			{ Prefab::BigTikeMysonTexture[17], 0.1f },
-			{ Prefab::BigTikeMysonTexture[18], 0.1f },
-			{ Prefab::BigTikeMysonTexture[19], 0.1f },
-			{ Prefab::BigTikeMysonTexture[20], 0.1f },
-			{ Prefab::BigTikeMysonTexture[21], 0.1f },
-			{ Prefab::BigTikeMysonTexture[22], 0.1f },
-			{ Prefab::BigTikeMysonTexture[23], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[32], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[33], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[34], 0.1f },
+			}, false);
+		const AnimationClip BigTikeMyson_Hurt = AnimationClip({
+			{ Prefab::BigTikeMyson_Texture[40], 0.1f },
 			}, false);
 	#pragma endregion
 	const AnimatorController Prefab::TikeMyson_Controller = AnimatorController({
@@ -83,6 +107,16 @@ using State = AnimatorController::AnimationState;
 		State("Mini_Jump", &MiniTikeMyson_Jump, {
 			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
 		}),
+		State("Mini_Attack", &MiniTikeMyson_Attack, {
+			{ "Mini_Idle", false, 1}
+		}),
+		State("Mini_Hurt", &MiniTikeMyson_Hurt, {
+			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },
+		}),
+		State("Mini_Die", &MiniTikeMyson_Die, {
+			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isDead"); }},
+		}),
+
 
 		State("Big_Idle", &BigTikeMyson_Idle, {
 			{ "Big_Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
@@ -96,12 +130,18 @@ using State = AnimatorController::AnimationState;
 		State("Big_Punch", &BigTikeMyson_Punch, {
 			{ "Big_Idle", true, 1 },
 		}),
+		State("Big_Power", &BigTikeMyson_Power, {
+			{ "Big_Idle", true, 1 },
+		}),
+		State("Big_Hurt", &BigTikeMyson_Hurt, {
+			{ "Big_Idle", true, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } }
+		})
 		});
 
-	const GameObject Prefab::TikeMysonObject = GameObject(
+	const GameObject Prefab::TikeMyson_Object = GameObject(
 		"Tike Myson", "Player",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&MiniTikeMysonTexture[0], false, false),
+		std::make_shared<SpriteRenderer>(&MiniTikeMyson_Texture[0], false, false),
 			std::make_shared<Animator>(&TikeMyson_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
@@ -110,7 +150,133 @@ using State = AnimatorController::AnimationState;
 	#pragma endregion
 
 	#pragma region Chicken
+	const Texture2D Prefab::MiniChicken_Texture = Texture2D("Assets/Chicken_Mini.png", Texture2D::FilterMode::Nearest, 3, 6);
+#pragma region Clips
+	const AnimationClip MiniChicken_Idle = AnimationClip({
+		{ Prefab::MiniChicken_Texture[0], 0.1f },
+		{ Prefab::MiniChicken_Texture[1], 0.1f },
+		{ Prefab::MiniChicken_Texture[2], 0.1f },
+		}, true);
+	const AnimationClip MiniChicken_Walk = AnimationClip({
+		{ Prefab::MiniChicken_Texture[3], 0.1f },
+		{ Prefab::MiniChicken_Texture[4], 0.1f },
+		{ Prefab::MiniChicken_Texture[3], 0.1f },
+		{ Prefab::MiniChicken_Texture[5], 0.1f },
+		}, true);
+	const AnimationClip MiniChicken_Jump = AnimationClip({
+		{ Prefab::MiniChicken_Texture[6], 0.1f },
+		{ Prefab::MiniChicken_Texture[7], 0.1f },
+		{ Prefab::MiniChicken_Texture[8], 0.1f }
+		}, false);
+	const AnimationClip MiniChicken_Attack = AnimationClip({
+		{ Prefab::MiniChicken_Texture[9], 0.1f },
+		{ Prefab::MiniChicken_Texture[10], 0.1f },
+		{ Prefab::MiniChicken_Texture[11], 0.1f },
+		}, true);
+	const AnimationClip MiniChicken_Hurt = AnimationClip({
+		{ Prefab::MiniChicken_Texture[12], 0.1f },
+		}, true);
+	const AnimationClip MiniChicken_Die = AnimationClip({
+		{ Prefab::MiniChicken_Texture[15], 0.1f },
+		{ Prefab::MiniChicken_Texture[16], 0.1f },
+		{ Prefab::MiniChicken_Texture[17], 0.1f }
+		}, false);
+#pragma endregion
+	const Texture2D Prefab::BigChicken_Texture = Texture2D("Assets/Chicken_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
+#pragma region Clips
+	const AnimationClip BigChicken_Idle = AnimationClip({
+		{ Prefab::BigChicken_Texture[8], 0.1f },
+		{ Prefab::BigChicken_Texture[9], 0.1f },
+		{ Prefab::BigChicken_Texture[10], 0.1f },
+		{ Prefab::BigChicken_Texture[11], 0.1f },
+		{ Prefab::BigChicken_Texture[12], 0.1f },
+		{ Prefab::BigChicken_Texture[13], 0.1f },
+		}, true);
+	const AnimationClip BigChicken_Walk = AnimationClip({
+		{ Prefab::BigChicken_Texture[0], 0.1f },
+		{ Prefab::BigChicken_Texture[1], 0.1f },
+		{ Prefab::BigChicken_Texture[2], 0.1f },
+		{ Prefab::BigChicken_Texture[3], 0.1f },
+		{ Prefab::BigChicken_Texture[4], 0.1f },
+		{ Prefab::BigChicken_Texture[5], 0.1f },
+		{ Prefab::BigChicken_Texture[6], 0.1f },
+		{ Prefab::BigChicken_Texture[7], 0.1f },
+		}, true);
+	const AnimationClip BigChicken_Jump = AnimationClip({
+		{ Prefab::BigChicken_Texture[24], 0.1f },
+		{ Prefab::BigChicken_Texture[25], 0.1f },
+		{ Prefab::BigChicken_Texture[26], 0.1f },
+		{ Prefab::BigChicken_Texture[27], 0.1f },
+		{ Prefab::BigChicken_Texture[28], 0.1f },
+		{ Prefab::BigChicken_Texture[29], 0.1f }
+		}, false);
+	const AnimationClip BigChicken_Power = AnimationClip({
+		{ Prefab::BigChicken_Texture[16], 0.1f },
+		{ Prefab::BigChicken_Texture[17], 0.1f },
+		{ Prefab::BigChicken_Texture[18], 0.1f },
+		{ Prefab::BigChicken_Texture[19], 0.1f },
+		{ Prefab::BigChicken_Texture[20], 0.1f },
+		{ Prefab::BigChicken_Texture[21], 0.1f },
+		}, false);
+	const AnimationClip BigChicken_Punch = AnimationClip({
+		{ Prefab::BigChicken_Texture[32], 0.1f },
+		{ Prefab::BigChicken_Texture[33], 0.1f },
+		{ Prefab::BigChicken_Texture[34], 0.1f },
+		}, false);
+	const AnimationClip BigChicken_Hurt = AnimationClip({
+		{ Prefab::BigChicken_Texture[40], 0.1f },
 
+		}, false);
+#pragma endregion
+	const AnimatorController Prefab::Chicken_Controller = AnimatorController({
+		State("Mini_Idle", &MiniChicken_Idle, {
+			{ "Mini_Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
+		}),
+		State("Mini_Walk", &MiniChicken_Walk, {
+			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
+		}),
+		State("Mini_Jump", &MiniChicken_Jump, {
+			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
+		}),
+		State("Mini_Attack", &MiniChicken_Attack, {
+			{ "Mini_Idle", false, 1},
+		}),
+		State("Mini_Hurt", &MiniChicken_Hurt, {
+			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },
+		}),
+		State("Mini_Die", &MiniChicken_Die, {
+			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isDead"); }},
+		}),
+
+		State("Big_Idle", &BigChicken_Idle, {
+			{ "Big_Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
+		}),
+		State("Big_Walk", &BigChicken_Walk, {
+			{ "Big_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isWalking"); } },
+		}),
+		State("Big_Jump", &BigChicken_Jump, {
+			{ "Big_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
+		}),
+		State("Big_Punch", &BigChicken_Punch, {
+			{ "Big_Idle", true, 1 },
+		}),
+		State("Big_Power", &BigChicken_Power, {
+			{ "Big_Idle", true, 1 },
+		}),
+		State("Big_Hurt", &BigChicken_Hurt, {
+			{ "Big_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },
+		}),
+		});
+
+	const GameObject Prefab::Chicken_Object = GameObject(
+		"Tike Myson", "Player",
+		std::vector<std::shared_ptr<MonoBehaviour>>{
+		std::make_shared<SpriteRenderer>(&MiniChicken_Texture[0], false, false),
+			std::make_shared<Animator>(&Chicken_Controller),
+			std::make_shared<Rigidbody2D>(),
+			std::make_shared<CircleCollider2D>(),
+			std::make_shared<TikeMyson_Player>(),
+	});
 	#pragma endregion
 
 #pragma endregion

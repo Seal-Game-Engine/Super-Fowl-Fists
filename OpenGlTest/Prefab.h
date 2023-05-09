@@ -8,10 +8,15 @@ class Prefab {
 public:
 
 #pragma region PlayerCharacters
-	static const Texture2D MiniTikeMysonTexture;
-	static const Texture2D BigTikeMysonTexture;
+	static const Texture2D MiniTikeMyson_Texture;
+	static const Texture2D BigTikeMyson_Texture;
 	static const AnimatorController TikeMyson_Controller;
-	static const GameObject TikeMysonObject;
+	static const GameObject TikeMyson_Object;
+
+	static const Texture2D MiniChicken_Texture;
+	static const Texture2D BigChicken_Texture;
+	static const AnimatorController Chicken_Controller;
+	static const GameObject Chicken_Object;
 #pragma endregion
 	static const GameObject ProjectileObject_Blue;
 
