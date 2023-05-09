@@ -17,7 +17,7 @@ void Button::Awake() {
 
 void Button::Update() {
 	if (!_image) _image = gameObject->GetComponent<IRenderer>();
-	if (!_image) return;
+	if (!_image || !Camera::mainCamera) return;
 
 	Rect buttonRect = _image->sprite->textureRect();
 	buttonRect.SetSize(buttonRect.size().x() * transform()->scale.x(), buttonRect.size().y() * transform()->scale.y());

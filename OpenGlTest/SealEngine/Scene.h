@@ -55,6 +55,8 @@ namespace SealEngine {
 			return targets;
 		}
 
+		static void DontDestroyOnLoad(GameObject* gameObject);
+
         Scene(std::vector<GameObjectInitializer> gameObjects);
         void Load();
         void Unload();
@@ -72,5 +74,6 @@ namespace SealEngine {
         std::queue<GameObject*> _awakeEventQueue{};
         std::queue<GameObject*> _startEventQueue{};
 		std::list<Ui::UiElement*> _uiElements{};
+		std::queue<std::shared_ptr<GameObject>> _dontDestroyOnLoadQueue{};
     };
 }

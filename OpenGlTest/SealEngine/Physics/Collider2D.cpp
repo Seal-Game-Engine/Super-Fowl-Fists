@@ -8,7 +8,7 @@
 #include <cfloat>
 using namespace SealEngine;
 
-Collider2D::Collider2D(bool isTrigger, Vector2 offset) : isTrigger(isTrigger), offset(offset) {}
+Collider2D::Collider2D(bool isTrigger, Vector2 offset) :isTrigger(isTrigger), offset(offset) {}
 
 void Collider2D::Awake() {
 	_attachedRigidbody = gameObject->GetComponent<Rigidbody2D>();

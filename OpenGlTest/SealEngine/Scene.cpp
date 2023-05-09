@@ -4,11 +4,23 @@ using namespace SealEngine;
 
 Scene::Scene(std::vector<GameObjectInitializer> gameObjects) : _gameObjects(gameObjects) {}
 
+void Scene::DontDestroyOnLoad(GameObject* target) {
+    if (SceneManager::IsDontDestroyOnLoad(target)) return;
+
+    for (auto& gameObject : SceneManager::GetActiveScene()->gameObjects) {
+        if (*gameObject.get() != *target) continue;
+
+        SceneManager::dontDestroyOnLoadObjects.emplace_back(gameObject);
+        return;
+    }
+}
+
 void Scene::Load() {
     for (auto& __gameObject : _gameObjects) {
         auto gameObject = Object::InstantiateT<GameObject>(*__gameObject.gameObject, __gameObject.transform.position);
         gameObject->transform->scale = __gameObject.transform.scale;
     }
+    for (auto& __gameObject : SceneManager::dontDestroyOnLoadObjects) _dontDestroyOnLoadQueue.emplace(__gameObject);
 }
 
 void Scene::Unload(){
@@ -16,8 +28,10 @@ void Scene::Unload(){
     while (!destroyQueue.empty()) destroyQueue.pop();
     while (!_awakeEventQueue.empty()) _awakeEventQueue.pop();
     while (!_startEventQueue.empty()) _startEventQueue.pop();
-    for (auto& gameObject : gameObjects)
-        for (auto& component : gameObject->components) component->OnDestroy();
+    for (auto& gameObject : gameObjects) {
+        if (!SceneManager::IsDontDestroyOnLoad(gameObject.get()))
+            for (auto& component : gameObject->components) component->OnDestroy();
+    }
     gameObjects.clear();
     _uiElements.clear();
 }
@@ -34,7 +48,7 @@ void Scene::RefreshWorld() {
 
     for (auto& gameObject : gameObjects) {
         if (!gameObject->activeSelf()) continue;
-        for (auto& component : gameObject->components) { if (component->enabled)component->RunCoroutines(); }
+        for (auto& component : gameObject->components) { if (component->enabled) component->RunCoroutines(); }
         for (auto& component : gameObject->components) { if (component->enabled) component->Update(); }
         for (auto& component : gameObject->components) { if (component->enabled) component->LateUpdate(); }
     }    
@@ -50,6 +64,7 @@ void Scene::RefreshHierarchy() {
             if (*gameObjects[i] == *destroyQueue.front()) {
                 for (auto& component : gameObjects[i]->components) component->OnDestroy();
                 for (auto& uiElement : gameObjects[i]->GetComponents<Ui::UiElement>()) _uiElements.remove(uiElement);
+                if (SceneManager::IsDontDestroyOnLoad(gameObjects[i].get())) SceneManager::dontDestroyOnLoadObjects.remove(gameObjects[i]);
                 gameObjects[i].reset();
                 gameObjects.erase(gameObjects.begin() + i);
                 goto WhileLoop;
@@ -64,7 +79,6 @@ void Scene::RefreshHierarchy() {
                     goto WhileLoop;
                 }
             }
-
         }
     WhileLoop:
         destroyQueue.pop();
@@ -77,5 +91,11 @@ void Scene::RefreshHierarchy() {
         auto uiElements = instantiationQueue.front()->GetComponents<Ui::UiElement>();
         _uiElements.insert(_uiElements.end(), uiElements.begin(), uiElements.end());
         instantiationQueue.pop();
+    }
+    while (!_dontDestroyOnLoadQueue.empty()) {
+        gameObjects.emplace_back(_dontDestroyOnLoadQueue.front());
+        auto uiElements = _dontDestroyOnLoadQueue.front()->GetComponents<Ui::UiElement>();
+        _uiElements.insert(_uiElements.end(), uiElements.begin(), uiElements.end());
+        _dontDestroyOnLoadQueue.pop();
     }
 }

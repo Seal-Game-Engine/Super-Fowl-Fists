@@ -9,7 +9,6 @@ const std::string& Object::ToString() const { return name; }
 
 int Object::_instanceIdCounter = 0;
 
-Object::Object() : _instanceId(_instanceIdCounter++) {}
 Object::Object(const std::string& name) : _instanceId(_instanceIdCounter++), name(name) {}
 Object::Object(const Object& obj) : _instanceId(_instanceIdCounter++), name(obj.name + " (Clone)") {}
 std::shared_ptr<Object> Object::Clone() const { return std::shared_ptr<Object>(_Clone()); }

@@ -46,5 +46,5 @@ void XwingPlayer::FireProjectile() {
 }
 
 void XwingPlayer::LateUpdate() {
-	Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, transform()->position, _speed * 0.75f * Time::deltaTime());
+	if(Camera::mainCamera) Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, transform()->position, _speed * 0.75f * Time::deltaTime());
 }

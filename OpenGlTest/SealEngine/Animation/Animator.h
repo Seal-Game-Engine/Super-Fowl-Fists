@@ -25,8 +25,7 @@ namespace SealEngine {
 
 		const AnimatorController* animatorController = nullptr;
 
-		Animator() = default;
-		Animator(const AnimatorController* animatorController);
+		Animator(const AnimatorController* animatorController = nullptr);
 		Animator(const Animator& obj) : MonoBehaviour(obj) {
 			SetAnimatorController(obj.animatorController);
 		}

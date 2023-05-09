@@ -33,9 +33,7 @@ namespace SealEngine {
 		static void DestroyImmediate(Object, bool = false);
 		static void DontDestroyOnLoad(Object);
 
-
-		Object();
-		Object(const std::string& name);
+		Object(const std::string& name = "Object");
 		Object(const Object& obj);
 		std::shared_ptr<Object> Clone() const;
 

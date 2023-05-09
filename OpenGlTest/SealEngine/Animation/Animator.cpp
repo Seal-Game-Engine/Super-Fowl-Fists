@@ -4,7 +4,9 @@
 #include <map>
 using namespace SealEngine;
 
-
+Animator::Animator(const AnimatorController* animatorController) :MonoBehaviour("Animator") {
+	SetAnimatorController(animatorController);
+}
 
 void Animator::SetAnimatorController(const AnimatorController* animatorController) {
 	this->animatorController = animatorController;
@@ -26,9 +28,6 @@ void Animator::Play(const std::string& name) {
 	HandleStateEnter(&animatorController->map.find(name)->second);
 }
 
-Animator::Animator(const AnimatorController* animatorController) {
-	SetAnimatorController(animatorController);
-}
 
 void Animator::Awake() { _renderer = gameObject->GetComponent<IRenderer>(); }
 

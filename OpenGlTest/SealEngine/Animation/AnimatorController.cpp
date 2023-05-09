@@ -7,6 +7,6 @@ AnimatorController::AnimationState::AnimationState(const std::string& name, cons
 AnimatorController::AnimationBlendState::AnimationBlendState(const std::string& name, std::vector<std::tuple<const AnimationClip*, Vector2>> clips, std::vector<Transition> transitions)
 	: clips(clips), AnimationState(name, nullptr, transitions) {}
 
-AnimatorController::AnimatorController(std::vector<AnimationState> states) : states(states) {
+AnimatorController::AnimatorController(std::vector<AnimationState> states) :Object("AnimatorController"), states(states) {
 	for (auto& state : states) map.emplace(state.name, state);
 }

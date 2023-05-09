@@ -54,7 +54,7 @@ namespace SealEngine {
 
 		//CompareTag	
 
-		MonoBehaviour() = default;
+		MonoBehaviour(const std::string& name = "Component") :Object(name) {}
 		MonoBehaviour(const MonoBehaviour& obj) : Object(obj), enabled(obj.enabled) {}
 		std::shared_ptr<MonoBehaviour> Clone() const { return std::shared_ptr<MonoBehaviour>(_Clone()); }
 

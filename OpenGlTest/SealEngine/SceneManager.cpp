@@ -15,9 +15,17 @@ bool SceneManager::_quitApplication = false;
 std::vector<Scene*> SceneManager::scenes = std::vector<Scene*>{};
 std::queue<int> SceneManager::sceneLoadQuery = std::queue<int>{};
 
+std::list<std::shared_ptr<GameObject>> SceneManager::dontDestroyOnLoadObjects = std::list<std::shared_ptr<GameObject>>{};
+
+
 void SceneManager::LoadScene(int sceneBuildIndex) { sceneLoadQuery.emplace(sceneBuildIndex); }
 
 Scene* SceneManager::GetActiveScene() { return scenes[currentSceneId]; }
+
+bool SceneManager::IsDontDestroyOnLoad(const GameObject* target){
+    for (auto& gameObject : dontDestroyOnLoadObjects) if (target == gameObject.get()) return true;
+    return false;
+}
 
 bool SceneManager::RefreshScene() {
     bool hasCamera = false;

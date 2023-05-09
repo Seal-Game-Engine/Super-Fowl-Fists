@@ -3,10 +3,12 @@
 #include <memory>
 #include <vector>
 #include <queue>
+#include <list>
 #include "IMessageHandler.h"
 //#include "Scene.h"
 namespace SealEngine {
     class Scene;
+    class GameObject;
 }
 
 namespace SealEngine {
@@ -14,6 +16,7 @@ namespace SealEngine {
     public:
         static void LoadScene(int sceneBuildIndex);
         static Scene* GetActiveScene();
+        static bool IsDontDestroyOnLoad(const GameObject* target);
 
         bool RefreshScene();
         bool InitGl();
@@ -44,6 +47,8 @@ namespace SealEngine {
         //activeSceneChanged	Subscribe to this event to get notified when the active Scene has changed.
         //sceneLoaded	Add a delegate to this to get notifications when a Scene has loaded.
         //sceneUnloaded
+        static std::list<std::shared_ptr<GameObject>> dontDestroyOnLoadObjects;
+
     private:
         static std::vector<Scene*> scenes;
         static int currentSceneId;
