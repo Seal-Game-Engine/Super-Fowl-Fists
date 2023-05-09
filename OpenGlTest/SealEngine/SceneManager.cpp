@@ -69,8 +69,6 @@ bool SceneManager::RefreshScene() {
     glMatrixMode(GL_MODELVIEW);
     GetActiveScene()->RefreshGui();
 
-    glFinish();
-
     GetActiveScene()->RefreshHierarchy();
 
     while (!sceneLoadQuery.empty()) {
@@ -82,6 +80,7 @@ bool SceneManager::RefreshScene() {
         sceneLoadQuery.pop();
     }
     SwapBuffers(ApplicationManager::deviceContextHandler); // (Double Buffering)
+    glFinish();
 
     return _quitApplication;
 }

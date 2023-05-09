@@ -43,7 +43,7 @@ void XwingPlayer::Update() {
 
 void XwingPlayer::FireProjectile() {
 	GameObject* projectile = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + Vector2::up() * 0.5f);
-	projectile->GetComponent<Projectile>()->Initialize(Vector2::up());
+	projectile->GetComponent<Projectile>()->Initialize(Vector2::up(), gameObject);
 	projectile->GetComponent<Hitbox>()->data.entity = this;
 	_nextFire = Time::time() + 0.15f;
 }

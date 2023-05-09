@@ -17,7 +17,7 @@ namespace SealEngine {
 		void LateUpdate() override;
 
 	private:
-		static bool InCollisionRange(Collider2D& a, Collider2D& b);
+		static bool InCollisionRange(Collider2D& a, Collider2D& b, float& separation, Vector2& normal);
 		static bool Collide(Collider2D& a, Collider2D& b, float& separation, Vector2& normal);
 
 		virtual void ProjectVerticesOn(const Vector2& axis, float& min, float& max) = 0;

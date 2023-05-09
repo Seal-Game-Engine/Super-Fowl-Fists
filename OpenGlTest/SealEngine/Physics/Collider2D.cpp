@@ -31,7 +31,7 @@ void Collider2D::LateUpdate() {
 #pragma region Enter
 				if (isTrigger || sceneCollider->isTrigger) {
 					for (auto& component : gameObject->components) component->OnTriggerEnter2D(sceneCollider);
-					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerEnter2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerEnter2D(this);
 				} else {
 					for (auto& component : gameObject->components) component->OnCollisionEnter2D(Collision2D(sceneCollider, this, separation, normal));
 					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionEnter2D(Collision2D(this, sceneCollider, separation, normal * -1));
@@ -41,7 +41,7 @@ void Collider2D::LateUpdate() {
 #pragma region Stay
 				if (isTrigger || sceneCollider->isTrigger) {
 					for (auto& component : gameObject->components) component->OnTriggerStay2D(sceneCollider);
-					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerStay2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerStay2D(this);
 				} else {
 					for (auto& component : gameObject->components) component->OnCollisionStay2D(Collision2D(sceneCollider, this, separation, normal));
 					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionStay2D(Collision2D(this, sceneCollider, separation, normal * -1));
@@ -54,7 +54,7 @@ void Collider2D::LateUpdate() {
 #pragma region Exit
 				if (isTrigger || sceneCollider->isTrigger) {
 					for (auto& component : gameObject->components) component->OnTriggerExit2D(sceneCollider);
-					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerExit2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerExit2D(this);
 				} else {
 					for (auto& component : gameObject->components) component->OnCollisionExit2D(Collision2D(sceneCollider, this, separation, normal));
 					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionExit2D(Collision2D(this, sceneCollider, separation, normal * -1));
@@ -65,12 +65,17 @@ void Collider2D::LateUpdate() {
 	}
 }
 
-bool Collider2D::InCollisionRange(Collider2D& a, Collider2D& b){
-	return Vector2::Distance(a.transform()->position + a.offset, b.transform()->position + b.offset) < (a.circumradius() + b.circumradius());
+bool Collider2D::InCollisionRange(Collider2D& a, Collider2D& b, float& separation, Vector2& normal){
+	float distance = Vector2::Distance(a.transform()->position + a.offset, b.transform()->position + b.offset);
+
+	separation = (a.circumradius() + b.circumradius()) - distance;
+	normal = (b.transform()->position + b.offset - a.transform()->position + a.offset) / distance;
+
+	return separation >= 0;
 }
 
 bool Collider2D::Collide(Collider2D& a, Collider2D& b, float& separation, Vector2& normal) {
-	if (!InCollisionRange(a, b)) return false;
+	if (!InCollisionRange(a, b, separation, normal)) return false;
 
 	float minA, maxA, minB, maxB, currentSeparation;
 

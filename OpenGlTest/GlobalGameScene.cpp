@@ -5,11 +5,11 @@
 #include "Parallax.h"
 
 #pragma region Shared Assets
-const Texture2D Random_Texture = Texture2D("Assets/Game_Lv0.png", Texture2D::FilterMode::Nearest);
+const Texture2D Random_Texture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest);
 const GameObject MainCamera = GameObject(
 	"Main Camera", "MainCamera",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
+	std::make_shared<Camera>(Camera::Projection::Orthographic, 2.5f),
 });
 const GameObject GameEventManagerObject = GameObject(		//Game Interactions (ie: pause)
 	"GameEventManager", "Untagged",
@@ -18,12 +18,12 @@ const GameObject GameEventManagerObject = GameObject(		//Game Interactions (ie: 
 		//std::make_shared<Image>(&PauseMessage[0]),
 		std::make_shared<GameEventManager>(),
 });
-	const GameObject Ground = GameObject(
-		"Ground", "Ground",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&Random_Texture[0], false, false),
-			std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
-	});
+const GameObject Ground = GameObject(
+	"Ground", "Ground",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&Random_Texture[0], false, false),
+		std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
+});
 
 	const Texture2D Prefab::Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3, 1);
 #pragma endregion
@@ -45,6 +45,7 @@ const Texture2D TutorialScene_Texture = Texture2D("Assets/Game_Tutorial.png", Te
 	Scene GlobalGameScene::TutorialScene = Scene({
 	{&TutorialUIObject, Transform()},
 	{&GameEventManagerObject, Transform()},
+	{&Ground, Transform(Vector2(0, -3))},
 	{&MainCamera, Transform()},
 	});
 	#pragma endregion
@@ -58,7 +59,7 @@ const Texture2D TutorialScene_Texture = Texture2D("Assets/Game_Tutorial.png", Te
 	const GameObject Lv0Scene_Object = GameObject(
 		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		//std::make_shared<Image>(&Lv0Scene_Texture[0]),
+		std::make_shared<SpriteRenderer>(&Lv0Scene_Texture[0]),
 	});
 	#pragma endregion
 
@@ -66,7 +67,7 @@ const Texture2D TutorialScene_Texture = Texture2D("Assets/Game_Tutorial.png", Te
 	Scene GlobalGameScene::Lv0Scene = Scene({
 	{&Lv0Scene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
-	{&Ground, Transform()},
+	{&Ground, Transform(Vector2(0, -3))},
 	{&MainCamera, Transform()},
 		});
 	#pragma endregion
@@ -89,7 +90,7 @@ const Texture2D TutorialScene_Texture = Texture2D("Assets/Game_Tutorial.png", Te
 	Scene GlobalGameScene::Lv1Scene = Scene({
 	{&Lv1Scene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
-	{&Ground, Transform()},
+	{&Ground, Transform(Vector2(0, -2))},
 	{&MainCamera, Transform()},
 		});
 	#pragma endregion

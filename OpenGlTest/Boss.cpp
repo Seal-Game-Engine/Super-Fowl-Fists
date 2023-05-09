@@ -9,45 +9,77 @@
 
 void Boss::Awake() {
 	_renderer = gameObject->GetComponent<SpriteRenderer>();
-	animator = gameObject->GetComponent<Animator>();
-	rigidbody = gameObject->GetComponent<Rigidbody2D>();
+	_animator = gameObject->GetComponent<Animator>();
+	_rigidbody = gameObject->GetComponent<Rigidbody2D>();
+
+	Invoke([&] { 
+		_rigidbody->bodyType = Rigidbody2D::BodyType::Kinematic; 
+		_rigidbody->velocity = Vector2::zero();
+		}, 1);
+
+	//temp
+	transform()->scale.Set(transform()->scale.x() * -1, transform()->scale.y(), transform()->scale.z());
 }
 
 void Boss::Update() {
-	int x = Input::GetAxisRaw(Input::Axis::Horizontal);
-	Vector2 horizontalMovement = Vector2::right();
-	rigidbody->velocity = Vector2((float)x * _speed, rigidbody->velocity.y());
+	_rigidbody->velocity = Vector2(-0.05, _rigidbody->velocity.y());
 
-	//if (_canJump && (Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow))) {
-	//	animator->Play("Jump");
-	//	rigidbody->AddForce(Vector2::up() * 5.0f, Rigidbody2D::ForceMode2D::Impulse);
-	//	_canJump = false;
-	//}
+	switch (actionState) {
+	case ActionState::None:
 
-	//if (Input::GetKeyDown(KeyCode::Space)) {
-	//	InvokeRepeating([&]() {
-	//		powerState = (PowerState)(((int)powerState + 1) % 2);
-	//	animator->SetAnimatorController(animatorControllers[(int)powerState]);
-	//		}, 1, 1);
-	//}
-	if (Input::GetKeyDown(KeyCode::Q)) {
-		animator->SetInteger("move",1);
-		//animator->Play("BombId");
+		BeginBombAttack();
+		actionState = ActionState::Idle;
+		break;
+	case ActionState::Idle:
+		break;
+	case ActionState::BombAttack:
+		BombAttack();
+		break;
+	case ActionState::ChompAttack:
+		break;
 	}
+
+
+	if (Time::time() >= _nextActionTime) {
+		
+		
+	}
+
 	if (Input::GetKeyDown(KeyCode::W)) {
-		animator->SetInteger("move", 2);
+		_animator->SetInteger("move", 2);
 	}
 	if (Input::GetKeyDown(KeyCode::E)) {
-		animator->SetInteger("move", 3);
+		_animator->SetInteger("move", 3);
 	}
 	if (Input::GetKeyDown(KeyCode::T)) {
-		animator->Play("Hurt");
+		_animator->Play("Hurt");
 	}
-	animator->SetBool("isWalking", std::abs(x) > 0);
+	//animator->SetBool("isWalking", std::abs(x) > 0);
 	//animator->SetBool("isJumping", !_canJump);
-	if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
+	//if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
 }
 
-//void Boss::OnCollisionEnter2D(Collision2D collision) {
-//	if (collision.gameObject()->CompareTag("Ground")) _canJump = true;
-//}
+void Boss::BeginBombAttack(){
+	_animator->SetInteger("move", 1);
+	Invoke([&] {
+		_nextActionTime = Time::time() + _bombAttackDuration;
+		actionState = ActionState::BombAttack;
+		}, 3.2f);
+}
+
+void Boss::BombAttack(){
+	if (Time::time() >= _nextBombTime) {
+		GameObject* bomb = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + Vector2(transform()->scale.x(), -0.125) * 1);
+		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), 0), gameObject);
+
+		_nextBombTime = Time::time() + _bombAttackCooldown;
+	}
+
+	if (Time::time() >= _nextActionTime) {
+		actionState = ActionState::Idle;
+		_animator->SetInteger("move", 0);
+		Invoke([&] {
+			actionState = ActionState::None;
+			}, 0.8f);
+	}
+}

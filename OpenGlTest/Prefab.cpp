@@ -145,6 +145,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Animator>(&TikeMyson_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
+			std::make_shared<AudioSource>(),
 			std::make_shared<TikeMyson_Player>(),
 	});
 	#pragma endregion
@@ -388,7 +389,7 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::BossTexture[13], 0.1f },
 			{ Prefab::BossTexture[14], 0.1f },
 			}, true);
-		const AnimationClip Boss_Charged = AnimationClip({
+		const AnimationClip Boss_Charged = AnimationClip({ //0.8s
 			{ Prefab::BossTexture[8], 0.1f },
 			{ Prefab::BossTexture[9], 0.1f },
 			{ Prefab::BossTexture[10], 0.1f },
@@ -397,7 +398,7 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::BossTexture[13], 0.1f },
 			{ Prefab::BossTexture[14], 0.1f },
 			{ Prefab::BossTexture[15], 0.1f },
-			}, true);
+			}, false);
 		const AnimationClip Boss_Chomp_Indicator = AnimationClip({
 			{ Prefab::BossTexture[48], 0.1f },
 			{ Prefab::BossTexture[49], 0.1f },
@@ -423,7 +424,7 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::BossTexture[35], 0.05f },
 			{ Prefab::BossTexture[36], 0.05f },
 			}, true);
-		const AnimationClip Boss_Open = AnimationClip({
+		const AnimationClip Boss_Open = AnimationClip({ //0.8s
 			{ Prefab::BossTexture[0], 0.1f },
 			{ Prefab::BossTexture[1], 0.1f },
 			{ Prefab::BossTexture[2], 0.1f },
@@ -432,8 +433,8 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::BossTexture[5], 0.1f },
 			{ Prefab::BossTexture[6], 0.1f },
 			{ Prefab::BossTexture[7], 0.1f },
-			}, true);
-		const AnimationClip Boss_Close = AnimationClip({
+			}, false);
+		const AnimationClip Boss_Close = AnimationClip({ //0.8s
 			{ Prefab::BossTexture[24], 0.1f },
 			{ Prefab::BossTexture[25], 0.1f },
 			{ Prefab::BossTexture[26], 0.1f },
@@ -442,33 +443,33 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::BossTexture[29], 0.1f },
 			{ Prefab::BossTexture[30], 0.1f },
 			{ Prefab::BossTexture[31], 0.1f },
-			}, true);
+			}, false);
 		#pragma endregion
 	const AnimatorController Prefab::Boss_Controller = AnimatorController({
 		State("Charging", &Boss_Charging, {
 			{ "Charged", false, 1, [](auto& animator) { return animator.GetInteger("move") > 0; } },
 		}),
 		State("Charged", &Boss_Charged, {
-			{ "Open", true, 1 },
+			{ "Open", true, 1.5f },
 		}),
 		State("Open", &Boss_Open, {
-			{ "BombId", false, 1, [](auto& animator) { return animator.GetInteger("move") == 1; } },
-			{ "ChompId", false, 1, [](auto& animator) { return animator.GetInteger("move") == 2; } },
+			{ "BombId", true, 1, [](auto& animator) { return animator.GetInteger("move") == 1; } },
+			{ "ChompId", true, 1, [](auto& animator) { return animator.GetInteger("move") == 2; } },
 		}),
 		State("Close", &Boss_Close, {
-			{ "Charging", true, 1, [](auto& animator) { animator.SetInteger("move", 0); return true; } },
+			{ "Charging", true, 1, },
 		}),
 		State("BombId", &Boss_Bomb_Indicator, {
-			{ "BombAtk", true, 3 },
+			{ "BombAtk", true, 6 },
 		}),
 		State("ChompId", &Boss_Chomp_Indicator, {
-			{ "ChompAtk", true, 3 },
+			{ "ChompAtk", true, 6 },
 		}),
 		State("BombAtk", &Boss_Bomb_Attack, {
-			{ "Close", true, 20 },
+			{ "Close", false, 1, [](auto& animator) { return animator.GetInteger("move") == 0; } },
 		}),
 		State("ChompAtk", &Boss_Chomp_Attack, {
-			{ "Close", true, 20 },
+			{ "Close", false, 1, [](auto& animator) { return animator.GetInteger("move") == 0; } },
 		}),
 		});
 
@@ -478,7 +479,7 @@ using State = AnimatorController::AnimationState;
 		std::make_shared<SpriteRenderer>(&Prefab::BossTexture[0], false, false),
 			std::make_shared<Animator>(&Prefab::Boss_Controller),
 			std::make_shared<Rigidbody2D>(),
-			std::make_shared<BoxCollider2D>(),
+			std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
 			std::make_shared<Boss>(),
 	});
 	#pragma endregion
@@ -500,7 +501,7 @@ using State = AnimatorController::AnimationState;
 		std::make_shared<SpriteRenderer>(&Projectile_Blue_Texture[0], false, false),
 			std::make_shared<Animator>(&Projectile_Blue_Controller),
 			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(0.125f),
+			std::make_shared<CircleCollider2D>(0.125f, true),
 			std::make_shared<Projectile>(8, 1.5f),
 			std::make_shared<Hitbox>(),
 	});

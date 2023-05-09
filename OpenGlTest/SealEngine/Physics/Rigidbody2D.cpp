@@ -6,11 +6,14 @@
 #include "../Input.h"
 using namespace SealEngine;
 
-Rigidbody2D::Rigidbody2D(float mass, float gravityScale) :mass(mass), gravityScale(gravityScale) {}
+Rigidbody2D::Rigidbody2D(BodyType bodyType, float mass, float gravityScale) :bodyType(bodyType), mass(mass), gravityScale(gravityScale) {}
 
 void Rigidbody2D::Update(){
-	AddForce(Vector2::down() * mass * 9.81f * gravityScale);
 	transform()->position += velocity * Time::deltaTime();
+
+	if (bodyType != BodyType::Dynamic) return;
+
+	AddForce(Vector2::down() * mass * 9.81f * gravityScale);
 }
 
 void Rigidbody2D::LateUpdate() {
@@ -18,7 +21,8 @@ void Rigidbody2D::LateUpdate() {
 }
 
 void Rigidbody2D::OnCollisionStay2D(Collision2D collision) {
-	float e = 0.5f;
+	if (bodyType != BodyType::Dynamic) return;
+	float e = 0.05f; //bounciness
 
 	transform()->position += collision.normal() * -collision.separation();
 
@@ -30,6 +34,8 @@ void Rigidbody2D::OnCollisionStay2D(Collision2D collision) {
 }
 
 void Rigidbody2D::AddForce(Vector2 force, ForceMode2D mode) { 
+	if (bodyType != BodyType::Dynamic) return;
+
 	switch (mode) {
 	case ForceMode2D::Force:
 		velocity += force / mass * Time::deltaTime();

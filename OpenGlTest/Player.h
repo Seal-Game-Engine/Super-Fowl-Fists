@@ -8,9 +8,10 @@ using namespace SealEngine;
 class Player : public Entity {
 public:
 	struct InputData {
-		float x = 0;
-		float y = 0;
-		bool anyMovementUp = false;
+		float horizontal = 0;
+		bool horizontalUp = false;
+
+		bool jumpDown = false;
 
 		bool attackDown = false;
 	};
@@ -18,6 +19,9 @@ public:
 
 	InputData GetInputData(ControlScheme controlScheme);
 	//void TakeDamage(DamageData data, Vector2 knockbackDirection) override;
+	ControlScheme controlScheme = ControlScheme::Solo;
+
+	Player() = default;
 
 	void Awake() override;
 	void Update() override;
@@ -25,12 +29,15 @@ public:
 	void OnCollisionStay2D(Collision2D collision) override;
 	void OnCollisionExit2D(Collision2D collision) override;
 
-	Player() = default;
-
 private:
+	const float miniColliderRadius = 0.1875f;
+	const float bigColliderRadius = 0.375f;
+
 	SpriteRenderer* _renderer = nullptr;
 	Animator* _animator = nullptr;
 	Rigidbody2D* _rigidbody = nullptr;
+	CircleCollider2D* _collider = nullptr;
+	AudioSource* _audioSource = nullptr;
 
 	float _speed = 4.0f;
 	bool _canJump = true;

@@ -43,7 +43,7 @@ namespace SealEngine {
 			staticShadowCaster	Is this renderer a static shadow caster ?
 			worldToLocalMatrix*/
 		SpriteRenderer() = default;
-		SpriteRenderer(const Sprite* sprite, bool flipX, bool flipY);
+		SpriteRenderer(const Sprite* sprite, bool flipX = false, bool flipY = false);
 
 		void Update() override;
 		void LateUpdate() override;

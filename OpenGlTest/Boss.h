@@ -1,7 +1,8 @@
 #pragma once
+#include <functional>
 #include "SealEngine.h"
-#include "Entity.h"
 using namespace SealEngine;
+#include "Entity.h"
 
 class Boss : public Entity {
 public:
@@ -12,17 +13,26 @@ public:
 	//void OnCollisionEnter2D(Collision2D collision) override;
 
 private:
+	enum class ActionState { None, Idle, BombAttack, ChompAttack };
+	ActionState actionState = ActionState::None;
+
+	void BeginBombAttack();
+	void BombAttack();
+	void ChompAttack();
+	void SwitchSide();
+
 	SpriteRenderer* _renderer = nullptr;
-	Animator* animator = nullptr;
-	Rigidbody2D* rigidbody = nullptr;
+	Animator* _animator = nullptr;
+	Rigidbody2D* _rigidbody = nullptr;
 
 	float _speed = 4.0f;
-	bool _canJump = true;
-	float _nextFire = 0;
 
-	enum class PowerState : int { Small, Buff };
-	PowerState powerState = PowerState::Small;
 
+	float _nextActionTime = 0;
+
+	const float _bombAttackDuration = 3;
+	const float _bombAttackCooldown = 0.5f;
+	float _nextBombTime = 0;
 	//static const std::array<const AnimatorController*, 2> animatorControllers;
 
 	Boss* _Clone() const override { return new Boss(*this); }

@@ -1,7 +1,8 @@
 #include "Projectile.h"
 
-void Projectile::Initialize(Vector2 direction){
+void Projectile::Initialize(Vector2 direction, GameObject* sourceObject){
 	_direction = direction;
+	_sourceObject = sourceObject;
 
 	if (_traversalMethod == TraversalMethods::UseForce) _rigidbody->AddForce(_direction * _speed, Rigidbody2D::ForceMode2D::Impulse);
 }
@@ -22,5 +23,5 @@ void Projectile::Update() {
 	if (_traversalMethod == TraversalMethods::UseVelocity) _rigidbody->velocity = _direction * _speed;
 }
 
-void Projectile::OnTriggerEnter2D(Collider2D* collider) { Destroy(*gameObject); }
+void Projectile::OnTriggerEnter2D(Collider2D* collider) { if(collider->gameObject != _sourceObject) Destroy(*gameObject); }
 void Projectile::OnCollisionEnter2D(Collision2D collision) { OnTriggerEnter2D(collision.collider); }

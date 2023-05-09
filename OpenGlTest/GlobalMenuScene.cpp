@@ -31,7 +31,7 @@ const GameObject MainCamera = GameObject(
 		const GameObject SealLogoScene_Object = GameObject(
 			"Title", "Untagged",
 			std::vector<std::shared_ptr<MonoBehaviour>>{
-			std::make_shared<Parallax>(&SealLogoScene_Parallax_Texture[0], Vector2::left(), 0.01),
+			//std::make_shared<Parallax>(&SealLogoScene_Parallax_Texture[0], Vector2::left(), 0.01),
 				std::make_shared<Image>(&SealLogo_Texture[0]),
 				std::make_shared<Animator>(&SealLogoScene_Controller),
 		});
@@ -325,7 +325,7 @@ const GameObject MainCamera = GameObject(
 		{&Button_Quit_Object, Transform(Vector2(1.3, -2))},
 		{&MenuEventManager_Object, Transform()},
 		{&TitleObject, Transform(Vector3(0, 1.5f, 0), Vector3::zero(), Vector3(0.75f, 0.75f, 1))},
-	#pragma endregion
+		#pragma endregion
 		{&MainCamera, Transform()},
 		});
 	#pragma endregion

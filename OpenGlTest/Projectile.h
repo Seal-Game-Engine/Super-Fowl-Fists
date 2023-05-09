@@ -6,7 +6,7 @@ class Projectile : public MonoBehaviour {
 public:
 	enum class TraversalMethods { UseVelocity, UseForce, };
 
-	void Initialize(Vector2 direction);
+	void Initialize(Vector2 direction, GameObject* sourceObject);
 
 	Projectile(float speed = 1, float lifeSpan = 5, TraversalMethods traversalMethod = TraversalMethods::UseVelocity);
 
@@ -23,6 +23,7 @@ private:
 	TraversalMethods _traversalMethod = TraversalMethods::UseVelocity;
 	Vector2 _direction = Vector2::zero();
 
+	GameObject* _sourceObject = nullptr;
 	Rigidbody2D* _rigidbody = nullptr;
 
 	Projectile* _Clone() const override { return new Projectile(*this); }

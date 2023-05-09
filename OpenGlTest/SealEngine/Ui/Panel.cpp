@@ -11,7 +11,7 @@ void Panel::OnGui(){
 }
 
 void Panel::Render(Transform* transform) const {
-    float height = 3;
+    float height = Camera::mainCamera->size;
     float width = height * (float)sprite->texture->width() * sprite->rect().size().x() / (sprite->texture->height() * sprite->rect().size().y());
 
     glPushMatrix();
