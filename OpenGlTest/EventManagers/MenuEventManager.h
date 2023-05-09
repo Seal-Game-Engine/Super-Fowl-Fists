@@ -1,6 +1,6 @@
 #pragma once
 #include <array>
-#include "SealEngine.h"
+#include "../SealEngine.h"
 using namespace SealEngine;
 
 class MenuEventManager : public MonoBehaviour{

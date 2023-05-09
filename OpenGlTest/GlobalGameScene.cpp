@@ -1,6 +1,6 @@
 #include "GlobalGameScene.h"
-#include "TutorialEventManager.h"
-#include "GameEventManager.h" 
+#include "EventManagers/TutorialEventManager.h"
+#include "EventManagers/GameEventManager.h" 
 #include "Prefab.h"
 #include "Parallax.h"
 

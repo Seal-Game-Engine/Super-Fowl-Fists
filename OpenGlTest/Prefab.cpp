@@ -2,10 +2,10 @@
 #include "GlobalMenuScene.h"
 
 #include "Parallax.h"
-#include "LandingEventManager.h"
-#include "MenuEventManager.h"
-#include "TutorialEventManager.h"
-#include "GameEventManager.h"
+#include "EventManagers/LandingEventManager.h"
+#include "EventManagers/MenuEventManager.h"
+#include "EventManagers/TutorialEventManager.h"
+#include "EventManagers/GameEventManager.h"
 using State = AnimatorController::AnimationState;
 
 #include "Player.h"

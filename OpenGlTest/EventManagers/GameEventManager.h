@@ -1,5 +1,5 @@
 #pragma once
-#include "SealEngine.h"
+#include "../SealEngine.h"
 #include <vector>
 using namespace SealEngine;
 using namespace SealEngine::Ui;

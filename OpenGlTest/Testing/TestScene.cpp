@@ -1,6 +1,6 @@
 #include "../SealEngine.h"
 #include "../Parallax.h"
-#include "../GameEventManager.h"
+#include "../EventManagers/GameEventManager.h"
 #include "../GlobalMenuScene.h"
 #include "TestScene.h"
 

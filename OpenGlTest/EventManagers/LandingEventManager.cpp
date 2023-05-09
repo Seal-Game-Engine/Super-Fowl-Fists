@@ -1,5 +1,5 @@
 #include "LandingEventManager.h"
-#include "Parallax.h"
+#include "../Parallax.h"
 
 void LandingEventManager::Update()
 {

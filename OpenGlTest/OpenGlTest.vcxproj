@@ -172,7 +172,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Prefab.cpp" />
-    <ClCompile Include="CreditEventManager.cpp" />
+    <ClCompile Include="EventManagers\CreditEventManager.cpp" />
     <ClCompile Include="GlobalGameScene.cpp" />
     <ClCompile Include="GlobalMenuScene.cpp" />
     <ClCompile Include="Boss.cpp" />
@@ -191,9 +191,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="SealEngine\Ui\Button.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Font.cpp" />
-    <ClCompile Include="GameEventManager.cpp" />
-    <ClCompile Include="LandingEventManager.cpp" />
-    <ClCompile Include="MenuEventManager.cpp" />
+    <ClCompile Include="EventManagers\GameEventManager.cpp" />
+    <ClCompile Include="EventManagers\LandingEventManager.cpp" />
+    <ClCompile Include="EventManagers\MenuEventManager.cpp" />
     <ClCompile Include="Testing\Obstacle.cpp" />
     <ClCompile Include="Testing\ObstacleSpawner.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -223,14 +223,14 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="SealEngine\Vector2.cpp" />
     <ClCompile Include="SealEngine\Vector3.cpp" />
     <ClCompile Include="TikeMyson_Player.cpp" />
-    <ClCompile Include="TutorialEventManager.cpp" />
+    <ClCompile Include="EventManagers\TutorialEventManager.cpp" />
     <ClCompile Include="Testing\XwingPlayer.cpp" />
     <ClCompile Include="SealEngine\Ui\UiElement.cpp" />
     <ClCompile Include="Testing\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Prefab.h" />
-    <ClInclude Include="CreditEventManager.h" />
+    <ClInclude Include="EventManagers\CreditEventManager.h" />
     <ClInclude Include="GlobalGameScene.h" />
     <ClInclude Include="GlobalMenuScene.h" />
     <ClInclude Include="Boss.h" />
@@ -249,9 +249,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="SealEngine\Ui\Button.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Font.h" />
-    <ClInclude Include="GameEventManager.h" />
-    <ClInclude Include="LandingEventManager.h" />
-    <ClInclude Include="MenuEventManager.h" />
+    <ClInclude Include="EventManagers\GameEventManager.h" />
+    <ClInclude Include="EventManagers\LandingEventManager.h" />
+    <ClInclude Include="EventManagers\MenuEventManager.h" />
     <ClInclude Include="Testing\TestScene.h" />
     <ClInclude Include="Testing\Obstacle.h" />
     <ClInclude Include="Testing\ObstacleSpawner.h" />
@@ -283,7 +283,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="SealEngine\Vector3.h" />
     <ClInclude Include="SealEngine\SealPackages.h" />
     <ClInclude Include="TikeMyson_Player.h" />
-    <ClInclude Include="TutorialEventManager.h" />
+    <ClInclude Include="EventManagers\TutorialEventManager.h" />
     <ClInclude Include="Testing\XwingPlayer.h" />
     <ClInclude Include="SealEngine\Ui\UiElement.h" />
   </ItemGroup>

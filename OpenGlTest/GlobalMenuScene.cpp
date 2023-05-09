@@ -1,10 +1,10 @@
 
 #include "GlobalMenuScene.h"
 #include "Parallax.h"
-#include "GameEventManager.h"
-#include "MenuEventManager.h"
-#include "LandingEventManager.h"
-#include "CreditEventManager.h"
+#include "EventManagers/GameEventManager.h"
+#include "EventManagers/MenuEventManager.h"
+#include "EventManagers/LandingEventManager.h"
+#include "EventManagers/CreditEventManager.h"
 using State = AnimatorController::AnimationState;
 
 const GameObject MainCamera = GameObject(

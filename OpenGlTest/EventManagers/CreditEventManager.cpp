@@ -1,5 +1,5 @@
 #include "CreditEventManager.h"
-#include "Parallax.h"
+#include "../Parallax.h"
 
 void CreditEventManager::Update() {
     using namespace InputSystem;
