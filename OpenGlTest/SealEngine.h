@@ -42,3 +42,4 @@
 #include "SealEngine/Ui/Image.h"
 #include "SealEngine/Ui/Button.h"
 #include "SealEngine/Ui/Panel.h"
+#include "SealEngine/Ui/Text.h"

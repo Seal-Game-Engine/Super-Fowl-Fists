@@ -18,16 +18,20 @@ public:
 	enum class ControlScheme { Solo, Player1, Player2 };
 
 	InputData GetInputData(ControlScheme controlScheme);
-	//void TakeDamage(DamageData data, Vector2 knockbackDirection) override;
+	void TakeDamage(DamageData data, Vector2 knockbackDirection) override;
 	ControlScheme controlScheme = ControlScheme::Solo;
 
-	Player() = default;
+	Player();
 
 	void Awake() override;
 	void Update() override;
 	void OnCollisionEnter2D(Collision2D collision) override;
 	void OnCollisionStay2D(Collision2D collision) override;
 	void OnCollisionExit2D(Collision2D collision) override;
+
+protected:
+	virtual void Attack_Mini();
+	virtual void Attack_Big();
 
 private:
 	const float miniColliderRadius = 0.1875f;
@@ -42,7 +46,7 @@ private:
 	float _maxVerticalVelocity = 6;
 	float _speed = 4.0f;
 	bool _canJump = true;
-	float _nextFire = 0;
+	float _nextAttack = 0;
 
 	enum class PowerState : int { Mini, Big };
 	PowerState _powerState = PowerState::Mini;

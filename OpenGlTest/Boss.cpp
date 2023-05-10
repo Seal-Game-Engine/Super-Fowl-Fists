@@ -71,7 +71,7 @@ void Boss::BeginBombAttack(){
 void Boss::BombAttack(){
 	if (Time::time() >= _nextBombTime) {
 		GameObject* bomb = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + Vector2(transform()->scale.x()+0.9, -0.125) * 1);
-		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), 0), gameObject);
+		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), -0.5f), gameObject);
 		bomb->GetComponent<Hitbox>()->data.entity = this;
 
 		_nextBombTime = Time::time() + _bombAttackCooldown;

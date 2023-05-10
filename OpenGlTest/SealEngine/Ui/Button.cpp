@@ -33,7 +33,7 @@ void Button::Update() {
 	if (!_isSelected && mouseIsHovering) { _isSelected = true; onSelected(this); }
 	else if (_isSelected && !mouseIsHovering) { _isSelected = false; onDeselected(this); }
 
-	if (Input::GetKeyDown(KeyCode::MouseLeft) && _isSelected) onClick(this);
+	if (Input::GetKeyUp(KeyCode::MouseLeft) && _isSelected) onClick(this);
 }
 
 void Button::OnGui() {}

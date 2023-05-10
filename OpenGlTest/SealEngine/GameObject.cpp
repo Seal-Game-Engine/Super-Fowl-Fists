@@ -68,4 +68,4 @@ std::vector<GameObject*> GameObject::FindGameObjectsWithTag(const std::string& t
 	return gameObjectsFound;
 }
 bool GameObject::CompareTag(std::string tag) { return this->tag == tag; }
-void GameObject::SetActive(bool value) { _activeSelf = value; }
+void GameObject::SetActive(bool value) { SceneManager::GetActiveScene()->actionQueue.emplace([=] { _activeSelf = value; }); }

@@ -52,7 +52,7 @@ void GameEventManager::TogglePause(){
 void GameEventManager::LateUpdate() {
 	if(!Camera::mainCamera || _playerObjects.empty()) return;
 	Vector2 midPosition = std::accumulate(_playerObjects.begin(), _playerObjects.end(), Vector2::zero(), [](const Vector2& accumulator, const GameObject* playerObject) { return accumulator + playerObject->transform->position; }) / _playerObjects.size();
-	Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, midPosition, 3 * 0.75f * Time::deltaTime());
+	Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, midPosition + Vector2::up(), 3 * 0.75f * Time::deltaTime());
 }
 
 GameEventManager* GameEventManager::_Clone() const { return new GameEventManager(*this); }

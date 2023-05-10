@@ -37,7 +37,7 @@ const GameObject Ground = GameObject(
 		"TutorialText", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&TutorialText[0]),
-		std::make_shared<Image>(&TutorialScene_Texture[0])
+		std::make_shared<SpriteRenderer>(&TutorialScene_Texture[0])
 	});
 	#pragma endregion
 

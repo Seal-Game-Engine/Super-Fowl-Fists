@@ -23,5 +23,5 @@ void Projectile::Update() {
 	if (_traversalMethod == TraversalMethods::UseVelocity) _rigidbody->velocity = _direction * _speed;
 }
 
-void Projectile::OnTriggerEnter2D(Collider2D* collider) { if(collider->gameObject != _sourceObject) Destroy(*gameObject); }
+void Projectile::OnTriggerEnter2D(Collider2D* collider) { if(collider->gameObject != _sourceObject && !collider->gameObject->CompareTag("Projectile")) Destroy(*gameObject); }
 void Projectile::OnCollisionEnter2D(Collision2D collision) { OnTriggerEnter2D(collision.collider); }

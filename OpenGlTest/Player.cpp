@@ -39,6 +39,18 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 	}
 }
 
+void Player::TakeDamage(DamageData data, Vector2 knockbackDirection){
+	Entity::TakeDamage(data, knockbackDirection);
+	switch (_powerState) {
+	case PowerState::Mini: _animator->Play("Mini_Hurt"); break;
+	case PowerState::Big: _animator->Play("Big_Hurt"); break;
+	}
+}
+
+Player::Player(){
+	faction = Factions::Faction1;
+}
+
 void Player::Awake(){
 	_renderer = gameObject->GetComponent<SpriteRenderer>();
 	_animator = gameObject->GetComponent<Animator>();
@@ -53,8 +65,10 @@ void Player::Awake(){
 void Player::Update() {
 	InputData inputData = GetInputData(controlScheme);
 
-	if (inputData.horizontalUp) _rigidbody->velocity = Vector2::zero();
-	else _rigidbody->velocity = Vector2(inputData.horizontal * _speed, _rigidbody->velocity.y());
+	_rigidbody->velocity = Vector2(
+		inputData.horizontalUp ? 0 : inputData.horizontal * _speed, 
+		_rigidbody->velocity.y()
+	);
 
 	if (_canJump && inputData.jumpDown) { 
 		switch (_powerState) {
@@ -82,13 +96,13 @@ void Player::Update() {
 		}
 	}
 
-	if (inputData.attackDown) {
+	if (inputData.attackDown && Time::time() >= _nextAttack) {
 		switch (_powerState) {
-		case PowerState::Mini: _animator->Play("Mini_Attack"); break;
-		case PowerState::Big: _animator->Play("Big_Punch"); break;
+		case PowerState::Mini: Attack_Mini(); break;
+		case PowerState::Big: Attack_Big(); break;
 		}
-		_audioSource->clip = "";
-		_audioSource->Play();
+		
+		
 	}
 
 	_animator->SetBool("isWalking", std::abs(inputData.horizontal) > 0);
@@ -106,6 +120,18 @@ void Player::OnCollisionStay2D(Collision2D collision) {
 
 void Player::OnCollisionExit2D(Collision2D collision){
 
+}
+
+void Player::Attack_Mini(){
+	_animator->Play("Mini_Attack"); 
+	//_audioSource->clip = "";
+	//_audioSource->Play();
+	_nextAttack = Time::time() + 0.3f;
+}
+
+void Player::Attack_Big() {
+	_animator->Play("Big_Punch");
+	_nextAttack = Time::time() + 0.3f;
 }
 
 //Player::Player(ControlScheme controlScheme) :_controlScheme(controlScheme) {}

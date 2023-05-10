@@ -26,6 +26,7 @@ void Scene::Load() {
 void Scene::Unload(){
     while (!instantiationQueue.empty()) instantiationQueue.pop();
     while (!destroyQueue.empty()) destroyQueue.pop();
+    while (!actionQueue.empty()) actionQueue.pop();
     while (!_awakeEventQueue.empty()) _awakeEventQueue.pop();
     while (!_startEventQueue.empty()) _startEventQueue.pop();
     for (auto& gameObject : gameObjects) {
@@ -59,6 +60,11 @@ void Scene::RefreshGui(){
 }
 
 void Scene::RefreshHierarchy() {
+    while (!actionQueue.empty()) {
+        actionQueue.front()();
+        actionQueue.pop();
+    }
+
     while (!destroyQueue.empty()) {
         for (int i = 0; i < gameObjects.size(); i++) {
             if (*gameObjects[i] == *destroyQueue.front()) {

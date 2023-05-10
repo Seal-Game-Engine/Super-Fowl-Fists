@@ -171,6 +171,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Chicken_Player.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GamplayData.cpp" />
     <ClCompile Include="Prefab.cpp" />
@@ -226,6 +227,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="SealEngine\Transform.cpp" />
     <ClCompile Include="SealEngine\Vector2.cpp" />
     <ClCompile Include="SealEngine\Vector3.cpp" />
+    <ClCompile Include="SealEngine\Ui\Text.cpp" />
     <ClCompile Include="TikeMyson_Player.cpp" />
     <ClCompile Include="EventManagers\TutorialEventManager.cpp" />
     <ClCompile Include="Testing\XwingPlayer.cpp" />
@@ -233,6 +235,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="Testing\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chicken_Player.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameplayData.h" />
     <ClInclude Include="Prefab.h" />
@@ -290,6 +293,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="SealEngine\Vector2.h" />
     <ClInclude Include="SealEngine\Vector3.h" />
     <ClInclude Include="SealEngine\SealPackages.h" />
+    <ClInclude Include="SealEngine\Ui\Text.h" />
     <ClInclude Include="TikeMyson_Player.h" />
     <ClInclude Include="EventManagers\TutorialEventManager.h" />
     <ClInclude Include="Testing\XwingPlayer.h" />

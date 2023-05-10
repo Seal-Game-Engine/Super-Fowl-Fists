@@ -3,6 +3,7 @@
 #include <queue>
 #include <memory>
 #include <tuple>
+#include <functional>
 #include "Transform.h"
 #include "GameObject.h"
 #include "Ui/UiElement.h"
@@ -67,6 +68,7 @@ namespace SealEngine {
         std::vector<std::shared_ptr<GameObject>> gameObjects{};
         std::queue<std::shared_ptr<GameObject>> instantiationQueue{};
         std::queue<Object*> destroyQueue{};
+		std::queue<std::function<void()>> actionQueue{};
 
     private:
         std::vector<GameObjectInitializer> _gameObjects{};

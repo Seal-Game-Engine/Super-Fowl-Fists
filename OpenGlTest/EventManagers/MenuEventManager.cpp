@@ -2,17 +2,23 @@
 
 MenuEventManager* MenuEventManager::instance = nullptr;
 
+void MenuEventManager::LoadMenu(MenuPage menuPage){
+	for (auto& object : _mainMenuObjects) object->SetActive(false);
+	for (auto& object : _levelSelectObjects) object->SetActive(false);
+
+	switch (menuPage) {
+	case MenuPage::MainMenu: for (auto& object : _mainMenuObjects) object->SetActive(true); break;
+	case MenuPage::LevelSelectMenu: for (auto& object : _levelSelectObjects) object->SetActive(true); break;
+	}
+	_currentPage = menuPage;
+}
+
 void MenuEventManager::Awake(){
 	instance = this;
 
-#pragma region MainMenu Objects
-	//_mainMenuObjects.emplace_back();
-
-#pragma endregion
-#pragma region LevelSelect Objects
-
-#pragma endregion
-
+	_mainMenuObjects = GameObject::FindGameObjectsWithTag("MainMenuUi");
+	_levelSelectObjects = GameObject::FindGameObjectsWithTag("LevelSelectUi");
+	LoadMenu(MenuPage::MainMenu);
 }
 
 void MenuEventManager::Update() {
@@ -21,35 +27,9 @@ void MenuEventManager::Update() {
 	switch (_currentPage)	{
 	case MenuPage::MainMenu:
 		if (Input::GetKeyDown(KeyCode::Escape)) { SceneManager::LoadScene(0); return; }
-
-
 		break;
 	case MenuPage::LevelSelectMenu:
-		if (Input::GetKeyDown(KeyCode::Escape)) { return; }
-
+		if (Input::GetKeyDown(KeyCode::Escape)) LoadMenu(MenuPage::MainMenu); 
 		break;
 	}
-
-	if (Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow)) selectionId = --selectionId % selectionPositions.size();
-	if (Input::GetKeyDown(KeyCode::S) || Input::GetKeyDown(KeyCode::DownArrow))selectionId = ++selectionId % selectionPositions.size();
-
-	if (Input::GetKeyDown(KeyCode::Space) || Input::GetKeyDown(KeyCode::Return)) {
-		switch (selectionId) {
-		case 0:
-			SceneManager::LoadScene(3); break;
-		case 1:
-			SceneManager::LoadScene(2); break;
-		case 2:
-			SceneManager::Quit(); break;
-		case 3:
-			SceneManager::LoadScene(4); break;
-		case 4:
-			SceneManager::LoadScene(5); break;
-		}
-	}
-
-
-	transform()->position = selectionPositions[selectionId];
 }
-
-MenuEventManager* MenuEventManager::_Clone() const { return new MenuEventManager(*this); }

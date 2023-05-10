@@ -12,6 +12,7 @@ using State = AnimatorController::AnimationState;
 #include "Projectile.h"
 #include "Hitbox.h"
 #include "TikeMyson_Player.h"
+#include "Chicken_Player.h"
 #include "Parallax.h"
 #include "Boss.h"
 #include <string>
@@ -42,8 +43,9 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::MiniTikeMyson_Texture[11], 0.1f }
 			}, false);
 		const AnimationClip MiniTikeMyson_Hurt = AnimationClip({
-			{ Prefab::MiniTikeMyson_Texture[12], 0.1f }
-			}, false);
+			{ Prefab::MiniTikeMyson_Texture[12], 0.1f },
+			{ Prefab::MiniTikeMyson_Texture[1], 0.1f },
+			}, true);
 		const AnimationClip MiniTikeMyson_Die = AnimationClip({
 			{ Prefab::MiniTikeMyson_Texture[15], 0.1f },
 			{ Prefab::MiniTikeMyson_Texture[16], 0.1f },
@@ -95,7 +97,8 @@ using State = AnimatorController::AnimationState;
 			}, false);
 		const AnimationClip BigTikeMyson_Hurt = AnimationClip({
 			{ Prefab::BigTikeMyson_Texture[40], 0.1f },
-			}, false);
+			{ Prefab::BigTikeMyson_Texture[8], 0.1f },
+			}, true);
 	#pragma endregion
 	const AnimatorController Prefab::TikeMyson_Controller = AnimatorController({
 		State("Mini_Idle", &MiniTikeMyson_Idle, {
@@ -108,13 +111,13 @@ using State = AnimatorController::AnimationState;
 			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
 		}),
 		State("Mini_Attack", &MiniTikeMyson_Attack, {
-			{ "Mini_Idle", true, 1}
+			{ "Mini_Idle", true, 1 },
 		}),
 		State("Mini_Hurt", &MiniTikeMyson_Hurt, {
-			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },
+			{ "Mini_Idle", true, 2 },
 		}),
 		State("Mini_Die", &MiniTikeMyson_Die, {
-			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isDead"); }},
+			{ "Mini_Idle", false, 1 },
 		}),
 
 
@@ -134,12 +137,12 @@ using State = AnimatorController::AnimationState;
 			{ "Big_Idle", true, 1 },
 		}),
 		State("Big_Hurt", &BigTikeMyson_Hurt, {
-			{ "Big_Idle", true, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } }
+			{ "Big_Idle", true, 2 },
 		})
 		});
 
 	const GameObject Prefab::TikeMyson_Object = GameObject(
-		"Tike Myson", "Player",
+		"Tike Myson", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&MiniTikeMyson_Texture[0]),
 			std::make_shared<Animator>(&TikeMyson_Controller),
@@ -176,6 +179,7 @@ using State = AnimatorController::AnimationState;
 		}, false);
 	const AnimationClip MiniChicken_Hurt = AnimationClip({
 		{ Prefab::MiniChicken_Texture[12], 0.1f },
+		{ Prefab::MiniChicken_Texture[1], 0.1f },
 		}, true);
 	const AnimationClip MiniChicken_Die = AnimationClip({
 		{ Prefab::MiniChicken_Texture[15], 0.1f },
@@ -226,8 +230,8 @@ using State = AnimatorController::AnimationState;
 		}, false);
 	const AnimationClip BigChicken_Hurt = AnimationClip({
 		{ Prefab::BigChicken_Texture[40], 0.1f },
-
-		}, false);
+		{ Prefab::BigChicken_Texture[8], 0.1f },
+		}, true);
 #pragma endregion
 	const AnimatorController Prefab::Chicken_Controller = AnimatorController({
 		State("Mini_Idle", &MiniChicken_Idle, {
@@ -243,7 +247,7 @@ using State = AnimatorController::AnimationState;
 			{ "Mini_Idle", true, 1},
 		}),
 		State("Mini_Hurt", &MiniChicken_Hurt, {
-			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },
+			{ "Mini_Idle", true, 2 },
 		}),
 		State("Mini_Die", &MiniChicken_Die, {
 			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isDead"); }},
@@ -265,18 +269,18 @@ using State = AnimatorController::AnimationState;
 			{ "Big_Idle", true, 1 },
 		}),
 		State("Big_Hurt", &BigChicken_Hurt, {
-			{ "Big_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },
+			{ "Big_Idle", true, 2 },
 		}),
 		});
 
 	const GameObject Prefab::Chicken_Object = GameObject(
-		"Tike Myson", "Player",
+		"Chicken", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&MiniChicken_Texture[0], false, false),
 			std::make_shared<Animator>(&Chicken_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
-			std::make_shared<TikeMyson_Player>(),
+			std::make_shared<Chicken_Player>(),
 	});
 	#pragma endregion
 
@@ -496,7 +500,7 @@ using State = AnimatorController::AnimationState;
 		State("Idle", &Projectile_Blue_Idle_Clip),
 		});
 	const GameObject Prefab::ProjectileObject_Blue = GameObject(
-		"Projectile (Blue)", "Untagged",
+		"Projectile (Blue)", "Projectile",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Projectile_Blue_Texture[0], false, false),
 			std::make_shared<Animator>(&Projectile_Blue_Controller),
