@@ -10,13 +10,13 @@ public:
 
 	void Awake() override;
 	void Update() override;
-	//void LateUpdate() override;
+	void LateUpdate() override;
 
 private:
 	void TogglePause();
 
 	bool _isPaused = false;
-
+	std::vector<GameObject*> _playerObjects{};
 	GameEventManager* _Clone() const override;
 };
 

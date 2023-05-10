@@ -2,6 +2,8 @@
 #include "../Prefab.h"
 #include "../GameplayData.h"
 #include "../Player.h"
+#include <functional>
+#include <numeric>
 #include <random>
 using namespace InputSystem;
 
@@ -11,17 +13,24 @@ void GameEventManager::Awake() {
 
 	Instantiate(Prefab::BossObject, Vector2(2.5f, 0));
 
+	GameObject* playerObject = nullptr;
 	switch (GameplayData::playerCount) {
-	case 1:
-		switch (std::rand() % 2) {
-		case 0: InstantiateT(Prefab::TikeMyson_Object)->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo; break;
-		case 1: InstantiateT(Prefab::Chicken_Object)->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo; break;
-		};
-		break;
-	case 2:
-		InstantiateT(Prefab::TikeMyson_Object, Vector2(-2.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player1;
-		InstantiateT(Prefab::Chicken_Object, Vector2(-1.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player2;
-		break;
+		case 1:
+			switch (std::rand() % 2) {
+				case 0: playerObject = InstantiateT(Prefab::TikeMyson_Object);				break;
+				case 1: playerObject = InstantiateT(Prefab::Chicken_Object); break;
+			};
+			playerObject->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo;
+			_playerObjects.emplace_back(playerObject);
+			break;
+		case 2:
+			playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-2.5f, 0));
+			playerObject->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player1;
+			_playerObjects.emplace_back(playerObject);
+			playerObject = InstantiateT(Prefab::Chicken_Object, Vector2(-1.5f, 0));
+			playerObject->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player2;
+			_playerObjects.emplace_back(playerObject);
+			break;
 	}
 }
 
@@ -40,9 +49,10 @@ void GameEventManager::TogglePause(){
 	Time::timeScale = _isPaused ? 0.0f : 1.0f;
 }
 
-//void GameEventManager::LateUpdate() {
-//	Vector2 midPosition = Prefab::TikeMyson_Object.transform()->position +
-//	if (Camera::mainCamera) Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, transform()->position, _speed * 0.75f * Time::deltaTime());
-//}
+void GameEventManager::LateUpdate() {
+	if(!Camera::mainCamera || _playerObjects.empty()) return;
+	Vector2 midPosition = std::accumulate(_playerObjects.begin(), _playerObjects.end(), Vector2::zero(), [](const Vector2& accumulator, const GameObject* playerObject) { return accumulator + playerObject->transform->position; }) / _playerObjects.size();
+	Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, midPosition, 3 * 0.75f * Time::deltaTime());
+}
 
 GameEventManager* GameEventManager::_Clone() const { return new GameEventManager(*this); }
