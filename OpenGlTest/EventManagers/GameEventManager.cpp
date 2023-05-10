@@ -36,4 +36,9 @@ void GameEventManager::TogglePause(){
 	Time::timeScale = _isPaused ? 0.0f : 1.0f;
 }
 
+//void GameEventManager::LateUpdate() {
+//	Vector2 midPosition = Prefab::TikeMyson_Object.transform()->position +
+//	if (Camera::mainCamera) Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, transform()->position, _speed * 0.75f * Time::deltaTime());
+//}
+
 GameEventManager* GameEventManager::_Clone() const { return new GameEventManager(*this); }

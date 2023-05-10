@@ -31,7 +31,7 @@ const GameObject Ground = GameObject(
 #pragma region TutorialScene 
 
 	#pragma region TutorialScene Assets
-const Texture2D TutorialScene_Texture = Texture2D("Assets/Background_TutorialScene.png", Texture2D::FilterMode::Nearest,1,1,192);
+	const Texture2D TutorialScene_Texture = Texture2D("Assets/Background_TutorialScene.png", Texture2D::FilterMode::Nearest);
 	const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
 	const GameObject TutorialUIObject = GameObject(
 		"TutorialText", "Untagged",
@@ -55,7 +55,8 @@ const Texture2D TutorialScene_Texture = Texture2D("Assets/Background_TutorialSce
 #pragma region Lv0Scene
 
 	#pragma region Lv0Scene Assets
-	const Texture2D Lv0Scene_Texture = Texture2D("Assets/Game_Lv0.png", Texture2D::FilterMode::Nearest);
+	const Texture2D Lv0Scene_Texture = Texture2D("Assets/Background_TutorialScene.png", Texture2D::FilterMode::Nearest);
+	//const Texture2D Lv0Scene_Texture = Texture2D("Assets/Game_Lv0.png", Texture2D::FilterMode::Nearest);
 	const GameObject Lv0Scene_Object = GameObject(
 		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
@@ -77,11 +78,13 @@ const Texture2D TutorialScene_Texture = Texture2D("Assets/Background_TutorialSce
 #pragma region Lv1Scene
 
 	#pragma region Lv1Scene Assets
-	const Texture2D Lv1Scene_Texture = Texture2D("Assets/Game_Lv1.png", Texture2D::FilterMode::Linear);
+	const Texture2D Lv1Scene_Texture = Texture2D("Assets/Background_TutorialScene.png", Texture2D::FilterMode::Nearest);
+	//const Texture2D Lv1Scene_Texture = Texture2D("Assets/Game_Lv1.png", Texture2D::FilterMode::Linear);
 	const GameObject Lv1Scene_Object = GameObject(
 		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Parallax>(&Lv1Scene_Texture[0], Vector2::left(), 0.1f),
+		std::make_shared<SpriteRenderer>(&Lv0Scene_Texture[0]),
+		//std::make_shared<Parallax>(&Lv1Scene_Texture[0], Vector2::left(), 0.1f),
 	});
 
 	#pragma endregion
