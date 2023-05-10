@@ -300,7 +300,8 @@ const GameObject MainCamera = GameObject(
 				std::make_shared<Image>(&Button_Quit_Texture[0]),
 					std::make_shared<Animator>(&Button_Quit_Controller),
 					std::make_shared<Button>(
-						[](auto) { SceneManager::Quit(); },
+						//[](auto) { SceneManager::Quit(); },
+						[](auto) { SceneManager::LoadScene(3); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),

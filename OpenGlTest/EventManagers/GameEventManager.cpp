@@ -16,7 +16,7 @@ void GameEventManager::Awake(){
 		break;
 	case 2:
 		InstantiateT(Prefab::TikeMyson_Object, Vector2(-2.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player1;
-		InstantiateT(Prefab::TikeMyson_Object, Vector2(-1.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player2;//Chicken here
+		InstantiateT(Prefab::Chicken_Object, Vector2(-1.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player2;//Chicken here
 		break;
 	}
 }

@@ -173,7 +173,7 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::MiniChicken_Texture[9], 0.1f },
 		{ Prefab::MiniChicken_Texture[10], 0.1f },
 		{ Prefab::MiniChicken_Texture[11], 0.1f },
-		}, true);
+		}, false);
 	const AnimationClip MiniChicken_Hurt = AnimationClip({
 		{ Prefab::MiniChicken_Texture[12], 0.1f },
 		}, true);
@@ -183,7 +183,7 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::MiniChicken_Texture[17], 0.1f }
 		}, false);
 #pragma endregion
-	const Texture2D Prefab::BigChicken_Texture = Texture2D("Assets/Chicken_Big.png", Texture2D::FilterMode::Nearest, 8, 5);
+	const Texture2D Prefab::BigChicken_Texture = Texture2D("Assets/Chicken_Big.png", Texture2D::FilterMode::Nearest, 8, 6);
 #pragma region Clips
 	const AnimationClip BigChicken_Idle = AnimationClip({
 		{ Prefab::BigChicken_Texture[8], 0.1f },
@@ -240,7 +240,7 @@ using State = AnimatorController::AnimationState;
 			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isJumping"); }},
 		}),
 		State("Mini_Attack", &MiniChicken_Attack, {
-			{ "Mini_Idle", false, 1},
+			{ "Mini_Idle", true, 1},
 		}),
 		State("Mini_Hurt", &MiniChicken_Hurt, {
 			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isHurt"); } },

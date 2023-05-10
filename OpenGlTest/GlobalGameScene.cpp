@@ -31,7 +31,7 @@ const GameObject Ground = GameObject(
 #pragma region TutorialScene 
 
 	#pragma region TutorialScene Assets
-const Texture2D TutorialScene_Texture = Texture2D("Assets/Game_Tutorial.png", Texture2D::FilterMode::Nearest,1,1,192);
+const Texture2D TutorialScene_Texture = Texture2D("Assets/Background_TutorialScene.png", Texture2D::FilterMode::Nearest,1,1,192);
 	const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
 	const GameObject TutorialUIObject = GameObject(
 		"TutorialText", "Untagged",
