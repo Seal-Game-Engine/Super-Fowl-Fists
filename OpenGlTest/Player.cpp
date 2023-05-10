@@ -87,6 +87,8 @@ void Player::Update() {
 		case PowerState::Mini: _animator->Play("Mini_Attack"); break;
 		case PowerState::Big: _animator->Play("Big_Punch"); break;
 		}
+		_audioSource->clip = "";
+		_audioSource->Play();
 	}
 
 	_animator->SetBool("isWalking", std::abs(inputData.horizontal) > 0);

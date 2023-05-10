@@ -4,6 +4,15 @@ MenuEventManager* MenuEventManager::instance = nullptr;
 
 void MenuEventManager::Awake(){
 	instance = this;
+
+#pragma region MainMenu Objects
+	//_mainMenuObjects.emplace_back();
+
+#pragma endregion
+#pragma region LevelSelect Objects
+
+#pragma endregion
+
 }
 
 void MenuEventManager::Update() {

@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <vector>
 #include "../SealEngine.h"
 using namespace SealEngine;
 
@@ -17,7 +18,8 @@ private:
 	enum class MenuPage { MainMenu, LevelSelectMenu };
 	MenuPage _currentPage = MenuPage::MainMenu;
 
-
+	std::vector<GameObject*> _mainMenuObjects{};
+	std::vector<GameObject*> _levelSelectObjects{};
 
 	MenuEventManager* _Clone() const;
 };

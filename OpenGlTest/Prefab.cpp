@@ -141,7 +141,7 @@ using State = AnimatorController::AnimationState;
 	const GameObject Prefab::TikeMyson_Object = GameObject(
 		"Tike Myson", "Player",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&MiniTikeMyson_Texture[0], false, false),
+		std::make_shared<SpriteRenderer>(&MiniTikeMyson_Texture[0]),
 			std::make_shared<Animator>(&TikeMyson_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
