@@ -1,7 +1,26 @@
 #include "MenuEventManager.h"
 
+MenuEventManager* MenuEventManager::instance = nullptr;
+
+void MenuEventManager::Awake(){
+	instance = this;
+}
+
 void MenuEventManager::Update() {
 	using namespace InputSystem;
+
+	switch (_currentPage)	{
+	case MenuPage::MainMenu:
+		if (Input::GetKeyDown(KeyCode::Escape)) { SceneManager::LoadScene(0); return; }
+
+
+		break;
+	case MenuPage::LevelSelectMenu:
+		if (Input::GetKeyDown(KeyCode::Escape)) { return; }
+
+		break;
+	}
+
 	if (Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow)) selectionId = --selectionId % selectionPositions.size();
 	if (Input::GetKeyDown(KeyCode::S) || Input::GetKeyDown(KeyCode::DownArrow))selectionId = ++selectionId % selectionPositions.size();
 
@@ -20,7 +39,6 @@ void MenuEventManager::Update() {
 		}
 	}
 
-	if (Input::GetKeyDown(KeyCode::Escape)) SceneManager::LoadScene(0);
 
 	transform()->position = selectionPositions[selectionId];
 }

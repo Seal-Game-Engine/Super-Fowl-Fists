@@ -2,21 +2,25 @@
 #include "../Prefab.h"
 #include "../GameplayData.h"
 #include "../Player.h"
+#include <random>
 using namespace InputSystem;
 
-void GameEventManager::Awake(){
+void GameEventManager::Awake() {
 	pausePanels = gameObject->GetComponents<Image>();
-	for(auto& panel : pausePanels) panel->enabled = false;
+	for (auto& panel : pausePanels) panel->enabled = false;
 
 	Instantiate(Prefab::BossObject, Vector2(2.5f, 0));
 
 	switch (GameplayData::playerCount) {
 	case 1:
-		InstantiateT(Prefab::TikeMyson_Object)->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo;
+		switch (std::rand() % 2) {
+		case 0: InstantiateT(Prefab::TikeMyson_Object)->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo; break;
+		case 1: InstantiateT(Prefab::Chicken_Object)->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo; break;
+		};
 		break;
 	case 2:
 		InstantiateT(Prefab::TikeMyson_Object, Vector2(-2.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player1;
-		InstantiateT(Prefab::Chicken_Object, Vector2(-1.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player2;//Chicken here
+		InstantiateT(Prefab::Chicken_Object, Vector2(-1.5f, 0))->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player2;
 		break;
 	}
 }

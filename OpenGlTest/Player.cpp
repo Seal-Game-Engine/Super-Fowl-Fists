@@ -16,7 +16,7 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 
 			Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow),
 
-			Input::GetKeyDown(KeyCode::H) || Input::GetKeyDown(KeyCode::Comma)
+			Input::GetKeyDown(KeyCode::R) || Input::GetKeyDown(KeyCode::M)
 		};
 	case ControlScheme::Player1:
 		return InputData{
@@ -25,7 +25,7 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 
 			Input::GetKeyDown(KeyCode::W),
 
-			Input::GetKeyDown(KeyCode::H)
+			Input::GetKeyDown(KeyCode::R)
 		};
 	case ControlScheme::Player2:
 		return InputData{
@@ -34,7 +34,7 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 
 			Input::GetKeyDown(KeyCode::UpArrow),
 
-			Input::GetKeyDown(KeyCode::Comma)
+			Input::GetKeyDown(KeyCode::M)
 		};
 	}
 }
