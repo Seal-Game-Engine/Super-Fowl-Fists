@@ -8,7 +8,7 @@ public:
 
 	void Initialize(Vector2 direction, GameObject* sourceObject);
 
-	Projectile(float speed = 1, float lifeSpan = 5, TraversalMethods traversalMethod = TraversalMethods::UseVelocity);
+	Projectile(float speed = 1, float lifeSpan = 5, TraversalMethods traversalMethod = TraversalMethods::UseVelocity, bool isExplosive = false);
 
 	void Awake() override;
 	void Update() override;
@@ -21,6 +21,7 @@ private:
 	float _lifeSpan = 5;
 	float _destroyTime = 0;
 	TraversalMethods _traversalMethod = TraversalMethods::UseVelocity;
+	bool _isExplosive = false;
 	Vector2 _direction = Vector2::zero();
 
 	GameObject* _sourceObject = nullptr;

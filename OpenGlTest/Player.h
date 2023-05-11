@@ -37,6 +37,10 @@ protected:
 	AudioSource* _audioSource = nullptr;
 
 private:
+	enum class PowerState : int { Mini, Big };
+
+	void SetPowerState(PowerState powerState);
+
 	const float miniColliderRadius = 0.1875f;
 	const float bigColliderRadius = 0.375f;
 
@@ -44,12 +48,13 @@ private:
 	Rigidbody2D* _rigidbody = nullptr;
 	CircleCollider2D* _collider = nullptr;
 
+	GameObject* hitbox = nullptr;
+
 	float _maxVerticalVelocity = 6;
 	float _speed = 4.0f;
 	bool _canJump = true;
 	float _nextAttack = 0;
 
-	enum class PowerState : int { Mini, Big };
 	PowerState _powerState = PowerState::Mini;
 
 	Player* _Clone() const override { return new Player(*this); }

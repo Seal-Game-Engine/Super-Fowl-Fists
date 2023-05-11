@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Projectile.h"
 #include "Prefab.h"
+#include "Hitbox.h"
 #include <cmath>
 
 //void Player::TakeDamage(float damage)
@@ -58,14 +59,19 @@ void Player::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
 }
 
 void Player::OnDeath() {
+	SetPowerState(PowerState::Mini);
 	_animator->Play("Mini_Die");
+	Invoke([&] {
+		_rigidbody->enabled = false;
+		_collider->enabled = false;
+		}, 1);
 }
 
 Player::Player(const float hp) :Entity(hp) {
 	faction = Factions::Faction1;
 }
 
-void Player::Awake(){
+void Player::Awake() {
 	_animator = gameObject->GetComponent<Animator>();
 	_rigidbody = gameObject->GetComponent<Rigidbody2D>();
 	_collider = gameObject->GetComponent<CircleCollider2D>();
@@ -73,6 +79,15 @@ void Player::Awake(){
 
 	_collider->radius = miniColliderRadius;
 	//_collider->offset = miniCollider.offset;
+
+	GameObject hitboxObject = GameObject(
+		"Hitbox", "Hitbox",
+		std::vector<std::shared_ptr<MonoBehaviour>>{
+		std::make_shared<BoxCollider2D>(Vector2(1, 1), true),
+			std::make_shared<Hitbox>(DamageData{ Factions::Faction1, 2, 2, this }),
+	});
+	hitbox = InstantiateT(hitboxObject);
+	hitbox->SetActive(false);
 }
 
 void Player::Update() {
@@ -101,27 +116,8 @@ void Player::Update() {
 		_rigidbody->AddForce(Vector2::up() * 5.0f, Rigidbody2D::ForceMode2D::Impulse);
 		_canJump = false;
 	}
-	if(_rigidbody->velocity.y() > _maxVerticalVelocity) _rigidbody->velocity = Vector2(_rigidbody->velocity.x(), _maxVerticalVelocity);
 
-	if (Input::GetKeyDown(KeyCode::Space)) {
-		_powerState = (PowerState)(((int)_powerState + 1) % 2);
-		switch (_powerState) {
-		case PowerState::Mini: 
-			_animator->Play("Mini_Idle"); 
-			_collider->radius = miniColliderRadius;
-			_maxVerticalVelocity = 6;
-			_audioSource->clip = "Assets/Sounds/SizeDown.wav"; 
-			_audioSource->Play();
-			break;
-		case PowerState::Big:
-			_animator->Play("Big_Idle"); 
-			_collider->radius = bigColliderRadius;
-			_maxVerticalVelocity = 5;
-			_audioSource->clip = "Assets/Sounds/SizeUp.wav";  
-			_audioSource->Play();
-			break;
-		}
-	}
+	if (Input::GetKeyDown(KeyCode::Space)) SetPowerState((PowerState)(((int)_powerState + 1) % 2));
 
 	if (inputData.attackDown && Time::time() >= _nextAttack) {
 		switch (_powerState) {
@@ -133,6 +129,7 @@ void Player::Update() {
 	_animator->SetBool("isWalking", std::abs(inputData.horizontal) > 0);
 	_animator->SetBool("isJumping", !_canJump);
 	if (std::abs(inputData.horizontal) > 0) transform()->scale.Set(inputData.horizontal > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
+	if(_rigidbody->velocity.y() > _maxVerticalVelocity) _rigidbody->velocity = Vector2(_rigidbody->velocity.x(), _maxVerticalVelocity);
 }
 
 void Player::OnCollisionEnter2D(Collision2D collision) {
@@ -159,6 +156,27 @@ void Player::Attack_Big() {
 	_nextAttack = Time::time() + 0.3f;
 	_audioSource->clip = "Assets/Sounds/Punch.wav"; //Punch sound 
 	_audioSource->Play();
+}
+
+void Player::SetPowerState(PowerState powerState) {
+	_powerState = powerState;
+
+	switch (_powerState) {
+	case PowerState::Mini:
+		_animator->Play("Mini_Idle");
+		_collider->radius = miniColliderRadius;
+		_maxVerticalVelocity = 6;
+		_audioSource->clip = "Assets/Sounds/SizeDown.wav";
+		_audioSource->Play();
+		break;
+	case PowerState::Big:
+		_animator->Play("Big_Idle");
+		_collider->radius = bigColliderRadius;
+		_maxVerticalVelocity = 5;
+		_audioSource->clip = "Assets/Sounds/SizeUp.wav";
+		_audioSource->Play();
+		break;
+	}
 }
 
 //Player::Player(ControlScheme controlScheme) :_controlScheme(controlScheme) {}
