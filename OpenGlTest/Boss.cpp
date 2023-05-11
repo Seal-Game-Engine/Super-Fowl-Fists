@@ -12,6 +12,7 @@ void Boss::Awake() {
 	_renderer = gameObject->GetComponent<SpriteRenderer>();
 	_animator = gameObject->GetComponent<Animator>();
 	_rigidbody = gameObject->GetComponent<Rigidbody2D>();
+	_audioSource = gameObject->GetComponent<AudioSource>(); 
 
 	Invoke([&] { 
 		_rigidbody->bodyType = Rigidbody2D::BodyType::Kinematic; 
@@ -27,16 +28,21 @@ void Boss::Update() {
 
 	switch (actionState) {
 	case ActionState::None:
-
 		BeginBombAttack();
 		actionState = ActionState::Idle;
+		_audioSource->clip = "Assets/Sounds/RobotStartUp.wav";
+		_audioSource->Play();
 		break;
 	case ActionState::Idle:
 		break;
 	case ActionState::BombAttack:
 		BombAttack();
+		_audioSource->clip = "Assets/Sounds/Blaster.wav";
+		_audioSource->Play();
 		break;
 	case ActionState::ChompAttack:
+		_audioSource->clip = "Assets/Sounds/RobotChomp.wav";
+		_audioSource->Play();
 		break;
 	}
 
@@ -48,12 +54,19 @@ void Boss::Update() {
 
 	if (Input::GetKeyDown(KeyCode::W)) {
 		_animator->SetInteger("move", 2);
+		_audioSource->clip = "Assets/Sounds/RobotMoving.wav";
+		_audioSource->Play();
 	}
 	if (Input::GetKeyDown(KeyCode::E)) {
 		_animator->SetInteger("move", 3);
+		_audioSource->clip = "Assets/Sounds/RobotMoving.wav";
+		_audioSource->Play();
 	}
 	if (Input::GetKeyDown(KeyCode::T)) {
 		_animator->Play("Hurt");
+		_audioSource->clip = "Assets/Sounds/RobotHit.wav";
+		_audioSource->Play();
+
 	}
 	//animator->SetBool("isWalking", std::abs(x) > 0);
 	//animator->SetBool("isJumping", !_canJump);

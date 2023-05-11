@@ -34,6 +34,7 @@ const GameObject MainCamera = GameObject(
 	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
 });
 #pragma endregion
+
 #pragma region SealLogoScene
 	#pragma region SealLogoScene Asset
 		const Texture2D SealLogoScene_Parallax_Texture = Texture2D("Assets/BlocksParallax.png", Texture2D::FilterMode::Nearest);

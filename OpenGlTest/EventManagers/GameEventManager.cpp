@@ -36,7 +36,6 @@ void GameEventManager::Awake() {
 
 void GameEventManager::Update() {
 	if (!_isPaused && (Input::GetKeyDown(KeyCode::Escape) || Input::GetKeyDown(KeyCode::Return))) TogglePause();
-
 	else if (_isPaused) {
 		if (Input::GetKeyDown(KeyCode::Escape)) SceneManager::LoadScene(1);
 		if (Input::anyKeyDown()) TogglePause();

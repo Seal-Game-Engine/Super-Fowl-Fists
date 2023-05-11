@@ -280,6 +280,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Animator>(&Chicken_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
+			std::make_shared<AudioSource>(),
 			std::make_shared<Chicken_Player>(),
 	});
 	#pragma endregion
@@ -376,6 +377,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Animator>(&Prefab::Sensei_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
+			std::make_shared<AudioSource>(),
 			std::make_shared<Boss>(),
 
 	});
@@ -484,6 +486,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Animator>(&Prefab::Boss_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
+			std::make_shared<AudioSource>(),
 			std::make_shared<Boss>(),
 	});
 	#pragma endregion
@@ -507,12 +510,14 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(0.125f, true),
 			std::make_shared<Projectile>(8, 1.5f),
+			std::make_shared<AudioSource>(),
 			std::make_shared<Hitbox>(),
 	});
 	#pragma endregion
 
 #pragma region UI Items
 const Texture2D Prefab::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
+
 
 
 const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::FilterMode::Nearest);

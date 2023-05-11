@@ -1,5 +1,3 @@
-//HOW TO MAKE PAUSE CONTINUE THE MUSIC WHERE IT WAS PAUSED AT 
-
 #include "AudioSource.h"
 
 using namespace SealEngine;

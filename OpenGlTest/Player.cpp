@@ -42,8 +42,16 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 void Player::TakeDamage(DamageData data, Vector2 knockbackDirection){
 	Entity::TakeDamage(data, knockbackDirection);
 	switch (_powerState) {
-	case PowerState::Mini: _animator->Play("Mini_Hurt"); break;
-	case PowerState::Big: _animator->Play("Big_Hurt"); break;
+	case PowerState::Mini:
+		_animator->Play("Mini_Hurt"); 
+		_audioSource->clip = "Assets/Sounds/Hit.wav";
+		_audioSource->Play();
+		break;
+	case PowerState::Big: 
+		_animator->Play("Big_Hurt"); 
+		_audioSource->clip = "Assets/Sounds/Hit.wav";
+		_audioSource->Play();
+		break;
 	}
 }
 
@@ -72,8 +80,16 @@ void Player::Update() {
 
 	if (_canJump && inputData.jumpDown) { 
 		switch (_powerState) {
-		case PowerState::Mini: _animator->Play("Mini_Jump"); break;
-		case PowerState::Big: _animator->Play("Big_Jump"); break;
+		case PowerState::Mini: 
+			_animator->Play("Mini_Jump"); 
+			_audioSource->clip = "Assets/Sounds/LightJump.wav";
+			_audioSource->Play();
+			break;
+		case PowerState::Big: 
+			_animator->Play("Big_Jump"); 
+			_audioSource->clip = "Assets/Sounds/HeavyJump.wav";
+			_audioSource->Play();
+			break;
 		}
 		_rigidbody->AddForce(Vector2::up() * 5.0f, Rigidbody2D::ForceMode2D::Impulse);
 		_canJump = false;
@@ -87,11 +103,15 @@ void Player::Update() {
 			_animator->Play("Mini_Idle"); 
 			_collider->radius = miniColliderRadius;
 			_maxVerticalVelocity = 6;
+			_audioSource->clip = "Assets/Sounds/SizeDown.wav"; 
+			_audioSource->Play();
 			break;
 		case PowerState::Big:
 			_animator->Play("Big_Idle"); 
 			_collider->radius = bigColliderRadius;
 			_maxVerticalVelocity = 5;
+			_audioSource->clip = "Assets/Sounds/SizeUp.wav";  
+			_audioSource->Play();
 			break;
 		}
 	}
@@ -101,8 +121,8 @@ void Player::Update() {
 		case PowerState::Mini: Attack_Mini(); break;
 		case PowerState::Big: Attack_Big(); break;
 		}
-		
-		
+
+
 	}
 
 	_animator->SetBool("isWalking", std::abs(inputData.horizontal) > 0);
@@ -124,14 +144,16 @@ void Player::OnCollisionExit2D(Collision2D collision){
 
 void Player::Attack_Mini(){
 	_animator->Play("Mini_Attack"); 
-	//_audioSource->clip = "";
-	//_audioSource->Play();
 	_nextAttack = Time::time() + 0.3f;
+	_audioSource->clip = "Assets/Sounds/Blaster.wav"; //Blaster sound 
+	_audioSource->Play();
 }
 
 void Player::Attack_Big() {
 	_animator->Play("Big_Punch");
 	_nextAttack = Time::time() + 0.3f;
+	_audioSource->clip = "Assets/Sounds/Punch.wav"; //Punch sound 
+	_audioSource->Play();
 }
 
 //Player::Player(ControlScheme controlScheme) :_controlScheme(controlScheme) {}

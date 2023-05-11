@@ -24,6 +24,7 @@ private:
 	SpriteRenderer* _renderer = nullptr;
 	Animator* _animator = nullptr;
 	Rigidbody2D* _rigidbody = nullptr;
+	AudioSource* _audioSource = nullptr;
 
 	float _speed = 4.0f;
 
