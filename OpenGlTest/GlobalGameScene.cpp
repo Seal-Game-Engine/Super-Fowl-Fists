@@ -6,7 +6,7 @@
 using State = AnimatorController::AnimationState;
 
 #pragma region Shared Assets
-
+const Texture2D Font_Texture = Texture2D("Assets/Font.png", Texture2D::FilterMode::Nearest, 16, 8, 128);
 const GameObject MainCamera = GameObject(
 	"Main Camera", "MainCamera",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
@@ -21,20 +21,26 @@ const GameObject GameEventManagerObject = GameObject(		//Game Interactions (ie: 
 		std::make_shared<GameEventManager>(),
 });
 #pragma endregion
-#pragma region Ground
-const GameObject Ground = GameObject(
+#pragma region Environment
+const GameObject Ground_Object = GameObject(
 	"Ground", "Ground",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
 });
-const GameObject Wall = GameObject(
+const GameObject Wall_Object = GameObject(
 	"Wall", "Untagged",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<BoxCollider2D>(Vector2(1, 1600)),
 });
-
-	const Texture2D Prefab::Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3, 1);
+const  Texture2D Lv0_Platform_Texture = Texture2D("Assets/Game_Lv0_Platform.png", Texture2D::FilterMode::Nearest);
+const GameObject Lv0_Platform_Object = GameObject(
+	"Platform", "Ground",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<BoxCollider2D>(Vector2(1, 0.1)),
+		std::make_shared<SpriteRenderer>(&Lv0_Platform_Texture[0])
+});
 #pragma endregion
+
 #pragma region UI
 	#pragma region TikeMyson UI
 	const Texture2D TikeMyson_UI_Texture = Texture2D("Assets/TikeMyson_UI.png", Texture2D::FilterMode::Nearest, 4, 1, 40);
@@ -51,6 +57,11 @@ const GameObject Wall = GameObject(
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&TikeMyson_UI_Texture[0]),
 		std::make_shared<Animator>(&TikeMyson_UI_Controller),
+	});
+	const GameObject UI_Text_Object = GameObject(
+		"Background", "Untagged",
+		std::vector<std::shared_ptr<MonoBehaviour>>{
+		std::make_shared<Text>("100", &Font_Texture),
 	});
 
 	#pragma endregion
@@ -91,7 +102,7 @@ const GameObject Wall = GameObject(
 	Scene GlobalGameScene::TutorialScene = Scene({
 	{&TutorialUIObject, Transform()},
 	{&GameEventManagerObject, Transform()},
-	{&Ground, Transform(Vector2(0, -3))},
+	{&Ground_Object, Transform(Vector2(0, -3))},
 	{&MainCamera, Transform()},
 	});
 	#pragma endregion
@@ -102,11 +113,22 @@ const GameObject Wall = GameObject(
 
 	#pragma region Lv0Scene Assets
 	const Texture2D Lv0Scene_Texture = Texture2D("Assets/Game_Lv0.png", Texture2D::FilterMode::Nearest);
-	//const Texture2D Lv0Scene_Texture = Texture2D("Assets/Game_Lv0.png", Texture2D::FilterMode::Nearest);
+	const Texture2D Lv0Scene_Background_Texture = Texture2D("Assets/Game_Lv0_Background.png", Texture2D::FilterMode::Nearest,3);
+	const AnimationClip Lv0Scene_Background_Idle = AnimationClip({
+		{ Lv0Scene_Background_Texture[0], 0.1f },
+		{ Lv0Scene_Background_Texture[1], 0.1f },
+		{ Lv0Scene_Background_Texture[2], 0.1f },
+		}, true);
+	const AnimatorController Lv0Scene_Background_Controller = AnimatorController({
+		State("Idle", &Lv0Scene_Background_Idle, {}) });
+
 	const GameObject Lv0Scene_Object = GameObject(
 		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
+		std::make_shared<SpriteRenderer>(&Lv0Scene_Background_Texture[0]),
+		std::make_shared<Animator>(&Lv0Scene_Background_Controller),
 		std::make_shared<SpriteRenderer>(&Lv0Scene_Texture[0]),
+
 	});
 	#pragma endregion
 
@@ -114,11 +136,14 @@ const GameObject Wall = GameObject(
 	Scene GlobalGameScene::Lv0Scene = Scene({
 	{&Lv0Scene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
-	{&Ground, Transform(Vector2(0, -2.3))},
-	{&Wall, Transform(Vector2(-7.5,0))},
-	{&Wall, Transform(Vector2(10,0))},
+	{&Ground_Object, Transform(Vector2(0, -2.3))},
+	{&Lv0_Platform_Object, Transform(Vector2(0,-1.24))},
+	{&Wall_Object, Transform(Vector2(-7.5,0))},
+	{&Wall_Object, Transform(Vector2(7.5,0))},
 	{&TikeMyson_UI_Object, Transform(Vector2(-2.5,-1.9))},
+	{&UI_Text_Object, Transform(Vector2(-1.7,-1.64))},
 	{&Chicken_UI_Object, Transform(Vector2(2.5,-1.9))},
+	{&UI_Text_Object, Transform(Vector2(3.3,-1.64))},
 	{&MainCamera, Transform()},
 		});
 	#pragma endregion
@@ -143,7 +168,7 @@ const GameObject Wall = GameObject(
 	Scene GlobalGameScene::Lv1Scene = Scene({
 	{&Lv1Scene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
-	{&Ground, Transform(Vector2(0, -2))},
+	{&Ground_Object, Transform(Vector2(0, -2))},
 	{&MainCamera, Transform()},
 		});
 	#pragma endregion
