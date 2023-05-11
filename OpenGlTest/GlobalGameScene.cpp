@@ -88,21 +88,38 @@ const GameObject Lv0_Platform_Object = GameObject(
 #pragma region TutorialScene 
 
 	#pragma region TutorialScene Assets
-	const Texture2D TutorialScene_Texture = Texture2D("Assets/Background_TutorialScene.png", Texture2D::FilterMode::Nearest);
-	const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
-	const GameObject TutorialUIObject = GameObject(
-		"TutorialText", "Untagged",
+	const Texture2D TutorialScene_Texture = Texture2D("Assets/Game_Tutorial.png", Texture2D::FilterMode::Nearest);
+	//const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
+	const Texture2D TutorialScene_Background_Texture = Texture2D("Assets/Game_Tutorial_Background.png", Texture2D::FilterMode::Nearest, 5);
+	const AnimationClip TutorialScene_Background_Idle = AnimationClip({
+		{ TutorialScene_Background_Texture[0], 0.1f },
+		{ TutorialScene_Background_Texture[1], 0.1f },
+		{ TutorialScene_Background_Texture[2], 0.1f },
+		{ TutorialScene_Background_Texture[3], 0.1f },
+		{ TutorialScene_Background_Texture[4], 0.1f },
+		}, true);
+	const AnimatorController TutorialScene_Background_Controller = AnimatorController({
+		State("Idle", &TutorialScene_Background_Idle, {}) });
+	const GameObject TutorialScene_Object = GameObject(
+		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<Image>(&TutorialText[0]),
-		std::make_shared<SpriteRenderer>(&TutorialScene_Texture[0])
+		std::make_shared<SpriteRenderer>(&TutorialScene_Background_Texture[0]),
+			std::make_shared<Animator>(&TutorialScene_Background_Controller),
+			std::make_shared<SpriteRenderer>(&TutorialScene_Texture[0]),
 	});
+	//const GameObject TutorialUIObject = GameObject(
+	//	"TutorialText", "Untagged",
+	//	std::vector<std::shared_ptr<MonoBehaviour>>{
+	//	std::make_shared<Image>(&TutorialText[0]),
+	//	std::make_shared<SpriteRenderer>(&TutorialScene_Texture[0])
+	//});
 	#pragma endregion
 
 	#pragma region TutorialScene Properties
 	Scene GlobalGameScene::TutorialScene = Scene({
-	{&TutorialUIObject, Transform()},
+	{&TutorialScene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
-	{&Ground_Object, Transform(Vector2(0, -3))},
+	{&Ground_Object, Transform(Vector2(0, -4))},
 	{&MainCamera, Transform()},
 	});
 	#pragma endregion
@@ -128,7 +145,6 @@ const GameObject Lv0_Platform_Object = GameObject(
 		std::make_shared<SpriteRenderer>(&Lv0Scene_Background_Texture[0]),
 		std::make_shared<Animator>(&Lv0Scene_Background_Controller),
 		std::make_shared<SpriteRenderer>(&Lv0Scene_Texture[0]),
-
 	});
 	#pragma endregion
 
