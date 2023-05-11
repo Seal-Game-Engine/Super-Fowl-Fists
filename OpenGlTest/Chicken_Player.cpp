@@ -12,3 +12,5 @@ void Chicken_Player::Attack_Mini() {
 	projectile->GetComponent<Hitbox>()->data.faction = faction;
 	projectile->GetComponent<Hitbox>()->data.entity = this;
 }
+
+Chicken_Player::Chicken_Player(const float hp) :Player(hp) {}

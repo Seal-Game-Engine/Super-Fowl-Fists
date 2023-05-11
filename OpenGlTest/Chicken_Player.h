@@ -1,6 +1,9 @@
 #pragma once
 #include "Player.h"
 class Chicken_Player : public Player {
+public:
+	Chicken_Player(const float hp);
+
 protected:
 	void Attack_Mini() override;
 

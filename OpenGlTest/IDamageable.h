@@ -18,7 +18,7 @@ struct DamageData {
 
 class IDamageable{
 public:
-	virtual void TakeDamage(DamageData data, Vector2 knockbackDirection) = 0;
+	virtual void OnDamageTaken(DamageData data, Vector2 knockbackDirection) = 0;
 
 	Factions faction = Factions::NoFaction;
 };

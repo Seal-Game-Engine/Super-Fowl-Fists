@@ -8,13 +8,18 @@ class Boss : public Entity {
 public:
 	//void TakeDamage(float damage) override;
 
+	Boss(const float hp);
+
 	void Awake() override;
 	void Update() override;
 	//void OnCollisionEnter2D(Collision2D collision) override;
 
 private:
-	enum class ActionState { None, Idle, BombAttack, ChompAttack };
-	ActionState actionState = ActionState::None;
+	enum class ActionState { InTransition, Idle, BombAttack, ChompAttack };
+	ActionState actionState = ActionState::Idle;
+	void OnStateEnter();
+	void OnStateExit();
+	void SetState(ActionState state);
 
 	void BeginBombAttack();
 	void BombAttack();

@@ -4,9 +4,9 @@
 #include "Hitbox.h"
 #include <cmath>
 
-//const std::array<const AnimatorController*, 2> Player::animatorControllers{ &AssetManager::MiniTikeMyson_Controller, &AssetManager::BigTikeMyson_Controller }; //change to small and big guy controller
-
-
+Boss::Boss(const float hp) :Entity(hp) {
+	faction = Factions::Faction2;
+}
 
 void Boss::Awake() {
 	_renderer = gameObject->GetComponent<SpriteRenderer>();
@@ -27,22 +27,22 @@ void Boss::Update() {
 	_rigidbody->velocity = Vector2(-0.05, _rigidbody->velocity.y());
 
 	switch (actionState) {
-	case ActionState::None:
-		BeginBombAttack();
-		actionState = ActionState::Idle;
-		_audioSource->clip = "Assets/Sounds/RobotStartUp.wav";
-		_audioSource->Play();
+	case ActionState::InTransition:
 		break;
 	case ActionState::Idle:
+		BeginBombAttack();
+		actionState = ActionState::InTransition;
+		_audioSource->clip = "Assets/Sounds/RobotStartUp.wav";
+		//_audioSource->Play();
 		break;
 	case ActionState::BombAttack:
 		BombAttack();
 		_audioSource->clip = "Assets/Sounds/Blaster.wav";
-		_audioSource->Play();
+		//_audioSource->Play();
 		break;
 	case ActionState::ChompAttack:
 		_audioSource->clip = "Assets/Sounds/RobotChomp.wav";
-		_audioSource->Play();
+		//_audioSource->Play();
 		break;
 	}
 
@@ -54,23 +54,34 @@ void Boss::Update() {
 
 	if (Input::GetKeyDown(KeyCode::W)) {
 		_animator->SetInteger("move", 2);
-		_audioSource->clip = "Assets/Sounds/RobotMoving.wav";
-		_audioSource->Play();
 	}
 	if (Input::GetKeyDown(KeyCode::E)) {
 		_animator->SetInteger("move", 3);
-		_audioSource->clip = "Assets/Sounds/RobotMoving.wav";
-		_audioSource->Play();
+		//_audioSource->clip = "Assets/Sounds/RobotMoving.wav";
+		//_audioSource->Play();
 	}
 	if (Input::GetKeyDown(KeyCode::T)) {
 		_animator->Play("Hurt");
-		_audioSource->clip = "Assets/Sounds/RobotHit.wav";
-		_audioSource->Play();
+
 
 	}
 	//animator->SetBool("isWalking", std::abs(x) > 0);
 	//animator->SetBool("isJumping", !_canJump);
 	//if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
+}
+
+void Boss::OnStateEnter()
+{
+}
+
+void Boss::OnStateExit()
+{
+}
+
+void Boss::SetState(ActionState state){
+	OnStateExit();
+	actionState = state;
+	OnStateEnter();
 }
 
 void Boss::BeginBombAttack(){
@@ -86,15 +97,16 @@ void Boss::BombAttack(){
 		GameObject* bomb = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + Vector2(transform()->scale.x()+0.9, -0.125) * 1);
 		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), -0.5f), gameObject);
 		bomb->GetComponent<Hitbox>()->data.entity = this;
-
+		//_audioSource->clip = "Assets/Sounds/RobotHit.wav";
+		//_audioSource->Play();
 		_nextBombTime = Time::time() + _bombAttackCooldown;
 	}
 
 	if (Time::time() >= _nextActionTime) {
-		actionState = ActionState::Idle;
+		actionState = ActionState::InTransition;
 		_animator->SetInteger("move", 0);
 		Invoke([&] {
-			actionState = ActionState::None;
+			actionState = ActionState::Idle;
 			}, 0.8f);
 	}
 }

@@ -20,3 +20,5 @@ void TikeMyson_Player::Attack_Mini() {
 		projectile->GetComponent<Hitbox>()->data.entity = this;
 	}
 }
+
+TikeMyson_Player::TikeMyson_Player(const float hp) :Player(hp) {}

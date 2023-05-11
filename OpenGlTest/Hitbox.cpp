@@ -7,7 +7,7 @@ void Hitbox::OnTriggerEnter2D(Collider2D* collider) {
 		if (auto damageable = collider->gameObject->GetComponent<IDamageable>()) {
 			if (data.faction == damageable->faction && data.faction != Factions::NoFaction) return;
 			
-			damageable->TakeDamage(data, (collider->gameObject->transform->position - transform()->position).normalized());
+			damageable->OnDamageTaken(data, (collider->gameObject->transform->position - transform()->position).normalized());
 		}
 	}
 }

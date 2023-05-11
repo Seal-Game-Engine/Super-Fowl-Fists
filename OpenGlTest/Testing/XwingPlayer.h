@@ -15,7 +15,7 @@ public:
 	void OnCollisionExit2D(Collision2D collision) override {}
 
 
-	XwingPlayer() = default;
+	XwingPlayer() :Entity(10) {}
 
 private:
 	Rigidbody2D* rigidbody = nullptr;

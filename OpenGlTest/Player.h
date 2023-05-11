@@ -18,10 +18,12 @@ public:
 	enum class ControlScheme { Solo, Player1, Player2 };
 
 	InputData GetInputData(ControlScheme controlScheme);
-	void TakeDamage(DamageData data, Vector2 knockbackDirection) override;
 	ControlScheme controlScheme = ControlScheme::Solo;
 
-	Player();
+	void OnDamageTaken(DamageData data, Vector2 knockbackDirection) override;
+	void OnDeath() override;
+
+	Player(const float hp);
 
 	void Awake() override;
 	void Update() override;
@@ -32,16 +34,15 @@ public:
 protected:
 	virtual void Attack_Mini();
 	virtual void Attack_Big();
+	AudioSource* _audioSource = nullptr;
 
 private:
 	const float miniColliderRadius = 0.1875f;
 	const float bigColliderRadius = 0.375f;
 
-	SpriteRenderer* _renderer = nullptr;
 	Animator* _animator = nullptr;
 	Rigidbody2D* _rigidbody = nullptr;
 	CircleCollider2D* _collider = nullptr;
-	AudioSource* _audioSource = nullptr;
 
 	float _maxVerticalVelocity = 6;
 	float _speed = 4.0f;

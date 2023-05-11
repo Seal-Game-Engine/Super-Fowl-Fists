@@ -116,9 +116,7 @@ using State = AnimatorController::AnimationState;
 		State("Mini_Hurt", &MiniTikeMyson_Hurt, {
 			{ "Mini_Idle", true, 2 },
 		}),
-		State("Mini_Die", &MiniTikeMyson_Die, {
-			{ "Mini_Idle", false, 1 },
-		}),
+		State("Mini_Die", &MiniTikeMyson_Die),
 
 
 		State("Big_Idle", &BigTikeMyson_Idle, {
@@ -149,7 +147,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
 			std::make_shared<AudioSource>(),
-			std::make_shared<TikeMyson_Player>(),
+			std::make_shared<TikeMyson_Player>(10),
 	});
 	#pragma endregion
 
@@ -249,9 +247,8 @@ using State = AnimatorController::AnimationState;
 		State("Mini_Hurt", &MiniChicken_Hurt, {
 			{ "Mini_Idle", true, 2 },
 		}),
-		State("Mini_Die", &MiniChicken_Die, {
-			{ "Mini_Idle", false, 1, [](auto& animator) { return !animator.GetBool("isDead"); }},
-		}),
+		State("Mini_Die", &MiniChicken_Die),
+
 
 		State("Big_Idle", &BigChicken_Idle, {
 			{ "Big_Walk", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); }},
@@ -281,7 +278,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
 			std::make_shared<AudioSource>(),
-			std::make_shared<Chicken_Player>(),
+			std::make_shared<Chicken_Player>(10),
 	});
 	#pragma endregion
 
@@ -378,7 +375,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
 			std::make_shared<AudioSource>(),
-			std::make_shared<Boss>(),
+			std::make_shared<Boss>(10),
 
 	});
 	#pragma endregion
@@ -487,7 +484,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
 			std::make_shared<AudioSource>(),
-			std::make_shared<Boss>(),
+			std::make_shared<Boss>(10),
 	});
 	#pragma endregion
 #pragma endregion

@@ -5,7 +5,7 @@
 namespace SealEngine {
 	namespace InputSystem {
 		enum class KeyCode : WPARAM {
-			None = NULL,
+			Idle = NULL,
 
 			// Mouse
 			MouseLeft = VK_LBUTTON,

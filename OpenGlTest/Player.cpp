@@ -39,8 +39,9 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 	}
 }
 
-void Player::TakeDamage(DamageData data, Vector2 knockbackDirection){
-	Entity::TakeDamage(data, knockbackDirection);
+void Player::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
+	if (!isAlive())return;
+
 	switch (_powerState) {
 	case PowerState::Mini:
 		_animator->Play("Mini_Hurt"); 
@@ -53,14 +54,18 @@ void Player::TakeDamage(DamageData data, Vector2 knockbackDirection){
 		_audioSource->Play();
 		break;
 	}
+	Entity::OnDamageTaken(data, knockbackDirection);
 }
 
-Player::Player(){
+void Player::OnDeath() {
+	_animator->Play("Mini_Die");
+}
+
+Player::Player(const float hp) :Entity(hp) {
 	faction = Factions::Faction1;
 }
 
 void Player::Awake(){
-	_renderer = gameObject->GetComponent<SpriteRenderer>();
 	_animator = gameObject->GetComponent<Animator>();
 	_rigidbody = gameObject->GetComponent<Rigidbody2D>();
 	_collider = gameObject->GetComponent<CircleCollider2D>();
@@ -71,6 +76,8 @@ void Player::Awake(){
 }
 
 void Player::Update() {
+	if (!isAlive()) return;
+
 	InputData inputData = GetInputData(controlScheme);
 
 	_rigidbody->velocity = Vector2(
@@ -78,7 +85,7 @@ void Player::Update() {
 		_rigidbody->velocity.y()
 	);
 
-	if (_canJump && inputData.jumpDown) { 
+	if (inputData.jumpDown && _canJump) { 
 		switch (_powerState) {
 		case PowerState::Mini: 
 			_animator->Play("Mini_Jump"); 
@@ -121,8 +128,6 @@ void Player::Update() {
 		case PowerState::Mini: Attack_Mini(); break;
 		case PowerState::Big: Attack_Big(); break;
 		}
-
-
 	}
 
 	_animator->SetBool("isWalking", std::abs(inputData.horizontal) > 0);
