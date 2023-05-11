@@ -44,19 +44,7 @@ void Boss::Update() {
 		
 	}
 
-	if (Input::GetKeyDown(KeyCode::W)) {
-		_animator->SetInteger("move", 2);
-	}
-	if (Input::GetKeyDown(KeyCode::E)) {
-		_animator->SetInteger("move", 3);
-		//_audioSource->clip = "Assets/Sounds/RobotMoving.wav";
-		//_audioSource->Play();
-	}
-	if (Input::GetKeyDown(KeyCode::T)) {
-		_animator->Play("Hurt");
-
-
-	}
+	
 	//animator->SetBool("isWalking", std::abs(x) > 0);
 	//animator->SetBool("isJumping", !_canJump);
 	//if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());

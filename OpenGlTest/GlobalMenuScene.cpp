@@ -335,7 +335,7 @@ const GameObject MainCamera = GameObject(
 					std::make_shared<Animator>(&Button_Universal_Controller),
 					std::make_shared<Text>("Tutorial", &Font_Texture),
 					std::make_shared<Button>(
-						[](auto) { SceneManager::LoadScene(3); },
+						[](auto) { GameplayData::level = 0; SceneManager::LoadScene(3); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 						),
@@ -347,7 +347,7 @@ const GameObject MainCamera = GameObject(
 					std::make_shared<Animator>(&Button_Universal_Controller),
 					std::make_shared<Text>("Level 0", &Font_Texture),
 					std::make_shared<Button>(
-						[](auto) { SceneManager::LoadScene(4); },
+						[](auto) { GameplayData::level = 1; SceneManager::LoadScene(4); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),
@@ -359,7 +359,7 @@ const GameObject MainCamera = GameObject(
 					std::make_shared<Animator>(&Button_Universal_Controller),
 					std::make_shared<Text>("Level 1", &Font_Texture),
 					std::make_shared<Button>(
-						[](auto) { SceneManager::LoadScene(5); },
+						[](auto) { GameplayData::level = 2; SceneManager::LoadScene(5); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),

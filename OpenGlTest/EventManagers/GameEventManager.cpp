@@ -34,8 +34,14 @@ void GameEventManager::Awake() {
 	p1HpText = texts[0];
 	p2HpText = texts[2];
 
-
-	Instantiate(Prefab::BossObject, Vector2(2.5f, 0));
+	switch (GameplayData::level) {
+	case 1:
+		Instantiate(Prefab::Sensei_Object, Vector2(2.5f, 0));
+		break;
+	case 2:
+		Instantiate(Prefab::BossObject, Vector2(2.5f, 0));
+		break;
+	}
 
 	Player* playerObject = nullptr;
 	switch (GameplayData::playerCount) {
