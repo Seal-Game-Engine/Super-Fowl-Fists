@@ -14,6 +14,7 @@ public:
 private: 
 	Rigidbody2D* _rigidbody = nullptr;
 	Hitbox* hitbox = nullptr;
+	GameObject* _target = nullptr;
 
 	Student* _Clone() const override { return new Student(*this); }
 };

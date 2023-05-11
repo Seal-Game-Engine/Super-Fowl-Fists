@@ -6,9 +6,9 @@
 void TikeMyson_Player::Attack_Mini() {
 	Player::Attack_Mini();
 
-	std::array<Vector2, 3> directions{ 
+	std::array<Vector2, 2> directions{ 
 		Vector2::right() * transform()->scale.x() + Vector2::up() * 0.3f,
-		Vector2::right() * transform()->scale.x(),
+		//Vector2::right() * transform()->scale.x(),
 		Vector2::right() * transform()->scale.x() + Vector2::down() * 0.3f,
 	};
 

@@ -102,7 +102,7 @@ void SenseiWu::FireballAttack() {
 
 void SenseiWu::StudentAttack() {
 	if (Time::time() >= _nextStudentTime) {
-		Instantiate(Prefab::Students_Object, transform()->position + Vector2::right() * transform()->scale.x());
+		Instantiate(Prefab::Students_Object, transform()->position + Vector2::right() * ((rand()%2) ==0? -1:1));
 		_nextStudentTime = Time::time() + _studentAttackCooldown;
 	}
 	if (Time::time() >= _nextActionTime) SetState(ActionState::InTransition);
