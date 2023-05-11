@@ -26,6 +26,11 @@ public:
 	static const AnimatorController Sensei_Controller;
 	static const GameObject Sensei_Object;
 
+	//Students
+	static const Texture2D Students_Texture;
+	static const AnimatorController Students_Controller;
+	static const GameObject Students_Object;
+
 	//Boss
 	static const Texture2D Boss_Texture;
 	static const Texture2D Boss_Projectile_Texture;

@@ -379,10 +379,52 @@ using State = AnimatorController::AnimationState;
 
 	});
 	#pragma endregion
+
 	#pragma region Students
+	const Texture2D Prefab::Students_Texture = Texture2D("Assets/Students.png", Texture2D::FilterMode::Nearest, 3, 3);
+	#pragma region Clips
+	const AnimationClip Students_Idle_Clip = AnimationClip({
+		{ Prefab::Students_Texture[0], 0.1f },
+		{ Prefab::Students_Texture[1], 0.1f },
+		{ Prefab::Students_Texture[2], 0.1f },
+		}, true);
+	const AnimationClip Students_Walking_Clip = AnimationClip({
+		{ Prefab::Students_Texture[3], 0.1f },
+		{ Prefab::Students_Texture[4], 0.1f },
+		{ Prefab::Students_Texture[5], 0.1f },
+		}, true);
+	
+	const AnimationClip Students_Attack_Clip = AnimationClip({
+		{ Prefab::Students_Texture[6], 0.1f },
+		{ Prefab::Students_Texture[7], 0.1f },
+		{ Prefab::Students_Texture[8], 0.1f },
+		}, true);
 	#pragma endregion
+	const AnimatorController Prefab::Students_Controller = AnimatorController({
+		State("Idle", &Students_Idle_Clip, {
+			{ "Walking", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); } },
+		}),
+		State("Walking", &Students_Walking_Clip, {
+			{ "Idle", true, 1 },
+		}),
+		State("Attack", &Students_Attack_Clip, {
+			{ "Idle", true, 1 },
+		}),
+		});
+
+	const GameObject Prefab::Students_Object = GameObject(
+		"Students", "Untagged",
+		std::vector<std::shared_ptr<MonoBehaviour>>{
+		std::make_shared<SpriteRenderer>(&Prefab::Students_Texture[0], false, false),
+			std::make_shared<Animator>(&Prefab::Students_Controller),
+			std::make_shared<Rigidbody2D>(),
+			std::make_shared<CircleCollider2D>(),
+			std::make_shared<AudioSource>(),
+	});
+	#pragma endregion
+
 	#pragma region Boss1
-	const Texture2D Prefab::Boss_Texture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
+		const Texture2D Prefab::Boss_Texture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
 		#pragma region Clips
 		const AnimationClip Boss_Charging = AnimationClip({
 			{ Prefab::Boss_Texture[8], 0.1f },
