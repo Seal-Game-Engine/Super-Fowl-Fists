@@ -157,10 +157,14 @@ const GameObject Lv0_Platform_Object = GameObject(
 	{&Lv0_Platform_Object, Transform(Vector2(0,-1.24))},
 	{&Wall_Object, Transform(Vector2(-7.5,0))},
 	{&Wall_Object, Transform(Vector2(7.5,0))},
+
 	{&TikeMyson_UI_Object, Transform(Vector2(-2.5,-1.9))},
-	{&UI_Text_Object, Transform(Vector2(-1.7,-1.64))},
 	{&Chicken_UI_Object, Transform(Vector2(2.5,-1.9))},
+	{&UI_Text_Object, Transform(Vector2(-1.7,-1.64))},
+	{&UI_Text_Object, Transform(Vector2(-1.7,-2.08))},
 	{&UI_Text_Object, Transform(Vector2(3.3,-1.64))},
+	{&UI_Text_Object, Transform(Vector2(3.3,-2.08))},
+
 	{&MainCamera, Transform()},
 		});
 	#pragma endregion

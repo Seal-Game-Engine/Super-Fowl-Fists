@@ -30,14 +30,9 @@ void Boss::Update() {
 	_rigidbody->velocity = Vector2(-0.05, _rigidbody->velocity.y());
 
 	switch (actionState) {
-	case ActionState::Charge:
-		break;
-	case ActionState::BombAttack:
-		BombAttack();
-		
-		break;
-	case ActionState::ChompAttack:
-		ChompAttack();
+	case ActionState::Charge: Charge(); break;
+	case ActionState::BombAttack: BombAttack(); break;
+	case ActionState::ChompAttack: ChompAttack();
 		//_audioSource->clip = "Assets/Sounds/RobotChomp.wav";
 		//_audioSource->Play();
 		break;
@@ -79,6 +74,9 @@ void Boss::OnStateEnter(){
 		_nextActionTime = Time::time() + rand() % 3 + 2;
 		break;
 	case ActionState::BombAttack:
+		_nextActionTime = Time::time() + _bombAttackDuration;
+		break;
+	case ActionState::ChompAttack:
 		_nextActionTime = Time::time() + _bombAttackDuration;
 		break;
 	}

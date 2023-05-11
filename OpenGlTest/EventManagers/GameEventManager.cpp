@@ -9,6 +9,18 @@ using namespace InputSystem;
 
 GameEventManager* GameEventManager::instance = nullptr;
 
+void GameEventManager::UpdateUi(){
+	switch (GameplayData::playerCount) {
+	case 1:		
+		p1HpText->text = std::to_string((int)_playerObjects[0]->currentHp);
+		break;
+	case 2:
+		p1HpText->text = std::to_string((int)_playerObjects[0]->currentHp);
+		p2HpText->text = std::to_string((int)_playerObjects[1]->currentHp);
+		break;
+	}
+}
+
 void GameEventManager::Awake() {
 	instance = this;
 
@@ -18,34 +30,43 @@ void GameEventManager::Awake() {
 	GameObject* TikeMyson_Ui = GameObject::FindWithTag("TikeMysonUi");
 	GameObject* Chicken_Ui = GameObject::FindWithTag("ChickenUi");
 
+	auto texts = Scene::FindObjectsByType<Text>();
+	p1HpText = texts[0];
+	p2HpText = texts[2];
+
+
 	Instantiate(Prefab::BossObject, Vector2(2.5f, 0));
 
-	GameObject* playerObject = nullptr;
+	Player* playerObject = nullptr;
 	switch (GameplayData::playerCount) {
+	case 1:
+		switch (std::rand() % 2) {
+		case 0:
+			playerObject = InstantiateT(Prefab::TikeMyson_Object)->GetComponent<Player>();
+			playerObject->controlScheme = Player::ControlScheme::Solo;
+			Chicken_Ui->SetActive(false);
+			break;
 		case 1:
-			switch (std::rand() % 2) {
-				case 0: 
-					playerObject = InstantiateT(Prefab::TikeMyson_Object);
-					Chicken_Ui->SetActive(false);
-					break;
-				case 1: 
-					playerObject = InstantiateT(Prefab::Chicken_Object); 
-					TikeMyson_Ui->SetActive(false);
-					Chicken_Ui->transform->position = TikeMyson_Ui->transform->position;
-					break;
-			};
-			playerObject->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo;
-			_playerObjects.emplace_back(playerObject);
+			playerObject = InstantiateT(Prefab::Chicken_Object)->GetComponent<Player>();
+			playerObject->controlScheme = Player::ControlScheme::Solo;
+			TikeMyson_Ui->SetActive(false);
+			Chicken_Ui->transform->position = TikeMyson_Ui->transform->position;
 			break;
-		case 2:
-			playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-2.5f, 0));
-			playerObject->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player1;
-			_playerObjects.emplace_back(playerObject);
-			playerObject = InstantiateT(Prefab::Chicken_Object, Vector2(-1.5f, 0));
-			playerObject->GetComponent<Player>()->controlScheme = Player::ControlScheme::Player2;
-			_playerObjects.emplace_back(playerObject);
-			break;
+		};
+		_playerObjects.emplace_back(playerObject);
+		p2HpText->gameObject->SetActive(false);
+		break;
+	case 2:
+		playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-2.5f, 0))->GetComponent<Player>();
+		playerObject->controlScheme = Player::ControlScheme::Player1;
+		_playerObjects.emplace_back(playerObject);
+		playerObject = InstantiateT(Prefab::Chicken_Object, Vector2(-1.5f, 0))->GetComponent<Player>();
+		playerObject->controlScheme = Player::ControlScheme::Player2;
+		_playerObjects.emplace_back(playerObject);
+		break;
 	}
+
+	UpdateUi();
 }
 
 void GameEventManager::Update() {
@@ -64,7 +85,7 @@ void GameEventManager::TogglePause(){
 
 void GameEventManager::LateUpdate() {
 	if(!Camera::mainCamera || _playerObjects.empty()) return;
-	Vector2 midPosition = std::accumulate(_playerObjects.begin(), _playerObjects.end(), Vector2::zero(), [](const Vector2& accumulator, const GameObject* playerObject) { return accumulator + playerObject->transform->position; }) / _playerObjects.size();
+	Vector2 midPosition = std::accumulate(_playerObjects.begin(), _playerObjects.end(), Vector2::zero(), [](const Vector2& accumulator, Player* playerObject) { return accumulator + playerObject->transform()->position; }) / _playerObjects.size();
 	Camera::mainCamera->transform()->position = Vector2::Lerp(Camera::mainCamera->transform()->position, midPosition + Vector2::up(), 3 * 0.75f * Time::deltaTime());
 }
 

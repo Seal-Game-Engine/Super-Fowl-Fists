@@ -1,12 +1,15 @@
 #pragma once
 #include "../SealEngine.h"
 #include <vector>
+#include "../Player.h"
 using namespace SealEngine;
 using namespace SealEngine::Ui;
 
 class GameEventManager : public MonoBehaviour{
 public:
 	static GameEventManager* instance;
+
+	void UpdateUi();
 
 	std::vector<Image*> pausePanels{};
 
@@ -17,8 +20,11 @@ public:
 private:
 	void TogglePause();
 
+	Text* p1HpText = nullptr;
+	Text* p2HpText = nullptr;
+
 	bool _isPaused = false;
-	std::vector<GameObject*> _playerObjects{};
+	std::vector<Player*> _playerObjects{};
 	GameEventManager* _Clone() const override;
 };
 
