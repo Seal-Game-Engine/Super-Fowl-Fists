@@ -12,6 +12,7 @@ public:
 	void LoadMenu(MenuPage menuPage);
 
 	void Awake() override;
+	void Start() override;
 	void Update() override;
 
 private:

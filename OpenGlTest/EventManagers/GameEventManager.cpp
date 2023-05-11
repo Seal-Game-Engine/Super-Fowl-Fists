@@ -90,6 +90,27 @@ void GameEventManager::Awake() {
 	UpdateUi();
 }
 
+void GameEventManager::Start() {
+	AudioSource* _audioSource = gameObject->GetComponent<AudioSource>();
+
+
+	switch (GameplayData::level) {
+		case 0:
+			_audioSource->clip = "Assets/Sounds/Menu.wav";
+
+			break;
+		case 1:
+			_audioSource->clip = "Assets/Sounds/LastSamurai_MasterWu.wav";
+
+			break;
+		case 2:
+			_audioSource->clip = "Assets/Sounds/CombatPlan_MK1.wav";
+
+			break;
+	}
+	_audioSource->Play();
+}
+
 void GameEventManager::Update() {
 	if (_levelCompleted) {
 		if (Input::GetKeyDown(KeyCode::Escape) || Input::GetKeyDown(KeyCode::Return)) { 

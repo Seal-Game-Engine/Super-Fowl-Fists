@@ -370,6 +370,7 @@ const GameObject MainCamera = GameObject(
 			"MenuEventManager", "Untagged",
 			std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<MenuEventManager>(),
+					std::make_shared<AudioSource>(),
 		});
 		#pragma endregion
 	#pragma endregion

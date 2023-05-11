@@ -19,6 +19,7 @@ const GameObject GameEventManagerObject = GameObject(		//Game Interactions (ie: 
 	std::make_shared<Image>(&Prefab::PauseScreen[0]),
 		//std::make_shared<Image>(&PauseMessage[0]),
 		std::make_shared<GameEventManager>(),
+		std::make_shared<AudioSource>(),
 });
 #pragma endregion
 #pragma region Environment

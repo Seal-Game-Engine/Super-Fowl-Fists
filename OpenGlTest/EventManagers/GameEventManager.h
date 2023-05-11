@@ -16,6 +16,7 @@ public:
 	std::vector<Image*> pausePanels{};
 
 	void Awake() override;
+	void Start() override;
 	void Update() override;
 	void LateUpdate() override;
 
