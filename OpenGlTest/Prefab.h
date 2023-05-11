@@ -22,11 +22,13 @@ public:
 
 	//Sensei
 	static const Texture2D Sensei_Texture;
+	static const Texture2D Sensei_Projectile_Texture;
 	static const AnimatorController Sensei_Controller;
 	static const GameObject Sensei_Object;
 
 	//Boss
-	static const Texture2D BossTexture;
+	static const Texture2D Boss_Texture;
+	static const Texture2D Boss_Projectile_Texture;
 	static const AnimatorController Boss_Controller;
 	static const GameObject BossObject;
 

@@ -73,9 +73,9 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::BigTikeMyson_Texture[7], 0.1f },
 			}, true);
 		const AnimationClip BigTikeMyson_Jump = AnimationClip({
-			{ Prefab::BigTikeMyson_Texture[24], 0.1f },
-			{ Prefab::BigTikeMyson_Texture[25], 0.1f },
-			{ Prefab::BigTikeMyson_Texture[26], 0.1f },
+			{ Prefab::BigTikeMyson_Texture[24], 0.05f },
+			{ Prefab::BigTikeMyson_Texture[25], 0.05f },
+			{ Prefab::BigTikeMyson_Texture[26], 0.05f },
 			{ Prefab::BigTikeMyson_Texture[27], 0.1f },
 			{ Prefab::BigTikeMyson_Texture[28], 0.1f },
 			{ Prefab::BigTikeMyson_Texture[29], 0.1f }
@@ -171,7 +171,7 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::MiniChicken_Texture[6], 0.1f },
 		{ Prefab::MiniChicken_Texture[7], 0.1f },
 		{ Prefab::MiniChicken_Texture[8], 0.1f }
-		}, false);
+		}, true);
 	const AnimationClip MiniChicken_Attack = AnimationClip({
 		{ Prefab::MiniChicken_Texture[9], 0.1f },
 		{ Prefab::MiniChicken_Texture[10], 0.1f },
@@ -208,9 +208,9 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::BigChicken_Texture[7], 0.1f },
 		}, true);
 	const AnimationClip BigChicken_Jump = AnimationClip({
-		{ Prefab::BigChicken_Texture[24], 0.1f },
-		{ Prefab::BigChicken_Texture[25], 0.1f },
-		{ Prefab::BigChicken_Texture[26], 0.1f },
+		{ Prefab::BigChicken_Texture[24], 0.05f },
+		{ Prefab::BigChicken_Texture[25], 0.05f },
+		{ Prefab::BigChicken_Texture[26], 0.05f },
 		{ Prefab::BigChicken_Texture[27], 0.1f },
 		{ Prefab::BigChicken_Texture[28], 0.1f },
 		{ Prefab::BigChicken_Texture[29], 0.1f }
@@ -384,71 +384,71 @@ using State = AnimatorController::AnimationState;
 	#pragma endregion
 
 	#pragma region Boss1
-	const Texture2D Prefab::BossTexture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
+	const Texture2D Prefab::Boss_Texture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
 		#pragma region Clips
 		const AnimationClip Boss_Charging = AnimationClip({
-			{ Prefab::BossTexture[8], 0.1f },
-			{ Prefab::BossTexture[9], 0.1f },
-			{ Prefab::BossTexture[10], 0.1f },
-			{ Prefab::BossTexture[11], 0.1f },
-			{ Prefab::BossTexture[12], 0.1f },
-			{ Prefab::BossTexture[13], 0.1f },
-			{ Prefab::BossTexture[14], 0.1f },
+			{ Prefab::Boss_Texture[8], 0.1f },
+			{ Prefab::Boss_Texture[9], 0.1f },
+			{ Prefab::Boss_Texture[10], 0.1f },
+			{ Prefab::Boss_Texture[11], 0.1f },
+			{ Prefab::Boss_Texture[12], 0.1f },
+			{ Prefab::Boss_Texture[13], 0.1f },
+			{ Prefab::Boss_Texture[14], 0.1f },
 			}, true);
 		const AnimationClip Boss_Charged = AnimationClip({ //0.8s
-			{ Prefab::BossTexture[8], 0.1f },
-			{ Prefab::BossTexture[9], 0.1f },
-			{ Prefab::BossTexture[10], 0.1f },
-			{ Prefab::BossTexture[11], 0.1f },
-			{ Prefab::BossTexture[12], 0.1f },
-			{ Prefab::BossTexture[13], 0.1f },
-			{ Prefab::BossTexture[14], 0.1f },
-			{ Prefab::BossTexture[15], 0.1f },
+			{ Prefab::Boss_Texture[8], 0.1f },
+			{ Prefab::Boss_Texture[9], 0.1f },
+			{ Prefab::Boss_Texture[10], 0.1f },
+			{ Prefab::Boss_Texture[11], 0.1f },
+			{ Prefab::Boss_Texture[12], 0.1f },
+			{ Prefab::Boss_Texture[13], 0.1f },
+			{ Prefab::Boss_Texture[14], 0.1f },
+			{ Prefab::Boss_Texture[15], 0.1f },
 			}, false);
 		const AnimationClip Boss_Chomp_Indicator = AnimationClip({
-			{ Prefab::BossTexture[48], 0.1f },
-			{ Prefab::BossTexture[49], 0.1f },
+			{ Prefab::Boss_Texture[48], 0.1f },
+			{ Prefab::Boss_Texture[49], 0.1f },
 			}, true);
 		const AnimationClip Boss_Bomb_Indicator = AnimationClip({
-			{ Prefab::BossTexture[40], 0.1f },
-			{ Prefab::BossTexture[41], 0.1f },
+			{ Prefab::Boss_Texture[40], 0.1f },
+			{ Prefab::Boss_Texture[41], 0.1f },
 			}, true);
 		const AnimationClip Boss_Chomp_Attack = AnimationClip({
-			{ Prefab::BossTexture[16], 0.075f },
-			{ Prefab::BossTexture[17], 0.075f },
-			{ Prefab::BossTexture[18], 0.075f },
-			{ Prefab::BossTexture[19], 0.075f },
-			{ Prefab::BossTexture[20], 0.075f },
-			{ Prefab::BossTexture[21], 0.075f },
-			{ Prefab::BossTexture[22], 0.075f },
-			{ Prefab::BossTexture[23], 0.075f },
+			{ Prefab::Boss_Texture[16], 0.075f },
+			{ Prefab::Boss_Texture[17], 0.075f },
+			{ Prefab::Boss_Texture[18], 0.075f },
+			{ Prefab::Boss_Texture[19], 0.075f },
+			{ Prefab::Boss_Texture[20], 0.075f },
+			{ Prefab::Boss_Texture[21], 0.075f },
+			{ Prefab::Boss_Texture[22], 0.075f },
+			{ Prefab::Boss_Texture[23], 0.075f },
 			}, true);
 		const AnimationClip Boss_Bomb_Attack = AnimationClip({
-			{ Prefab::BossTexture[32], 0.05f },
-			{ Prefab::BossTexture[33], 0.05f },
-			{ Prefab::BossTexture[34], 0.05f },
-			{ Prefab::BossTexture[35], 0.05f },
-			{ Prefab::BossTexture[36], 0.05f },
+			{ Prefab::Boss_Texture[32], 0.05f },
+			{ Prefab::Boss_Texture[33], 0.05f },
+			{ Prefab::Boss_Texture[34], 0.05f },
+			{ Prefab::Boss_Texture[35], 0.05f },
+			{ Prefab::Boss_Texture[36], 0.05f },
 			}, true);
 		const AnimationClip Boss_Open = AnimationClip({ //0.8s
-			{ Prefab::BossTexture[0], 0.1f },
-			{ Prefab::BossTexture[1], 0.1f },
-			{ Prefab::BossTexture[2], 0.1f },
-			{ Prefab::BossTexture[3], 0.1f },
-			{ Prefab::BossTexture[4], 0.1f },
-			{ Prefab::BossTexture[5], 0.1f },
-			{ Prefab::BossTexture[6], 0.1f },
-			{ Prefab::BossTexture[7], 0.1f },
+			{ Prefab::Boss_Texture[0], 0.1f },
+			{ Prefab::Boss_Texture[1], 0.1f },
+			{ Prefab::Boss_Texture[2], 0.1f },
+			{ Prefab::Boss_Texture[3], 0.1f },
+			{ Prefab::Boss_Texture[4], 0.1f },
+			{ Prefab::Boss_Texture[5], 0.1f },
+			{ Prefab::Boss_Texture[6], 0.1f },
+			{ Prefab::Boss_Texture[7], 0.1f },
 			}, false);
 		const AnimationClip Boss_Close = AnimationClip({ //0.8s
-			{ Prefab::BossTexture[24], 0.1f },
-			{ Prefab::BossTexture[25], 0.1f },
-			{ Prefab::BossTexture[26], 0.1f },
-			{ Prefab::BossTexture[27], 0.1f },
-			{ Prefab::BossTexture[28], 0.1f },
-			{ Prefab::BossTexture[29], 0.1f },
-			{ Prefab::BossTexture[30], 0.1f },
-			{ Prefab::BossTexture[31], 0.1f },
+			{ Prefab::Boss_Texture[24], 0.1f },
+			{ Prefab::Boss_Texture[25], 0.1f },
+			{ Prefab::Boss_Texture[26], 0.1f },
+			{ Prefab::Boss_Texture[27], 0.1f },
+			{ Prefab::Boss_Texture[28], 0.1f },
+			{ Prefab::Boss_Texture[29], 0.1f },
+			{ Prefab::Boss_Texture[30], 0.1f },
+			{ Prefab::Boss_Texture[31], 0.1f },
 			}, false);
 		#pragma endregion
 	const AnimatorController Prefab::Boss_Controller = AnimatorController({
@@ -482,7 +482,7 @@ using State = AnimatorController::AnimationState;
 	const GameObject Prefab::BossObject = GameObject(
 		"Player", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&Prefab::BossTexture[0], false, false),
+		std::make_shared<SpriteRenderer>(&Prefab::Boss_Texture[0], false, false),
 			std::make_shared<Animator>(&Prefab::Boss_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
