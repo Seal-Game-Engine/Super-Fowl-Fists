@@ -20,6 +20,7 @@ public:
 #pragma endregion
 	static const GameObject ProjectileObject_Blue;
 
+
 	//Sensei
 	static const Texture2D Sensei_Texture;
 	static const Texture2D Sensei_Projectile_Texture;
@@ -40,6 +41,14 @@ public:
 	//Spawner
 	static const GameObject ObstacleSpawner_Object;
 
+	//Explosion 32x32
+	static const Texture2D Explosion32_Texture;
+	static const AnimatorController Explosion32_Controller;
+	static const GameObject Explosion32_Object;
+
+	//static const Texture2D Explosion64_Texture;
+	//static const AnimatorController Explosion64_Controller;
+	//static const GameObject Explosion64_Object;
 
 	static const Texture2D PauseScreen;
 
