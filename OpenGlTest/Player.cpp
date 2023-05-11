@@ -3,6 +3,7 @@
 #include "Prefab.h"
 #include "Hitbox.h"
 #include <cmath>
+#include "EventManagers/GameEventManager.h"
 
 //void Player::TakeDamage(float damage)
 //{
@@ -56,6 +57,7 @@ void Player::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
 		break;
 	}
 	Entity::OnDamageTaken(data, knockbackDirection);
+	GameEventManager::instance->UpdateUi();
 }
 
 void Player::OnDeath() {
