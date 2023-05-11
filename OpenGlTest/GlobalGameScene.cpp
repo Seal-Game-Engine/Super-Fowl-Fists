@@ -104,8 +104,8 @@ const GameObject Lv0_Platform_Object = GameObject(
 		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&TutorialScene_Background_Texture[0]),
-			std::make_shared<Animator>(&TutorialScene_Background_Controller),
-			std::make_shared<SpriteRenderer>(&TutorialScene_Texture[0]),
+		std::make_shared<Animator>(&TutorialScene_Background_Controller),
+		std::make_shared<SpriteRenderer>(&TutorialScene_Texture[0]),
 	});
 	//const GameObject TutorialUIObject = GameObject(
 	//	"TutorialText", "Untagged",
@@ -122,6 +122,14 @@ const GameObject Lv0_Platform_Object = GameObject(
 	{&GameEventManagerObject, Transform()},
 	{&Ground_Object, Transform(Vector2(0, -4))},
 	{&MainCamera, Transform()},
+
+	{ &TikeMyson_UI_Object, Transform(Vector2(-2.5, -1.9)) },
+	{ &Chicken_UI_Object, Transform(Vector2(2.5,-1.9)) },
+	{ &UI_Text_Object, Transform(Vector2(-1.7,-1.64)) },
+	{ &UI_Text_Object, Transform(Vector2(-1.7,-2.08)) },
+	{ &UI_Text_Object, Transform(Vector2(3.3,-1.64)) },
+	{ &UI_Text_Object, Transform(Vector2(3.3,-2.08)) },
+
 	});
 	#pragma endregion
 
@@ -174,12 +182,19 @@ const GameObject Lv0_Platform_Object = GameObject(
 #pragma region Lv1Scene
 
 	#pragma region Lv1Scene Assets
-	const Texture2D Lv1Scene_Texture = Texture2D("Assets/Background_TutorialScene.png", Texture2D::FilterMode::Nearest);
+	const Texture2D Lv1Scene_Texture = Texture2D("Assets/Game_Lv1.png", Texture2D::FilterMode::Nearest, 2, 1);
 	//const Texture2D Lv1Scene_Texture = Texture2D("Assets/Game_Lv1.png", Texture2D::FilterMode::Linear);
+	const AnimationClip Lv1Scene_Idle = AnimationClip({
+	{ Lv1Scene_Texture[0], 0.1f },
+	{ Lv1Scene_Texture[1], 0.1f },
+		}, true);
+	const AnimatorController Lv1Scene_Background_Controller = AnimatorController({
+		State("Idle", &Lv1Scene_Idle, {}) });
 	const GameObject Lv1Scene_Object = GameObject(
 		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&Lv0Scene_Texture[0]),
+		std::make_shared<SpriteRenderer>(&Lv1Scene_Texture[0]),
+			std::make_shared<Animator>(&Lv1Scene_Background_Controller),
 		//std::make_shared<Parallax>(&Lv1Scene_Texture[0], Vector2::left(), 0.1f),
 	});
 
@@ -191,6 +206,14 @@ const GameObject Lv0_Platform_Object = GameObject(
 	{&GameEventManagerObject, Transform()},
 	{&Ground_Object, Transform(Vector2(0, -2))},
 	{&MainCamera, Transform()},
+
+	{ &TikeMyson_UI_Object, Transform(Vector2(-2.5, -1.9)) },
+	{ &Chicken_UI_Object, Transform(Vector2(2.5,-1.9)) },
+	{ &UI_Text_Object, Transform(Vector2(-1.7,-1.64)) },
+	{ &UI_Text_Object, Transform(Vector2(-1.7,-2.08)) },
+	{ &UI_Text_Object, Transform(Vector2(3.3,-1.64)) },
+	{ &UI_Text_Object, Transform(Vector2(3.3,-2.08)) },
+
 		});
 	#pragma endregion
 
