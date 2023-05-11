@@ -374,7 +374,7 @@ using State = AnimatorController::AnimationState;
 		});
 
 	const GameObject Prefab::Sensei_Object = GameObject(
-		"Boss", "Untagged",
+		"Boss", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Prefab::Sensei_Texture[0], false, false),
 			std::make_shared<Animator>(&Prefab::Sensei_Controller),
@@ -418,7 +418,7 @@ using State = AnimatorController::AnimationState;
 		});
 
 	const GameObject Prefab::Students_Object = GameObject(
-		"Students", "Untagged",
+		"Students", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Prefab::Students_Texture[0], false, false),
 			std::make_shared<Animator>(&Prefab::Students_Controller),
@@ -525,7 +525,7 @@ using State = AnimatorController::AnimationState;
 		});
 
 	const GameObject Prefab::BossObject = GameObject(
-		"Player", "Untagged",
+		"Player", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Prefab::Boss_Texture[0], false, false),
 			std::make_shared<Animator>(&Prefab::Boss_Controller),

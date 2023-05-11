@@ -6,7 +6,8 @@ using namespace SealEngine;
 
 class Boss : public Entity {
 public:
-	//void TakeDamage(float damage) override;
+	void OnDamageTaken(DamageData data, Vector2 knockbackDirection) override;
+	void OnDeath() override;
 
 	Boss(const float hp);
 

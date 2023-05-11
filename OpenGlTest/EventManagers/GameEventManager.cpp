@@ -21,6 +21,11 @@ void GameEventManager::UpdateUi(){
 	}
 }
 
+void GameEventManager::OnLevelCompleted(){
+	_levelCompleted = true;
+	Time::timeScale = 0;
+}
+
 void GameEventManager::Awake() {
 	instance = this;
 
@@ -76,6 +81,14 @@ void GameEventManager::Awake() {
 }
 
 void GameEventManager::Update() {
+	if (_levelCompleted) {
+		if (Input::GetKeyDown(KeyCode::Escape) || Input::GetKeyDown(KeyCode::Return)) { 
+			SceneManager::LoadScene(1); 
+			Time::timeScale = 1;
+		}
+		return;
+	}
+
 	if (!_isPaused && (Input::GetKeyDown(KeyCode::Escape) || Input::GetKeyDown(KeyCode::Return))) TogglePause();
 	else if (_isPaused) {
 		if (Input::GetKeyDown(KeyCode::Escape)) SceneManager::LoadScene(1);

@@ -3,6 +3,19 @@
 #include "Projectile.h"
 #include "Hitbox.h"
 #include <cmath>
+#include "EventManagers/GameEventManager.h"
+
+void Boss::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
+	if (!isAlive()) return;
+
+	Entity::OnDamageTaken(data, knockbackDirection);
+	//GameEventManager::instance->UpdateUi();
+}
+
+void Boss::OnDeath(){
+	SetState(ActionState::Charge);
+	Invoke([] {	GameEventManager::instance->OnLevelCompleted();	}, 1);
+}
 
 Boss::Boss(const float hp) :Entity(hp) {
 	faction = Factions::Faction2;
@@ -27,23 +40,15 @@ void Boss::Awake() {
 }
 
 void Boss::Update() {
+	if (!isAlive()) return;
+
 	_rigidbody->velocity = Vector2(-0.05, _rigidbody->velocity.y());
 
 	switch (actionState) {
 	case ActionState::Charge: Charge(); break;
 	case ActionState::BombAttack: BombAttack(); break;
-	case ActionState::ChompAttack: ChompAttack();
-		//_audioSource->clip = "Assets/Sounds/RobotChomp.wav";
-		//_audioSource->Play();
-		break;
+	case ActionState::ChompAttack: ChompAttack(); break;
 	}
-
-
-	if (Time::time() >= _nextActionTime) {
-		
-		
-	}
-
 	
 	//animator->SetBool("isWalking", std::abs(x) > 0);
 	//animator->SetBool("isJumping", !_canJump);

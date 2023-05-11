@@ -10,6 +10,7 @@ public:
 	static GameEventManager* instance;
 
 	void UpdateUi();
+	void OnLevelCompleted();
 
 	std::vector<Image*> pausePanels{};
 
@@ -24,6 +25,7 @@ private:
 	Text* p2HpText = nullptr;
 
 	bool _isPaused = false;
+	bool _levelCompleted = false;
 	std::vector<Player*> _playerObjects{};
 	GameEventManager* _Clone() const override;
 };
