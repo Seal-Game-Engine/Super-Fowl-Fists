@@ -328,6 +328,18 @@ const GameObject MainCamera = GameObject(
 			});
 		#pragma endregion
 		#pragma region Level Select
+			const GameObject Button_Tutorial_Object = GameObject(
+				"Button_Level0", "LevelSelectUi",
+				std::vector<std::shared_ptr<MonoBehaviour>>{
+				std::make_shared<Image>(&Button_Universal_Texture[0]),
+					std::make_shared<Animator>(&Button_Universal_Controller),
+					std::make_shared<Text>("Tutorial", &Font_Texture),
+					std::make_shared<Button>(
+						[](auto) { SceneManager::LoadScene(3); },
+						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+						),
+			});
 			const GameObject Button_Level0_Object = GameObject(
 				"Button_Level0", "LevelSelectUi",
 				std::vector<std::shared_ptr<MonoBehaviour>>{
@@ -375,8 +387,9 @@ const GameObject MainCamera = GameObject(
 		#pragma endregion
 
 		#pragma region LevelSelect
-		{&Button_Level0_Object, Transform(Vector2(0, -0.5))},
-		{&Button_Level1_Object, Transform(Vector2(0, -1.3))},
+		{&Button_Tutorial_Object, Transform(Vector2(0, -0.5))},
+		{&Button_Level0_Object, Transform(Vector2(0, -1.3))},
+		{&Button_Level1_Object, Transform(Vector2(0, -2.1))},
 		#pragma endregion
 
 		{&MainCamera, Transform()},
