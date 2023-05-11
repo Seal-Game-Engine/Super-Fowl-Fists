@@ -59,11 +59,11 @@ void Robot::OnStateExit() {
 		switch (rand() % 2) {
 		case 0:
 			_animator->SetInteger("move", 1);
-			Invoke([&] { SetState(ActionState::BombAttack); }, 3.2f);
+			Invoke([&] { SetState(ActionState::BombAttack); }, 3.0f);
 			break;
 		case 1:
 			_animator->SetInteger("move", 2);
-			Invoke([&] { SetState(ActionState::ChompAttack); }, 3.2f);
+			Invoke([&] { SetState(ActionState::ChompAttack); }, 3.0f);
 			break;
 		}
 		break;
