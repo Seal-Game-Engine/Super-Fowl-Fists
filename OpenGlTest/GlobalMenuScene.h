@@ -10,6 +10,7 @@ public:
 	static Scene LandingScene;	
 	static Scene MenuScene;		
 	static Scene CreditScene;	
+	static Scene HelpScene;
 
 
 };

@@ -100,6 +100,72 @@ const GameObject Lv0_Platform_Object = GameObject(
 		}, true);
 	const AnimatorController TutorialScene_Background_Controller = AnimatorController({
 		State("Idle", &TutorialScene_Background_Idle, {}) });
+
+	#pragma region TutorialBoxes
+		const Texture2D TutorialScene_Help_Walk_Texture = Texture2D("Assets/TutorialText_Walk.png", Texture2D::FilterMode::Nearest, 5);
+		const AnimationClip TutorialScene_Help_Walk_Idle = AnimationClip({
+			{ TutorialScene_Help_Walk_Texture[0], 0.1f },
+			{ TutorialScene_Help_Walk_Texture[1], 0.1f },
+			{ TutorialScene_Help_Walk_Texture[2], 0.1f },
+			{ TutorialScene_Help_Walk_Texture[3], 0.1f },
+			}, true);
+		const AnimatorController TutorialScene_Help_Walk_Controller = AnimatorController({
+			State("Idle", &TutorialScene_Help_Walk_Idle, {}) });
+		const GameObject TutorialScene_Help_Walk_Object = GameObject(
+			"Background", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<SpriteRenderer>(&TutorialScene_Help_Walk_Texture[0]),
+				std::make_shared<Animator>(&TutorialScene_Help_Walk_Controller),
+		});
+
+		const Texture2D TutorialScene_Help_Fight_Texture = Texture2D("Assets/TutorialText_Fight.png", Texture2D::FilterMode::Nearest, 4);
+		const AnimationClip TutorialScene_Help_Fight_Idle = AnimationClip({
+			{ TutorialScene_Help_Fight_Texture[0], 0.1f },
+			{ TutorialScene_Help_Fight_Texture[1], 0.1f },
+			{ TutorialScene_Help_Fight_Texture[2], 0.1f },
+			{ TutorialScene_Help_Fight_Texture[3], 0.1f },
+			}, true);
+		const AnimatorController TutorialScene_Help_Fight_Controller = AnimatorController({
+			State("Idle", &TutorialScene_Help_Fight_Idle, {}) });
+		const GameObject TutorialScene_Help_Fight_Object = GameObject(
+			"Background", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<SpriteRenderer>(&TutorialScene_Help_Fight_Texture[0]),
+				std::make_shared<Animator>(&TutorialScene_Help_Fight_Controller),
+		});
+
+		const Texture2D TutorialScene_Help_Buff_Texture = Texture2D("Assets/TutorialText_Buff.png", Texture2D::FilterMode::Nearest, 4);
+		const AnimationClip TutorialScene_Help_Buff_Idle = AnimationClip({
+			{ TutorialScene_Help_Buff_Texture[0], 0.1f },
+			{ TutorialScene_Help_Buff_Texture[1], 0.1f },
+			{ TutorialScene_Help_Buff_Texture[2], 0.1f },
+			{ TutorialScene_Help_Buff_Texture[3], 0.1f },
+			}, true);
+		const AnimatorController TutorialScene_Help_Buff_Controller = AnimatorController({
+			State("Idle", &TutorialScene_Help_Buff_Idle, {}) });
+		const GameObject TutorialScene_Help_Buff_Object = GameObject(
+			"Background", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<SpriteRenderer>(&TutorialScene_Help_Buff_Texture[0]),
+				std::make_shared<Animator>(&TutorialScene_Help_Buff_Controller),
+		});
+
+		const Texture2D TutorialScene_Help_Ult_Texture = Texture2D("Assets/TutorialText_Ult.png", Texture2D::FilterMode::Nearest, 4);
+		const AnimationClip TutorialScene_Help_Ult_Idle = AnimationClip({
+			{ TutorialScene_Help_Ult_Texture[0], 0.1f },
+			{ TutorialScene_Help_Ult_Texture[1], 0.1f },
+			{ TutorialScene_Help_Ult_Texture[2], 0.1f },
+			{ TutorialScene_Help_Ult_Texture[3], 0.1f },
+			}, true);
+		const AnimatorController TutorialScene_Help_Ult_Controller = AnimatorController({
+			State("Idle", &TutorialScene_Help_Ult_Idle, {}) });
+		const GameObject TutorialScene_Help_Ult_Object = GameObject(
+			"Background", "Untagged",
+			std::vector<std::shared_ptr<MonoBehaviour>>{
+			std::make_shared<SpriteRenderer>(&TutorialScene_Help_Ult_Texture[0]),
+			std::make_shared<Animator>(&TutorialScene_Help_Ult_Controller),
+		});
+#pragma endregion
 	const GameObject TutorialScene_Object = GameObject(
 		"Background", "Untagged",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
@@ -117,8 +183,14 @@ const GameObject Lv0_Platform_Object = GameObject(
 
 	#pragma region TutorialScene Properties
 	Scene GlobalGameScene::TutorialScene = Scene({
-	{&Prefab::Students_Object, Transform(Vector2(0,0))},
+	//{&Prefab::Students_Object, Transform(Vector2(0,0))},
 	{&TutorialScene_Object, Transform()},
+	{&TutorialScene_Help_Walk_Object, Transform(Vector2(-14,-1))},
+	{&TutorialScene_Help_Fight_Object, Transform(Vector2(-7,-1))},
+	{&TutorialScene_Help_Buff_Object, Transform(Vector2(0,-1))},
+	{&TutorialScene_Help_Ult_Object, Transform(Vector2(7,-1))},
+	{&Wall_Object, Transform(Vector2(-16.8,0))},
+	{&Wall_Object, Transform(Vector2(16.5,0))},
 	{&GameEventManagerObject, Transform()},
 	{&Ground_Object, Transform(Vector2(0, -4))},
 	{&MainCamera, Transform()},
@@ -139,6 +211,7 @@ const GameObject Lv0_Platform_Object = GameObject(
 
 	#pragma region Lv0Scene Assets
 	const Texture2D Lv0Scene_Texture = Texture2D("Assets/Game_Lv0.png", Texture2D::FilterMode::Nearest);
+	//const Texture2D Lv0Scene_Texture = Texture2D("Assets/Game_Lv0.png", Texture2D::FilterMode::Nearest);
 	const Texture2D Lv0Scene_Background_Texture = Texture2D("Assets/Game_Lv0_Background.png", Texture2D::FilterMode::Nearest,3);
 	const AnimationClip Lv0Scene_Background_Idle = AnimationClip({
 		{ Lv0Scene_Background_Texture[0], 0.1f },

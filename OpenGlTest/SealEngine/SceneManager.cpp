@@ -122,6 +122,7 @@ bool SceneManager::InitGl() {
     scenes.emplace_back(&GlobalGameScene::Lv1Scene);      //Scene 5
     scenes.emplace_back(&TestScene::TestingScene);          //Scene 6
     scenes.emplace_back(&GlobalMenuScene::SealLogoScene);
+    scenes.emplace_back(&GlobalMenuScene::HelpScene);
     LoadScene(7);
     return true;
 }
