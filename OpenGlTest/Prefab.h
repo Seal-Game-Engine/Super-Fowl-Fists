@@ -61,7 +61,8 @@ public:
 	static const GameObject Explosion64_Object;
 
 	static const Texture2D PauseScreen;
-
+	static const Texture2D WinScreen;
+	static const Texture2D LoseScreen;
 
 #pragma region Testing
 	//Obstacle

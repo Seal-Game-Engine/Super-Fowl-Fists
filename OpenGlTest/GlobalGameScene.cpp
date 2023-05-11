@@ -235,7 +235,7 @@ const GameObject Lv0_Platform_Object = GameObject(
 	{&Lv0Scene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
 	{&Ground_Object, Transform(Vector2(0, -2.3))},
-	{&Lv0_Platform_Object, Transform(Vector2(0,-1.24))},
+	{&Lv0_Platform_Object, Transform(Vector2(0,-1))},
 	{&Wall_Object, Transform(Vector2(-7.5,0))},
 	{&Wall_Object, Transform(Vector2(7.5,0))},
 

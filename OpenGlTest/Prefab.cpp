@@ -674,7 +674,8 @@ const GameObject Prefab::BossProjectile_Object = GameObject(
 #pragma region UI Items
 const Texture2D Prefab::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
 
-
+const Texture2D Prefab::WinScreen = Texture2D("Assets/LevelComplete.png", Texture2D::FilterMode::Nearest, 1, 1, 256);
+const Texture2D Prefab::LoseScreen = Texture2D("Assets/Lose.png", Texture2D::FilterMode::Nearest, 1,1,256);
 
 const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::FilterMode::Nearest);
 

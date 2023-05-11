@@ -27,10 +27,14 @@ void GameEventManager::UpdateUi(){
 void GameEventManager::OnLevelCompleted(){
 	_levelCompleted = true;
 	Time::timeScale = 0;
+	pausePanels[0]->sprite = &Prefab::WinScreen[0];
+	pausePanels[0]->enabled = true;
 }
 void GameEventManager::OnLevelFailed() {
 	_levelCompleted = true;
 	Time::timeScale = 0;
+	pausePanels[0]->sprite = &Prefab::LoseScreen[0];
+	pausePanels[0]->enabled = true;
 }
 
 void GameEventManager::Awake() {
