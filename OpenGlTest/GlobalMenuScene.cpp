@@ -429,6 +429,11 @@ const GameObject MainCamera = GameObject(
 				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Text>("Zheng Wei Ng", &Font_Texture),
 			});
+			const GameObject Text4 = GameObject(
+				"MenuOptions", "Untagged",
+				std::vector<std::shared_ptr<MonoBehaviour>>{
+				std::make_shared<Text>("Eric Smrkovsky", &Font_Texture),
+			});
 		#pragma endregion
 		#pragma region CreditInteractions
 				const GameObject CreditSceneManager_Object = GameObject(
@@ -446,6 +451,7 @@ const GameObject MainCamera = GameObject(
 					{&Text1, Transform(Vector2(0, - 0.5))},
 					{&Text2, Transform(Vector2(0, -1))},
 					{&Text3, Transform(Vector2(0, 0))},
+					{&Text4, Transform(Vector2(0, -1.50))},
 				#pragma endregion
 					{&MainCamera, Transform()},
 					});
