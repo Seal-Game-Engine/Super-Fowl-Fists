@@ -15,7 +15,10 @@ void MenuEventManager::LoadMenu(MenuPage menuPage){
 
 void MenuEventManager::Awake(){
 	instance = this;
+	//AudioSource* _audioSource = nullptr;
 
+	//_audioSource->clip = "../Assets/Sounds/Menu.wav";
+	//_audioSource->Play();
 	_mainMenuObjects = GameObject::FindGameObjectsWithTag("MainMenuUi");
 	_levelSelectObjects = GameObject::FindGameObjectsWithTag("LevelSelectUi");
 	LoadMenu(MenuPage::MainMenu);
