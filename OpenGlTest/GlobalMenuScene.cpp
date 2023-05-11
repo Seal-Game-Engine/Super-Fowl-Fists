@@ -256,7 +256,7 @@ const GameObject MainCamera = GameObject(
 			std::make_shared<Image>(&Button_Help_Texture[0]),
 				std::make_shared<Animator>(&Button_Help_Controller),
 				std::make_shared<Button>(
-					[](auto) { SceneManager::LoadScene(6); },
+					[](auto) { SceneManager::LoadScene(8); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 				),
@@ -321,7 +321,7 @@ const GameObject MainCamera = GameObject(
 					std::make_shared<Animator>(&Button_Quit_Controller),
 					std::make_shared<Button>(
 						//[](auto) { SceneManager::Quit(); },
-						[](auto) { SceneManager::LoadScene(3); },
+						[](auto) { SceneManager::Quit(); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
 						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
 					),
@@ -433,3 +433,99 @@ const GameObject MainCamera = GameObject(
 					});
 	#pragma endregion
 #pragma endregion
+
+				
+#pragma region HelpScene
+
+#pragma region TutorialBoxes
+				const Texture2D TutorialScene_Help_Walk_Texture = Texture2D("Assets/TutorialText_Walk.png", Texture2D::FilterMode::Nearest, 5);
+				const AnimationClip TutorialScene_Help_Walk_Idle = AnimationClip({
+					{ TutorialScene_Help_Walk_Texture[0], 0.1f },
+					{ TutorialScene_Help_Walk_Texture[1], 0.1f },
+					{ TutorialScene_Help_Walk_Texture[2], 0.1f },
+					{ TutorialScene_Help_Walk_Texture[3], 0.1f },
+					}, true);
+				const AnimatorController TutorialScene_Help_Walk_Controller = AnimatorController({
+					State("Idle", &TutorialScene_Help_Walk_Idle, {}) });
+				const GameObject TutorialScene_Help_Walk_Object = GameObject(
+					"Background", "Untagged",
+					std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Walk_Texture[0]),
+						std::make_shared<Animator>(&TutorialScene_Help_Walk_Controller),
+				});
+
+				const Texture2D TutorialScene_Help_Fight_Texture = Texture2D("Assets/TutorialText_Fight.png", Texture2D::FilterMode::Nearest, 4);
+				const AnimationClip TutorialScene_Help_Fight_Idle = AnimationClip({
+					{ TutorialScene_Help_Fight_Texture[0], 0.1f },
+					{ TutorialScene_Help_Fight_Texture[1], 0.1f },
+					{ TutorialScene_Help_Fight_Texture[2], 0.1f },
+					{ TutorialScene_Help_Fight_Texture[3], 0.1f },
+					}, true);
+				const AnimatorController TutorialScene_Help_Fight_Controller = AnimatorController({
+					State("Idle", &TutorialScene_Help_Fight_Idle, {}) });
+				const GameObject TutorialScene_Help_Fight_Object = GameObject(
+					"Background", "Untagged",
+					std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Fight_Texture[0]),
+						std::make_shared<Animator>(&TutorialScene_Help_Fight_Controller),
+				});
+
+				const Texture2D TutorialScene_Help_Buff_Texture = Texture2D("Assets/TutorialText_Buff.png", Texture2D::FilterMode::Nearest, 4);
+				const AnimationClip TutorialScene_Help_Buff_Idle = AnimationClip({
+					{ TutorialScene_Help_Buff_Texture[0], 0.1f },
+					{ TutorialScene_Help_Buff_Texture[1], 0.1f },
+					{ TutorialScene_Help_Buff_Texture[2], 0.1f },
+					{ TutorialScene_Help_Buff_Texture[3], 0.1f },
+					}, true);
+				const AnimatorController TutorialScene_Help_Buff_Controller = AnimatorController({
+					State("Idle", &TutorialScene_Help_Buff_Idle, {}) });
+				const GameObject TutorialScene_Help_Buff_Object = GameObject(
+					"Background", "Untagged",
+					std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Buff_Texture[0]),
+						std::make_shared<Animator>(&TutorialScene_Help_Buff_Controller),
+				});
+
+				const Texture2D TutorialScene_Help_Ult_Texture = Texture2D("Assets/TutorialText_Ult.png", Texture2D::FilterMode::Nearest, 4);
+				const AnimationClip TutorialScene_Help_Ult_Idle = AnimationClip({
+					{ TutorialScene_Help_Ult_Texture[0], 0.1f },
+					{ TutorialScene_Help_Ult_Texture[1], 0.1f },
+					{ TutorialScene_Help_Ult_Texture[2], 0.1f },
+					{ TutorialScene_Help_Ult_Texture[3], 0.1f },
+					}, true);
+				const AnimatorController TutorialScene_Help_Ult_Controller = AnimatorController({
+					State("Idle", &TutorialScene_Help_Ult_Idle, {}) });
+				const GameObject TutorialScene_Help_Ult_Object = GameObject(
+					"Background", "Untagged",
+					std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Ult_Texture[0]),
+						std::make_shared<Animator>(&TutorialScene_Help_Ult_Controller),
+				});
+#pragma endregion
+				const GameObject Tutorial_Object = GameObject(
+					"MenuEventManager", "Untagged",
+					std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<Parallax>(&LandingScene_Parallax_Texture[0], Vector2::left(), 0.01),
+					std::make_shared<CreditEventManager>(),
+				});
+				const GameObject Text_Object = GameObject(
+					"Untagged", "Untagged",
+					std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<Text>("Help", &Font_Texture),
+				});
+#pragma region CreditScene Properties
+				Scene GlobalMenuScene::HelpScene = Scene({
+					#pragma region Ui
+					{&Tutorial_Object},
+					{&Text_Object, Transform(Vector2(0, 2.5))},
+					{&TutorialScene_Help_Walk_Object, Transform(Vector2(-2,1.2))},
+					{&TutorialScene_Help_Fight_Object, Transform(Vector2(2,1.2))},
+					{&TutorialScene_Help_Buff_Object, Transform(Vector2(-2,-1.2))},
+					{&TutorialScene_Help_Ult_Object, Transform(Vector2(2,-1.2))},
+					{&CreditSceneManager_Object, Transform()},
+				#pragma endregion
+					{&MainCamera, Transform()},
+					});
+#pragma endregion
+#pragma endregion
+				
