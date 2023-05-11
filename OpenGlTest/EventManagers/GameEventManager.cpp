@@ -7,9 +7,16 @@
 #include <random>
 using namespace InputSystem;
 
+GameEventManager* GameEventManager::instance = nullptr;
+
 void GameEventManager::Awake() {
+	instance = this;
+
 	pausePanels = gameObject->GetComponents<Image>();
 	for (auto& panel : pausePanels) panel->enabled = false;
+
+	GameObject* TikeMyson_Ui = GameObject::FindWithTag("TikeMysonUi");
+	GameObject* Chicken_Ui = GameObject::FindWithTag("ChickenUi");
 
 	Instantiate(Prefab::BossObject, Vector2(2.5f, 0));
 
@@ -17,8 +24,15 @@ void GameEventManager::Awake() {
 	switch (GameplayData::playerCount) {
 		case 1:
 			switch (std::rand() % 2) {
-				case 0: playerObject = InstantiateT(Prefab::TikeMyson_Object);				break;
-				case 1: playerObject = InstantiateT(Prefab::Chicken_Object); break;
+				case 0: 
+					playerObject = InstantiateT(Prefab::TikeMyson_Object);
+					Chicken_Ui->SetActive(false);
+					break;
+				case 1: 
+					playerObject = InstantiateT(Prefab::Chicken_Object); 
+					TikeMyson_Ui->SetActive(false);
+					Chicken_Ui->transform->position = TikeMyson_Ui->transform->position;
+					break;
 			};
 			playerObject->GetComponent<Player>()->controlScheme = Player::ControlScheme::Solo;
 			_playerObjects.emplace_back(playerObject);

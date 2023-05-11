@@ -53,7 +53,7 @@ const GameObject Lv0_Platform_Object = GameObject(
 	const AnimatorController TikeMyson_UI_Controller = AnimatorController({
 		State("Mini_Idle", &TikeMyson_UI_Texture_Clip, {}) });
 	const GameObject TikeMyson_UI_Object = GameObject(
-		"Background", "Untagged",
+		"Background", "TikeMysonUi",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<Image>(&TikeMyson_UI_Texture[0]),
 		std::make_shared<Animator>(&TikeMyson_UI_Controller),
@@ -76,7 +76,7 @@ const GameObject Lv0_Platform_Object = GameObject(
 	const AnimatorController Chicken_UI_Controller = AnimatorController({
 		State("Mini_Idle", &Chicken_UI_Texture_Clip, {}) });
 	const GameObject Chicken_UI_Object = GameObject(
-		"Background", "Untagged",
+		"Background", "ChickenUi",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 			std::make_shared<Image>(&Chicken_UI_Texture[0]),
 			std::make_shared<Animator>(&Chicken_UI_Controller)

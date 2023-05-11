@@ -15,13 +15,13 @@ public:
 	//void OnCollisionEnter2D(Collision2D collision) override;
 
 private:
-	enum class ActionState { InTransition, Idle, BombAttack, ChompAttack };
-	ActionState actionState = ActionState::Idle;
+	enum class ActionState { InTransition, Charge, BombAttack, ChompAttack };
+	ActionState actionState = ActionState::Charge;
 	void OnStateEnter();
 	void OnStateExit();
 	void SetState(ActionState state);
 
-	void BeginBombAttack();
+	void Charge();
 	void BombAttack();
 	void ChompAttack();
 	void SwitchSide();

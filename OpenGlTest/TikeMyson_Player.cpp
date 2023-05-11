@@ -13,9 +13,10 @@ void TikeMyson_Player::Attack_Mini() {
 	};
 
 	for (auto& direction : directions) {
-		GameObject* projectile = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + direction * 0.25f);
-		projectile->transform->rotation += Vector3::forward() * -90 * transform()->scale.x();
-		projectile->GetComponent<Projectile>()->Initialize(direction, gameObject);
+		GameObject* projectile = _projectilePool.Get();
+		projectile->transform->position = transform()->position + direction * 0.25f;
+		projectile->transform->rotation = Vector3::forward() * -90 * transform()->scale.x();
+		projectile->GetComponent<Projectile>()->Initialize(direction, gameObject, &_projectilePool);
 		projectile->GetComponent<Hitbox>()->data.faction = faction;
 		projectile->GetComponent<Hitbox>()->data.entity = this;
 	}

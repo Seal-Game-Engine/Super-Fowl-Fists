@@ -6,6 +6,8 @@ using namespace SealEngine::Ui;
 
 class GameEventManager : public MonoBehaviour{
 public:
+	static GameEventManager* instance;
+
 	std::vector<Image*> pausePanels{};
 
 	void Awake() override;

@@ -282,6 +282,7 @@ int ApplicationManager::NewMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LP
 			DispatchMessage(&msg);
 		}
 		if(sceneManager->RefreshScene()) break;
+		if (Time::time() >= Collider2D::nextCollisionCheckTime) Collider2D::nextCollisionCheckTime = Time::time() + 0.0001f;
 	}
 
 	DestroyGlWindow();

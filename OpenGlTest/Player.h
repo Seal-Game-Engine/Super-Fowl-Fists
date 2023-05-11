@@ -1,8 +1,10 @@
 #pragma once
 #include <functional>
+#include <stack>
 #include "SealEngine.h"
 using namespace SealEngine;
 #include "Entity.h"
+#include "Prefab.h"
 
 
 class Player : public Entity {
@@ -35,6 +37,7 @@ protected:
 	virtual void Attack_Mini();
 	virtual void Attack_Big();
 	AudioSource* _audioSource = nullptr;
+	ObjectPool _projectilePool = ObjectPool(Prefab::ProjectileObject_Blue);
 
 private:
 	enum class PowerState : int { Mini, Big };

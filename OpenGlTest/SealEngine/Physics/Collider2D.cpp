@@ -4,9 +4,12 @@
 #include "ContactPoint2D.h"
 #include "../GameObject.h"
 #include "../Scene.h"
+#include "../Clock.h"
 #include <algorithm>
 #include <cfloat>
 using namespace SealEngine;
+
+float Collider2D::nextCollisionCheckTime = 0;
 
 Collider2D::Collider2D(bool isTrigger, Vector2 offset) :isTrigger(isTrigger), offset(offset) {}
 
@@ -15,7 +18,7 @@ void Collider2D::Awake() {
 }
 
 void Collider2D::LateUpdate() {
-	if (!attachedRigidbody()) return;
+	if (Time::time() < nextCollisionCheckTime || !attachedRigidbody()) return;
 
 	std::vector<Collider2D*> sceneColliders = Scene::FindObjectsByType<Collider2D>();
 	for (auto& sceneCollider : sceneColliders) {

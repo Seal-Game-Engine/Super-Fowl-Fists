@@ -6,6 +6,8 @@ namespace SealEngine { class Rigidbody2D; }
 namespace SealEngine {
 	class Collider2D : public MonoBehaviour {
 	public:
+		static float nextCollisionCheckTime;
+
 		Rigidbody2D* attachedRigidbody() { return _attachedRigidbody; }
 
 		bool isTrigger = false;

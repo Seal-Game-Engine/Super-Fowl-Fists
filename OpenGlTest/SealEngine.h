@@ -16,6 +16,7 @@
 #include "SealEngine/Object.h"
 #include "SealEngine/GameObject.h"
 #include "SealEngine/MonoBehaviour.h"
+#include "SealEngine/ObjectPool.h"
 
 #include "SealEngine/Transform.h"
 #include "SealEngine/SpriteRenderer.h"
