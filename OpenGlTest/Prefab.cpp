@@ -379,7 +379,8 @@ using State = AnimatorController::AnimationState;
 
 	});
 	#pragma endregion
-
+	#pragma region Students
+	#pragma endregion
 	#pragma region Boss1
 	const Texture2D Prefab::Boss_Texture = Texture2D("Assets/Boss_1_Phase1.png", Texture2D::FilterMode::Nearest, 8, 7);
 		#pragma region Clips
