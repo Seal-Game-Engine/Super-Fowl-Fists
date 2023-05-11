@@ -337,6 +337,12 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::Sensei_Texture[30], 0.1f },
 		}, true);
 	#pragma endregion
+	const Texture2D Prefab::Sensei_Projectile_Texture = Texture2D("Assets/Projectile_Sensei.png", Texture2D::FilterMode::Nearest, 3);
+	const AnimationClip Sensei_Projectile_Clip = AnimationClip({
+		{ Prefab::Sensei_Projectile_Texture[0], 0.1f },
+		{ Prefab::Sensei_Projectile_Texture[1], 0.1f },
+		{ Prefab::Sensei_Projectile_Texture[2], 0.1f },
+		}, true);
 	const AnimatorController Prefab::Sensei_Controller = AnimatorController({
 		State("Idle", &Sensei_Idle_Clip, {
 			{ "Walking", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); } },
@@ -393,7 +399,6 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::Students_Texture[4], 0.1f },
 		{ Prefab::Students_Texture[5], 0.1f },
 		}, true);
-	
 	const AnimationClip Students_Attack_Clip = AnimationClip({
 		{ Prefab::Students_Texture[6], 0.1f },
 		{ Prefab::Students_Texture[7], 0.1f },

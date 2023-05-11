@@ -117,6 +117,7 @@ const GameObject Lv0_Platform_Object = GameObject(
 
 	#pragma region TutorialScene Properties
 	Scene GlobalGameScene::TutorialScene = Scene({
+	{&Prefab::Students_Object, Transform(Vector2(0,0))},
 	{&TutorialScene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
 	{&Ground_Object, Transform(Vector2(0, -4))},
