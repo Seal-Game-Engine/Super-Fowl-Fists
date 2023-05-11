@@ -17,6 +17,7 @@ namespace SealEngine {
 
 		void Awake() override;
 		void LateUpdate() override;
+		std::list<GameObject*> _activeCollisions{};
 
 	private:
 		static bool InCollisionRange(Collider2D& a, Collider2D& b, float& separation, Vector2& normal);
@@ -31,6 +32,5 @@ namespace SealEngine {
 
 
 		Rigidbody2D* _attachedRigidbody = nullptr;
-		std::list<GameObject*> _activeCollisions{};
 	};
 }

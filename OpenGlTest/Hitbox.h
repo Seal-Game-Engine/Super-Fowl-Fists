@@ -11,6 +11,7 @@ public:
 	Hitbox(DamageData data = DamageData{});
 
 	void OnTriggerEnter2D(Collider2D* collider) override;
+	void OnTriggerStay2D(Collider2D* collider)override;
 	void OnCollisionEnter2D(Collision2D collision) override;
 
 private:
