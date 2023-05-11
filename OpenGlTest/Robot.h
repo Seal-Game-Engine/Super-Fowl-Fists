@@ -1,6 +1,6 @@
 #pragma once
 #include "Boss.h"
-class Robot :    public Boss{
+class Robot : public Boss{
 public:
 	//void OnDamageTaken(DamageData data, Vector2 knockbackDirection) override;
 	void OnDeath() override;

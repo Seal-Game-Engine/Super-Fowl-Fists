@@ -14,7 +14,9 @@ using State = AnimatorController::AnimationState;
 #include "TikeMyson_Player.h"
 #include "Chicken_Player.h"
 #include "Parallax.h"
-#include "Boss.h"
+//#include "Boss.h"
+#include "Student.h"
+#include "SenseiWu.h"
 #include "Robot.h"
 #include "Explosion.h"
 #include <string>
@@ -378,18 +380,17 @@ using State = AnimatorController::AnimationState;
 	const GameObject Prefab::Sensei_Object = GameObject(
 		"Boss", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&Prefab::Sensei_Texture[0], false, false),
-			std::make_shared<Animator>(&Prefab::Sensei_Controller),
+		std::make_shared<SpriteRenderer>(&Sensei_Texture[0]),
+			std::make_shared<Animator>(&Sensei_Controller),
 			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(),
+			std::make_shared<CircleCollider2D>(0.4f),
+			std::make_shared<SenseiWu>(50),
 			std::make_shared<AudioSource>(),
-			std::make_shared<Boss>(10),
-
 	});
 	#pragma endregion
 
 	#pragma region Students
-	const Texture2D Prefab::Students_Texture = Texture2D("Assets/Students.png", Texture2D::FilterMode::Nearest, 3, 3);
+	const Texture2D Prefab::Students_Texture = Texture2D("Assets/Students.png", Texture2D::FilterMode::Nearest, 3, 4);
 	#pragma region Clips
 	const AnimationClip Students_Idle_Clip = AnimationClip({
 		{ Prefab::Students_Texture[0], 0.1f },
@@ -425,8 +426,11 @@ using State = AnimatorController::AnimationState;
 		std::make_shared<SpriteRenderer>(&Prefab::Students_Texture[0], false, false),
 			std::make_shared<Animator>(&Prefab::Students_Controller),
 			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(),
+			std::make_shared<CircleCollider2D>(0.4f),
 			std::make_shared<AudioSource>(),
+			std::make_shared<Student>(5),
+			std::make_shared<Hitbox>(DamageData{Factions::Faction2, 0.5, 1, nullptr}),
+
 	});
 	#pragma endregion
 
@@ -525,10 +529,10 @@ using State = AnimatorController::AnimationState;
 		});
 
 	const GameObject Prefab::BossObject = GameObject(
-		"Player", "Entity",
+		"Boss", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&Prefab::Boss_Texture[0], false, false),
-			std::make_shared<Animator>(&Prefab::Boss_Controller),
+		std::make_shared<SpriteRenderer>(&Boss_Texture[0]),
+			std::make_shared<Animator>(&Boss_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
 			std::make_shared<AudioSource>(),

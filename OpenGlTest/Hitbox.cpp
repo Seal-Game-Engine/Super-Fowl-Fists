@@ -1,4 +1,5 @@
 #include "Hitbox.h"
+#include "Entity.h"
 
 Hitbox::Hitbox(DamageData data) :data(data) {}
 
@@ -8,6 +9,7 @@ void Hitbox::OnTriggerEnter2D(Collider2D* collider) {
 			if (data.faction == damageable->faction && data.faction != Factions::NoFaction) return;
 			
 			damageable->OnDamageTaken(data, (collider->gameObject->transform->position - transform()->position).normalized());
+			if (data.entity) data.entity->OnDamageDealt();
 		}
 	}
 }

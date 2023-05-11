@@ -33,21 +33,21 @@ void Collider2D::LateUpdate() {
 				_activeCollisions.emplace_back(sceneCollider->gameObject);
 #pragma region Enter
 				if (isTrigger || sceneCollider->isTrigger) {
-					for (auto& component : gameObject->components) component->OnTriggerEnter2D(sceneCollider);
-					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerEnter2D(this);
+					for (auto& component : gameObject->components) if(component->enabled) component->OnTriggerEnter2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) if (component->enabled)component->OnTriggerEnter2D(this);
 				} else {
-					for (auto& component : gameObject->components) component->OnCollisionEnter2D(Collision2D(sceneCollider, this, separation, normal));
-					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionEnter2D(Collision2D(this, sceneCollider, separation, normal * -1));
+					for (auto& component : gameObject->components) if (component->enabled)component->OnCollisionEnter2D(Collision2D(sceneCollider, this, separation, normal));
+					for (auto& component : sceneCollider->gameObject->components) if (component->enabled)component->OnCollisionEnter2D(Collision2D(this, sceneCollider, separation, normal * -1));
 				}
 #pragma endregion
 			} else {
 #pragma region Stay
 				if (isTrigger || sceneCollider->isTrigger) {
-					for (auto& component : gameObject->components) component->OnTriggerStay2D(sceneCollider);
-					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerStay2D(this);
+					for (auto& component : gameObject->components)if (component->enabled) component->OnTriggerStay2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components) if (component->enabled)component->OnTriggerStay2D(this);
 				} else {
-					for (auto& component : gameObject->components) component->OnCollisionStay2D(Collision2D(sceneCollider, this, separation, normal));
-					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionStay2D(Collision2D(this, sceneCollider, separation, normal * -1));
+					for (auto& component : gameObject->components) if (component->enabled)component->OnCollisionStay2D(Collision2D(sceneCollider, this, separation, normal));
+					for (auto& component : sceneCollider->gameObject->components) if (component->enabled)component->OnCollisionStay2D(Collision2D(this, sceneCollider, separation, normal * -1));
 				}
 #pragma endregion
 			}
@@ -56,11 +56,11 @@ void Collider2D::LateUpdate() {
 				_activeCollisions.remove(sceneCollider->gameObject);
 #pragma region Exit
 				if (isTrigger || sceneCollider->isTrigger) {
-					for (auto& component : gameObject->components) component->OnTriggerExit2D(sceneCollider);
-					for (auto& component : sceneCollider->gameObject->components) component->OnTriggerExit2D(this);
+					for (auto& component : gameObject->components)if (component->enabled) component->OnTriggerExit2D(sceneCollider);
+					for (auto& component : sceneCollider->gameObject->components)if (component->enabled) component->OnTriggerExit2D(this);
 				} else {
-					for (auto& component : gameObject->components) component->OnCollisionExit2D(Collision2D(sceneCollider, this, separation, normal));
-					for (auto& component : sceneCollider->gameObject->components) component->OnCollisionExit2D(Collision2D(this, sceneCollider, separation, normal * -1));
+					for (auto& component : gameObject->components)if (component->enabled) component->OnCollisionExit2D(Collision2D(sceneCollider, this, separation, normal));
+					for (auto& component : sceneCollider->gameObject->components) if (component->enabled)component->OnCollisionExit2D(Collision2D(this, sceneCollider, separation, normal * -1));
 				}
 #pragma endregion
 			}
