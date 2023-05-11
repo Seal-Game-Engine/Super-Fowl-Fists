@@ -636,6 +636,7 @@ const GameObject Prefab::BossProjectile_Object = GameObject(
 			std::make_shared<Hitbox>(DamageData{Factions::Faction2, 1, 1, nullptr}),
 	});
 #pragma endregion 
+
 #pragma region Explosion64x64
 	const Texture2D Prefab::Explosion64_Texture = Texture2D("Assets/Explosion_64x64.png", Texture2D::FilterMode::Nearest, 4, 4);
 #pragma region Clips

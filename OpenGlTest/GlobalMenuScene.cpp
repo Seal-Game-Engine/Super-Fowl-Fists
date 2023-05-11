@@ -412,7 +412,22 @@ const GameObject MainCamera = GameObject(
 				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Panel>(&Credit_Image_Texture[0]),
 					std::make_shared<Animator>(&Credit_Image_Controller),
-					std::make_shared<Text>("Hello World!", &Font_Texture),
+					//::make_shared<Text>("Hello World!", &Font_Texture),
+			});
+			const GameObject Text1 = GameObject(
+				"MenuOptions", "Untagged",
+				std::vector<std::shared_ptr<MonoBehaviour>>{
+					std::make_shared<Text>("Ren Hao Wong", &Font_Texture),
+			});
+			const GameObject Text2 = GameObject(
+				"MenuOptions", "Untagged",
+				std::vector<std::shared_ptr<MonoBehaviour>>{
+				std::make_shared<Text>("Saishnu Ramesh Kumar", &Font_Texture),
+			});
+			const GameObject Text3 = GameObject(
+				"MenuOptions", "Untagged",
+				std::vector<std::shared_ptr<MonoBehaviour>>{
+				std::make_shared<Text>("Zheng Wei Ng", &Font_Texture),
 			});
 		#pragma endregion
 		#pragma region CreditInteractions
@@ -428,6 +443,9 @@ const GameObject MainCamera = GameObject(
 					#pragma region Ui
 					{&Credit_Image_Object, Transform()},
 					{&CreditSceneManager_Object, Transform()},
+					{&Text1, Transform(Vector2(0, - 0.5))},
+					{&Text2, Transform(Vector2(0, -1))},
+					{&Text3, Transform(Vector2(0, 0))},
 				#pragma endregion
 					{&MainCamera, Transform()},
 					});
