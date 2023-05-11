@@ -16,6 +16,8 @@ public:
 		bool jumpDown = false;
 
 		bool attackDown = false;
+
+		bool juiceDown = false;
 	};
 	enum class ControlScheme { Solo, Player1, Player2 };
 

@@ -202,6 +202,8 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="EventManagers\LandingEventManager.cpp" />
     <ClCompile Include="EventManagers\MenuEventManager.cpp" />
     <ClCompile Include="EventManagers\SealLogoEventManager.cpp" />
+    <ClCompile Include="SenseiWu.cpp" />
+    <ClCompile Include="Student.cpp" />
     <ClCompile Include="Testing\Obstacle.cpp" />
     <ClCompile Include="Testing\ObstacleSpawner.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -269,6 +271,8 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="EventManagers\LandingEventManager.h" />
     <ClInclude Include="EventManagers\MenuEventManager.h" />
     <ClInclude Include="EventManagers\SealLogoEventManager.h" />
+    <ClInclude Include="SenseiWu.h" />
+    <ClInclude Include="Student.h" />
     <ClInclude Include="Testing\TestScene.h" />
     <ClInclude Include="Testing\Obstacle.h" />
     <ClInclude Include="Testing\ObstacleSpawner.h" />

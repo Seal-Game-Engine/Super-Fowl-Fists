@@ -18,7 +18,9 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 
 			Input::GetKeyDown(KeyCode::W) || Input::GetKeyDown(KeyCode::UpArrow),
 
-			Input::GetKeyDown(KeyCode::R) || Input::GetKeyDown(KeyCode::M)
+			Input::GetKeyDown(KeyCode::R) || Input::GetKeyDown(KeyCode::M),
+
+			Input::GetKeyDown(KeyCode::T) || Input::GetKeyDown(KeyCode::Comma)
 		};
 	case ControlScheme::Player1:
 		return InputData{
@@ -27,7 +29,9 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 
 			Input::GetKeyDown(KeyCode::W),
 
-			Input::GetKeyDown(KeyCode::R)
+			Input::GetKeyDown(KeyCode::R),
+
+			Input::GetKeyDown(KeyCode::T)
 		};
 	case ControlScheme::Player2:
 		return InputData{
@@ -36,7 +40,9 @@ Player::InputData Player::GetInputData(ControlScheme controlScheme) {
 
 			Input::GetKeyDown(KeyCode::UpArrow),
 
-			Input::GetKeyDown(KeyCode::M)
+			Input::GetKeyDown(KeyCode::M),
+
+			Input::GetKeyDown(KeyCode::Comma)
 		};
 	}
 }
@@ -121,7 +127,7 @@ void Player::Update() {
 		_canJump = false;
 	}
 
-	if (Input::GetKeyDown(KeyCode::Space)) SetPowerState((PowerState)(((int)_powerState + 1) % 2));
+	if (inputData.juiceDown) SetPowerState((PowerState)(((int)_powerState + 1) % 2));
 
 	if (inputData.attackDown && Time::time() >= _nextAttack) {
 		switch (_powerState) {

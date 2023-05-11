@@ -1,5 +1,4 @@
 #pragma once
-#include <functional>
 #include "SealEngine.h"
 using namespace SealEngine;
 #include "Entity.h"
