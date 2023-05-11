@@ -19,16 +19,22 @@ void GameEventManager::UpdateUi(){
 		p2HpText->text = std::to_string((int)_playerObjects[1]->currentHp);
 		break;
 	}
+
+	for (auto& player : _playerObjects) if (player->isAlive())return;
+	OnLevelFailed();
 }
 
 void GameEventManager::OnLevelCompleted(){
 	_levelCompleted = true;
 	Time::timeScale = 0;
 }
+void GameEventManager::OnLevelFailed() {
+	_levelCompleted = true;
+	Time::timeScale = 0;
+}
 
 void GameEventManager::Awake() {
 	instance = this;
-
 	pausePanels = gameObject->GetComponents<Image>();
 	for (auto& panel : pausePanels) panel->enabled = false;
 
@@ -53,12 +59,12 @@ void GameEventManager::Awake() {
 	case 1:
 		switch (std::rand() % 2) {
 		case 0:
-			playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-14.0f, 0))->GetComponent<Player>();
+			playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-2.5, 0))->GetComponent<Player>();
 			playerObject->controlScheme = Player::ControlScheme::Solo;
 			Chicken_Ui->SetActive(false);
 			break;
 		case 1:
-			playerObject = InstantiateT(Prefab::Chicken_Object, Vector2(-14.0f, 0))->GetComponent<Player>();
+			playerObject = InstantiateT(Prefab::Chicken_Object, Vector2(-1.5, 0))->GetComponent<Player>();
 			playerObject->controlScheme = Player::ControlScheme::Solo;
 			TikeMyson_Ui->SetActive(false);
 			Chicken_Ui->transform->position = TikeMyson_Ui->transform->position;
@@ -68,10 +74,10 @@ void GameEventManager::Awake() {
 		p2HpText->gameObject->SetActive(false);
 		break;
 	case 2:
-		playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-14.0f, 0))->GetComponent<Player>();
+		playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-1.5, 0))->GetComponent<Player>();
 		playerObject->controlScheme = Player::ControlScheme::Player1;
 		_playerObjects.emplace_back(playerObject);
-		playerObject = InstantiateT(Prefab::Chicken_Object, Vector2(-14.0f, 0))->GetComponent<Player>();
+		playerObject = InstantiateT(Prefab::Chicken_Object, Vector2(-1.5, 0))->GetComponent<Player>();
 		playerObject->controlScheme = Player::ControlScheme::Player2;
 		_playerObjects.emplace_back(playerObject);
 		break;

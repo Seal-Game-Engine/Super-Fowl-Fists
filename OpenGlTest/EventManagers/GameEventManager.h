@@ -11,6 +11,7 @@ public:
 
 	void UpdateUi();
 	void OnLevelCompleted();
+	void OnLevelFailed();
 
 	std::vector<Image*> pausePanels{};
 
