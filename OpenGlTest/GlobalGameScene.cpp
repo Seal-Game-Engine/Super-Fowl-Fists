@@ -204,7 +204,7 @@ const GameObject Lv0_Platform_Object = GameObject(
 	Scene GlobalGameScene::Lv1Scene = Scene({
 	{&Lv1Scene_Object, Transform()},
 	{&GameEventManagerObject, Transform()},
-	{&Ground_Object, Transform(Vector2(0, -2))},
+	{&Ground_Object, Transform(Vector2(0, -2.3))},
 	{&MainCamera, Transform()},
 
 	{ &TikeMyson_UI_Object, Transform(Vector2(-2.5, -1.9)) },
