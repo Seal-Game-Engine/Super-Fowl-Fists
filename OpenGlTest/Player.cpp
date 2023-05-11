@@ -61,6 +61,8 @@ void Player::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
 void Player::OnDeath() {
 	SetPowerState(PowerState::Mini);
 	_animator->Play("Mini_Die");
+	_audioSource->clip = "Assets/Sounds/Death.wav";
+	_audioSource->Play();
 	Invoke([&] {
 		_rigidbody->enabled = false;
 		_collider->enabled = false;
