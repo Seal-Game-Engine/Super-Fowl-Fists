@@ -175,6 +175,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GamplayData.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="SealEngine\ObjectPool.cpp" />
     <ClCompile Include="Prefab.cpp" />
     <ClCompile Include="EventManagers\CreditEventManager.cpp" />
@@ -241,6 +242,7 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="GameplayData.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="SealEngine\ObjectPool.h" />
     <ClInclude Include="Prefab.h" />
     <ClInclude Include="EventManagers\CreditEventManager.h" />

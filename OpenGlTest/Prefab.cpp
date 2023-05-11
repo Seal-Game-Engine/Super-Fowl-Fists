@@ -15,6 +15,8 @@ using State = AnimatorController::AnimationState;
 #include "Chicken_Player.h"
 #include "Parallax.h"
 #include "Boss.h"
+#include "Robot.h"
+#include "Explosion.h"
 #include <string>
 
 #pragma region PlayerCharacters
@@ -458,7 +460,7 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::Boss_Texture[40], 0.1f },
 			{ Prefab::Boss_Texture[41], 0.1f },
 			}, true);
-		const AnimationClip Boss_Chomp_Attack = AnimationClip({
+		const AnimationClip Boss_Chomp_Attack = AnimationClip({ //0.6s
 			{ Prefab::Boss_Texture[16], 0.075f },
 			{ Prefab::Boss_Texture[17], 0.075f },
 			{ Prefab::Boss_Texture[18], 0.075f },
@@ -468,7 +470,7 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::Boss_Texture[22], 0.075f },
 			{ Prefab::Boss_Texture[23], 0.075f },
 			}, true);
-		const AnimationClip Boss_Bomb_Attack = AnimationClip({
+		const AnimationClip Boss_Bomb_Attack = AnimationClip({ //0.25s
 			{ Prefab::Boss_Texture[32], 0.05f },
 			{ Prefab::Boss_Texture[33], 0.05f },
 			{ Prefab::Boss_Texture[34], 0.05f },
@@ -517,10 +519,8 @@ using State = AnimatorController::AnimationState;
 			{ "ChompAtk", true, 6 },
 		}),
 		State("BombAtk", &Boss_Bomb_Attack, {
-			{ "Close", false, 1, [](auto& animator) { return animator.GetInteger("move") == 0; } },
 		}),
 		State("ChompAtk", &Boss_Chomp_Attack, {
-			{ "Close", false, 1, [](auto& animator) { return animator.GetInteger("move") == 0; } },
 		}),
 		});
 
@@ -532,7 +532,7 @@ using State = AnimatorController::AnimationState;
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
 			std::make_shared<AudioSource>(),
-			std::make_shared<Boss>(10),
+			std::make_shared<Robot>(100),
 	});
 	#pragma endregion
 #pragma endregion
@@ -550,7 +550,7 @@ using State = AnimatorController::AnimationState;
 	const GameObject Prefab::ProjectileObject_Blue = GameObject(
 		"Projectile (Blue)", "Projectile",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&Projectile_Blue_Texture[0], false, false),
+		std::make_shared<SpriteRenderer>(&Projectile_Blue_Texture[0]),
 			std::make_shared<Animator>(&Projectile_Blue_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(0.125f, true),
@@ -560,49 +560,112 @@ using State = AnimatorController::AnimationState;
 	});
 #pragma endregion
 
+#pragma region Bomb
+const Texture2D Prefab::Bomb_Texture = Texture2D("Assets/Projectile_Bomb.png", Texture2D::FilterMode::Nearest, 4);
+const AnimationClip Bomb_Clip = AnimationClip({
+	{ Prefab::Bomb_Texture[0], 0.1f },
+	{ Prefab::Bomb_Texture[1], 0.1f },
+	{ Prefab::Bomb_Texture[2], 0.1f },
+	{ Prefab::Bomb_Texture[3], 0.1f },
+	}, true);
+const AnimatorController Prefab::Bomb_Controller = AnimatorController({	State("Idle", &Bomb_Clip),	});
+const GameObject Prefab::Bomb_Object = GameObject(
+	"Bomb", "Projectile",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&Bomb_Texture[0]),
+		std::make_shared<Animator>(&Bomb_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(0.2f),
+		std::make_shared<Projectile>(3, 5, Projectile::TraversalMethods::UseForce, true),
+		std::make_shared<AudioSource>(),
+});
+#pragma endregion
+
+#pragma region BossProjectile
+const Texture2D Prefab::BossProjectile_Texture = Texture2D("Assets/Projectile_MK-1.png", Texture2D::FilterMode::Nearest, 3);
+const AnimationClip BossProjectile_Clip = AnimationClip({
+	{ Prefab::BossProjectile_Texture[0], 0.1f },
+	{ Prefab::BossProjectile_Texture[1], 0.1f },
+	{ Prefab::BossProjectile_Texture[2], 0.1f },
+	}, true);
+const AnimatorController Prefab::BossProjectile_Controller = AnimatorController({ State("Idle", &BossProjectile_Clip), });
+const GameObject Prefab::BossProjectile_Object = GameObject(
+	"BossProjectile", "Projectile",
+	std::vector<std::shared_ptr<MonoBehaviour>>{
+	std::make_shared<SpriteRenderer>(&BossProjectile_Texture[0]),
+		std::make_shared<Animator>(&BossProjectile_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(0.2f, true),
+		std::make_shared<Projectile>(6, 2),
+		std::make_shared<Hitbox>(),
+		std::make_shared<AudioSource>(),
+});
+#pragma endregion
+
 #pragma region Explosion32x32
 	const Texture2D Prefab::Explosion32_Texture = Texture2D("Assets/Explosion_32x32.png", Texture2D::FilterMode::Nearest, 3, 4);
 #pragma region Clips
-	const AnimationClip Explosion32_Initial_Burst = AnimationClip({
+	const AnimationClip Explosion32_Clip = AnimationClip({
 		{ Prefab::Explosion32_Texture[0], 0.1f },
 		{ Prefab::Explosion32_Texture[1], 0.1f },
 		{ Prefab::Explosion32_Texture[2], 0.1f },
-		}, true);
-
-	const AnimationClip Explosion32_Primary_Burst = AnimationClip({
 		{ Prefab::Explosion32_Texture[3], 0.1f },
 		{ Prefab::Explosion32_Texture[4], 0.1f },
 		{ Prefab::Explosion32_Texture[5], 0.1f },
-		}, true);
-
-	const AnimationClip Explosion32_Secondary_Burst = AnimationClip({
 		{ Prefab::Explosion32_Texture[6], 0.1f },
 		{ Prefab::Explosion32_Texture[7], 0.1f },
 		{ Prefab::Explosion32_Texture[8], 0.1f },
-		}, true);
-
-	const AnimationClip Explosion32_Final_Burst = AnimationClip({
 		{ Prefab::Explosion32_Texture[9], 0.1f },
 		{ Prefab::Explosion32_Texture[10], 0.1f },
 		{ Prefab::Explosion32_Texture[11], 0.1f },
-		}, true);
+		}, false);
 #pragma endregion
-	const AnimatorController Prefab::Explosion32_Controller = AnimatorController({
-		State("Idle", &Explosion32_Initial_Burst),
-		});
+	const AnimatorController Prefab::Explosion32_Controller = AnimatorController({		State("Idle", &Explosion32_Clip),		});
 	const GameObject Prefab::Explosion32_Object = GameObject(
-		"Explosion32", "Explosion",
+		"Explosion", "Projectile",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Explosion32_Texture[0], false, false),
 			std::make_shared<Animator>(&Explosion32_Controller),
-			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(0.125f, true),
-			std::make_shared<Projectile>(8, 1.5f),
+			std::make_shared<CircleCollider2D>(0.5f, true),
+			std::make_shared<Explosion>(1.2f),
 			std::make_shared<AudioSource>(),
-			std::make_shared<Hitbox>(),
+			std::make_shared<Hitbox>(DamageData{Factions::Faction2, 1, 1, nullptr}),
 	});
 #pragma endregion 
-	
+#pragma region Explosion64x64
+	const Texture2D Prefab::Explosion64_Texture = Texture2D("Assets/Explosion_64x64.png", Texture2D::FilterMode::Nearest, 4, 4);
+#pragma region Clips
+	const AnimationClip Explosion64_Clip = AnimationClip({
+		{ Prefab::Explosion64_Texture[0], 0.1f },
+		{ Prefab::Explosion64_Texture[1], 0.1f },
+		{ Prefab::Explosion64_Texture[2], 0.1f },
+		{ Prefab::Explosion64_Texture[3], 0.1f },
+		{ Prefab::Explosion64_Texture[4], 0.1f },
+		{ Prefab::Explosion64_Texture[5], 0.1f },
+		{ Prefab::Explosion64_Texture[6], 0.1f },
+		{ Prefab::Explosion64_Texture[7], 0.1f },
+		{ Prefab::Explosion64_Texture[8], 0.1f },
+		{ Prefab::Explosion64_Texture[9], 0.1f },
+		{ Prefab::Explosion64_Texture[10], 0.1f },
+		{ Prefab::Explosion64_Texture[11], 0.1f },
+		{ Prefab::Explosion64_Texture[12], 0.1f },
+		{ Prefab::Explosion64_Texture[13], 0.1f },
+		{ Prefab::Explosion64_Texture[14], 0.1f },
+		{ Prefab::Explosion64_Texture[15], 0.1f },
+		}, false);
+#pragma endregion
+	const AnimatorController Prefab::Explosion64_Controller = AnimatorController({ State("Idle", &Explosion64_Clip), });
+	const GameObject Prefab::Explosion64_Object = GameObject(
+		"Explosion", "Projectile",
+		std::vector<std::shared_ptr<MonoBehaviour>>{
+		std::make_shared<SpriteRenderer>(&Explosion64_Texture[0], false, false),
+			std::make_shared<Animator>(&Explosion64_Controller),
+			//std::make_shared<CircleCollider2D>(0.5f, true),
+			std::make_shared<Explosion>(1.6f),
+			//std::make_shared<AudioSource>(),
+			//std::make_shared<Hitbox>(),
+	});
+#pragma endregion 
 
 #pragma region UI Items
 const Texture2D Prefab::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);

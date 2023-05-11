@@ -18,7 +18,7 @@ public:
 	static const AnimatorController Chicken_Controller;
 	static const GameObject Chicken_Object;
 #pragma endregion
-	static const GameObject ProjectileObject_Blue;
+	
 
 
 	//Sensei
@@ -41,14 +41,24 @@ public:
 	//Spawner
 	static const GameObject ObstacleSpawner_Object;
 
+	//Projectiles
+	static const Texture2D Bomb_Texture;
+	static const AnimatorController Bomb_Controller;
+	static const GameObject Bomb_Object;
+
+	static const Texture2D BossProjectile_Texture;
+	static const AnimatorController BossProjectile_Controller;
+	static const GameObject BossProjectile_Object;
+
 	//Explosion 32x32
 	static const Texture2D Explosion32_Texture;
 	static const AnimatorController Explosion32_Controller;
 	static const GameObject Explosion32_Object;
 
-	//static const Texture2D Explosion64_Texture;
-	//static const AnimatorController Explosion64_Controller;
-	//static const GameObject Explosion64_Object;
+	//Explosion 64x64
+	static const Texture2D Explosion64_Texture;
+	static const AnimatorController Explosion64_Controller;
+	static const GameObject Explosion64_Object;
 
 	static const Texture2D PauseScreen;
 
@@ -62,5 +72,6 @@ public:
 
 	static const Texture2D Projectile_Blue_Texture;
 	static const AnimatorController Projectile_Blue_Controller;
+	static const GameObject ProjectileObject_Blue;
 #pragma endregion
 };

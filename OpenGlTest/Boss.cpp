@@ -1,9 +1,9 @@
 #include "Boss.h"
 #include "Prefab.h"
-#include "Projectile.h"
-#include "Hitbox.h"
+
 #include <cmath>
 #include "EventManagers/GameEventManager.h"
+#include "GameplayData.h"
 
 void Boss::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
 	if (!isAlive()) return;
@@ -13,8 +13,9 @@ void Boss::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
 }
 
 void Boss::OnDeath(){
-	SetState(ActionState::Charge);
-	Invoke([] {	GameEventManager::instance->OnLevelCompleted();	}, 1);
+	_renderer->enabled = false;
+	Instantiate(Prefab::Explosion64_Object, transform()->position);
+	Invoke([] {	GameEventManager::instance->OnLevelCompleted();	}, 2);
 }
 
 Boss::Boss(const float hp) :Entity(hp) {
@@ -35,101 +36,7 @@ void Boss::Awake() {
 	//temp
 	transform()->scale.Set(transform()->scale.x() * -1, transform()->scale.y(), transform()->scale.z());
 
-	_audioSource->clip = "Assets/Sounds/RobotStartUp.wav";
-	_audioSource->Play();
+	currentHp *= GameplayData::playerCount;
 }
 
-void Boss::Update() {
-	if (!isAlive()) return;
 
-	_rigidbody->velocity = Vector2(-0.05, _rigidbody->velocity.y());
-
-	switch (actionState) {
-	case ActionState::Charge: Charge(); break;
-	case ActionState::BombAttack: BombAttack(); break;
-	case ActionState::ChompAttack: ChompAttack(); break;
-	}
-	
-	//animator->SetBool("isWalking", std::abs(x) > 0);
-	//animator->SetBool("isJumping", !_canJump);
-	//if (std::abs(x) > 0) transform()->scale.Set(x > 0 ? 1 : -1, transform()->scale.y(), transform()->scale.z());
-}
-
-void Boss::SetState(ActionState state){
-	OnStateExit();
-	actionState = state;
-	OnStateEnter();
-}
-
-void Boss::OnStateEnter(){
-	switch (actionState) {
-	case ActionState::Charge:
-		_nextActionTime = Time::time() + rand() % 3 + 2;
-		break;
-	case ActionState::BombAttack:
-		_nextActionTime = Time::time() + _bombAttackDuration;
-		break;
-	case ActionState::ChompAttack:
-		_nextActionTime = Time::time() + _bombAttackDuration;
-		break;
-	}
-}
-
-void Boss::OnStateExit() {
-	switch (actionState) {
-	case ActionState::Charge:
-		switch (rand() % 2) {
-		case 0:
-			_animator->SetInteger("move", 1);
-			Invoke([&] { SetState(ActionState::BombAttack); }, 3.2f);
-			break;
-		case 1: 
-			_animator->SetInteger("move", 2);
-			Invoke([&] { SetState(ActionState::ChompAttack); }, 3.2f);
-			break;
-		}
-		break;
-
-	case ActionState::BombAttack:
-	case ActionState::ChompAttack:
-		_animator->SetInteger("move", 0);
-		Invoke([&] { SetState(ActionState::Charge); }, 0.8f);
-		break;
-	}
-}
-
-void Boss::Charge(){
-	if (Time::time() >= _nextActionTime) SetState(ActionState::InTransition);
-}
-
-void Boss::BombAttack() {
-	if (Time::time() >= _nextBombTime) {
-		GameObject* bomb = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + Vector2(transform()->scale.x() + 0.9, -0.125) * 1);
-		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), -0.5f), gameObject);
-		bomb->GetComponent<Hitbox>()->data.entity = this;
-
-		_audioSource->clip = "Assets/Sounds/RobotHit.wav";
-		//_audioSource->clip = "Assets/Sounds/Blaster.wav";
-		_audioSource->Play();
-
-		_nextBombTime = Time::time() + _bombAttackCooldown;
-	}
-
-	if (Time::time() >= _nextActionTime) SetState(ActionState::InTransition);
-}
-
-void Boss::ChompAttack(){
-	if (Time::time() >= _nextBombTime) {
-		//GameObject* bomb = InstantiateT(Prefab::ProjectileObject_Blue, transform()->position + Vector2(transform()->scale.x() + 0.9, -0.125) * 1);
-		//bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), -0.5f), gameObject);
-		//bomb->GetComponent<Hitbox>()->data.entity = this;
-
-		//_audioSource->clip = "Assets/Sounds/RobotHit.wav";
-		////_audioSource->clip = "Assets/Sounds/Blaster.wav";
-		//_audioSource->Play();
-
-		//_nextBombTime = Time::time() + _bombAttackCooldown;
-	}
-
-	if (Time::time() >= _nextActionTime) SetState(ActionState::InTransition);
-}
