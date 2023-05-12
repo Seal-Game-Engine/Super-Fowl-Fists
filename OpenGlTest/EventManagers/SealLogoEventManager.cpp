@@ -2,7 +2,7 @@
 #include "../Parallax.h"
 
 void SealLogoEventManager::Awake() {
-    Invoke([] { SceneManager::LoadScene(0); }, 0.5f);
+    Invoke([] { SceneManager::LoadScene(0); }, 3.0f);
 
     //Scene::FindFirstObjectByType<Parallax>()->transform()->position += Vector3::forward() * Time::deltaTime() * x;
 }
