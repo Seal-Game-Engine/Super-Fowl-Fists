@@ -1,15 +1,12 @@
-#include "../SealEngine.h"
-#include "../Parallax.h"
-#include "../EventManagers/GameEventManager.h"
-#include "../GlobalMenuScene.h"
 #include "TestScene.h"
+#include "../EventManagers/GameEventManager.h"
 
+#include "../Parallax.h"
 #include "../Hitbox.h"
 #include "XwingPlayer.h"
 #include "Obstacle.h"
 #include "ObstacleSpawner.h"
 
-using namespace SealEngine;
 using namespace SealEngine::Ui;
 using State = AnimatorController::AnimationState;
 
@@ -19,12 +16,12 @@ const GameObject MainCamera = GameObject(
 	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
 });
 
-const Texture2D TutorialText = Texture2D("Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
-const Texture2D Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3, 1);
+const Texture2D TutorialText = Texture2D("../Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
+const Texture2D TutorialText2 = Texture2D("../Assets/TutorialText.png", Texture2D::FilterMode::Nearest);
 
 #pragma region Xwing
 	#pragma region Ship
-	const Texture2D TestScene::Xwing_Texture = Texture2D("Assets/X-wing.png", Texture2D::FilterMode::Nearest, 3, 2);
+const Texture2D TestScene::Xwing_Texture = Texture2D("../Assets/TutorialText.png", Texture2D::FilterMode::Nearest, 3, 2);
 	#pragma region Clips
 	const AnimationClip Xwing_Idle = AnimationClip({
 		{ TestScene::Xwing_Texture[0], 0.05f },
@@ -54,7 +51,7 @@ const Texture2D Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::F
 	const GameObject TestScene::Xwing_Object = GameObject(
 		"Xwing", "Player",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&Xwing_Texture[0], false, false),
+		std::make_shared<SpriteRenderer>(&TestScene::Xwing_Texture[0]),
 			std::make_shared<Animator>(&Xwing_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(0.25f, false, Vector2(0, -0.0625)),
@@ -63,7 +60,7 @@ const Texture2D Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::F
 			std::make_shared<AudioSource>("Assets/faded.wav"),
 	});
 	#pragma endregion
-	
+
 	#pragma region Obstacle
 	//Obstacle
 	const Texture2D TestScene::Obstacle_Texture = Texture2D("Assets/Obstacle.png", Texture2D::FilterMode::Nearest, 3, 1);
@@ -120,7 +117,7 @@ const GameObject OtherGameEventManagerObject = GameObject(
 const GameObject Ground = GameObject(
 	"Ground", "Ground",
 	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<SpriteRenderer>(&Obstacle_Texture[0], false, false),
+	std::make_shared<SpriteRenderer>(&TestScene::Obstacle_Texture[0], false, false),
 		std::make_shared<BoxCollider2D>(Vector2(1600, 1)),
 });
 

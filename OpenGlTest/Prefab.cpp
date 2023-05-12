@@ -145,14 +145,13 @@ using State = AnimatorController::AnimationState;
 
 	const GameObject Prefab::TikeMyson_Object = GameObject(
 		"Tike Myson", "Entity",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&MiniTikeMyson_Texture[0]),
-			std::make_shared<Animator>(&TikeMyson_Controller),
-			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(),
-			std::make_shared<AudioSource>(),
-			std::make_shared<TikeMyson_Player>(10),
-	});
+		std::make_shared<Animator>(&TikeMyson_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(),
+		std::make_shared<AudioSource>(),
+		std::make_shared<TikeMyson_Player>(10)
+	);
 	#pragma endregion
 
 	#pragma region Chicken
@@ -276,14 +275,13 @@ using State = AnimatorController::AnimationState;
 
 	const GameObject Prefab::Chicken_Object = GameObject(
 		"Chicken", "Entity",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&MiniChicken_Texture[0]),
-			std::make_shared<Animator>(&Chicken_Controller),
-			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(),
-			std::make_shared<AudioSource>(),
-			std::make_shared<Chicken_Player>(10),
-	});
+		std::make_shared<Animator>(&Chicken_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(),
+		std::make_shared<AudioSource>(),
+		std::make_shared<Chicken_Player>(10)
+	);
 	#pragma endregion
 
 #pragma endregion
@@ -379,14 +377,13 @@ using State = AnimatorController::AnimationState;
 
 	const GameObject Prefab::Sensei_Object = GameObject(
 		"Boss", "Entity",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Sensei_Texture[0]),
-			std::make_shared<Animator>(&Sensei_Controller),
-			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(0.4f),
-			std::make_shared<SenseiWu>(50),
-			std::make_shared<AudioSource>(),
-	});
+		std::make_shared<Animator>(&Sensei_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(0.4f),
+		std::make_shared<SenseiWu>(50),
+		std::make_shared<AudioSource>()
+	);
 	#pragma endregion
 
 	#pragma region Students
@@ -422,16 +419,14 @@ using State = AnimatorController::AnimationState;
 
 	const GameObject Prefab::Students_Object = GameObject(
 		"Students", "Entity",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Prefab::Students_Texture[0], false, false),
-			std::make_shared<Animator>(&Prefab::Students_Controller),
-			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(0.4f),
-			std::make_shared<AudioSource>(),
-			std::make_shared<Student>(5),
-			std::make_shared<Hitbox>(DamageData{Factions::Faction2, 0.5, 1, nullptr}),
-
-	});
+		std::make_shared<Animator>(&Prefab::Students_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(0.4f),
+		std::make_shared<AudioSource>(),
+		std::make_shared<Student>(5),
+		std::make_shared<Hitbox>(DamageData{ Factions::Faction2, 0.5, 1, nullptr })
+	);
 	#pragma endregion
 
 	#pragma region Boss1
@@ -530,14 +525,13 @@ using State = AnimatorController::AnimationState;
 
 	const GameObject Prefab::BossObject = GameObject(
 		"Boss", "Entity",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Boss_Texture[0]),
-			std::make_shared<Animator>(&Boss_Controller),
-			std::make_shared<Rigidbody2D>(),
-			std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
-			std::make_shared<AudioSource>(),
-			std::make_shared<Robot>(100),
-	});
+		std::make_shared<Animator>(&Boss_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<BoxCollider2D>(Vector2(1.875f, 2.625f), false, Vector2(0, -0.36875f)),
+		std::make_shared<AudioSource>(),
+		std::make_shared<Robot>(100)
+	);
 	#pragma endregion
 #pragma endregion
 
@@ -553,15 +547,14 @@ using State = AnimatorController::AnimationState;
 		});
 	const GameObject Prefab::ProjectileObject_Blue = GameObject(
 		"Projectile (Blue)", "Projectile",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Projectile_Blue_Texture[0]),
-			std::make_shared<Animator>(&Projectile_Blue_Controller),
-			std::make_shared<Rigidbody2D>(),
-			std::make_shared<CircleCollider2D>(0.125f, true),
-			std::make_shared<Projectile>(8, 1.5f),
-			std::make_shared<AudioSource>(),
-			std::make_shared<Hitbox>(),
-	});
+		std::make_shared<Animator>(&Projectile_Blue_Controller),
+		std::make_shared<Rigidbody2D>(),
+		std::make_shared<CircleCollider2D>(0.125f, true),
+		std::make_shared<Projectile>(8, 1.5f),
+		std::make_shared<AudioSource>(),
+		std::make_shared<Hitbox>()
+	);
 #pragma endregion
 
 #pragma region Bomb
@@ -575,14 +568,13 @@ const AnimationClip Bomb_Clip = AnimationClip({
 const AnimatorController Prefab::Bomb_Controller = AnimatorController({	State("Idle", &Bomb_Clip),	});
 const GameObject Prefab::Bomb_Object = GameObject(
 	"Bomb", "Projectile",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
 	std::make_shared<SpriteRenderer>(&Bomb_Texture[0]),
-		std::make_shared<Animator>(&Bomb_Controller),
-		std::make_shared<Rigidbody2D>(),
-		std::make_shared<CircleCollider2D>(0.2f),
-		std::make_shared<Projectile>(3, 5, Projectile::TraversalMethods::UseForce, true),
-		std::make_shared<AudioSource>(),
-});
+	std::make_shared<Animator>(&Bomb_Controller),
+	std::make_shared<Rigidbody2D>(),
+	std::make_shared<CircleCollider2D>(0.2f),
+	std::make_shared<Projectile>(3, 5, Projectile::TraversalMethods::UseForce, true),
+	std::make_shared<AudioSource>()
+);
 #pragma endregion
 
 #pragma region BossProjectile
@@ -627,14 +619,13 @@ const GameObject Prefab::BossProjectile_Object = GameObject(
 	const AnimatorController Prefab::Explosion32_Controller = AnimatorController({		State("Idle", &Explosion32_Clip),		});
 	const GameObject Prefab::Explosion32_Object = GameObject(
 		"Explosion", "Projectile",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Explosion32_Texture[0], false, false),
-			std::make_shared<Animator>(&Explosion32_Controller),
-			std::make_shared<CircleCollider2D>(0.5f, true),
-			std::make_shared<Explosion>(1.2f),
-			std::make_shared<AudioSource>(),
-			std::make_shared<Hitbox>(DamageData{Factions::Faction2, 1, 1, nullptr}),
-	});
+		std::make_shared<Animator>(&Explosion32_Controller),
+		std::make_shared<CircleCollider2D>(0.5f, true),
+		std::make_shared<Explosion>(1.2f),
+		std::make_shared<AudioSource>(),
+		std::make_shared<Hitbox>(DamageData{ Factions::Faction2, 1, 1, nullptr })
+	);
 #pragma endregion 
 
 #pragma region Explosion64x64
@@ -662,14 +653,13 @@ const GameObject Prefab::BossProjectile_Object = GameObject(
 	const AnimatorController Prefab::Explosion64_Controller = AnimatorController({ State("Idle", &Explosion64_Clip), });
 	const GameObject Prefab::Explosion64_Object = GameObject(
 		"Explosion", "Projectile",
-		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<SpriteRenderer>(&Explosion64_Texture[0], false, false),
-			std::make_shared<Animator>(&Explosion64_Controller),
-			//std::make_shared<CircleCollider2D>(0.5f, true),
-			std::make_shared<Explosion>(1.6f),
-			//std::make_shared<AudioSource>(),
-			//std::make_shared<Hitbox>(),
-	});
+		std::make_shared<Animator>(&Explosion64_Controller),
+		//std::make_shared<CircleCollider2D>(0.5f, true),
+		std::make_shared<Explosion>(1.6f)
+		//std::make_shared<AudioSource>(),
+		//std::make_shared<Hitbox>(),
+		);
 #pragma endregion 
 
 #pragma region UI Items

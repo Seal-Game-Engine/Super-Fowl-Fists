@@ -5,7 +5,7 @@ void Obstacle::Awake() {
 	rigidbody = gameObject->GetComponent<Rigidbody2D>();
 }
 
-void Obstacle::Start(){
+void Obstacle::Start() {
 	player = gameObject->FindWithTag("Player");
 }
 

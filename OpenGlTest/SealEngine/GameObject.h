@@ -15,7 +15,20 @@ namespace SealEngine {
     public:
         GameObject();
         GameObject(const std::string& name, const std::string& tag = "Untagged");
-        GameObject(const std::string& name, const std::string& tag, std::vector<std::shared_ptr<MonoBehaviour>> components);
+
+        template<class... T>
+        GameObject(const std::string& name, const std::string& tag, const T&... components)
+            :Object(name), tag(tag), components({ components... }) {
+
+            auto _transform = std::make_shared<Transform>();
+            _transform->gameObject = this;
+            transform = _transform.get();
+            this->components.emplace_back(_transform);
+
+            for (auto& component : this->components) {
+                component->gameObject = this;
+            }
+        }
 
         GameObject(const GameObject& obj);
 

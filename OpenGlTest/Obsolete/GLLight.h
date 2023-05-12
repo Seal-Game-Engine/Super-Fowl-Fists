@@ -1,5 +1,5 @@
 #pragma once
-#include "SealEngine/SealPackages.h"
+#include "../SealEngine/SealPackages.h"
 
 class GLLight {
 public:

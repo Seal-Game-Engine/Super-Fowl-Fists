@@ -30,9 +30,8 @@ const AnimatorController Button_Universal_Controller = AnimatorController({
 
 const GameObject MainCamera = GameObject(
 	"Main Camera", "MainCamera",
-	std::vector<std::shared_ptr<MonoBehaviour>>{
-	std::make_shared<Camera>(Camera::Projection::Orthographic, 3),
-});
+	std::make_shared<Camera>(Camera::Projection::Orthographic, 3)
+);
 #pragma endregion
 
 #pragma region SealLogoScene
@@ -50,17 +49,15 @@ const GameObject MainCamera = GameObject(
 			});
 		const GameObject SealLogoScene_Object = GameObject(
 			"Title", "Untagged",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
 			//std::make_shared<Parallax>(&SealLogoScene_Parallax_Texture[0], Vector2::left(), 0.01),
-				std::make_shared<Image>(&SealLogo_Texture[0]),
-				std::make_shared<Animator>(&SealLogoScene_Controller),
-		});
+			std::make_shared<Image>(&SealLogo_Texture[0]),
+			std::make_shared<Animator>(&SealLogoScene_Controller)
+		);
 	#pragma region SealLogoInteractions
 		const GameObject SealLogoEventManager_Object = GameObject(
 			"LandingEventManager", "Untagged",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
-			std::make_shared<SealLogoEventManager>(),
-		});
+			std::make_shared<SealLogoEventManager>()
+		);
 	#pragma endregion
 	#pragma endregion
 	#pragma region SealLogoScene Properties
@@ -91,11 +88,10 @@ const GameObject MainCamera = GameObject(
 			});
 		const GameObject TitleObject = GameObject(
 			"Title", "Untagged",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
 			std::make_shared<Parallax>(&LandingScene_Parallax_Texture[0], Vector2::left(), 0.01),
-				std::make_shared<Image>(&LandingScene_Title_Texture[0]),
-				std::make_shared<Animator>(&Title_Controller),
-		});
+			std::make_shared<Image>(&LandingScene_Title_Texture[0]),
+			std::make_shared<Animator>(&Title_Controller)
+		);
 		#pragma endregion
 		#pragma region PressEnter
 		const Texture2D LandingScene_Enter_Texture = Texture2D("Assets/PressEnter.png", Texture2D::FilterMode::Nearest, 2);
@@ -108,25 +104,22 @@ const GameObject MainCamera = GameObject(
 			});
 		const GameObject Enter_Object = GameObject(
 			"Title", "Untagged",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
-				std::make_shared<Image>(&LandingScene_Enter_Texture[0]),
-				std::make_shared<Animator>(&Enter_Controller),
-		});
+			std::make_shared<Image>(&LandingScene_Enter_Texture[0]),
+			std::make_shared<Animator>(&Enter_Controller)
+		);
 		#pragma endregion
 		#pragma region SealEngine c
 		const Texture2D SealEngineC_Texture = Texture2D("Assets/SealEngine.png", Texture2D::FilterMode::Nearest, 1,1,208);
 		const GameObject SealEngineCObject = GameObject(
 			"Title", "Untagged",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
-			std::make_shared<Image>(&SealEngineC_Texture[0]),
-		});
+			std::make_shared<Image>(&SealEngineC_Texture[0])
+		);
 		#pragma endregion
 		#pragma region TitleInteractions
 		const GameObject LandingEventManagerObject = GameObject(
 			"LandingEventManager", "Untagged",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
-			std::make_shared<LandingEventManager>(),
-		});
+			std::make_shared<LandingEventManager>()
+		);
 		#pragma endregion
 
 	#pragma endregion
@@ -155,13 +148,12 @@ const GameObject MainCamera = GameObject(
 			{ Menu_Image_Texture[1], 0.1f },
 			}, true);
 		const AnimatorController Menu_Image_Controller = AnimatorController({State("Idle", &Menu_Image_Idle_Clip)});
-			const GameObject Menu_Image_Object = GameObject(
-				"MenuOptions", "Untagged",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
-				//std::make_shared<Image>(&AssetManager::MenuOptions[0]),
-				std::make_shared<Panel>(&Menu_Image_Texture[0]),
-					std::make_shared<Animator>(&Menu_Image_Controller)
-			});
+		const GameObject Menu_Image_Object = GameObject(
+			"MenuOptions", "Untagged",
+			//std::make_shared<Image>(&AssetManager::MenuOptions[0]),
+			std::make_shared<Panel>(&Menu_Image_Texture[0]),
+			std::make_shared<Animator>(&Menu_Image_Controller)
+		);
 		#pragma endregion
 		#pragma region Button_1P
 		const Texture2D Button_1P_Texture = Texture2D("Assets/Button_1Player.png", Texture2D::FilterMode::Nearest, 4, 1, 256);
@@ -186,15 +178,14 @@ const GameObject MainCamera = GameObject(
 
 		const GameObject Button_1P_Object = GameObject(
 			"Button_1P", "MainMenuUi",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
 			std::make_shared<Image>(&Button_1P_Texture[0]),
-				std::make_shared<Animator>(&Button_1P_Controller),
-				std::make_shared<Button>(
-					[](auto) { GameplayData::playerCount = 1; MenuEventManager::instance->LoadMenu(MenuEventManager::MenuPage::LevelSelectMenu); },
-					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-				),
-		});
+			std::make_shared<Animator>(&Button_1P_Controller),
+			std::make_shared<Button>(
+				[](auto) { GameplayData::playerCount = 1; MenuEventManager::instance->LoadMenu(MenuEventManager::MenuPage::LevelSelectMenu); },
+				[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+				[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+			)
+		);
 		#pragma endregion
 		#pragma region Button_2P
 		const Texture2D Button_2P_Texture = Texture2D("Assets/Button_2Player.png", Texture2D::FilterMode::Nearest, 4, 1, 256);
@@ -219,15 +210,14 @@ const GameObject MainCamera = GameObject(
 
 		const GameObject Button_2P_Object = GameObject(
 			"Button_2P", "MainMenuUi",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
 			std::make_shared<Image>(&Button_2P_Texture[0]),
-				std::make_shared<Animator>(&Button_2P_Controller),
-				std::make_shared<Button>(
-					[](auto) { GameplayData::playerCount = 2; MenuEventManager::instance->LoadMenu(MenuEventManager::MenuPage::LevelSelectMenu); },
-					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-				),
-		});
+			std::make_shared<Animator>(&Button_2P_Controller),
+			std::make_shared<Button>(
+				[](auto) { GameplayData::playerCount = 2; MenuEventManager::instance->LoadMenu(MenuEventManager::MenuPage::LevelSelectMenu); },
+				[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+				[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+			)
+		);
 		#pragma endregion
 		#pragma region Button_Help
 		const Texture2D Button_Help_Texture = Texture2D("Assets/Button_Help.png", Texture2D::FilterMode::Nearest, 4, 1, 256);
@@ -252,15 +242,14 @@ const GameObject MainCamera = GameObject(
 
 		const GameObject Button_Help_Object = GameObject(
 			"Button_Help", "MainMenuUi",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
 			std::make_shared<Image>(&Button_Help_Texture[0]),
-				std::make_shared<Animator>(&Button_Help_Controller),
-				std::make_shared<Button>(
-					[](auto) { SceneManager::LoadScene(8); },
-					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-				),
-		});
+			std::make_shared<Animator>(&Button_Help_Controller),
+			std::make_shared<Button>(
+				[](auto) { SceneManager::LoadScene(8); },
+				[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+				[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+			)
+		);
 		#pragma endregion
 		#pragma region Button_Credits
 		const Texture2D Button_Credits_Texture = Texture2D("Assets/Button_Credit.png", Texture2D::FilterMode::Nearest, 4, 1, 256);
@@ -285,15 +274,14 @@ const GameObject MainCamera = GameObject(
 
 			const GameObject Button_Credits_Object = GameObject(
 				"Button_Credits", "MainMenuUi",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Image>(&Button_Credits_Texture[0]),
-					std::make_shared<Animator>(&Button_Credits_Controller),
-					std::make_shared<Button>(
-						[](auto) { SceneManager::LoadScene(2); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-					),
-			});
+				std::make_shared<Animator>(&Button_Credits_Controller),
+				std::make_shared<Button>(
+					[](auto) { SceneManager::LoadScene(2); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+				)
+			);
 			#pragma endregion
 		#pragma region Button_Quit
 			const Texture2D Button_Quit_Texture = Texture2D("Assets/Button_Quit.png", Texture2D::FilterMode::Nearest, 4, 1, 256);
@@ -316,62 +304,57 @@ const GameObject MainCamera = GameObject(
 				});
 			const GameObject Button_Quit_Object = GameObject(
 				"Button_Quit", "MainMenuUi",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Image>(&Button_Quit_Texture[0]),
-					std::make_shared<Animator>(&Button_Quit_Controller),
-					std::make_shared<Button>(
-						//[](auto) { SceneManager::Quit(); },
-						[](auto) { SceneManager::Quit(); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-					),
-			});
+				std::make_shared<Animator>(&Button_Quit_Controller),
+				std::make_shared<Button>(
+					//[](auto) { SceneManager::Quit(); },
+					[](auto) { SceneManager::Quit(); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+				)
+			);
 		#pragma endregion
 		#pragma region Level Select
 			const GameObject Button_Tutorial_Object = GameObject(
 				"Button_Level0", "LevelSelectUi",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Image>(&Button_Universal_Texture[0]),
-					std::make_shared<Animator>(&Button_Universal_Controller),
-					std::make_shared<Text>("Tutorial", &Font_Texture),
-					std::make_shared<Button>(
-						[](auto) { GameplayData::level = 0; SceneManager::LoadScene(3); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-						),
-			});
+				std::make_shared<Animator>(&Button_Universal_Controller),
+				std::make_shared<Text>("Tutorial", &Font_Texture),
+				std::make_shared<Button>(
+					[](auto) { GameplayData::level = 0; SceneManager::LoadScene(3); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+				)
+			);
 			const GameObject Button_Level0_Object = GameObject(
 				"Button_Level0", "LevelSelectUi",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Image>(&Button_Universal_Texture[0]),
-					std::make_shared<Animator>(&Button_Universal_Controller),
-					std::make_shared<Text>("Level 0", &Font_Texture),
-					std::make_shared<Button>(
-						[](auto) { GameplayData::level = 1; SceneManager::LoadScene(4); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-					),
-			});
+				std::make_shared<Animator>(&Button_Universal_Controller),
+				std::make_shared<Text>("Level 0", &Font_Texture),
+				std::make_shared<Button>(
+					[](auto) { GameplayData::level = 1; SceneManager::LoadScene(4); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+				)
+			);
 			const GameObject Button_Level1_Object = GameObject(
 				"Button_Level1", "LevelSelectUi",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Image>(&Button_Universal_Texture[0]),
-					std::make_shared<Animator>(&Button_Universal_Controller),
-					std::make_shared<Text>("Level 1", &Font_Texture),
-					std::make_shared<Button>(
-						[](auto) { GameplayData::level = 2; SceneManager::LoadScene(5); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
-						[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
-					),
-			});
+				std::make_shared<Animator>(&Button_Universal_Controller),
+				std::make_shared<Text>("Level 1", &Font_Texture),
+				std::make_shared<Button>(
+					[](auto) { GameplayData::level = 2; SceneManager::LoadScene(5); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", true); },
+					[](Button* button) { button->gameObject->template GetComponent<Animator>()->SetBool("selected", false); }
+				)
+			);
 		#pragma endregion
 		#pragma region MenuInteractions
-		const GameObject MenuEventManager_Object = GameObject(
-			"MenuEventManager", "Untagged",
-			std::vector<std::shared_ptr<MonoBehaviour>>{
+			const GameObject MenuEventManager_Object = GameObject(
+				"MenuEventManager", "Untagged",
 				std::make_shared<MenuEventManager>(),
-					std::make_shared<AudioSource>(),
-		});
+				std::make_shared<AudioSource>()
+			);
 		#pragma endregion
 	#pragma endregion
 	#pragma region MenuScene Properties
@@ -410,38 +393,32 @@ const GameObject MainCamera = GameObject(
 			const AnimatorController Credit_Image_Controller = AnimatorController({ State("Idle", &Credit_Image_Idle_Clip) });
 			const GameObject Credit_Image_Object = GameObject(
 				"MenuOptions", "Untagged",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
 				std::make_shared<Panel>(&Credit_Image_Texture[0]),
-					std::make_shared<Animator>(&Credit_Image_Controller),
-					//::make_shared<Text>("Hello World!", &Font_Texture),
-			});
+				std::make_shared<Animator>(&Credit_Image_Controller)
+				//::make_shared<Text>("Hello World!", &Font_Texture),
+			);
 			const GameObject Text1 = GameObject(
 				"MenuOptions", "Untagged",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
-					std::make_shared<Text>("Ren Hao Wong", &Font_Texture),
-			});
+				std::make_shared<Text>("Ren Hao Wong", &Font_Texture)
+			);
 			const GameObject Text2 = GameObject(
 				"MenuOptions", "Untagged",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
-				std::make_shared<Text>("Saishnu Ramesh Kumar", &Font_Texture),
-			});
+				std::make_shared<Text>("Saishnu Ramesh Kumar", &Font_Texture)
+			);
 			const GameObject Text3 = GameObject(
 				"MenuOptions", "Untagged",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
-				std::make_shared<Text>("Zheng Wei Ng", &Font_Texture),
-			});
+				std::make_shared<Text>("Zheng Wei Ng", &Font_Texture)
+			);
 			const GameObject Text4 = GameObject(
 				"MenuOptions", "Untagged",
-				std::vector<std::shared_ptr<MonoBehaviour>>{
-				std::make_shared<Text>("Eric Smrkovsky", &Font_Texture),
-			});
+				std::make_shared<Text>("Eric Smrkovsky", &Font_Texture)
+			);
 		#pragma endregion
 		#pragma region CreditInteractions
-				const GameObject CreditSceneManager_Object = GameObject(
-					"MenuEventManager", "Untagged",
-					std::vector<std::shared_ptr<MonoBehaviour>>{
-					std::make_shared<CreditEventManager>(),
-				});
+			const GameObject CreditSceneManager_Object = GameObject(
+				"MenuEventManager", "Untagged",
+				std::make_shared<CreditEventManager>()
+			);
 			#pragma endregion
 	#pragma endregion
 	#pragma region CreditScene Properties
@@ -474,10 +451,9 @@ const GameObject MainCamera = GameObject(
 					State("Idle", &TutorialScene_Help_Walk_Idle, {}) });
 				const GameObject TutorialScene_Help_Walk_Object = GameObject(
 					"Background", "Untagged",
-					std::vector<std::shared_ptr<MonoBehaviour>>{
 					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Walk_Texture[0]),
-						std::make_shared<Animator>(&TutorialScene_Help_Walk_Controller),
-				});
+					std::make_shared<Animator>(&TutorialScene_Help_Walk_Controller)
+				);
 
 				const Texture2D TutorialScene_Help_Fight_Texture = Texture2D("Assets/TutorialText_Fight.png", Texture2D::FilterMode::Nearest, 4);
 				const AnimationClip TutorialScene_Help_Fight_Idle = AnimationClip({
@@ -490,10 +466,9 @@ const GameObject MainCamera = GameObject(
 					State("Idle", &TutorialScene_Help_Fight_Idle, {}) });
 				const GameObject TutorialScene_Help_Fight_Object = GameObject(
 					"Background", "Untagged",
-					std::vector<std::shared_ptr<MonoBehaviour>>{
 					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Fight_Texture[0]),
-						std::make_shared<Animator>(&TutorialScene_Help_Fight_Controller),
-				});
+					std::make_shared<Animator>(&TutorialScene_Help_Fight_Controller)
+					);
 
 				const Texture2D TutorialScene_Help_Buff_Texture = Texture2D("Assets/TutorialText_Buff.png", Texture2D::FilterMode::Nearest, 4);
 				const AnimationClip TutorialScene_Help_Buff_Idle = AnimationClip({
@@ -506,10 +481,9 @@ const GameObject MainCamera = GameObject(
 					State("Idle", &TutorialScene_Help_Buff_Idle, {}) });
 				const GameObject TutorialScene_Help_Buff_Object = GameObject(
 					"Background", "Untagged",
-					std::vector<std::shared_ptr<MonoBehaviour>>{
 					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Buff_Texture[0]),
-						std::make_shared<Animator>(&TutorialScene_Help_Buff_Controller),
-				});
+					std::make_shared<Animator>(&TutorialScene_Help_Buff_Controller)
+				);
 
 				const Texture2D TutorialScene_Help_Ult_Texture = Texture2D("Assets/TutorialText_Ult.png", Texture2D::FilterMode::Nearest, 4);
 				const AnimationClip TutorialScene_Help_Ult_Idle = AnimationClip({
@@ -522,31 +496,28 @@ const GameObject MainCamera = GameObject(
 					State("Idle", &TutorialScene_Help_Ult_Idle, {}) });
 				const GameObject TutorialScene_Help_Ult_Object = GameObject(
 					"Background", "Untagged",
-					std::vector<std::shared_ptr<MonoBehaviour>>{
 					std::make_shared<SpriteRenderer>(&TutorialScene_Help_Ult_Texture[0]),
-						std::make_shared<Animator>(&TutorialScene_Help_Ult_Controller),
-				});
+					std::make_shared<Animator>(&TutorialScene_Help_Ult_Controller)
+				);
 #pragma endregion
 				const GameObject Tutorial_Object = GameObject(
 					"MenuEventManager", "Untagged",
-					std::vector<std::shared_ptr<MonoBehaviour>>{
 					std::make_shared<Parallax>(&LandingScene_Parallax_Texture[0], Vector2::left(), 0.01),
-					std::make_shared<CreditEventManager>(),
-				});
+					std::make_shared<CreditEventManager>()
+				);
 				const GameObject Text_Object = GameObject(
 					"Untagged", "Untagged",
-					std::vector<std::shared_ptr<MonoBehaviour>>{
-					std::make_shared<Text>("Help", &Font_Texture),
-				});
+					std::make_shared<Text>("Help", &Font_Texture)
+				);
 #pragma region CreditScene Properties
 				Scene GlobalMenuScene::HelpScene = Scene({
 					#pragma region Ui
 					{&Tutorial_Object},
 					{&Text_Object, Transform(Vector2(0, 2.5))},
-					{&TutorialScene_Help_Walk_Object, Transform(Vector2(-2,1.2))},
-					{&TutorialScene_Help_Fight_Object, Transform(Vector2(2,1.2))},
-					{&TutorialScene_Help_Buff_Object, Transform(Vector2(-2,-1.2))},
-					{&TutorialScene_Help_Ult_Object, Transform(Vector2(2,-1.2))},
+					{&TutorialScene_Help_Walk_Object, Transform(Vector2(-2, 1.2))},
+					{&TutorialScene_Help_Fight_Object, Transform(Vector2(2, 1.2))},
+					{&TutorialScene_Help_Buff_Object, Transform(Vector2(-2, -1.2))},
+					{&TutorialScene_Help_Ult_Object, Transform(Vector2(2, -1.2))},
 					{&CreditSceneManager_Object, Transform()},
 				#pragma endregion
 					{&MainCamera, Transform()},

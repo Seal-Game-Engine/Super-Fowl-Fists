@@ -59,6 +59,7 @@ namespace SealEngine {
 		static void DontDestroyOnLoad(GameObject* gameObject);
 
         Scene(std::vector<GameObjectInitializer> gameObjects);
+
         void Load();
         void Unload();
         void RefreshWorld();

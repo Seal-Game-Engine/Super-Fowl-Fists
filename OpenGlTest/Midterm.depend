@@ -297,10 +297,10 @@
 1679436477 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\model.h
 	"SealEngine.h"
 
-1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.cpp
+1683875349 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.cpp
 	"Parallax.h"
 
-1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.h
+1683875691 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.h
 	"SealEngine.h"
 
 1683817193 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.cpp
@@ -804,14 +804,13 @@
 	<list>
 	"IMessageHandler.h"
 
-1683776063 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\texture2d.h
+1683911096 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\texture2d.h
 	<string>
 	<queue>
-	<tuple>
 	"SealPackages.h"
 	"Object.h"
 
-1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\gameobject.h
+1683916783 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\gameobject.h
 	<vector>
 	<memory>
 	<string>
@@ -875,7 +874,7 @@
 	"../IRenderer.h"
 	"AnimatorController.h"
 
-1683720203 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\scene.h
+1683914984 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\scene.h
 	<vector>
 	<queue>
 	<memory>
@@ -947,7 +946,7 @@
 	"Input.h"
 	"SceneManager.h"
 
-1683720673 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\gameobject.cpp
+1683916773 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\gameobject.cpp
 	"GameObject.h"
 	"Transform.h"
 	"SceneManager.h"
@@ -979,7 +978,7 @@
 1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\rect.cpp
 	"Rect.h"
 
-1683815465 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\scenemanager.cpp
+1683881526 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\scenemanager.cpp
 	"../SealEngine.h"
 	"../Prefab.h"
 	"../GlobalMenuScene.h"
@@ -1006,7 +1005,7 @@
 	"Scene.h"
 	"GameObject.h"
 
-1683776063 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\texture2d.cpp
+1683911133 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\texture2d.cpp
 	"Texture2D.h"
 	"Sprite.h"
 
@@ -1227,7 +1226,7 @@
 	"../SealEngine.h"
 	"../Entity.h"
 
-1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\obstacle.h
+1683876197 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\obstacle.h
 	"../SealEngine.h"
 
 1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\obstaclespawner.h
@@ -1262,14 +1261,13 @@
 	"EventManagers/GameEventManager.h"
 	"GameplayData.h"
 
-1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\obstacle.cpp
+1683875590 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\obstacle.cpp
 	"Obstacle.h"
 	"../Projectile.h"
 
-1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\obstaclespawner.cpp
+1683881482 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\obstaclespawner.cpp
 	"ObstacleSpawner.h"
 	"../Prefab.h"
-	"../Testing/TestScene.h"
 
 1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\xwingplayer.cpp
 	"XwingPlayer.h"
@@ -1419,8 +1417,7 @@
 	"SealEngine.h"
 	"Prefab.h"
 
-1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\testscene.h
-	<memory>
+1683877745 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\testscene.h
 	"../SealEngine.h"
 
 1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\fontrender.cpp
@@ -1458,7 +1455,7 @@
 1683800807 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gamplaydata.cpp
 	"GameplayData.h"
 
-1683821426 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\globalgamescene.cpp
+1683914968 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\globalgamescene.cpp
 	"GlobalGameScene.h"
 	"EventManagers/TutorialEventManager.h"
 	"EventManagers/GameEventManager.h"
@@ -1499,7 +1496,7 @@
 1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\idamageable.cpp
 	"IDamageable.h"
 
-1683821910 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\prefab.cpp
+1683916968 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\prefab.cpp
 	"Prefab.h"
 	"GlobalMenuScene.h"
 	"Parallax.h"
@@ -1576,4 +1573,26 @@
 
 1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\tutorialeventmanager.cpp
 	"TutorialEventManager.h"
+
+1683717832 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\ui\text.cpp
+	"Text.h"
+	"../Camera.h"
+	"../Transform.h"
+	"../Rect.h"
+	"../Sprite.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\obsolete\gllight.cpp
+	"GLLight.h"
+
+1683875194 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\obsolete\gllight.h
+	"../SealEngine/SealPackages.h"
+
+1683881131 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\testing\testscene.cpp
+	"TestScene.h"
+	"../EventManagers/GameEventManager.h"
+	"../Parallax.h"
+	"../Hitbox.h"
+	"XwingPlayer.h"
+	"Obstacle.h"
+	"ObstacleSpawner.h"
 

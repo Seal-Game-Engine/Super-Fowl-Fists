@@ -97,7 +97,7 @@ bool SceneManager::InitGl() {
     //glDisable(GL_DEPTH_TEST);
 
     //ResizeGl(0, 0);
-   
+
 
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -114,13 +114,14 @@ bool SceneManager::InitGl() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Texture2D::LoadUninitializedTextures();
 
-    scenes.emplace_back(&GlobalMenuScene::LandingScene);    //Scene 0 
+    scenes.emplace_back(&GlobalMenuScene::LandingScene);    //Scene 0
     scenes.emplace_back(&GlobalMenuScene::MenuScene);       //Scene 1
     scenes.emplace_back(&GlobalMenuScene::CreditScene);     //Scene 2
     scenes.emplace_back(&GlobalGameScene::TutorialScene);   //Scene 3
     scenes.emplace_back(&GlobalGameScene::Lv0Scene);      //Scene 4
     scenes.emplace_back(&GlobalGameScene::Lv1Scene);      //Scene 5
-    scenes.emplace_back(&TestScene::TestingScene);          //Scene 6
+    scenes.emplace_back(&GlobalGameScene::Lv1Scene);      //Scene 6
+    //scenes.emplace_back(&TestScene::TestingScene);          //Scene 6
     scenes.emplace_back(&GlobalMenuScene::SealLogoScene);
     scenes.emplace_back(&GlobalMenuScene::HelpScene);
     LoadScene(7);

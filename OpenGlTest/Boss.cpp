@@ -5,14 +5,14 @@
 #include "EventManagers/GameEventManager.h"
 #include "GameplayData.h"
 
-void Boss::OnDamageTaken(DamageData data, Vector2 knockbackDirection){
+void Boss::OnDamageTaken(DamageData data, Vector2 knockbackDirection) {
 	if (!isAlive()) return;
 
 	Entity::OnDamageTaken(data, knockbackDirection);
 	//GameEventManager::instance->UpdateUi();
 }
 
-void Boss::OnDeath(){
+void Boss::OnDeath() {
 	_renderer->enabled = false;
 	Instantiate(Prefab::Explosion64_Object, transform()->position);
 	Invoke([] {	GameEventManager::instance->OnLevelCompleted();	}, 2);
@@ -38,5 +38,3 @@ void Boss::Awake() {
 
 	currentHp *= GameplayData::playerCount;
 }
-
-

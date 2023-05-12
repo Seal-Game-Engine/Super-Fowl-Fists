@@ -12,7 +12,7 @@ void Parallax::LateUpdate() {
         _rect.maxVertex().x() - direction.x() * speed * Time::deltaTime(),
         _rect.maxVertex().y() + direction.y() * speed * Time::deltaTime()
     );
-    
+
     float height = Camera::mainCamera->size;
     //float height = (float)ApplicationManager::height / 200;
     float width = height * (float)sprite->texture->width() * sprite->rect().size().x() / (sprite->texture->height() * sprite->rect().size().y());
@@ -42,5 +42,3 @@ void Parallax::LateUpdate() {
 }
 
 Parallax::Parallax(const Sprite* sprite, Vector2 direction, float speed) : sprite(sprite), direction(direction), speed(speed), _rect(sprite->rect()) {}
-
-Parallax* Parallax::_Clone() const { return new Parallax(*this); }

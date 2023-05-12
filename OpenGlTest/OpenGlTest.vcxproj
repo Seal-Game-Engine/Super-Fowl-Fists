@@ -103,7 +103,9 @@
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
-copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";
+mkdir "$(OutDir)Assets\Sounds"
+copy "$(SolutionDir)Assets\Sounds" "$(OutDir)Assets\Sounds"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,7 +128,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
-copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";
+mkdir "$(OutDir)Assets\Sounds"
+copy "$(SolutionDir)Assets\Sounds" "$(OutDir)Assets\Sounds"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,7 +149,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
-copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";
+mkdir "$(OutDir)Assets\Sounds"
+copy "$(SolutionDir)Assets\Sounds" "$(OutDir)Assets\Sounds"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -168,7 +174,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)..\Common\bin\x64" "$(OutDir)";
 mkdir "$(OutDir)Assets"
-copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
+copy "$(SolutionDir)Assets" "$(OutDir)Assets";
+mkdir "$(OutDir)Assets\Sounds"
+copy "$(SolutionDir)Assets\Sounds" "$(OutDir)Assets\Sounds"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -316,6 +324,9 @@ copy "$(SolutionDir)Assets" "$(OutDir)Assets";</Command>
     <Image Include="Assets\GreenSlime.png" />
     <Image Include="Assets\Hector_Run.png" />
     <Image Include="Assets\Projectile_Blue.png" />
+    <Image Include="Assets\SealEngine.png" />
+    <Image Include="Assets\SuperFowlFists.png" />
+    <Image Include="Assets\TikeMyson_Big.png" />
     <Image Include="Assets\X-wing.png" />
   </ItemGroup>
   <ItemGroup>

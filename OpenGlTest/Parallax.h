@@ -2,7 +2,7 @@
 #include "SealEngine.h"
 using namespace SealEngine;
 
-class Parallax:public MonoBehaviour{
+class Parallax : public MonoBehaviour{
     public:
         const Sprite* sprite = nullptr;
 
@@ -17,5 +17,5 @@ class Parallax:public MonoBehaviour{
     private:
         Rect _rect = Rect(0, 0, 1, 1);
 
-        Parallax* _Clone() const override;
+        Parallax* _Clone() const override { return new Parallax(*this); }
 };

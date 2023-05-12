@@ -6,21 +6,21 @@ using namespace SealEngine;
 
 //constructors
 GameObject::GameObject()
-	: Object("GameObject") {
+	:Object("GameObject") {
 	auto _transform = std::make_shared<Transform>();
 	_transform->gameObject = this;
 	transform = _transform.get();
 	components.emplace_back(_transform);
 }
 GameObject::GameObject(const std::string& name, const std::string& tag)
-	: Object(name), tag(tag) {
+	:Object(name), tag(tag) {
 	auto _transform = std::make_shared<Transform>();
 	_transform->gameObject = this;
 	transform = _transform.get();
 	components.emplace_back(_transform);
 }
-GameObject::GameObject(const std::string& name, const std::string& tag, std::vector<std::shared_ptr<MonoBehaviour>> components)
-	: Object(name), tag(tag), components(std::move(components)) {
+/*GameObject::GameObject(const std::string& name, const std::string& tag, std::vector<std::shared_ptr<MonoBehaviour>> components)
+	:Object(name), tag(tag), components(std::move(components)) {
 	auto _transform = std::make_shared<Transform>();
 	_transform->gameObject = this;
 	transform = _transform.get();
@@ -29,7 +29,17 @@ GameObject::GameObject(const std::string& name, const std::string& tag, std::vec
 	for (auto& component : this->components) {
 		component->gameObject = this;
 	}
-}
+}*/
+/*
+GameObject::GameObject(const std::string& name, const std::string& tag, std::shared_ptr<MonoBehaviour>... components)
+	:Object(name), tag(tag) {
+
+
+	auto _transform = std::make_shared<Transform>();
+	_transform->gameObject = this;
+	transform = _transform.get();
+	this->components.emplace_back(_transform);
+}*/
 
 GameObject::GameObject(const GameObject& obj)
 	: Object(obj), isStatic(obj.isStatic), tag(obj.tag), _activeSelf(obj._activeSelf) {
