@@ -277,7 +277,7 @@ using State = AnimatorController::AnimationState;
 	const GameObject Prefab::Chicken_Object = GameObject(
 		"Chicken", "Entity",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
-		std::make_shared<SpriteRenderer>(&MiniChicken_Texture[0], false, false),
+		std::make_shared<SpriteRenderer>(&MiniChicken_Texture[0]),
 			std::make_shared<Animator>(&Chicken_Controller),
 			std::make_shared<Rigidbody2D>(),
 			std::make_shared<CircleCollider2D>(),
