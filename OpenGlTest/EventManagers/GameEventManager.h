@@ -1,6 +1,7 @@
 #pragma once
 #include "../SealEngine.h"
 #include <vector>
+#include "../Boss.h"
 #include "../Player.h"
 using namespace SealEngine;
 using namespace SealEngine::Ui;
@@ -23,11 +24,13 @@ public:
 private:
 	void TogglePause();
 
-	Text* p1HpText = nullptr;
-	Text* p2HpText = nullptr;
+	Text* _bossHpText = nullptr;
+	Text* _p1HpText = nullptr;
+	Text* _p2HpText = nullptr;
 
 	bool _isPaused = false;
 	bool _levelCompleted = false;
+	Boss* _bossObject = nullptr;
 	std::vector<Player*> _playerObjects{};
 	GameEventManager* _Clone() const override;
 };

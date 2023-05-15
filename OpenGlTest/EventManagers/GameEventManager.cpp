@@ -10,13 +10,15 @@ using namespace InputSystem;
 GameEventManager* GameEventManager::instance = nullptr;
 
 void GameEventManager::UpdateUi(){
+	if (_bossObject) _bossHpText->text = std::to_string((int)_bossObject->currentHp);
+
 	switch (GameplayData::playerCount) {
 	case 1:		
-		p1HpText->text = std::to_string((int)_playerObjects[0]->currentHp);
+		_p1HpText->text = std::to_string((int)_playerObjects[0]->currentHp);
 		break;
 	case 2:
-		p1HpText->text = std::to_string((int)_playerObjects[0]->currentHp);
-		p2HpText->text = std::to_string((int)_playerObjects[1]->currentHp);
+		_p1HpText->text = std::to_string((int)_playerObjects[0]->currentHp);
+		_p2HpText->text = std::to_string((int)_playerObjects[1]->currentHp);
 		break;
 	}
 
@@ -46,15 +48,19 @@ void GameEventManager::Awake() {
 	GameObject* Chicken_Ui = GameObject::FindWithTag("ChickenUi");
 
 	auto texts = Scene::FindObjectsByType<Text>();
-	p1HpText = texts[0];
-	p2HpText = texts[2];
+	_bossHpText = texts[0];
+	_p1HpText = texts[1];
+	_p2HpText = texts[3];
 
 	switch (GameplayData::level) {
 	case 1:
-		Instantiate(Prefab::Sensei_Object, Vector2(2.5f, 0));
+		_bossObject = InstantiateT(Prefab::Sensei_Object, Vector2(2.5f, 0))->GetComponent<Boss>();
 		break;
 	case 2:
-		Instantiate(Prefab::BossObject, Vector2(2.5f, 0));
+		_bossObject = InstantiateT(Prefab::BossObject, Vector2(2.5f, 0))->GetComponent<Boss>();
+		break;
+	default:
+		_bossHpText->gameObject->SetActive(false);
 		break;
 	}
 
@@ -75,7 +81,7 @@ void GameEventManager::Awake() {
 			break;
 		};
 		_playerObjects.emplace_back(playerObject);
-		p2HpText->gameObject->SetActive(false);
+		_p2HpText->gameObject->SetActive(false);
 		break;
 	case 2:
 		playerObject = InstantiateT(Prefab::TikeMyson_Object, Vector2(-1.5, 0))->GetComponent<Player>();

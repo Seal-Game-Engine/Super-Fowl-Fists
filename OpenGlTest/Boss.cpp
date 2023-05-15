@@ -9,7 +9,7 @@ void Boss::OnDamageTaken(DamageData data, Vector2 knockbackDirection) {
 	if (!isAlive()) return;
 
 	Entity::OnDamageTaken(data, knockbackDirection);
-	//GameEventManager::instance->UpdateUi();
+	GameEventManager::instance->UpdateUi();
 }
 
 void Boss::OnDeath() {

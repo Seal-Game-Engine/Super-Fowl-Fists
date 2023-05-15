@@ -40,6 +40,14 @@ const GameObject Lv0_Platform_Object = GameObject(
 #pragma endregion
 
 #pragma region UI
+const GameObject UI_Text_Object = GameObject(
+	"Background", "Untagged",
+	std::make_shared<Text>("100", &Font_Texture)
+);
+#pragma region Boss UI
+
+#pragma endregion
+
 #pragma region TikeMyson UI
 const Texture2D TikeMyson_UI_Texture = Texture2D("Assets/TikeMyson_UI.png", Texture2D::FilterMode::Nearest, 4, 1, 40);
 const AnimationClip TikeMyson_UI_Texture_Clip = AnimationClip({
@@ -55,10 +63,7 @@ const GameObject TikeMyson_UI_Object = GameObject(
 	std::make_shared<Image>(&TikeMyson_UI_Texture[0]),
 	std::make_shared<Animator>(&TikeMyson_UI_Controller)
 );
-const GameObject UI_Text_Object = GameObject(
-	"Background", "Untagged",
-	std::make_shared<Text>("100", &Font_Texture)
-);
+
 
 #pragma endregion
 #pragma region Chicken UI
@@ -181,10 +186,10 @@ Scene GlobalGameScene::TutorialScene = Scene({
 	{&TutorialScene_Help_Ult_Object, Transform(Vector2(21,-1))},
 	{&Wall_Object, Transform(Vector2(-2.8,0))},
 	{&Wall_Object, Transform(Vector2(28,0))},
-	{&GameEventManagerObject, Transform()},
 	{&Ground_Object, Transform(Vector2(0, -4))},
 	{&MainCamera, Transform()},
 
+	{ &UI_Text_Object, Transform(Vector2(0, 2)) },
 	{ &TikeMyson_UI_Object, Transform(Vector2(-2.5, -1.9)) },
 	{ &Chicken_UI_Object, Transform(Vector2(2.5,-1.9)) },
 	{ &UI_Text_Object, Transform(Vector2(-1.7,-1.64)) },
@@ -192,6 +197,7 @@ Scene GlobalGameScene::TutorialScene = Scene({
 	{ &UI_Text_Object, Transform(Vector2(3.3,-1.64)) },
 	{ &UI_Text_Object, Transform(Vector2(3.3,-2.08)) },
 
+	{ &GameEventManagerObject, Transform() },
 	});
 #pragma endregion
 
@@ -221,21 +227,22 @@ const GameObject Lv0Scene_Object = GameObject(
 
 #pragma region Lv0Scene Properties
 Scene GlobalGameScene::Lv0Scene = Scene({
-{&Lv0Scene_Object, Transform()},
-{&GameEventManagerObject, Transform()},
-{&Ground_Object, Transform(Vector2(0, -2.3))},
-{&Lv0_Platform_Object, Transform(Vector2(0,-0.5f))},
-{&Wall_Object, Transform(Vector2(-7.5,0))},
-{&Wall_Object, Transform(Vector2(7.5,0))},
-
-{&TikeMyson_UI_Object, Transform(Vector2(-2.5,-1.9))},
-{&Chicken_UI_Object, Transform(Vector2(2.5,-1.9))},
-{&UI_Text_Object, Transform(Vector2(-1.7,-1.64))},
-{&UI_Text_Object, Transform(Vector2(-1.7,-2.08))},
-{&UI_Text_Object, Transform(Vector2(3.3,-1.64))},
-{&UI_Text_Object, Transform(Vector2(3.3,-2.08))},
-
-{&MainCamera, Transform()},
+	{ &Lv0Scene_Object, Transform() },
+	{ &Ground_Object, Transform(Vector2(0, -2.3)) },
+	{ &Lv0_Platform_Object, Transform(Vector2(0,-0.5f)) },
+	{ &Wall_Object, Transform(Vector2(-7.5,0)) },
+	{ &Wall_Object, Transform(Vector2(7.5,0)) },
+	  
+	{ &UI_Text_Object, Transform(Vector2(0, 2)) },
+	{ &TikeMyson_UI_Object, Transform(Vector2(-2.5,-1.9)) },
+	{ &Chicken_UI_Object, Transform(Vector2(2.5,-1.9)) },
+	{ &UI_Text_Object, Transform(Vector2(-1.7,-1.64)) },
+	{ &UI_Text_Object, Transform(Vector2(-1.7,-2.08)) },
+	{ &UI_Text_Object, Transform(Vector2(3.3,-1.64)) },
+	{ &UI_Text_Object, Transform(Vector2(3.3,-2.08)) },
+	  
+	{ &GameEventManagerObject, Transform() },
+	{ &MainCamera, Transform() },
 	});
 #pragma endregion
 
@@ -264,16 +271,21 @@ const GameObject Lv1Scene_Object = GameObject(
 #pragma region Lv1Scene Properties
 Scene GlobalGameScene::Lv1Scene = Scene({
 	{ &Lv1Scene_Object, Transform() },
-	{ &GameEventManagerObject, Transform() },
 	{ &Ground_Object, Transform(Vector2(0, -2.3)) },
 	{ &MainCamera, Transform() },
 
+	{ &UI_Text_Object, Transform(Vector2(0, 2)) },
 	{ &TikeMyson_UI_Object, Transform(Vector2(-2.5, -1.9)) },
 	{ &Chicken_UI_Object, Transform(Vector2(2.5,-1.9)) },
 	{ &UI_Text_Object, Transform(Vector2(-1.7,-1.64)) },
 	{ &UI_Text_Object, Transform(Vector2(-1.7,-2.08)) },
 	{ &UI_Text_Object, Transform(Vector2(3.3,-1.64)) },
-	{ &UI_Text_Object, Transform(Vector2(3.3,-2.08)) }
+	{ &UI_Text_Object, Transform(Vector2(3.3,-2.08)) },
+
+	{ &GameEventManagerObject, Transform() },
+
+	{&Wall_Object, Transform(Vector2(-7.5,0))},
+	{&Wall_Object, Transform(Vector2(7.5,0))},
 	});
 #pragma endregion
 
