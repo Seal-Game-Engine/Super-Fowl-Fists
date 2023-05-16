@@ -1082,7 +1082,7 @@
 	<cfloat>
 	"../Input.h"
 
-1683776063 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\audiosource.h
+1684217517 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\audiosource.h
 	"MonoBehaviour.h"
 	"SealPackages.h"
 	"KeyCode.h"
@@ -1399,9 +1399,10 @@
 	<memory>
 	"SealEngine.h"
 
-1683821426 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\gameeventmanager.h
+1684142828 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\gameeventmanager.h
 	"../SealEngine.h"
 	<vector>
+	"../Boss.h"
 	"../Player.h"
 
 1683800788 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gameplaydata.h
@@ -1465,7 +1466,7 @@
 1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\tutorialeventmanager.h
 	"../SealEngine.h"
 
-1683821426 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\globalmenuscene.cpp
+1683917550 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\globalmenuscene.cpp
 	"GlobalMenuScene.h"
 	"Parallax.h"
 	"GameplayData.h"
