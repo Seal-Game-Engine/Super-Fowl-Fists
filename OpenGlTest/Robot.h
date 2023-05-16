@@ -30,11 +30,11 @@ private:
 	float _nextActionTime = 0;
 
 	const float _bombAttackDuration = 4;
-	const float _bombAttackCooldown = 0.9f;
+	const float _bombAttackCooldown = 0.5f;
 	float _nextBombTime = 0;
 
 	const float _chompAttackDuration = 4;
-	const float _chompAttackCooldown = 0.9f;
+	const float _chompAttackCooldown = 0.6f;
 	float _nextChompTime = 0;
 
 

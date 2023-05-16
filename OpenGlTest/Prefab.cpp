@@ -441,16 +441,30 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::Boss_Texture[13], 0.1f },
 			{ Prefab::Boss_Texture[14], 0.1f },
 			}, true);
-		const AnimationClip Boss_Charged = AnimationClip({ //0.8s
-			{ Prefab::Boss_Texture[8], 0.1f },
-			{ Prefab::Boss_Texture[9], 0.1f },
-			{ Prefab::Boss_Texture[10], 0.1f },
-			{ Prefab::Boss_Texture[11], 0.1f },
-			{ Prefab::Boss_Texture[12], 0.1f },
-			{ Prefab::Boss_Texture[13], 0.1f },
-			{ Prefab::Boss_Texture[14], 0.1f },
-			{ Prefab::Boss_Texture[15], 0.1f },
+		const AnimationClip Boss_Charged = AnimationClip({
+			{ Prefab::Boss_Texture[15], 0.5f },
+			}, false);		
+		const AnimationClip Boss_Open = AnimationClip({ //1s
+			{ Prefab::Boss_Texture[0], 0.1f },
+			{ Prefab::Boss_Texture[1], 0.1f },
+			{ Prefab::Boss_Texture[2], 0.1f },
+			{ Prefab::Boss_Texture[3], 0.1f },
+			{ Prefab::Boss_Texture[4], 0.1f },
+			{ Prefab::Boss_Texture[5], 0.1f },
+			{ Prefab::Boss_Texture[6], 0.1f },
+			{ Prefab::Boss_Texture[7], 0.3f },
 			}, false);
+		const AnimationClip Boss_Close = AnimationClip({ //0.8s
+			{ Prefab::Boss_Texture[24], 0.1f },
+			{ Prefab::Boss_Texture[25], 0.1f },
+			{ Prefab::Boss_Texture[26], 0.1f },
+			{ Prefab::Boss_Texture[27], 0.1f },
+			{ Prefab::Boss_Texture[28], 0.1f },
+			{ Prefab::Boss_Texture[29], 0.1f },
+			{ Prefab::Boss_Texture[30], 0.1f },
+			{ Prefab::Boss_Texture[31], 0.1f },
+			}, false);
+
 		const AnimationClip Boss_Chomp_Indicator = AnimationClip({
 			{ Prefab::Boss_Texture[48], 0.1f },
 			{ Prefab::Boss_Texture[49], 0.1f },
@@ -464,8 +478,8 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::Boss_Texture[17], 0.075f },
 			{ Prefab::Boss_Texture[18], 0.075f },
 			{ Prefab::Boss_Texture[19], 0.075f },
-			{ Prefab::Boss_Texture[20], 0.075f },
-			{ Prefab::Boss_Texture[21], 0.075f },
+			{ Prefab::Boss_Texture[20], 0.075f },//0.375s
+			{ Prefab::Boss_Texture[21], 0.075f },//full chomp
 			{ Prefab::Boss_Texture[22], 0.075f },
 			{ Prefab::Boss_Texture[23], 0.075f },
 			}, true);
@@ -476,33 +490,13 @@ using State = AnimatorController::AnimationState;
 			{ Prefab::Boss_Texture[35], 0.05f },
 			{ Prefab::Boss_Texture[36], 0.05f },
 			}, true);
-		const AnimationClip Boss_Open = AnimationClip({ //0.8s
-			{ Prefab::Boss_Texture[0], 0.1f },
-			{ Prefab::Boss_Texture[1], 0.1f },
-			{ Prefab::Boss_Texture[2], 0.1f },
-			{ Prefab::Boss_Texture[3], 0.1f },
-			{ Prefab::Boss_Texture[4], 0.1f },
-			{ Prefab::Boss_Texture[5], 0.1f },
-			{ Prefab::Boss_Texture[6], 0.1f },
-			{ Prefab::Boss_Texture[7], 0.1f },
-			}, false);
-		const AnimationClip Boss_Close = AnimationClip({ //0.8s
-			{ Prefab::Boss_Texture[24], 0.1f },
-			{ Prefab::Boss_Texture[25], 0.1f },
-			{ Prefab::Boss_Texture[26], 0.1f },
-			{ Prefab::Boss_Texture[27], 0.1f },
-			{ Prefab::Boss_Texture[28], 0.1f },
-			{ Prefab::Boss_Texture[29], 0.1f },
-			{ Prefab::Boss_Texture[30], 0.1f },
-			{ Prefab::Boss_Texture[31], 0.1f },
-			}, false);
 		#pragma endregion
 	const AnimatorController Prefab::Boss_Controller = AnimatorController({
 		State("Charging", &Boss_Charging, {
 			{ "Charged", false, 1, [](auto& animator) { return animator.GetInteger("move") > 0; } },
 		}),
 		State("Charged", &Boss_Charged, {
-			{ "Open", true, 1.5f },
+			{ "Open", true, 1 },
 		}),
 		State("Open", &Boss_Open, {
 			{ "BombId", true, 1, [](auto& animator) { return animator.GetInteger("move") == 1; } },
@@ -517,11 +511,11 @@ using State = AnimatorController::AnimationState;
 		State("ChompId", &Boss_Chomp_Indicator, {
 			{ "ChompAtk", true, 6 },
 		}),
-		State("BombAtk", &Boss_Bomb_Attack, {
-		}),
-		State("ChompAtk", &Boss_Chomp_Attack, {
-		}),
+		State("BombAtk", &Boss_Bomb_Attack),
+		State("ChompAtk", &Boss_Chomp_Attack),
 		});
+	//Charged + Open = 1.5s
+	//+ indicatord = 1.5s + 1.2s = 2.7s
 
 	const GameObject Prefab::BossObject = GameObject(
 		"Boss", "Entity",
@@ -570,7 +564,7 @@ const GameObject Prefab::Bomb_Object = GameObject(
 	"Bomb", "Projectile",
 	std::make_shared<SpriteRenderer>(&Bomb_Texture[0]),
 	std::make_shared<Animator>(&Bomb_Controller),
-	std::make_shared<Rigidbody2D>(),
+	std::make_shared<Rigidbody2D>(Rigidbody2D::BodyType::Dynamic, 1, 1.5f),
 	std::make_shared<CircleCollider2D>(0.2f),
 	std::make_shared<Projectile>(3, 5, Projectile::TraversalMethods::UseForce, true),
 	std::make_shared<AudioSource>()
@@ -665,8 +659,8 @@ const GameObject Prefab::BossProjectile_Object = GameObject(
 #pragma region UI Items
 const Texture2D Prefab::PauseScreen = Texture2D("Assets/PauseScreen.png", Texture2D::FilterMode::Nearest);
 
-const Texture2D Prefab::WinScreen = Texture2D("Assets/LevelComplete.png", Texture2D::FilterMode::Nearest, 1, 1, 256);
-const Texture2D Prefab::LoseScreen = Texture2D("Assets/Lose.png", Texture2D::FilterMode::Nearest, 1,1,256);
+const Texture2D Prefab::WinScreen = Texture2D("Assets/LevelComplete.png", Texture2D::FilterMode::Nearest, 1, 1, 208);
+const Texture2D Prefab::LoseScreen = Texture2D("Assets/Lose.png", Texture2D::FilterMode::Nearest, 1, 1, 208);
 
 const Texture2D BossScene = Texture2D("Assets/MK-1_Intro.png", Texture2D::FilterMode::Nearest);
 

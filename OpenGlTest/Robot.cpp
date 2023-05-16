@@ -13,7 +13,8 @@ void Robot::Awake(){
 	Boss::Awake();
 	_audioSource->clip = "Assets/Sounds/RobotStartUp.wav";
 	_audioSource->Play();
-	SetState(ActionState::Charge);
+	actionState = ActionState::Charge;
+	_nextActionTime = Time::time() + rand() % 3 + 1;
 }
 
 void Robot::Update() {
@@ -42,7 +43,7 @@ void Robot::SetState(ActionState state) {
 void Robot::OnStateEnter() {
 	switch (actionState) {
 	case ActionState::Charge:
-		_nextActionTime = Time::time() + rand() % 3 + 2;
+		_nextActionTime = Time::time() + rand() % 3 + 1;
 		break;
 	case ActionState::BombAttack:
 		_nextActionTime = Time::time() + _bombAttackDuration;
@@ -59,11 +60,11 @@ void Robot::OnStateExit() {
 		switch (rand() % 2) {
 		case 0:
 			_animator->SetInteger("move", 1);
-			Invoke([&] { SetState(ActionState::BombAttack); }, 3.0f);
+			Invoke([&] { SetState(ActionState::BombAttack); }, 2.7f);
 			break;
 		case 1:
 			_animator->SetInteger("move", 2);
-			Invoke([&] { SetState(ActionState::ChompAttack); }, 3.0f);
+			Invoke([&] { SetState(ActionState::ChompAttack); }, 3.075f);
 			break;
 		}
 		break;
@@ -85,8 +86,8 @@ void Robot::BombAttack() {
 	if (Time::time() >= _nextBombTime) {
 
 		GameObject* bomb = _bombPool.Get();
-		bomb->transform->position = transform()->position + Vector2(transform()->scale.x() + 0.9, -0.125) * 1;
-		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), -0.5f), gameObject, &_bombPool);
+		bomb->transform->position = transform()->position + Vector2(transform()->scale.x() + 0.8, -0.125) * 1;
+		bomb->GetComponent<Projectile>()->Initialize(Vector2(transform()->scale.x(), -0.85f), gameObject, &_bombPool);
 
 		_audioSource->clip = "Assets/Sounds/RobotHit.wav";
 		_audioSource->Play();

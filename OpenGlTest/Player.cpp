@@ -94,7 +94,7 @@ void Player::Awake() {
 		"Hitbox", "Hitbox",
 		std::vector<std::shared_ptr<MonoBehaviour>>{
 		std::make_shared<BoxCollider2D>(Vector2(1, 1), true),
-			std::make_shared<Hitbox>(DamageData{ Factions::Faction1, 3, 2, this }),
+			std::make_shared<Hitbox>(DamageData{ Factions::Faction1, 2, 2, this }),
 			std::make_shared<Rigidbody2D>(Rigidbody2D::BodyType::Dynamic, 1, 0),
 	});
 	hitbox = InstantiateT(hitboxObject);
