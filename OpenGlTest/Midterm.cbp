@@ -67,6 +67,8 @@
 			<Add after='cmd /c copy &quot;$(PROJECT_DIR)..\Common\bin\Win32&quot; &quot;$(TARGET_OUTPUT_DIR)&quot;;' />
 			<Add after='cmd /c mkdir &quot;$(TARGET_OUTPUT_DIR)Assets&quot;;' />
 			<Add after='cmd /c copy &quot;$(PROJECT_DIR)Assets&quot; &quot;$(TARGET_OUTPUT_DIR)Assets&quot;;' />
+			<Add after='cmd /c mkdir &quot;$(TARGET_OUTPUT_DIR)Assets\Sounds&quot;;' />
+			<Add after='cmd /c copy &quot;$(PROJECT_DIR)Assets\Sounds&quot; &quot;$(TARGET_OUTPUT_DIR)Assets\Sounds&quot;;' />
 		</ExtraCommands>
 		<Unit filename=".vscode/settings.json" />
 		<Unit filename="Assets/Chicken_Big.gif" />
@@ -105,8 +107,6 @@
 		<Unit filename="EventManagers/TutorialEventManager.h" />
 		<Unit filename="Explosion.cpp" />
 		<Unit filename="Explosion.h" />
-		<Unit filename="Font.cpp" />
-		<Unit filename="Font.h" />
 		<Unit filename="GameplayData.h" />
 		<Unit filename="GamplayData.cpp" />
 		<Unit filename="GlobalGameScene.cpp" />
@@ -159,8 +159,6 @@
 		<Unit filename="SealEngine/Camera.h" />
 		<Unit filename="SealEngine/Clock.cpp" />
 		<Unit filename="SealEngine/Clock.h" />
-		<Unit filename="SealEngine/FontRender.cpp" />
-		<Unit filename="SealEngine/FontRender.h" />
 		<Unit filename="SealEngine/GameObject.cpp" />
 		<Unit filename="SealEngine/GameObject.h" />
 		<Unit filename="SealEngine/IClonable.cpp" />

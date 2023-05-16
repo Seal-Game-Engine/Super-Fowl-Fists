@@ -303,7 +303,7 @@
 1683875691 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\parallax.h
 	"SealEngine.h"
 
-1683817193 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.cpp
+1684216689 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\player.cpp
 	"Player.h"
 	"Projectile.h"
 	"Prefab.h"
@@ -1208,7 +1208,7 @@
 	"Camera.h"
 	"Transform.h"
 
-1683785585 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\audiosource.cpp
+1684217547 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\audiosource.cpp
 	"AudioSource.h"
 
 1683786212 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\idamageable.h
@@ -1254,7 +1254,7 @@
 1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\sealengine\ui\uielement.cpp
 	"UiElement.h"
 
-1683810326 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\boss.cpp
+1684142317 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\boss.cpp
 	"Boss.h"
 	"Prefab.h"
 	<cmath>
@@ -1456,7 +1456,7 @@
 1683800807 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\gamplaydata.cpp
 	"GameplayData.h"
 
-1683914968 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\globalgamescene.cpp
+1684217845 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\globalgamescene.cpp
 	"GlobalGameScene.h"
 	"EventManagers/TutorialEventManager.h"
 	"EventManagers/GameEventManager.h"
@@ -1497,7 +1497,7 @@
 1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\idamageable.cpp
 	"IDamageable.h"
 
-1683916968 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\prefab.cpp
+1684217235 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\prefab.cpp
 	"Prefab.h"
 	"GlobalMenuScene.h"
 	"Parallax.h"
@@ -1521,18 +1521,18 @@
 	"Entity.h"
 	"Hitbox.h"
 
-1683815470 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\senseiwu.h
+1684216538 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\senseiwu.h
 	"Boss.h"
 
-1683815470 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\robot.h
+1684209707 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\robot.h
 	"Boss.h"
 
-1683815465 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\robot.cpp
+1684217077 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\robot.cpp
 	"Robot.h"
 	"Projectile.h"
 	"Hitbox.h"
 
-1683818378 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\senseiwu.cpp
+1684216598 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\senseiwu.cpp
 	"SenseiWu.h"
 	"Projectile.h"
 	"Hitbox.h"
@@ -1552,7 +1552,7 @@
 	"CreditEventManager.h"
 	"../Parallax.h"
 
-1683821426 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\gameeventmanager.cpp
+1684216997 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\gameeventmanager.cpp
 	"GameEventManager.h"
 	"../Prefab.h"
 	"../GameplayData.h"
@@ -1568,7 +1568,7 @@
 1683821426 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\menueventmanager.cpp
 	"MenuEventManager.h"
 
-1683821426 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\seallogoeventmanager.cpp
+1683928745 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\opengltest\eventmanagers\seallogoeventmanager.cpp
 	"SealLogoEventManager.h"
 	"../Parallax.h"
 
