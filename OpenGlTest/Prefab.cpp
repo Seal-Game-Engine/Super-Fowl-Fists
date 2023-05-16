@@ -303,16 +303,12 @@ using State = AnimatorController::AnimationState;
 	const AnimationClip Sensei_Hadoken_Clip = AnimationClip({
 		{ Prefab::Sensei_Texture[12], 0.1f },
 		{ Prefab::Sensei_Texture[13], 0.1f },
-		{ Prefab::Sensei_Texture[14], 0.1f },
+		{ Prefab::Sensei_Texture[14], 0.6f },
 		}, true);
 	const AnimationClip Sensei_CallsReinforcements_Clip = AnimationClip({
 		{ Prefab::Sensei_Texture[18], 0.1f },
 		{ Prefab::Sensei_Texture[19], 0.1f },
-		{ Prefab::Sensei_Texture[20], 0.1f },
-		{ Prefab::Sensei_Texture[21], 0.1f },
-		{ Prefab::Sensei_Texture[22], 0.1f },
-		{ Prefab::Sensei_Texture[23], 0.1f },
-		}, true);
+		}, false);
 	const AnimationClip Sensei_CallingReinforcements_Clip = AnimationClip({
 		{ Prefab::Sensei_Texture[20], 0.1f },
 		{ Prefab::Sensei_Texture[21], 0.1f },
@@ -326,7 +322,8 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::Sensei_Texture[27], 0.1f },
 		{ Prefab::Sensei_Texture[28], 0.1f },
 		{ Prefab::Sensei_Texture[29], 0.1f },
-		}, true);
+		{ Prefab::Sensei_Texture[35], 0.1f },
+		}, false);
 	const AnimationClip Sensei_TeleportIn_Clip = AnimationClip({
 		{ Prefab::Sensei_Texture[29], 0.1f },
 		{ Prefab::Sensei_Texture[28], 0.1f },
@@ -334,7 +331,7 @@ using State = AnimatorController::AnimationState;
 		{ Prefab::Sensei_Texture[26], 0.1f },
 		{ Prefab::Sensei_Texture[25], 0.1f },
 		{ Prefab::Sensei_Texture[24], 0.1f },
-		}, true);
+		}, false);
 	const AnimationClip Sensei_Hurt_Clip = AnimationClip({
 		{ Prefab::Sensei_Texture[30], 0.1f },
 		}, true);
@@ -348,24 +345,18 @@ using State = AnimatorController::AnimationState;
 	const AnimatorController Prefab::Sensei_Controller = AnimatorController({
 		State("Idle", &Sensei_Idle_Clip, {
 			{ "Walking", false, 1, [](auto& animator) { return animator.GetBool("isWalking"); } },
-			{ "Hadoken", false, 1, [](auto& animator) { return animator.GetInteger("move") == 1; } },
-			{ "Call", false, 1, [](auto& animator) { return animator.GetInteger("move") == 2; } },
-			{ "TeleportOut", false, 1, [](auto& animator) { return animator.GetInteger("move") == 3; } },
 		}),
 		State("Walking", &Sensei_Walking_Clip, {
 			{ "Idle", true, 1 },
 		}),
-		State("Hadoken", &Sensei_Hadoken_Clip, {
-			{ "Idle", true, 1 },
-		}),
+		State("Hadoken", &Sensei_Hadoken_Clip),
 		State("Call", &Sensei_CallsReinforcements_Clip, {
-			{ "Calling", true, 1, [](auto& animator) { animator.SetInteger("move", 0); return true; } },
+			{ "Calling", true, 1 },
 		}),
-		State("Calling", &Sensei_CallingReinforcements_Clip, {
-			{ "Idle", true, 3 },
-		}),
+		State("Calling", &Sensei_CallingReinforcements_Clip),
+
 		State("TeleportOut", &Sensei_TeleportOut_Clip, {
-			{ "TeleportIn", true, 1, [](auto& animator) { animator.SetInteger("move", 0); return true; } },
+			{ "TeleportIn", true, 1 },
 		}),
 		State("TeleportIn", &Sensei_TeleportIn_Clip, {
 			{ "Idle", true, 1 },
@@ -566,7 +557,7 @@ const GameObject Prefab::Bomb_Object = GameObject(
 	std::make_shared<Animator>(&Bomb_Controller),
 	std::make_shared<Rigidbody2D>(Rigidbody2D::BodyType::Dynamic, 1, 1.5f),
 	std::make_shared<CircleCollider2D>(0.2f),
-	std::make_shared<Projectile>(3, 5, Projectile::TraversalMethods::UseForce, true),
+	std::make_shared<Projectile>(3, 2, Projectile::TraversalMethods::UseForce, true),
 	std::make_shared<AudioSource>()
 );
 #pragma endregion

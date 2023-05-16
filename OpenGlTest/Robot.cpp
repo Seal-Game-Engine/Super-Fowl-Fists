@@ -20,7 +20,6 @@ void Robot::Awake(){
 void Robot::Update() {
 	if (!isAlive()) return;
 
-	_rigidbody->velocity = Vector2(-0.05, _rigidbody->velocity.y());
 
 	switch (actionState) {
 	case ActionState::Charge: Charge(); break;

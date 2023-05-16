@@ -57,7 +57,7 @@ void GameEventManager::Awake() {
 		_bossObject = InstantiateT(Prefab::Sensei_Object, Vector2(2.5f, 0))->GetComponent<Boss>();
 		break;
 	case 2:
-		_bossObject = InstantiateT(Prefab::BossObject, Vector2(2.5f, 0))->GetComponent<Boss>();
+		_bossObject = InstantiateT(Prefab::BossObject, Vector2(3.5f, 0))->GetComponent<Boss>();
 		break;
 	default:
 		_bossHpText->gameObject->SetActive(false);

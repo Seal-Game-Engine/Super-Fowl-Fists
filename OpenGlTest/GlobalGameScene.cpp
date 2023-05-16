@@ -18,7 +18,7 @@ const GameObject GameEventManagerObject = GameObject(		//Game Interactions (ie: 
 	std::make_shared<Image>(&Prefab::PauseScreen[0]),
 	//std::make_shared<Image>(&PauseMessage[0]),
 	std::make_shared<GameEventManager>(),
-	std::make_shared<AudioSource>()
+	std::make_shared<AudioSource>("", true)
 );
 
 #pragma endregion
@@ -179,13 +179,13 @@ const GameObject TutorialScene_Object = GameObject(
 #pragma region TutorialScene Properties
 Scene GlobalGameScene::TutorialScene = Scene({
 	//{&Prefab::Students_Object, Transform(Vector2(0,0))},
-	{&TutorialScene_Object, Transform(Vector2(14,0))},
+	{&TutorialScene_Object, Transform(Vector2(10,0))},
 	{&TutorialScene_Help_Walk_Object, Transform(Vector2(0,-1))},
 	{&TutorialScene_Help_Fight_Object, Transform(Vector2(7,-1))},
 	{&TutorialScene_Help_Buff_Object, Transform(Vector2(14,-1))},
 	{&TutorialScene_Help_Ult_Object, Transform(Vector2(21,-1))},
-	{&Wall_Object, Transform(Vector2(-2.8,0))},
-	{&Wall_Object, Transform(Vector2(28,0))},
+	{&Wall_Object, Transform(Vector2(-2.8f,0))},
+	{&Wall_Object, Transform(Vector2(22,0))},
 	{&Ground_Object, Transform(Vector2(0, -4))},
 	{&MainCamera, Transform()},
 
@@ -230,8 +230,8 @@ Scene GlobalGameScene::Lv0Scene = Scene({
 	{ &Lv0Scene_Object, Transform() },
 	{ &Ground_Object, Transform(Vector2(0, -2.3)) },
 	{ &Lv0_Platform_Object, Transform(Vector2(0,-0.5f)) },
-	{ &Wall_Object, Transform(Vector2(-7.5,0)) },
-	{ &Wall_Object, Transform(Vector2(7.5,0)) },
+	{ &Wall_Object, Transform(Vector2(-3.8,0)) },
+	{ &Wall_Object, Transform(Vector2(3.8,0)) },
 	  
 	{ &UI_Text_Object, Transform(Vector2(0, 2)) },
 	{ &TikeMyson_UI_Object, Transform(Vector2(-2.5,-1.9)) },
@@ -284,8 +284,8 @@ Scene GlobalGameScene::Lv1Scene = Scene({
 
 	{ &GameEventManagerObject, Transform() },
 
-	{&Wall_Object, Transform(Vector2(-7.5,0))},
-	{&Wall_Object, Transform(Vector2(7.5,0))},
+	{&Wall_Object, Transform(Vector2(-3.8,0))},
+	{&Wall_Object, Transform(Vector2(3.8,0))},
 	});
 #pragma endregion
 

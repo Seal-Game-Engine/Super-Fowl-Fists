@@ -2,7 +2,7 @@
 
 using namespace SealEngine;
 
-AudioSource::AudioSource(const std::string& clip) :clip(clip) {} //ctr
+AudioSource::AudioSource(const std::string& clip, bool loop) :clip(clip), loop(loop) {} //ctr
 
 void AudioSource::Awake() { engine = createIrrKlangDevice(); }
 void AudioSource::OnDestroy() { engine->drop(); }

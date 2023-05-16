@@ -20,7 +20,7 @@ namespace SealEngine {
         void Stop();
 
         std::string clip;
-        AudioSource(const std::string& clip); //constructor
+        AudioSource(const std::string& clip, bool loop = false); //constructor
         AudioSource() = default; //constructor
         bool loop = false;
         //bool playOnAwake = true;
