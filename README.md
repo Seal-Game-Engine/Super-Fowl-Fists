@@ -1,8 +1,8 @@
-# Seal Engine | Super Fowl Fists
+# [ Seal Engine | Super Fowl Fists ]
 Experimental game engine written in C++14 with OpenGl.
 
 
-<b>Check out our game prototype developed using the engine!</b>
+**Check out our game prototype developed using the engine!**
 
 [![Video](https://img.youtube.com/vi/x5qkQMULqoI/hqdefault.jpg)](https://www.youtube.com/watch?v=x5qkQMULqoI)
 
