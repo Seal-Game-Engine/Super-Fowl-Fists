@@ -4,7 +4,6 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="GlobalMenuScene.cpp" />
     <ClCompile Include="SealEngine\Animation\AnimationClip.cpp" />
@@ -49,7 +48,6 @@
     <ClCompile Include="SealEngine\Ui\UiElement.cpp" />
     <ClCompile Include="SealEngine\Ui\Panel.cpp" />
     <ClCompile Include="Testing\TestScene.cpp" />
-    <ClCompile Include="SealEngine\FontRender.cpp" />
     <ClCompile Include="Chicken_Player.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Explosion.cpp" />
@@ -73,7 +71,6 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SealEngine.h" />
-    <ClInclude Include="Font.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="SealEngine\SealPackages.h" />
     <ClInclude Include="GlobalMenuScene.h" />
@@ -119,7 +116,6 @@
     <ClInclude Include="SealEngine\Ui\UiElement.h" />
     <ClInclude Include="SealEngine\Ui\Panel.h" />
     <ClInclude Include="Testing\TestScene.h" />
-    <ClInclude Include="SealEngine\FontRender.h" />
     <ClInclude Include="Chicken_Player.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Explosion.h" />
@@ -146,6 +142,9 @@
     <Image Include="Assets\Hector_Run.png" />
     <Image Include="Assets\X-wing.png" />
     <Image Include="Assets\Projectile_Blue.png" />
+    <Image Include="Assets\SealEngine.png" />
+    <Image Include="Assets\SuperFowlFists.png" />
+    <Image Include="Assets\TikeMyson_Big.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\PlasmaBlast.wav" />
