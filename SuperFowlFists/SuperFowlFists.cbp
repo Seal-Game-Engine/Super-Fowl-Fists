@@ -122,10 +122,6 @@
 		<Unit filename="Obsolete/GLLight.cpp" />
 		<Unit filename="Obsolete/GLLight.h" />
 		<Unit filename="OpenGlTest.layout" />
-		<Unit filename="OpenGlTest.sln" />
-		<Unit filename="OpenGlTest.vcxproj" />
-		<Unit filename="OpenGlTest.vcxproj.filters" />
-		<Unit filename="OpenGlTest.vcxproj.user" />
 		<Unit filename="Parallax.cpp" />
 		<Unit filename="Parallax.h" />
 		<Unit filename="Player.cpp" />
