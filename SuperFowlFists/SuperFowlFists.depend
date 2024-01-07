@@ -1,0 +1,880 @@
+# depslib dependency file v1.0
+1683797514 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\chicken_player.cpp
+	"Chicken_Player.h"
+	"Prefab.h"
+	"Projectile.h"
+	"Hitbox.h"
+
+1683786674 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\chicken_player.h
+	"Player.h"
+
+1683815586 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\player.h
+	<functional>
+	<stack>
+	"SealEngine.h"
+	"Entity.h"
+	"Prefab.h"
+
+1683795384 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine.h
+	"SealEngine/IMessageHandler.h"
+	"SealEngine/Clock.h"
+	"SealEngine/Vector2.h"
+	"SealEngine/Vector3.h"
+	"SealEngine/Rect.h"
+	"SealEngine/Sprite.h"
+	"SealEngine/Texture2D.h"
+	"SealEngine/AudioSource.h"
+	"SealEngine/Object.h"
+	"SealEngine/GameObject.h"
+	"SealEngine/MonoBehaviour.h"
+	"SealEngine/ObjectPool.h"
+	"SealEngine/Transform.h"
+	"SealEngine/SpriteRenderer.h"
+	"SealEngine/KeyCode.h"
+	"SealEngine/Input.h"
+	"SealEngine/Camera.h"
+	"SealEngine/Animation/AnimationClip.h"
+	"SealEngine/Animation/AnimatorController.h"
+	"SealEngine/Animation/Animator.h"
+	"SealEngine/Scene.h"
+	"SealEngine/SceneManager.h"
+	"SealEngine/ApplicationManager.h"
+	"SealEngine/Physics/Collision2D.h"
+	"SealEngine/Physics/Collider2D.h"
+	"SealEngine/Physics/CircleCollider2D.h"
+	"SealEngine/Physics/BoxCollider2D.h"
+	"SealEngine/Physics/Rigidbody2D.h"
+	"SealEngine/Ui/Image.h"
+	"SealEngine/Ui/Button.h"
+	"SealEngine/Ui/Panel.h"
+	"SealEngine/Ui/Text.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\imessagehandler.h
+	"SealPackages.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\sealpackages.h
+	<windows.h>
+	<windowsx.h>
+	<freeglut/glut.h>
+	<SOIL2.h>
+	<irrKlang_x64/irrKlang.h>
+	<GL/glut.h>
+	<SOIL.h>
+	<irrKlang_Win32/irrKlang.h>
+
+1665159171 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\freeglut\glut.h
+	"freeglut_std.h"
+
+1665159171 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\freeglut\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1676583406 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\soil2.h
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\irrklang.h
+	"ik_irrKlangTypes.h"
+	"ik_vec3d.h"
+	"ik_IRefCounted.h"
+	"ik_IVirtualRefCounted.h"
+	"ik_ESoundOutputDrivers.h"
+	"ik_ESoundEngineOptions.h"
+	"ik_EStreamModes.h"
+	"ik_SAudioStreamFormat.h"
+	"ik_ISoundEngine.h"
+	"ik_ISoundSource.h"
+	"ik_ISound.h"
+	"ik_IAudioStream.h"
+	"ik_IAudioStreamLoader.h"
+	"ik_ISoundEffectControl.h"
+	"ik_ISoundStopEventReceiver.h"
+	"ik_IFileFactory.h"
+	"ik_IFileReader.h"
+	"ik_ISoundDeviceList.h"
+	"ik_IAudioRecorder.h"
+	"ik_ISoundMixedOutputReceiver.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_irrklangtypes.h
+	<wchar.h>
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_vec3d.h
+	<math.h>
+	"ik_irrKlangTypes.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_irefcounted.h
+	"ik_irrKlangTypes.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_ivirtualrefcounted.h
+	"ik_irrKlangTypes.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_esoundoutputdrivers.h
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_esoundengineoptions.h
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_estreammodes.h
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_saudiostreamformat.h
+	"ik_IRefCounted.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundengine.h
+	"ik_IRefCounted.h"
+	"ik_vec3d.h"
+	"ik_ISoundSource.h"
+	"ik_ISound.h"
+	"ik_EStreamModes.h"
+	"ik_IFileFactory.h"
+	"ik_ISoundMixedOutputReceiver.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundsource.h
+	"ik_IVirtualRefCounted.h"
+	"ik_vec3d.h"
+	"ik_EStreamModes.h"
+	"ik_SAudioStreamFormat.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isound.h
+	"ik_IVirtualRefCounted.h"
+	"ik_ISoundEffectControl.h"
+	"ik_vec3d.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundeffectcontrol.h
+	"ik_IVirtualRefCounted.h"
+	"ik_vec3d.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_ifilefactory.h
+	"ik_IRefCounted.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundmixedoutputreceiver.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_iaudiostream.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_iaudiostreamloader.h
+	"ik_IRefCounted.h"
+	"ik_IFileReader.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_ifilereader.h
+	"ik_IRefCounted.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isoundstopeventreceiver.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_isounddevicelist.h
+	"ik_IRefCounted.h"
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_x64\ik_iaudiorecorder.h
+	"ik_IRefCounted.h"
+	"ik_ISoundSource.h"
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\gl\glut.h
+	<windows.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1680935102 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\soil.h
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\irrklang.h
+	"ik_irrKlangTypes.h"
+	"ik_vec3d.h"
+	"ik_IRefCounted.h"
+	"ik_IVirtualRefCounted.h"
+	"ik_ESoundOutputDrivers.h"
+	"ik_ESoundEngineOptions.h"
+	"ik_EStreamModes.h"
+	"ik_SAudioStreamFormat.h"
+	"ik_ISoundEngine.h"
+	"ik_ISoundSource.h"
+	"ik_ISound.h"
+	"ik_IAudioStream.h"
+	"ik_IAudioStreamLoader.h"
+	"ik_ISoundEffectControl.h"
+	"ik_ISoundStopEventReceiver.h"
+	"ik_IFileFactory.h"
+	"ik_IFileReader.h"
+	"ik_ISoundDeviceList.h"
+	"ik_IAudioRecorder.h"
+	"ik_ISoundMixedOutputReceiver.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_irrklangtypes.h
+	<wchar.h>
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_vec3d.h
+	<math.h>
+	"ik_irrKlangTypes.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_irefcounted.h
+	"ik_irrKlangTypes.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_ivirtualrefcounted.h
+	"ik_irrKlangTypes.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_esoundoutputdrivers.h
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_esoundengineoptions.h
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_estreammodes.h
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_saudiostreamformat.h
+	"ik_IRefCounted.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_isoundengine.h
+	"ik_IRefCounted.h"
+	"ik_vec3d.h"
+	"ik_ISoundSource.h"
+	"ik_ISound.h"
+	"ik_EStreamModes.h"
+	"ik_IFileFactory.h"
+	"ik_ISoundMixedOutputReceiver.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_isoundsource.h
+	"ik_IVirtualRefCounted.h"
+	"ik_vec3d.h"
+	"ik_EStreamModes.h"
+	"ik_SAudioStreamFormat.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_isound.h
+	"ik_IVirtualRefCounted.h"
+	"ik_ISoundEffectControl.h"
+	"ik_vec3d.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_isoundeffectcontrol.h
+	"ik_IVirtualRefCounted.h"
+	"ik_vec3d.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_ifilefactory.h
+	"ik_IRefCounted.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_isoundmixedoutputreceiver.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_iaudiostream.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_iaudiostreamloader.h
+	"ik_IRefCounted.h"
+	"ik_IFileReader.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_ifilereader.h
+	"ik_IRefCounted.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_isoundstopeventreceiver.h
+	"ik_IRefCounted.h"
+	"ik_SAudioStreamFormat.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_isounddevicelist.h
+	"ik_IRefCounted.h"
+
+1683634387 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\common\include\irrklang_win32\ik_iaudiorecorder.h
+	"ik_IRefCounted.h"
+	"ik_ISoundSource.h"
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\clock.h
+	<chrono>
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\vector2.h
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\vector3.h
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\rect.h
+	<string>
+	"Vector2.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\sprite.h
+	<array>
+	"Object.h"
+	"Vector2.h"
+	"Rect.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\object.h
+	<string>
+	<vector>
+	<memory>
+	<type_traits>
+	"IClonable.h"
+	"Vector3.h"
+	"SceneManager.h"
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\iclonable.h
+	<memory>
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\scenemanager.h
+	"SealPackages.h"
+	<memory>
+	<vector>
+	<queue>
+	<list>
+	"IMessageHandler.h"
+
+1683911096 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\texture2d.h
+	<string>
+	<queue>
+	"SealPackages.h"
+	"Object.h"
+
+1684217517 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\audiosource.h
+	"MonoBehaviour.h"
+	"SealPackages.h"
+	"KeyCode.h"
+	<string>
+	<memory>
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\monobehaviour.h
+	<string>
+	<list>
+	<functional>
+	"Object.h"
+	"Physics/Collision2D.h"
+
+1683141303 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\collision2d.h
+	<vector>
+	"../Vector2.h"
+	"ContactPoint2D.h"
+
+1683063187 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\contactpoint2d.h
+	"../Vector2.h"
+
+1683787752 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\keycode.h
+	"SealPackages.h"
+
+1683916783 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\gameobject.h
+	<vector>
+	<memory>
+	<string>
+	<array>
+	"Object.h"
+	"MonoBehaviour.h"
+	"Vector3.h"
+	"Transform.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\transform.h
+	"Vector3.h"
+	"MonoBehaviour.h"
+
+1683796038 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\objectpool.h
+	<stack>
+	"GameObject.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\spriterenderer.h
+	"MonoBehaviour.h"
+	"IRenderer.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\irenderer.h
+	"Sprite.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\input.h
+	"IMessageHandler.h"
+	"KeyCode.h"
+	<queue>
+	<string>
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\camera.h
+	"MonoBehaviour.h"
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\animation\animationclip.h
+	<vector>
+	"../Object.h"
+	"../Sprite.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\animation\animatorcontroller.h
+	<map>
+	<functional>
+	"../Object.h"
+	"AnimationClip.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\animation\animator.h
+	<map>
+	"../MonoBehaviour.h"
+	"../IRenderer.h"
+	"AnimatorController.h"
+
+1683914984 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\scene.h
+	<vector>
+	<queue>
+	<memory>
+	<tuple>
+	<functional>
+	"Transform.h"
+	"GameObject.h"
+	"Ui/UiElement.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\uielement.h
+	"../MonoBehaviour.h"
+
+1683063181 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\applicationmanager.h
+	<memory>
+	<vector>
+	"SealPackages.h"
+	"../SealEngine.h"
+	"SceneManager.h"
+
+1683816915 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\collider2d.h
+	"../MonoBehaviour.h"
+	"../Rect.h"
+
+1683148118 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\circlecollider2d.h
+	"Collider2D.h"
+
+1683148163 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\boxcollider2d.h
+	"Collider2D.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\rigidbody2d.h
+	"../MonoBehaviour.h"
+	"Collider2D.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\image.h
+	"UiElement.h"
+	"../IRenderer.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\button.h
+	"UiElement.h"
+	"../IRenderer.h"
+	<functional>
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\panel.h
+	"UiElement.h"
+	"../IRenderer.h"
+
+1683717748 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\text.h
+	"UiElement.h"
+	<string>
+	"../Texture2D.h"
+
+1683787568 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\entity.h
+	"SealEngine.h"
+	"IDamageable.h"
+
+1683786212 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\idamageable.h
+	"SealEngine.h"
+
+1683817877 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\prefab.h
+	<memory>
+	"SealEngine.h"
+
+1683796613 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\projectile.h
+	"SealEngine.h"
+
+1683816794 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\hitbox.h
+	"SealEngine.h"
+	"IDamageable.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\enemy.cpp
+	"Enemy.h"
+	"Prefab.h"
+
+1683442943 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\enemy.h
+	"SealEngine.h"
+
+1683787626 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\entity.cpp
+	"Entity.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\crediteventmanager.cpp
+	"CreditEventManager.h"
+	"../Parallax.h"
+
+1683704768 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\crediteventmanager.h
+	"../SealEngine.h"
+
+1683875691 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\parallax.h
+	"SealEngine.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\landingeventmanager.cpp
+	"LandingEventManager.h"
+	"../Parallax.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\landingeventmanager.h
+	"../SealEngine.h"
+
+1683821426 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\menueventmanager.cpp
+	"MenuEventManager.h"
+
+1683821426 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\menueventmanager.h
+	<array>
+	<vector>
+	"../SealEngine.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\tutorialeventmanager.cpp
+	"TutorialEventManager.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\tutorialeventmanager.h
+	"../SealEngine.h"
+
+1683807858 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\explosion.cpp
+	"Explosion.h"
+	"Hitbox.h"
+
+1683790547 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\explosion.h
+	"SealEngine.h"
+
+1683800807 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\gamplaydata.cpp
+	"GameplayData.h"
+
+1683800788 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\gameplaydata.h
+
+1683816883 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\hitbox.cpp
+	"Hitbox.h"
+	"Entity.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\idamageable.cpp
+	"IDamageable.h"
+
+1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\main.cpp
+	"SealEngine/SealPackages.h"
+	"SealEngine.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\obsolete\gllight.cpp
+	"GLLight.h"
+
+1683875194 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\obsolete\gllight.h
+	"../SealEngine/SealPackages.h"
+
+1683875349 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\parallax.cpp
+	"Parallax.h"
+
+1683806462 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\projectile.cpp
+	"Projectile.h"
+	"Prefab.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\animation\animationclip.cpp
+	"AnimationClip.h"
+	<numeric>
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\animation\animator.cpp
+	"Animator.h"
+	"../Clock.h"
+	"../GameObject.h"
+	<map>
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\animation\animatorcontroller.cpp
+	"AnimatorController.h"
+
+1683815470 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\applicationmanager.cpp
+	"ApplicationManager.h"
+	"Input.h"
+	"Time.h"
+	"../GlobalMenuScene.h"
+
+1683815465 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\globalmenuscene.h
+	"SealEngine.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\camera.cpp
+	"Camera.h"
+	"Transform.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\clock.cpp
+	"Clock.h"
+
+1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\iclonable.cpp
+	"IClonable.h"
+
+1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\imessagehandler.cpp
+	"IMessageHandler.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\input.cpp
+	"SealPackages.h"
+	"Input.h"
+	"Vector2.h"
+	"Vector3.h"
+	"SceneManager.h"
+	"ApplicationManager.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\irenderer.cpp
+	"IRenderer.h"
+	"Texture2D.h"
+	"Transform.h"
+	"Camera.h"
+	<array>
+
+1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\keycode.cpp
+	"KeyCode.h"
+
+1683190539 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\monobehaviour.cpp
+	"MonoBehaviour.h"
+	"Transform.h"
+	"GameObject.h"
+	"Clock.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\object.cpp
+	"Object.h"
+	"Scene.h"
+	"GameObject.h"
+
+1683797921 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\objectpool.cpp
+	"ObjectPool.h"
+	"Object.h"
+
+1683148179 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\boxcollider2d.cpp
+	"BoxCollider2D.h"
+	"../Transform.h"
+	<cfloat>
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\circlecollider2d.cpp
+	"CircleCollider2D.h"
+	"../Transform.h"
+	<algorithm>
+
+1683815470 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\collider2d.cpp
+	"Collider2D.h"
+	"Rigidbody2D.h"
+	"Collision2D.h"
+	"ContactPoint2D.h"
+	"../GameObject.h"
+	"../Scene.h"
+	"../Clock.h"
+	<algorithm>
+	<cfloat>
+
+1683145115 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\collision2d.cpp
+	"Collision2D.h"
+	"Collider2D.h"
+	"Rigidbody2D.h"
+	"../Transform.h"
+	"../GameObject.h"
+
+1683063187 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\contactpoint2d.cpp
+	"ContactPoint2D.h"
+	"Rigidbody2D.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\physics\rigidbody2d.cpp
+	"Rigidbody2D.h"
+	"Collider2D.h"
+	"../GameObject.h"
+	"../Clock.h"
+	<cfloat>
+	"../Input.h"
+
+1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\rect.cpp
+	"Rect.h"
+
+1683720295 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\scene.cpp
+	"Scene.h"
+	"GameObject.h"
+
+1683881526 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\scenemanager.cpp
+	"../SealEngine.h"
+	"../Prefab.h"
+	"../GlobalMenuScene.h"
+	"../GlobalGameScene.h"
+	"../Testing/TestScene.h"
+	"Scene.h"
+	"Camera.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\globalgamescene.h
+	"SealEngine.h"
+	"Prefab.h"
+
+1683877745 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\testing\testscene.h
+	"../SealEngine.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\sprite.cpp
+	"Sprite.h"
+	"Vector2.h"
+	"Texture2D.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\spriterenderer.cpp
+	"SpriteRenderer.h"
+	"Camera.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\transform.cpp
+	"Transform.h"
+	<cmath>
+
+1683719991 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\button.cpp
+	"Button.h"
+	"../SceneManager.h"
+	"../GameObject.h"
+	"../Camera.h"
+	"../Input.h"
+	"../../Prefab.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\image.cpp
+	"Image.h"
+	"../Camera.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\panel.cpp
+	"Panel.h"
+	"../Texture2D.h"
+	"../Camera.h"
+
+1683717832 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\text.cpp
+	"Text.h"
+	"../Camera.h"
+	"../Transform.h"
+	"../Rect.h"
+	"../Sprite.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\ui\uielement.cpp
+	"UiElement.h"
+
+1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\vector2.cpp
+	"Vector2.h"
+	<cmath>
+	"Vector3.h"
+
+1683063181 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\vector3.cpp
+	"Vector3.h"
+	<cmath>
+	"Vector2.h"
+
+1683818130 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\student.cpp
+	"Student.h"
+	"GameplayData.h"
+	"Player.h"
+
+1683817969 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\student.h
+	"Entity.h"
+	"Hitbox.h"
+
+1683875590 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\testing\obstacle.cpp
+	"Obstacle.h"
+	"../Projectile.h"
+
+1683876197 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\testing\obstacle.h
+	"../SealEngine.h"
+
+1683881482 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\testing\obstaclespawner.cpp
+	"ObstacleSpawner.h"
+	"../Prefab.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\testing\obstaclespawner.h
+	"../SealEngine.h"
+
+1683634388 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\testing\xwingplayer.cpp
+	"XwingPlayer.h"
+	"../Projectile.h"
+	"../Hitbox.h"
+	"../Prefab.h"
+	<cmath>
+
+1683786370 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\testing\xwingplayer.h
+	"../SealEngine.h"
+	"../Entity.h"
+
+1683818273 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\tikemyson_player.cpp
+	"TikeMyson_Player.h"
+	"Prefab.h"
+	"Projectile.h"
+	"Hitbox.h"
+
+1683786660 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\tikemyson_player.h
+	"Player.h"
+
+1684142317 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\boss.cpp
+	"Boss.h"
+	"Prefab.h"
+	<cmath>
+	"EventManagers/GameEventManager.h"
+	"GameplayData.h"
+
+1683815470 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\boss.h
+	"SealEngine.h"
+	"Entity.h"
+	"Prefab.h"
+
+1684142828 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\gameeventmanager.h
+	"../SealEngine.h"
+	<vector>
+	"../Boss.h"
+	"../Player.h"
+
+1684216997 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\gameeventmanager.cpp
+	"GameEventManager.h"
+	"../Prefab.h"
+	"../GameplayData.h"
+	"../Player.h"
+	<functional>
+	<numeric>
+	<random>
+
+1683928745 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\seallogoeventmanager.cpp
+	"SealLogoEventManager.h"
+	"../Parallax.h"
+
+1683634388 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\eventmanagers\seallogoeventmanager.h
+	"../SealEngine.h"
+
+1684217845 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\globalgamescene.cpp
+	"GlobalGameScene.h"
+	"EventManagers/TutorialEventManager.h"
+	"EventManagers/GameEventManager.h"
+	"Prefab.h"
+	"Parallax.h"
+
+1683917550 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\globalmenuscene.cpp
+	"GlobalMenuScene.h"
+	"Parallax.h"
+	"GameplayData.h"
+	"EventManagers/GameEventManager.h"
+	"EventManagers/MenuEventManager.h"
+	"EventManagers/LandingEventManager.h"
+	"EventManagers/CreditEventManager.h"
+	"EventManagers/SealLogoEventManager.h"
+
+1684216689 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\player.cpp
+	"Player.h"
+	"Projectile.h"
+	"Prefab.h"
+	"Hitbox.h"
+	<cmath>
+	"EventManagers/GameEventManager.h"
+
+1684217235 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\prefab.cpp
+	"Prefab.h"
+	"GlobalMenuScene.h"
+	"Parallax.h"
+	"EventManagers/LandingEventManager.h"
+	"EventManagers/MenuEventManager.h"
+	"EventManagers/TutorialEventManager.h"
+	"EventManagers/GameEventManager.h"
+	"Player.h"
+	"Projectile.h"
+	"Hitbox.h"
+	"TikeMyson_Player.h"
+	"Chicken_Player.h"
+	"Parallax.h"
+	"Student.h"
+	"SenseiWu.h"
+	"Robot.h"
+	"Explosion.h"
+	<string>
+
+1684216538 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\senseiwu.h
+	"Boss.h"
+
+1684209707 c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\robot.h
+	"Boss.h"
+
+1684217077 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\robot.cpp
+	"Robot.h"
+	"Projectile.h"
+	"Hitbox.h"
+
+1684217547 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\audiosource.cpp
+	"AudioSource.h"
+
+1683916773 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\gameobject.cpp
+	"GameObject.h"
+	"Transform.h"
+	"SceneManager.h"
+	"Scene.h"
+
+1683911133 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\sealengine\texture2d.cpp
+	"Texture2D.h"
+	"Sprite.h"
+
+1684216598 source:c:\users\wrh10\downloads\education\csu fresno\computer science\csci 178\projects\superfowlfists\senseiwu.cpp
+	"SenseiWu.h"
+	"Projectile.h"
+	"Hitbox.h"
+

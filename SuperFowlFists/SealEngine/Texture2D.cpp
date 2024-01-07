@@ -39,7 +39,7 @@ void Texture2D::LoadTexture(const std::string& textureSource, const FilterMode f
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width(), height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	SOIL_free_image_data(image);
 
-	for (auto& sprite : sprites) { sprite.LoadVertices(); }
+	for (auto& sprite : sprites) sprite.LoadVertices();
 }
 void Texture2D::LoadUninitializedTextures() {
 	while (!uninitializedTextures.empty()) {
