@@ -1,5 +1,6 @@
 #include "Vector3.h"
 #include <cmath>
+#include <cfloat>
 #include "Vector2.h"
 using namespace SealEngine;
 
@@ -41,7 +42,10 @@ void Vector3::Set(const float x, const float y, const float z) {
 }
 float Vector3::sqrMagnitude() const { return std::pow(x(), 2) + std::pow(y(), 2) + std::pow(z(), 2); }
 float Vector3::magnitude() const { return std::sqrt(sqrMagnitude()); }
-Vector3 Vector3::normalized() const { return *this / magnitude(); }
+Vector3 Vector3::normalized() const {
+	float _magnitude = magnitude();
+	return _magnitude < FLT_EPSILON ? Vector3::zero() : *this / _magnitude;
+}
 
 float Vector3::Dot(const Vector3& a, const Vector3& b) { return a.x() * b.x() + a.y() * b.y() + a.z() * b.z(); }
 Vector3 Vector3::Cross(const Vector3& a, const Vector3& b) {
