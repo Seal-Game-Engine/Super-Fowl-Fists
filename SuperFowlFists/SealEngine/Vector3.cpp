@@ -20,6 +20,8 @@ Vector3 Vector3::right() { return Vector3(1, 0, 0); }
 Vector3 Vector3::forward() { return Vector3(0, 0, 1); }
 Vector3 Vector3::back() { return Vector3(0, 0, -1); }
 
+Vector3 Vector3::operator-() const { return Vector3(-x(), -y(), -z()); }
+
 Vector3 Vector3::operator+(const Vector3& obj) const { return Vector3(x() + obj.x(), y() + obj.y(), z() + obj.z()); }
 Vector3 Vector3::operator-(const Vector3& obj) const { return Vector3(x() - obj.x(), y() - obj.y(), z() - obj.z()); }
 Vector3 Vector3::operator*(const float obj) const { return Vector3(x() * obj, y() * obj, z() * obj); }

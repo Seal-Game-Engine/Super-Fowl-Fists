@@ -29,6 +29,7 @@ namespace SealEngine {
         Vector2(const float x, const float y);
         Vector2(const Vector2&);
 
+        Vector2 operator-() const;
 
         Vector2 operator+(const Vector2&) const;
         Vector2 operator-(const Vector2&) const;

@@ -33,6 +33,7 @@ namespace SealEngine {
         Vector3(const float x, const float y, const float z);
         Vector3(const Vector3&);
 
+        Vector3 operator-() const;
 
         Vector3 operator+(const Vector3&) const;
         Vector3 operator-(const Vector3&) const;

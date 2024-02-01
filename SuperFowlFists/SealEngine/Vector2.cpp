@@ -17,6 +17,8 @@ Vector2 Vector2::down() { return Vector2(0, -1); }
 Vector2 Vector2::left() { return Vector2(-1, 0); }
 Vector2 Vector2::right() { return Vector2(1, 0); }
 
+Vector2 Vector2::operator-() const { return Vector2(-x(), -y()); }
+
 Vector2 Vector2::operator+(const Vector2& obj) const { return Vector2(x() + obj.x(), y() + obj.y()); }
 Vector2 Vector2::operator-(const Vector2& obj) const { return Vector2(x() - obj.x(), y() - obj.y()); }
 Vector2 Vector2::operator*(const float obj) const { return Vector2(x() * obj, y() * obj); }
